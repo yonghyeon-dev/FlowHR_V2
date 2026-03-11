@@ -78,6 +78,7 @@
 31. [Stage 7 진입 게이트 재검토](./foundation/26-stage7-gate-review.md)
 32. [구현 착수용 기술 선택안](./foundation/27-implementation-technology-decisions.md)
 33. [설계 상태 체크리스트](./foundation/28-design-status-checklist.md)
+34. [화면 승인 리뷰 패킷](./foundation/29-approval-review-packet.md)
 
 ## 운영 원칙
 
