@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import type {
   ActionScenario,
   ActionSimulationFailure,
@@ -8,11 +7,11 @@ import type {
 
 type Locale = "ko" | "en";
 
-function pickLocale(value?: string): Locale {
+export function pickLocale(value?: string): Locale {
   return value === "en" ? "en" : "ko";
 }
 
-function createSuccess(
+export function createActionSuccess(
   actionType: ActionSimulationRequest["actionType"],
   locale: Locale,
 ): ActionSimulationSuccess {
@@ -45,7 +44,7 @@ function createSuccess(
   };
 }
 
-function createFailure(
+export function createActionFailure(
   scenario: Exclude<ActionScenario, "success">,
   locale: Locale,
 ): ActionSimulationFailure {
@@ -85,18 +84,4 @@ function createFailure(
         ? "처리 중 오류가 발생했습니다. 다시 시도해 주세요."
         : "An error occurred while processing. Please try again.",
   };
-}
-
-export async function POST(request: Request) {
-  const body = (await request.json()) as ActionSimulationRequest;
-  const locale = pickLocale(body.locale);
-
-  if (body.scenario === "success") {
-    return NextResponse.json(createSuccess(body.actionType, locale));
-  }
-
-  const failure = createFailure(body.scenario as Exclude<ActionScenario, "success">, locale);
-  const status = body.scenario === "access_denied" ? 403 : body.scenario === "validation_error" ? 422 : 500;
-
-  return NextResponse.json(failure, { status });
 }

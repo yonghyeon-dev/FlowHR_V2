@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ActionSimulator } from "@/components/action-simulator";
 import { APP_COPY, SUPPORTED_LANGUAGES, tx } from "@/lib/content/appCopy";
-import type { ActionSimulationRequest } from "@/lib/api/types";
 import type {
   DashboardPage,
   DashboardSection,
@@ -24,7 +23,7 @@ type NavItem = {
 type ActionPanelConfig = {
   title: LocalizedText;
   description: LocalizedText;
-  actionType: ActionSimulationRequest["actionType"];
+  endpoint: string;
   primaryLabel: LocalizedText;
 };
 
@@ -401,7 +400,7 @@ export function AdminClient({
               language={language}
               title={actionPanel.title}
               description={actionPanel.description}
-              actionType={actionPanel.actionType}
+              endpoint={actionPanel.endpoint}
               primaryLabel={actionPanel.primaryLabel}
             />
           ) : null}
@@ -659,7 +658,7 @@ export function EmployeeFlowClient({
               language={language}
               title={actionPanel.title}
               description={actionPanel.description}
-              actionType={actionPanel.actionType}
+              endpoint={actionPanel.endpoint}
               primaryLabel={actionPanel.primaryLabel}
             />
           ) : null}

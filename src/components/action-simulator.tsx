@@ -5,7 +5,6 @@ import { tx } from "@/lib/content/appCopy";
 import type {
   ActionScenario,
   ActionSimulationFailure,
-  ActionSimulationRequest,
   ActionSimulationSuccess,
 } from "@/lib/api/types";
 import type { LocalizedText } from "@/lib/content/types";
@@ -20,7 +19,7 @@ type ActionSimulatorProps = {
   language: Language;
   title: LocalizedText;
   description: LocalizedText;
-  actionType: ActionSimulationRequest["actionType"];
+  endpoint: string;
   primaryLabel: LocalizedText;
 };
 
@@ -28,7 +27,7 @@ export function ActionSimulator({
   language,
   title,
   description,
-  actionType,
+  endpoint,
   primaryLabel,
 }: ActionSimulatorProps) {
   const [scenario, setScenario] = useState<ActionScenario>("success");
@@ -41,13 +40,12 @@ export function ActionSimulator({
     setSuccess(null);
     setError(null);
 
-    const response = await fetch("/api/actions/simulate", {
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        actionType,
         scenario,
         locale: language,
       }),

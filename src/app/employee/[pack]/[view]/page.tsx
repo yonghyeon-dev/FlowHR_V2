@@ -72,7 +72,7 @@ export default async function Page({
             "요청 제출 이후 성공, 검증 실패, 권한 오류 상태가 어떻게 드러나는지 먼저 확인한다.",
             "Review how success, validation, and permission errors appear after a request submission.",
           ),
-          actionType: "request_submit",
+          endpoint: "/api/employee/requests/submit",
           primaryLabel: tx("요청 제출 테스트", "Test request submit"),
         }}
       />
@@ -95,7 +95,7 @@ export default async function Page({
           "서명 처리 이후 성공, 검증 실패, 권한 오류 상태가 어떻게 드러나는지 먼저 확인한다.",
           "Review how success, validation, and permission errors appear after a signature action.",
         ),
-        actionType: "signature_submit",
+        endpoint: "/api/employee/signatures/submit",
         primaryLabel: tx("서명 처리 테스트", "Test signature action"),
       }}
     />

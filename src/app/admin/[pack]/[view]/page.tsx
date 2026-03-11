@@ -14,7 +14,7 @@ type View = (typeof VALID_VIEWS)[number];
 type ViewActionPanel = {
   title: ReturnType<typeof tx>;
   description: ReturnType<typeof tx>;
-  actionType: "approval_approve" | "settings_save";
+  endpoint: string;
   primaryLabel: ReturnType<typeof tx>;
 };
 
@@ -46,7 +46,7 @@ const VIEW_META: Record<View, ViewMeta> = {
         "승인 실행 이후 성공, 검증 실패, 권한 오류 상태가 어떻게 드러나는지 먼저 검토한다.",
         "Review how success, validation failures, and permission errors appear after an approval action.",
       ),
-      actionType: "approval_approve" as const,
+      endpoint: "/api/admin/approvals/approve",
       primaryLabel: tx("승인 처리 테스트", "Test approval action"),
     },
   },
@@ -63,7 +63,7 @@ const VIEW_META: Record<View, ViewMeta> = {
         "권한과 민감 범위 변경을 저장할 때 발생할 수 있는 성공, 검증 실패, 권한 오류를 미리 본다.",
         "Preview success, validation, and permission states when saving roles and sensitive access settings.",
       ),
-      actionType: "settings_save" as const,
+      endpoint: "/api/admin/settings/save",
       primaryLabel: tx("설정 저장 테스트", "Test settings save"),
     },
   },

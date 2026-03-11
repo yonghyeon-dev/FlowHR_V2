@@ -57,9 +57,12 @@
 
 - `/api/platform/overview`
 - `/api/admin/[pack]/[view]`
+- `/api/admin/settings/save`
+- `/api/admin/approvals/approve`
 - `/api/employee/[pack]/[view]`
+- `/api/employee/requests/submit`
+- `/api/employee/signatures/submit`
 - `/api/setup/packs`
-- `/api/actions/simulate`
 
 다음 구현 연결도 실제 동작 기준으로 붙어 있다.
 
