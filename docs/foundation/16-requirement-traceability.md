@@ -36,7 +36,7 @@
 | `REQ-009` | WI 번호 체계가 이상하니 재정리 | `WI-PC / WI-TA / WI-TE / WI-DS / WI-DM` 체계로 통일 | 완료 | [05-wi-backlog.md](/C:/Team-jane/FlowHR_V2/docs/foundation/05-wi-backlog.md) | 신규 문서도 이 체계 유지 |
 | `REQ-010` | 디렉토리 구조가 이상하니 정리 | 문서/와이어를 권한과 목적 기준으로 재배치 | 완료 | [문서 인덱스](/C:/Team-jane/FlowHR_V2/docs/README.md), [와이어 인덱스](/C:/Team-jane/FlowHR_V2/wireframes/README.md) | 현재 구조상 큰 문제 없음 |
 | `REQ-011` | UTF-8 적용해서 작업 진행 | 모든 신규/수정 문서를 UTF-8 기준으로 유지 | 완료 | [문서 인덱스](/C:/Team-jane/FlowHR_V2/docs/README.md) | 이후도 지속 규칙으로 유지 |
-| `REQ-012` | 브라우저 언어 ko/en에 따라 동적으로 동작, `LID-*` 방식 검토 | `LID-{ROLE}-{MODULE}-{SEMANTIC_KEY}`와 locale 우선순위 적용 | 진행 중 | [06-localization-strategy.md](/C:/Team-jane/FlowHR_V2/docs/foundation/06-localization-strategy.md), [07-localization-resource-architecture.md](/C:/Team-jane/FlowHR_V2/docs/foundation/07-localization-resource-architecture.md), [21-localization-rollout-plan.md](/C:/Team-jane/FlowHR_V2/docs/foundation/21-localization-rollout-plan.md), [24-localization-status-matrix.md](/C:/Team-jane/FlowHR_V2/docs/foundation/24-localization-status-matrix.md), [i18n.js](/C:/Team-jane/FlowHR_V2/wireframes/shared/i18n.js) | 플랫폼, 관리자 홈, 직원 홈, 근태, 요청 허브까지 적용됨. 남은 화면 마이그레이션은 계속 필요 |
+| `REQ-012` | 브라우저 언어 ko/en에 따라 동적으로 동작, `LID-*` 방식 검토 | `LID-{ROLE}-{MODULE}-{SEMANTIC_KEY}`와 locale 우선순위 적용 | 진행 중 | [06-localization-strategy.md](/C:/Team-jane/FlowHR_V2/docs/foundation/06-localization-strategy.md), [07-localization-resource-architecture.md](/C:/Team-jane/FlowHR_V2/docs/foundation/07-localization-resource-architecture.md), [21-localization-rollout-plan.md](/C:/Team-jane/FlowHR_V2/docs/foundation/21-localization-rollout-plan.md), [24-localization-status-matrix.md](/C:/Team-jane/FlowHR_V2/docs/foundation/24-localization-status-matrix.md), [i18n.js](/C:/Team-jane/FlowHR_V2/wireframes/shared/i18n.js) | 현재 등록된 핵심 와이어는 모두 적용됨. 다만 실제 앱 구현 리소스와 후속 화면까지 포함하면 계속 관리 필요 |
 | `REQ-013` | 기존 방향을 끊지 말고 계속 진행 | 설계를 중간에 닫지 않고 누적 확장 방식으로 진행 | 진행 중 | [08-design-progress-report.md](/C:/Team-jane/FlowHR_V2/docs/foundation/08-design-progress-report.md) | 과거에 잘못 `설계 종료`로 표현한 이력이 있어, 현재는 게이트로 고정 |
 | `REQ-014` | 구현 전 단계까지 이어서 진행 | 구현 이전에 필요한 설계 산출물을 계속 채우되, 과장 없이 상태 보고 | 진행 중 | [00-stage-gates.md](/C:/Team-jane/FlowHR_V2/docs/foundation/00-stage-gates.md), [15-pre-implementation-report.md](/C:/Team-jane/FlowHR_V2/docs/foundation/15-pre-implementation-report.md) | 현재는 `구현 전`이 아니라 `상세 설계 진행 단계` |
 | `REQ-015` | 대분류, 중분류, 소분류, 상세분류까지 설계 | 권한별 IA를 완전한 계층표로 문서화 | 완료 | [17-ia-hierarchy-breakdown.md](/C:/Team-jane/FlowHR_V2/docs/foundation/17-ia-hierarchy-breakdown.md), [18-role-menu-function-action-matrix.md](/C:/Team-jane/FlowHR_V2/docs/foundation/18-role-menu-function-action-matrix.md) | Stage 3 기준 충족 |
@@ -63,7 +63,8 @@
 ### 3. 로컬라이제이션 전체 적용
 
 - 전략, 리소스 구조, 적용 계획은 정의되었다.
-- 전체 와이어/향후 앱 화면 마이그레이션은 아직 남아 있다.
+- 현재 문서에 등록된 핵심 와이어는 `LID-*` 적용이 완료되었다.
+- 실제 앱 리소스와 향후 추가 화면은 후속 관리 대상이다.
 
 ## 현재 공식 판정
 
@@ -74,9 +75,9 @@
 ## 다음 작업
 
 1. 비코어 화면 승인 로그 확대
-2. 남은 비코어 화면 `LID-*` 마이그레이션
-3. 사용자 decision 반영
-4. 승인 로그 기준으로 `approved` 승격 패스 수행
+2. 사용자 decision 반영
+3. 승인 로그 기준으로 `approved` 승격 패스 수행
+4. 실제 앱 리소스 구조와 화면 구현 연결
 
 ## 연결 문서
 
