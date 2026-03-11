@@ -4,31 +4,50 @@
 
 - `WI-TA-004`
 
-## 목적
+## 변경 배경
 
-Leave 모듈은 잔여 일수 조회가 아니라 `정책`, `캘린더`, `요청`, `승인`이 연결된 운영 모듈이어야 한다.
+기존 Leave 모듈은 정책, 캘린더, 요청, 촉진을 잘 묶었지만,
+어떤 휴가 리스크를 먼저 봐야 하는지는 업종에 따라 다르다.
 
-## 화면 구성
+따라서 `WI-TA-004`는 범용 Leave Dashboard가 아니라
+`업종 팩별 Leave Dashboard 변형`을 설계하는 작업으로 재정의한다.
 
-- `TA-301` Leave Dashboard
-- `TA-302` Leave Policy Management
-- `TA-303` Leave Calendar
-- `TA-304` Leave Requests
+## 현재 설계 범위
 
-## 핵심 UX
+### Variant A. Office Pack Leave Dashboard
 
-- Dashboard에서 잔여, 만료 예정, 승인 대기, 집중 사용 부서를 함께 본다.
-- Policy 화면은 유형, 차감 규칙, 발생 규칙을 한눈에 비교하게 한다.
-- Calendar는 개인/팀/조직 레벨 전환이 쉬워야 한다.
-- Requests는 상태와 승인 병목을 기준으로 정렬한다.
+대상:
 
-## 관리 포인트
+- 사무직 중심 조직
 
-- 연차, 반차, 시간 단위 휴가
-- 자동 발생 규칙
-- 만료 예정 안내
-- 휴가 집중 구간 경고
+핵심 목적:
 
-## 산출물
+- 휴가 승인 적체
+- 팀 캘린더 충돌
+- 잔여/만료 리스크
+- 촉진 대상
 
-- Leave 와이어프레임: [leave-module-detailed.html](../../wireframes/tenant-admin/leave-module-detailed.html)
+산출물:
+
+- [leave-office.html](../../wireframes/tenant-admin/leave-office.html)
+
+### Variant B. Retail Pack Leave Dashboard
+
+대상:
+
+- 매장형 / 다지점 운영 조직
+
+핵심 목적:
+
+- 휴가 승인으로 인한 매장 커버리지 공백
+- 피크타임 휴가 충돌
+- 대체 배치 필요 휴가
+
+산출물:
+
+- [leave-retail.html](../../wireframes/tenant-admin/leave-retail.html)
+
+## 공통 설계 원칙
+
+- Leave는 잔여 일수 조회가 아니라 운영 영향까지 보여야 한다
+- 업종 팩에 따라 `충돌`의 의미가 달라져야 한다

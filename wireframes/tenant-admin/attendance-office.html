@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Attendance Office Pack</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-ATT-OFFICE-EYEBROW": { "ko": "WI-TA-003 / Office Pack", "en": "WI-TA-003 / Office Pack" },
+        "LID-TA-ATT-OFFICE-TITLE": { "ko": "Office Pack Attendance Dashboard", "en": "Office Pack Attendance Dashboard" },
+        "LID-TA-ATT-OFFICE-TEXT": { "ko": "오피스형 근태는 결원보다 정정, 원격근무 예외, 휴가 충돌, 마감 지연을 먼저 봐야 합니다.", "en": "Office attendance operations should prioritize corrections, remote-work exceptions, leave conflicts, and closing delays over pure staffing gaps." },
+        "LID-TA-ATT-OFFICE-NOTE_1": { "ko": "오늘 어떤 정정 요청이 마감을 지연시키는가", "en": "Which correction requests are delaying close today" },
+        "LID-TA-ATT-OFFICE-NOTE_2": { "ko": "어떤 팀이 재택/휴가로 커버리지 공백을 만들고 있는가", "en": "Which teams are creating coverage gaps through remote work or leave" },
+        "LID-TA-ATT-OFFICE-NOTE_3": { "ko": "누락 기록과 승인 병목이 연결되는가", "en": "Whether missing records connect to approval bottlenecks" },
+        "LID-TA-ATT-OFFICE-KPI_1": { "ko": "정정 요청", "en": "Corrections" },
+        "LID-TA-ATT-OFFICE-KPI_2": { "ko": "누락 기록", "en": "Missing logs" },
+        "LID-TA-ATT-OFFICE-KPI_3": { "ko": "원격 예외", "en": "Remote exceptions" },
+        "LID-TA-ATT-OFFICE-KPI_4": { "ko": "휴가 충돌", "en": "Leave conflicts" },
+        "LID-TA-ATT-OFFICE-KPI_5": { "ko": "마감 지연", "en": "Closing delays" },
+        "LID-TA-ATT-OFFICE-QUEUE_TITLE": { "ko": "Correction Queue", "en": "Correction Queue" },
+        "LID-TA-ATT-OFFICE-QUEUE_1": { "ko": "Finance / 체크아웃 누락 3건 / 마감 전 처리 필요", "en": "Finance / 3 missing check-outs / resolve before close" },
+        "LID-TA-ATT-OFFICE-QUEUE_2": { "ko": "Product / 재택 승인 미반영 2건", "en": "Product / 2 remote approvals not reflected" },
+        "LID-TA-ATT-OFFICE-QUEUE_3": { "ko": "Engineering / 휴가 중복으로 리뷰 공백", "en": "Engineering / review gap from overlapping leave" },
+        "LID-TA-ATT-OFFICE-TEAM_TITLE": { "ko": "Team Coverage Risk", "en": "Team Coverage Risk" },
+        "LID-TA-ATT-OFFICE-TEAM_1": { "ko": "Engineering / 원격 승인 대기 5건", "en": "Engineering / 5 remote approvals pending" },
+        "LID-TA-ATT-OFFICE-TEAM_2": { "ko": "Product / 다음 주 휴가 집중", "en": "Product / clustered leave next week" },
+        "LID-TA-ATT-OFFICE-TEAM_3": { "ko": "Finance / 마감 인력 부족 위험", "en": "Finance / risk of insufficient close coverage" },
+        "LID-TA-ATT-OFFICE-CLOSE_TITLE": { "ko": "Closing Watch", "en": "Closing Watch" },
+        "LID-TA-ATT-OFFICE-CLOSE_1": { "ko": "미확정 기록 5건", "en": "5 unresolved records" },
+        "LID-TA-ATT-OFFICE-CLOSE_2": { "ko": "승인 대기 정정 4건", "en": "4 corrections awaiting approval" },
+        "LID-TA-ATT-OFFICE-CLOSE_3": { "ko": "급여 반영 전 확인 2건", "en": "2 checks before payroll sync" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TA-ATT-OFFICE-EYEBROW">WI-TA-003 / Office Pack</p>
+          <h1 data-lid="LID-TA-ATT-OFFICE-TITLE">Office Pack Attendance Dashboard</h1>
+          <p class="hero-text" data-lid="LID-TA-ATT-OFFICE-TEXT">오피스형 근태는 결원보다 정정, 원격근무 예외, 휴가 충돌, 마감 지연을 먼저 봐야 합니다.</p>
+        </div>
+        <aside class="hero-note">
+          <h2>핵심 질문</h2>
+          <ul>
+            <li data-lid="LID-TA-ATT-OFFICE-NOTE_1">오늘 어떤 정정 요청이 마감을 지연시키는가</li>
+            <li data-lid="LID-TA-ATT-OFFICE-NOTE_2">어떤 팀이 재택/휴가로 커버리지 공백을 만들고 있는가</li>
+            <li data-lid="LID-TA-ATT-OFFICE-NOTE_3">누락 기록과 승인 병목이 연결되는가</li>
+          </ul>
+        </aside>
+      </header>
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title"><span>O</span><div><h3>Office Variant</h3><p>정정과 팀 커버리지 충돌을 먼저 처리하는 근태 대시보드</p></div></div>
+            <div class="screen desktop compact">
+              <div class="topbar slim"><span class="brand">Attendance</span><span class="search wide">Search employee, correction, remote rule</span><span class="pill active">Office Pack</span></div>
+              <div class="main">
+                <div class="kpi-row five">
+                  <div class="kpi emphasis"><strong>7</strong><span data-lid="LID-TA-ATT-OFFICE-KPI_1">정정 요청</span></div>
+                  <div class="kpi"><strong>5</strong><span data-lid="LID-TA-ATT-OFFICE-KPI_2">누락 기록</span></div>
+                  <div class="kpi"><strong>4</strong><span data-lid="LID-TA-ATT-OFFICE-KPI_3">원격 예외</span></div>
+                  <div class="kpi"><strong>3</strong><span data-lid="LID-TA-ATT-OFFICE-KPI_4">휴가 충돌</span></div>
+                  <div class="kpi"><strong>2</strong><span data-lid="LID-TA-ATT-OFFICE-KPI_5">마감 지연</span></div>
+                </div>
+                <div class="panel-row desktop-home">
+                  <section class="panel large">
+                    <div class="panel-head"><strong data-lid="LID-TA-ATT-OFFICE-QUEUE_TITLE">Correction Queue</strong><span>Priority</span></div>
+                    <div class="list dense">
+                      <span class="danger" data-lid="LID-TA-ATT-OFFICE-QUEUE_1">Finance / 체크아웃 누락 3건 / 마감 전 처리 필요</span>
+                      <span data-lid="LID-TA-ATT-OFFICE-QUEUE_2">Product / 재택 승인 미반영 2건</span>
+                      <span data-lid="LID-TA-ATT-OFFICE-QUEUE_3">Engineering / 휴가 중복으로 리뷰 공백</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head"><strong data-lid="LID-TA-ATT-OFFICE-TEAM_TITLE">Team Coverage Risk</strong><span>Teams</span></div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-ATT-OFFICE-TEAM_1">Engineering / 원격 승인 대기 5건</span>
+                      <span data-lid="LID-TA-ATT-OFFICE-TEAM_2">Product / 다음 주 휴가 집중</span>
+                      <span data-lid="LID-TA-ATT-OFFICE-TEAM_3">Finance / 마감 인력 부족 위험</span>
+                    </div>
+                  </section>
+                </div>
+                <section class="panel">
+                  <div class="panel-head"><strong data-lid="LID-TA-ATT-OFFICE-CLOSE_TITLE">Closing Watch</strong><span>Before close</span></div>
+                  <div class="mini-columns">
+                    <span data-lid="LID-TA-ATT-OFFICE-CLOSE_1">미확정 기록 5건</span>
+                    <span data-lid="LID-TA-ATT-OFFICE-CLOSE_2">승인 대기 정정 4건</span>
+                    <span data-lid="LID-TA-ATT-OFFICE-CLOSE_3">급여 반영 전 확인 2건</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Workflow Office Pack</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-WORK-OFFICE-EYEBROW": { "ko": "WI-TA-005 / Office Pack", "en": "WI-TA-005 / Office Pack" },
+        "LID-TA-WORK-OFFICE-TITLE": { "ko": "Office Pack Approval Inbox", "en": "Office Pack Approval Inbox" },
+        "LID-TA-WORK-OFFICE-TEXT": { "ko": "오피스형 승인 인박스는 휴가, 일반 품의, 문서 승인, SLA 지연 병목을 먼저 처리해야 합니다.", "en": "The office approval inbox should prioritize leave, general approvals, document approvals, and SLA-delayed bottlenecks." },
+        "LID-TA-WORK-OFFICE-ITEM_1": { "ko": "반차 요청 / 오늘 14:00 / 대기 2단계", "en": "Half-day leave / today 14:00 / pending stage 2" },
+        "LID-TA-WORK-OFFICE-ITEM_2": { "ko": "일반 품의 / 비용 증빙 누락 / SLA 6시간 초과", "en": "General approval / missing expense proof / SLA exceeded by 6h" },
+        "LID-TA-WORK-OFFICE-ITEM_3": { "ko": "전자계약 승인 / 연봉 변경 / 오늘 마감", "en": "E-contract approval / salary change / due today" },
+        "LID-TA-WORK-OFFICE-CTX_1": { "ko": "요청 내용 / 첨부 / 승인 단계", "en": "Request details / attachment / approval step" },
+        "LID-TA-WORK-OFFICE-CTX_2": { "ko": "정책 / 잔여 현황 / 팀 충돌", "en": "Policy / balance / team conflicts" },
+        "LID-TA-WORK-OFFICE-CTX_3": { "ko": "최근 승인 이력 / 재지정 이력", "en": "Recent approval history / reassignment history" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TA-WORK-OFFICE-EYEBROW">WI-TA-005 / Office Pack</p>
+          <h1 data-lid="LID-TA-WORK-OFFICE-TITLE">Office Pack Approval Inbox</h1>
+          <p class="hero-text" data-lid="LID-TA-WORK-OFFICE-TEXT">오피스형 승인 인박스는 휴가, 일반 품의, 문서 승인, SLA 지연 병목을 먼저 처리해야 합니다.</p>
+        </div>
+        <aside class="hero-note"><h2>핵심 질문</h2><ul><li>어떤 승인 병목을 오늘 먼저 풀어야 하는가</li><li>어떤 문서/품의가 운영 리스크를 만드는가</li><li>재지정이 필요한 승인 건이 있는가</li></ul></aside>
+      </header>
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title"><span>O</span><div><h3>Office Variant</h3><p>휴가, 품의, 문서 승인을 먼저 처리하는 인박스</p></div></div>
+            <div class="screen desktop compact">
+              <div class="topbar slim"><span class="brand">Workflow</span><span class="search wide">Search approval, employee, policy</span><span class="pill active">Office Pack</span></div>
+              <div class="split wide-split">
+                <section class="column list-column">
+                  <div class="stack-card active"><strong>반차 요청 / 이수민</strong><span data-lid="LID-TA-WORK-OFFICE-ITEM_1">반차 요청 / 오늘 14:00 / 대기 2단계</span><span class="status wait">Pending</span></div>
+                  <div class="stack-card"><strong>일반 품의 / 김하늘</strong><span data-lid="LID-TA-WORK-OFFICE-ITEM_2">일반 품의 / 비용 증빙 누락 / SLA 6시간 초과</span><span class="status risk">Delayed</span></div>
+                  <div class="stack-card"><strong>전자계약 승인</strong><span data-lid="LID-TA-WORK-OFFICE-ITEM_3">전자계약 승인 / 연봉 변경 / 오늘 마감</span><span class="status">Due today</span></div>
+                </section>
+                <section class="column detail-column">
+                  <div class="detail-box tall"><strong>Request Context</strong><div class="list dense"><span data-lid="LID-TA-WORK-OFFICE-CTX_1">요청 내용 / 첨부 / 승인 단계</span><span data-lid="LID-TA-WORK-OFFICE-CTX_2">정책 / 잔여 현황 / 팀 충돌</span><span data-lid="LID-TA-WORK-OFFICE-CTX_3">최근 승인 이력 / 재지정 이력</span></div></div>
+                  <div class="detail-actions"><span>승인</span><span>반려</span><span>재지정</span><span>추가 확인</span></div>
+                </section>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Admin Home Office Pack</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <style>
+      .home-context {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+      .metric-stack,
+      .timeline-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .metric-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: rgba(17, 17, 17, 0.02);
+      }
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 92px 1fr auto;
+        gap: 12px;
+        align-items: center;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: rgba(17, 17, 17, 0.02);
+      }
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 8px 12px;
+        background: #fff;
+        font-size: 0.82rem;
+      }
+      @media (max-width: 1100px) {
+        .home-context,
+        .timeline-item {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-OFFICE-HOME-EYEBROW": { "ko": "WI-TA-001 / Office Pack", "en": "WI-TA-001 / Office Pack" },
+        "LID-TA-OFFICE-HOME-TITLE": { "ko": "Office Pack Admin Home", "en": "Office Pack Admin Home" },
+        "LID-TA-OFFICE-HOME-TEXT": { "ko": "승인, 문서, 유연근무 예외를 먼저 처리하는 오피스형 관리자 홈입니다.", "en": "An admin home for office organizations that prioritizes approvals, documents, and flexible work exceptions." },
+        "LID-TA-OFFICE-HOME-CHIP_1": { "ko": "오피스형 조직", "en": "Office organizations" },
+        "LID-TA-OFFICE-HOME-CHIP_2": { "ko": "승인/문서 우선", "en": "Approval and document first" },
+        "LID-TA-OFFICE-HOME-CHIP_3": { "ko": "유연근무 예외 포함", "en": "Flexible work exceptions included" },
+        "LID-TA-OFFICE-HOME-NOTE_TITLE": { "ko": "이 홈이 풀어야 하는 질문", "en": "Questions this home must answer" },
+        "LID-TA-OFFICE-HOME-NOTE_1": { "ko": "오늘 어떤 승인과 문서를 먼저 처리해야 하는가", "en": "Which approvals and documents should be handled first today" },
+        "LID-TA-OFFICE-HOME-NOTE_2": { "ko": "어떤 팀이 유연근무/휴가로 결원 위험이 있는가", "en": "Which teams are exposed to headcount risk due to flexible work or leave" },
+        "LID-TA-OFFICE-HOME-NOTE_3": { "ko": "법적/계약 리스크를 만드는 병목이 무엇인가", "en": "Which bottlenecks create legal or contractual risk" },
+        "LID-TA-OFFICE-HOME-LAYOUT_TITLE": { "ko": "Office Variant", "en": "Office Variant" },
+        "LID-TA-OFFICE-HOME-LAYOUT_TEXT": { "ko": "승인 대기열, 문서 병목, 팀 리스크를 한 화면에서 연결", "en": "Connect approval queues, document bottlenecks, and team risk in one screen" },
+        "LID-TA-OFFICE-HOME-SEARCH": { "ko": "Search approval, contract, employee, request", "en": "Search approval, contract, employee, request" },
+        "LID-TA-OFFICE-HOME-KPI_1": { "ko": "오늘 승인 필요", "en": "Needs approval today" },
+        "LID-TA-OFFICE-HOME-KPI_2": { "ko": "SLA 지연", "en": "SLA delays" },
+        "LID-TA-OFFICE-HOME-KPI_3": { "ko": "서명 대기", "en": "Pending signatures" },
+        "LID-TA-OFFICE-HOME-KPI_4": { "ko": "만료 임박 계약", "en": "Contracts nearing expiry" },
+        "LID-TA-OFFICE-HOME-KPI_5": { "ko": "정정 요청", "en": "Correction requests" },
+        "LID-TA-OFFICE-HOME-QUEUE_TITLE": { "ko": "Decision Queue", "en": "Decision Queue" },
+        "LID-TA-OFFICE-HOME-QUEUE_SUB": { "ko": "오늘 우선 처리", "en": "Handle first today" },
+        "LID-TA-OFFICE-HOME-QUEUE_1_TITLE": { "ko": "근로계약 미서명 4건", "en": "4 unsigned employment contracts" },
+        "LID-TA-OFFICE-HOME-QUEUE_1_TEXT": { "ko": "연봉 변경 문서 / 오늘 효력 시작 / 재발송 필요", "en": "Salary change documents / effective today / resend required" },
+        "LID-TA-OFFICE-HOME-QUEUE_1_CTA": { "ko": "재발송", "en": "Resend" },
+        "LID-TA-OFFICE-HOME-QUEUE_2_TITLE": { "ko": "승인 SLA 초과 7건", "en": "7 approvals past SLA" },
+        "LID-TA-OFFICE-HOME-QUEUE_2_TEXT": { "ko": "비용/휴가/근태 혼합 / 담당자 재지정 필요", "en": "Mixed expense, leave, and attendance items / reassignment needed" },
+        "LID-TA-OFFICE-HOME-QUEUE_2_CTA": { "ko": "재지정", "en": "Reassign" },
+        "LID-TA-OFFICE-HOME-QUEUE_3_TITLE": { "ko": "유연근무 예외 집중", "en": "Flexible work exceptions clustered" },
+        "LID-TA-OFFICE-HOME-QUEUE_3_TEXT": { "ko": "Engineering / 원격 승인 대기 5건 / 팀 커버 약화", "en": "Engineering / 5 remote-work approvals pending / weaker team coverage" },
+        "LID-TA-OFFICE-HOME-QUEUE_3_CTA": { "ko": "팀 확인", "en": "Review team" },
+        "LID-TA-OFFICE-HOME-QUEUE_4_TITLE": { "ko": "휴가 승인 병목", "en": "Leave approval bottleneck" },
+        "LID-TA-OFFICE-HOME-QUEUE_4_TEXT": { "ko": "Product / 다음 주 집중 휴가 / 일정 조정 필요", "en": "Product / clustered leave next week / scheduling needs adjustment" },
+        "LID-TA-OFFICE-HOME-QUEUE_4_CTA": { "ko": "일정 조정", "en": "Adjust schedule" },
+        "LID-TA-OFFICE-HOME-SPLIT_TITLE": { "ko": "Approval & Document Split", "en": "Approval and Document Split" },
+        "LID-TA-OFFICE-HOME-SPLIT_SUB": { "ko": "병목 분해", "en": "Bottleneck breakdown" },
+        "LID-TA-OFFICE-HOME-SPLIT_1": { "ko": "휴가 승인 6", "en": "Leave approvals 6" },
+        "LID-TA-OFFICE-HOME-SPLIT_2": { "ko": "근태 정정 4", "en": "Attendance corrections 4" },
+        "LID-TA-OFFICE-HOME-SPLIT_3": { "ko": "비용 품의 7", "en": "Expense requests 7" },
+        "LID-TA-OFFICE-HOME-SPLIT_4": { "ko": "서명 대기 12", "en": "Awaiting signature 12" },
+        "LID-TA-OFFICE-HOME-SPLIT_5": { "ko": "재발송 필요 3", "en": "Need resend 3" },
+        "LID-TA-OFFICE-HOME-SPLIT_6": { "ko": "만료 임박 5", "en": "Near expiry 5" },
+        "LID-TA-OFFICE-HOME-RISK_TITLE": { "ko": "Team Risk Snapshot", "en": "Team Risk Snapshot" },
+        "LID-TA-OFFICE-HOME-RISK_SUB": { "ko": "커버리지 확인", "en": "Coverage check" },
+        "LID-TA-OFFICE-HOME-RISK_1_TEAM": { "ko": "Engineering", "en": "Engineering" },
+        "LID-TA-OFFICE-HOME-RISK_1_TEXT": { "ko": "원격 승인 대기 5건 / 결원 위험 높음", "en": "5 remote approvals pending / high coverage risk" },
+        "LID-TA-OFFICE-HOME-RISK_2_TEAM": { "ko": "Product", "en": "Product" },
+        "LID-TA-OFFICE-HOME-RISK_2_TEXT": { "ko": "다음 주 휴가 집중 / 릴리즈 일정 충돌", "en": "Leave clustered next week / release schedule conflict" },
+        "LID-TA-OFFICE-HOME-RISK_3_TEAM": { "ko": "Finance", "en": "Finance" },
+        "LID-TA-OFFICE-HOME-RISK_3_TEXT": { "ko": "마감 승인 대기 3건 / 문서 증빙 누락", "en": "3 closing approvals pending / missing document evidence" },
+        "LID-TA-OFFICE-HOME-TIMELINE_TITLE": { "ko": "Today Timeline", "en": "Today Timeline" },
+        "LID-TA-OFFICE-HOME-TIMELINE_SUB": { "ko": "시간대별 결정", "en": "Decisions by time" },
+        "LID-TA-OFFICE-HOME-TIMELINE_1_TIME": { "ko": "09:30", "en": "09:30" },
+        "LID-TA-OFFICE-HOME-TIMELINE_1_TITLE": { "ko": "계약 서명 누락 확인", "en": "Review missing contract signatures" },
+        "LID-TA-OFFICE-HOME-TIMELINE_1_TAG": { "ko": "문서", "en": "Documents" },
+        "LID-TA-OFFICE-HOME-TIMELINE_2_TIME": { "ko": "11:00", "en": "11:00" },
+        "LID-TA-OFFICE-HOME-TIMELINE_2_TITLE": { "ko": "휴가 승인 적체 정리", "en": "Clear leave approval backlog" },
+        "LID-TA-OFFICE-HOME-TIMELINE_2_TAG": { "ko": "승인", "en": "Approvals" },
+        "LID-TA-OFFICE-HOME-TIMELINE_3_TIME": { "ko": "14:00", "en": "14:00" },
+        "LID-TA-OFFICE-HOME-TIMELINE_3_TITLE": { "ko": "유연근무 커버리지 검토", "en": "Review flexible work coverage" },
+        "LID-TA-OFFICE-HOME-TIMELINE_3_TAG": { "ko": "운영", "en": "Ops" },
+        "LID-TA-OFFICE-HOME-TIMELINE_4_TIME": { "ko": "17:00", "en": "17:00" },
+        "LID-TA-OFFICE-HOME-TIMELINE_4_TITLE": { "ko": "마감 전 증빙 누락 정리", "en": "Resolve missing evidence before close" },
+        "LID-TA-OFFICE-HOME-TIMELINE_4_TAG": { "ko": "마감", "en": "Closing" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TA-OFFICE-HOME-EYEBROW">WI-TA-001 / Office Pack</p>
+          <h1 data-lid="LID-TA-OFFICE-HOME-TITLE">Office Pack Admin Home</h1>
+          <p class="hero-text" data-lid="LID-TA-OFFICE-HOME-TEXT">승인, 문서, 유연근무 예외를 먼저 처리하는 오피스형 관리자 홈입니다.</p>
+          <div class="hero-chips">
+            <span data-lid="LID-TA-OFFICE-HOME-CHIP_1">오피스형 조직</span>
+            <span data-lid="LID-TA-OFFICE-HOME-CHIP_2">승인/문서 우선</span>
+            <span data-lid="LID-TA-OFFICE-HOME-CHIP_3">유연근무 예외 포함</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2 data-lid="LID-TA-OFFICE-HOME-NOTE_TITLE">이 홈이 풀어야 하는 질문</h2>
+          <ul>
+            <li data-lid="LID-TA-OFFICE-HOME-NOTE_1">오늘 어떤 승인과 문서를 먼저 처리해야 하는가</li>
+            <li data-lid="LID-TA-OFFICE-HOME-NOTE_2">어떤 팀이 유연근무/휴가로 결원 위험이 있는가</li>
+            <li data-lid="LID-TA-OFFICE-HOME-NOTE_3">법적/계약 리스크를 만드는 병목이 무엇인가</li>
+          </ul>
+        </aside>
+      </header>
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>O</span>
+              <div>
+                <h3 data-lid="LID-TA-OFFICE-HOME-LAYOUT_TITLE">Office Variant</h3>
+                <p data-lid="LID-TA-OFFICE-HOME-LAYOUT_TEXT">승인 대기열, 문서 병목, 팀 리스크를 한 화면에서 연결</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar">
+                <span class="brand">FlowHR</span>
+                <span class="search wide" data-lid="LID-TA-OFFICE-HOME-SEARCH">Search approval, contract, employee, request</span>
+                <span class="pill active">Office Pack</span>
+                <span class="avatar">AD</span>
+              </div>
+              <div class="layout">
+                <aside class="sidebar">
+                  <span class="active">Home</span>
+                  <span>People</span>
+                  <span>Workflow</span>
+                  <span>Documents</span>
+                  <span>Attendance</span>
+                  <span>Leave</span>
+                  <span>Performance</span>
+                  <span>Reports</span>
+                </aside>
+                <div class="main">
+                  <div class="kpi-row five">
+                    <div class="kpi emphasis"><strong>19</strong><span data-lid="LID-TA-OFFICE-HOME-KPI_1">오늘 승인 필요</span></div>
+                    <div class="kpi"><strong>7</strong><span data-lid="LID-TA-OFFICE-HOME-KPI_2">SLA 지연</span></div>
+                    <div class="kpi"><strong>12</strong><span data-lid="LID-TA-OFFICE-HOME-KPI_3">서명 대기</span></div>
+                    <div class="kpi"><strong>5</strong><span data-lid="LID-TA-OFFICE-HOME-KPI_4">만료 임박 계약</span></div>
+                    <div class="kpi"><strong>4</strong><span data-lid="LID-TA-OFFICE-HOME-KPI_5">정정 요청</span></div>
+                  </div>
+                  <div class="panel-row admin-hero">
+                    <section class="panel large">
+                      <div class="panel-head">
+                        <strong data-lid="LID-TA-OFFICE-HOME-QUEUE_TITLE">Decision Queue</strong>
+                        <span data-lid="LID-TA-OFFICE-HOME-QUEUE_SUB">오늘 우선 처리</span>
+                      </div>
+                      <div class="queue-list">
+                        <div class="queue-item critical"><div><strong data-lid="LID-TA-OFFICE-HOME-QUEUE_1_TITLE">근로계약 미서명 4건</strong><p data-lid="LID-TA-OFFICE-HOME-QUEUE_1_TEXT">연봉 변경 문서 / 오늘 효력 시작 / 재발송 필요</p></div><span data-lid="LID-TA-OFFICE-HOME-QUEUE_1_CTA">재발송</span></div>
+                        <div class="queue-item high"><div><strong data-lid="LID-TA-OFFICE-HOME-QUEUE_2_TITLE">승인 SLA 초과 7건</strong><p data-lid="LID-TA-OFFICE-HOME-QUEUE_2_TEXT">비용/휴가/근태 혼합 / 담당자 재지정 필요</p></div><span data-lid="LID-TA-OFFICE-HOME-QUEUE_2_CTA">재지정</span></div>
+                        <div class="queue-item medium"><div><strong data-lid="LID-TA-OFFICE-HOME-QUEUE_3_TITLE">유연근무 예외 집중</strong><p data-lid="LID-TA-OFFICE-HOME-QUEUE_3_TEXT">Engineering / 원격 승인 대기 5건 / 팀 커버 약화</p></div><span data-lid="LID-TA-OFFICE-HOME-QUEUE_3_CTA">팀 확인</span></div>
+                        <div class="queue-item medium"><div><strong data-lid="LID-TA-OFFICE-HOME-QUEUE_4_TITLE">휴가 승인 병목</strong><p data-lid="LID-TA-OFFICE-HOME-QUEUE_4_TEXT">Product / 다음 주 집중 휴가 / 일정 조정 필요</p></div><span data-lid="LID-TA-OFFICE-HOME-QUEUE_4_CTA">일정 조정</span></div>
+                      </div>
+                    </section>
+                    <section class="panel">
+                      <div class="panel-head">
+                        <strong data-lid="LID-TA-OFFICE-HOME-RISK_TITLE">Team Risk Snapshot</strong>
+                        <span data-lid="LID-TA-OFFICE-HOME-RISK_SUB">커버리지 확인</span>
+                      </div>
+                      <div class="metric-stack">
+                        <div class="metric-item"><div><strong data-lid="LID-TA-OFFICE-HOME-RISK_1_TEAM">Engineering</strong><span data-lid="LID-TA-OFFICE-HOME-RISK_1_TEXT">원격 승인 대기 5건 / 결원 위험 높음</span></div><span class="tag">High</span></div>
+                        <div class="metric-item"><div><strong data-lid="LID-TA-OFFICE-HOME-RISK_2_TEAM">Product</strong><span data-lid="LID-TA-OFFICE-HOME-RISK_2_TEXT">다음 주 휴가 집중 / 릴리즈 일정 충돌</span></div><span class="tag">Watch</span></div>
+                        <div class="metric-item"><div><strong data-lid="LID-TA-OFFICE-HOME-RISK_3_TEAM">Finance</strong><span data-lid="LID-TA-OFFICE-HOME-RISK_3_TEXT">마감 승인 대기 3건 / 문서 증빙 누락</span></div><span class="tag">Critical</span></div>
+                      </div>
+                    </section>
+                  </div>
+                  <div class="home-context">
+                    <section class="panel">
+                      <div class="panel-head">
+                        <strong data-lid="LID-TA-OFFICE-HOME-SPLIT_TITLE">Approval & Document Split</strong>
+                        <span data-lid="LID-TA-OFFICE-HOME-SPLIT_SUB">병목 분해</span>
+                      </div>
+                      <div class="mini-columns two">
+                        <span data-lid="LID-TA-OFFICE-HOME-SPLIT_1">휴가 승인 6</span>
+                        <span data-lid="LID-TA-OFFICE-HOME-SPLIT_2">근태 정정 4</span>
+                        <span data-lid="LID-TA-OFFICE-HOME-SPLIT_3">비용 품의 7</span>
+                        <span data-lid="LID-TA-OFFICE-HOME-SPLIT_4">서명 대기 12</span>
+                        <span data-lid="LID-TA-OFFICE-HOME-SPLIT_5">재발송 필요 3</span>
+                        <span data-lid="LID-TA-OFFICE-HOME-SPLIT_6">만료 임박 5</span>
+                      </div>
+                    </section>
+                    <section class="panel">
+                      <div class="panel-head">
+                        <strong data-lid="LID-TA-OFFICE-HOME-TIMELINE_TITLE">Today Timeline</strong>
+                        <span data-lid="LID-TA-OFFICE-HOME-TIMELINE_SUB">시간대별 결정</span>
+                      </div>
+                      <div class="timeline-list">
+                        <div class="timeline-item"><strong data-lid="LID-TA-OFFICE-HOME-TIMELINE_1_TIME">09:30</strong><span data-lid="LID-TA-OFFICE-HOME-TIMELINE_1_TITLE">계약 서명 누락 확인</span><span class="tag" data-lid="LID-TA-OFFICE-HOME-TIMELINE_1_TAG">문서</span></div>
+                        <div class="timeline-item"><strong data-lid="LID-TA-OFFICE-HOME-TIMELINE_2_TIME">11:00</strong><span data-lid="LID-TA-OFFICE-HOME-TIMELINE_2_TITLE">휴가 승인 적체 정리</span><span class="tag" data-lid="LID-TA-OFFICE-HOME-TIMELINE_2_TAG">승인</span></div>
+                        <div class="timeline-item"><strong data-lid="LID-TA-OFFICE-HOME-TIMELINE_3_TIME">14:00</strong><span data-lid="LID-TA-OFFICE-HOME-TIMELINE_3_TITLE">유연근무 커버리지 검토</span><span class="tag" data-lid="LID-TA-OFFICE-HOME-TIMELINE_3_TAG">운영</span></div>
+                        <div class="timeline-item"><strong data-lid="LID-TA-OFFICE-HOME-TIMELINE_4_TIME">17:00</strong><span data-lid="LID-TA-OFFICE-HOME-TIMELINE_4_TITLE">마감 전 증빙 누락 정리</span><span class="tag" data-lid="LID-TA-OFFICE-HOME-TIMELINE_4_TAG">마감</span></div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

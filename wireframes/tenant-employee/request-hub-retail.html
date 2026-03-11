@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Request Hub Retail Pack</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TE-REQ-RETAIL-EYEBROW": { "ko": "WI-TE-003 / Retail Pack", "en": "WI-TE-003 / Retail Pack" },
+        "LID-TE-REQ-RETAIL-TITLE": { "ko": "Retail Pack Request Hub", "en": "Retail Pack Request Hub" },
+        "LID-TE-REQ-RETAIL-TEXT": { "ko": "리테일형 요청 허브는 휴가보다 출퇴근 정정, 시프트 변경 응답, 대체 근무 회신이 먼저 나와야 합니다.", "en": "The retail request hub should prioritize attendance corrections, shift-change responses, and replacement-shift replies over leave." },
+        "LID-TE-REQ-RETAIL-QUICK_1": { "ko": "출퇴근 정정", "en": "Attendance correction" },
+        "LID-TE-REQ-RETAIL-QUICK_2": { "ko": "시프트 변경 응답", "en": "Shift change response" },
+        "LID-TE-REQ-RETAIL-QUICK_3": { "ko": "대체 근무 회신", "en": "Replacement shift reply" },
+        "LID-TE-REQ-RETAIL-QUICK_4": { "ko": "초과근무 요청", "en": "Overtime request" },
+        "LID-TE-REQ-RETAIL-POLICY_1": { "ko": "정정 요청은 7일 이내 가능", "en": "Corrections allowed within 7 days" },
+        "LID-TE-REQ-RETAIL-POLICY_2": { "ko": "대체 근무 회신은 시작 2시간 전까지", "en": "Replacement replies due 2 hours before shift" },
+        "LID-TE-REQ-RETAIL-HISTORY_1": { "ko": "체크아웃 정정 / 승인 대기", "en": "Checkout correction / awaiting approval" },
+        "LID-TE-REQ-RETAIL-HISTORY_2": { "ko": "대체 근무 회신 / 확인 필요", "en": "Replacement shift reply / confirm needed" },
+        "LID-TE-REQ-RETAIL-HISTORY_3": { "ko": "초과근무 요청 / 승인 완료", "en": "Overtime request / approved" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TE-REQ-RETAIL-EYEBROW">WI-TE-003 / Retail Pack</p>
+          <h1 data-lid="LID-TE-REQ-RETAIL-TITLE">Retail Pack Request Hub</h1>
+          <p class="hero-text" data-lid="LID-TE-REQ-RETAIL-TEXT">리테일형 요청 허브는 휴가보다 출퇴근 정정, 시프트 변경 응답, 대체 근무 회신이 먼저 나와야 합니다.</p>
+        </div>
+        <aside class="hero-note"><h2>핵심 질문</h2><ul><li>오늘 근무 관련 예외를 어떻게 보고할 것인가</li><li>변경된 시프트에 응답해야 하는가</li><li>지금 정정 요청이 필요한가</li></ul></aside>
+      </header>
+      <main class="content">
+        <section class="wireframe-grid two-up">
+          <article class="screen-card">
+            <div class="screen-title"><span>R</span><div><h3>Retail Mobile Variant</h3><p>근무 예외와 시프트 변경 응답을 먼저 보여주는 요청 허브</p></div></div>
+            <div class="mobile-wrap">
+              <div class="screen mobile">
+                <div class="mobile-notch"></div>
+                <div class="mobile-head"><span>10:22</span><span>Request Hub</span><span>LTE</span></div>
+                <div class="mobile-body">
+                  <div class="mobile-card hero-card">
+                    <strong>Quick Requests</strong>
+                    <div class="mini-columns two">
+                      <span data-lid="LID-TE-REQ-RETAIL-QUICK_1">출퇴근 정정</span>
+                      <span data-lid="LID-TE-REQ-RETAIL-QUICK_2">시프트 변경 응답</span>
+                      <span data-lid="LID-TE-REQ-RETAIL-QUICK_3">대체 근무 회신</span>
+                      <span data-lid="LID-TE-REQ-RETAIL-QUICK_4">초과근무 요청</span>
+                    </div>
+                  </div>
+                  <div class="mobile-card"><strong>Policy Hints</strong><div class="list dense"><span data-lid="LID-TE-REQ-RETAIL-POLICY_1">정정 요청은 7일 이내 가능</span><span data-lid="LID-TE-REQ-RETAIL-POLICY_2">대체 근무 회신은 시작 2시간 전까지</span></div></div>
+                  <div class="mobile-card"><strong>Recent Requests</strong><ul><li data-lid="LID-TE-REQ-RETAIL-HISTORY_1">체크아웃 정정 / 승인 대기</li><li data-lid="LID-TE-REQ-RETAIL-HISTORY_2">대체 근무 회신 / 확인 필요</li><li data-lid="LID-TE-REQ-RETAIL-HISTORY_3">초과근무 요청 / 승인 완료</li></ul></div>
+                </div>
+                <div class="mobile-tabbar"><span>Home</span><span class="active">Request</span><span>Shift</span><span>Inbox</span></div>
+              </div>
+            </div>
+          </article>
+          <article class="screen-card">
+            <div class="screen-title"><span>F</span><div><h3>Retail Form Variant</h3><p>시프트 변경 응답과 정정 흐름이 붙는 폼 구조</p></div></div>
+            <div class="screen desktop compact">
+              <div class="topbar slim"><span class="brand">Shift Request</span><span class="search wide">Search request type, policy</span><span class="pill active">Retail Pack</span></div>
+              <div class="split wide-split">
+                <section class="column detail-column"><div class="detail-box tall"><strong>Request Form</strong><div class="list dense"><span>정정 / 시프트 변경 / 초과근무 선택</span><span>근무 시간 / 매장 / 사유</span><span>증빙 / 응답 / 제출</span><span>정산 영향 경고</span></div></div><div class="detail-actions"><span>임시 저장</span><span>제출</span><span>취소</span><span>정책 보기</span></div></section>
+                <section class="column list-column"><div class="stack-card active"><strong>출퇴근 정정</strong><span data-lid="LID-TE-REQ-RETAIL-HISTORY_1">체크아웃 정정 / 승인 대기</span><span class="status wait">진행 중</span></div><div class="stack-card"><strong>대체 근무 회신</strong><span data-lid="LID-TE-REQ-RETAIL-HISTORY_2">대체 근무 회신 / 확인 필요</span><span class="status risk">응답 필요</span></div><div class="stack-card"><strong>초과근무 요청</strong><span data-lid="LID-TE-REQ-RETAIL-HISTORY_3">초과근무 요청 / 승인 완료</span><span class="status">완료</span></div></section>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

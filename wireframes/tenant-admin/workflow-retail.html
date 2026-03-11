@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Workflow Retail Pack</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-WORK-RETAIL-EYEBROW": { "ko": "WI-TA-005 / Retail Pack", "en": "WI-TA-005 / Retail Pack" },
+        "LID-TA-WORK-RETAIL-TITLE": { "ko": "Retail Pack Approval Inbox", "en": "Retail Pack Approval Inbox" },
+        "LID-TA-WORK-RETAIL-TEXT": { "ko": "리테일형 승인 인박스는 출퇴근 정정, 시프트 변경, 초과근무 승인처럼 당일 운영에 직접 영향을 주는 건을 먼저 처리해야 합니다.", "en": "The retail approval inbox should prioritize corrections, shift changes, and overtime requests that directly affect same-day operations." },
+        "LID-TA-WORK-RETAIL-ITEM_1": { "ko": "체크아웃 정정 / 강남 2호점 / 정산 전 처리 필요", "en": "Checkout correction / Gangnam Store 2 / resolve before payroll" },
+        "LID-TA-WORK-RETAIL-ITEM_2": { "ko": "시프트 변경 승인 / 홍대점 / 2시간 내 응답", "en": "Shift change approval / Hongdae / respond within 2h" },
+        "LID-TA-WORK-RETAIL-ITEM_3": { "ko": "초과근무 승인 / 잠실점 / 주간 한도 임박", "en": "Overtime approval / Jamsil / near weekly limit" },
+        "LID-TA-WORK-RETAIL-CTX_1": { "ko": "근무 시간 / 매장 / 실제 기록", "en": "Shift time / store / actual record" },
+        "LID-TA-WORK-RETAIL-CTX_2": { "ko": "브레이크 / 오버타임 / 정산 영향", "en": "Break / overtime / payroll impact" },
+        "LID-TA-WORK-RETAIL-CTX_3": { "ko": "대체 가능 인력 / 시프트 공백", "en": "Available replacements / shift gap" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TA-WORK-RETAIL-EYEBROW">WI-TA-005 / Retail Pack</p>
+          <h1 data-lid="LID-TA-WORK-RETAIL-TITLE">Retail Pack Approval Inbox</h1>
+          <p class="hero-text" data-lid="LID-TA-WORK-RETAIL-TEXT">리테일형 승인 인박스는 출퇴근 정정, 시프트 변경, 초과근무 승인처럼 당일 운영에 직접 영향을 주는 건을 먼저 처리해야 합니다.</p>
+        </div>
+        <aside class="hero-note"><h2>핵심 질문</h2><ul><li>어떤 근무 승인 건이 오늘 운영을 막는가</li><li>정산 전 반드시 처리해야 할 승인은 무엇인가</li><li>대체 배치가 필요한 건이 있는가</li></ul></aside>
+      </header>
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title"><span>R</span><div><h3>Retail Variant</h3><p>근무 승인과 시프트 변경을 먼저 처리하는 인박스</p></div></div>
+            <div class="screen desktop compact">
+              <div class="topbar slim"><span class="brand">Workflow</span><span class="search wide">Search approval, store, shift</span><span class="pill active">Retail Pack</span></div>
+              <div class="split wide-split">
+                <section class="column list-column">
+                  <div class="stack-card active"><strong>체크아웃 정정</strong><span data-lid="LID-TA-WORK-RETAIL-ITEM_1">체크아웃 정정 / 강남 2호점 / 정산 전 처리 필요</span><span class="status risk">Payroll risk</span></div>
+                  <div class="stack-card"><strong>시프트 변경 승인</strong><span data-lid="LID-TA-WORK-RETAIL-ITEM_2">시프트 변경 승인 / 홍대점 / 2시간 내 응답</span><span class="status wait">Urgent</span></div>
+                  <div class="stack-card"><strong>초과근무 승인</strong><span data-lid="LID-TA-WORK-RETAIL-ITEM_3">초과근무 승인 / 잠실점 / 주간 한도 임박</span><span class="status">Limit watch</span></div>
+                </section>
+                <section class="column detail-column">
+                  <div class="detail-box tall"><strong>Request Context</strong><div class="list dense"><span data-lid="LID-TA-WORK-RETAIL-CTX_1">근무 시간 / 매장 / 실제 기록</span><span data-lid="LID-TA-WORK-RETAIL-CTX_2">브레이크 / 오버타임 / 정산 영향</span><span data-lid="LID-TA-WORK-RETAIL-CTX_3">대체 가능 인력 / 시프트 공백</span></div></div>
+                  <div class="detail-actions"><span>승인</span><span>반려</span><span>대체 배치</span><span>추가 확인</span></div>
+                </section>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

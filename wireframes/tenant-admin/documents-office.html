@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Documents Office Pack</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-DOC-OFFICE-EYEBROW": { "ko": "WI-TA-006 / Office Pack", "en": "WI-TA-006 / Office Pack" },
+        "LID-TA-DOC-OFFICE-TITLE": { "ko": "Office Pack Documents Dashboard", "en": "Office Pack Documents Dashboard" },
+        "LID-TA-DOC-OFFICE-TEXT": { "ko": "오피스형 문서 대시보드는 전자계약, 연봉 변경, 정책 동의서의 서명 병목과 계약 리스크를 먼저 보여줘야 합니다.", "en": "The office documents dashboard should surface signature bottlenecks and contract risk for e-contracts, salary changes, and policy acknowledgements first." },
+        "LID-TA-DOC-OFFICE-QUEUE_1": { "ko": "연봉 변경 계약 / 서명 미완료 2건 / 오늘 마감", "en": "Salary change contract / 2 incomplete signatures / due today" },
+        "LID-TA-DOC-OFFICE-QUEUE_2": { "ko": "입사 계약서 / 신규 입사자 3명 / 24h 경과", "en": "Employment contracts / 3 new hires / 24h elapsed" },
+        "LID-TA-DOC-OFFICE-QUEUE_3": { "ko": "정책 동의서 / 미열람 5명", "en": "Policy acknowledgement / 5 unopened" },
+        "LID-TA-DOC-OFFICE-TEMP_1": { "ko": "입사 계약서 / v12 / 사용 중", "en": "Employment contract / v12 / active" },
+        "LID-TA-DOC-OFFICE-TEMP_2": { "ko": "연봉 변경 계약 / v4 / 검토 필요", "en": "Salary change / v4 / needs review" },
+        "LID-TA-DOC-OFFICE-TEMP_3": { "ko": "정책 동의서 / v8 / 승인 완료", "en": "Policy acknowledgement / v8 / approved" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TA-DOC-OFFICE-EYEBROW">WI-TA-006 / Office Pack</p>
+          <h1 data-lid="LID-TA-DOC-OFFICE-TITLE">Office Pack Documents Dashboard</h1>
+          <p class="hero-text" data-lid="LID-TA-DOC-OFFICE-TEXT">오피스형 문서 대시보드는 전자계약, 연봉 변경, 정책 동의서의 서명 병목과 계약 리스크를 먼저 보여줘야 합니다.</p>
+        </div>
+        <aside class="hero-note"><h2>핵심 질문</h2><ul><li>어떤 계약 문서가 오늘 리스크를 만드는가</li><li>어떤 템플릿을 수정하거나 재발송해야 하는가</li><li>서명 병목이 어디에서 발생하는가</li></ul></aside>
+      </header>
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title"><span>O</span><div><h3>Office Variant</h3><p>전자계약과 정책 동의 문서 병목을 먼저 보는 대시보드</p></div></div>
+            <div class="screen desktop compact">
+              <div class="topbar slim"><span class="brand">Documents</span><span class="search wide">Search template, contract, recipient</span><span class="pill active">Office Pack</span></div>
+              <div class="main">
+                <div class="panel-row admin-hero">
+                  <section class="panel large"><div class="panel-head"><strong>Signature Queue</strong><span>Today first</span></div><div class="list dense"><span class="danger" data-lid="LID-TA-DOC-OFFICE-QUEUE_1">연봉 변경 계약 / 서명 미완료 2건 / 오늘 마감</span><span data-lid="LID-TA-DOC-OFFICE-QUEUE_2">입사 계약서 / 신규 입사자 3명 / 24h 경과</span><span data-lid="LID-TA-DOC-OFFICE-QUEUE_3">정책 동의서 / 미열람 5명</span></div></section>
+                  <section class="panel"><div class="panel-head"><strong>Template Catalog</strong><span>Version</span></div><div class="list dense"><span data-lid="LID-TA-DOC-OFFICE-TEMP_1">입사 계약서 / v12 / 사용 중</span><span data-lid="LID-TA-DOC-OFFICE-TEMP_2">연봉 변경 계약 / v4 / 검토 필요</span><span data-lid="LID-TA-DOC-OFFICE-TEMP_3">정책 동의서 / v8 / 승인 완료</span></div></section>
+                </div>
+                <section class="panel"><div class="panel-head"><strong>Quick Actions</strong><span>Ops</span></div><div class="mini-columns"><span>템플릿 생성</span><span>단건 발송</span><span>재발송</span><span>문서 추출</span></div></section>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

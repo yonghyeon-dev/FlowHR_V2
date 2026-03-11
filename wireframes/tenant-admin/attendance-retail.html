@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Attendance Retail Pack</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-ATT-RETAIL-EYEBROW": { "ko": "WI-TA-003 / Retail Pack", "en": "WI-TA-003 / Retail Pack" },
+        "LID-TA-ATT-RETAIL-TITLE": { "ko": "Retail Pack Attendance Dashboard", "en": "Retail Pack Attendance Dashboard" },
+        "LID-TA-ATT-RETAIL-TEXT": { "ko": "리테일형 근태는 결원, 브레이크 위반, 피크타임 부족, 정산 전 예외를 먼저 봐야 합니다.", "en": "Retail attendance operations should prioritize store gaps, break violations, peak-time shortages, and pre-payroll exceptions." },
+        "LID-TA-ATT-RETAIL-NOTE_1": { "ko": "어느 매장에서 결원이 생기는가", "en": "Which stores have staffing gaps" },
+        "LID-TA-ATT-RETAIL-NOTE_2": { "ko": "피크타임 커버리지가 충분한가", "en": "Whether peak-time coverage is sufficient" },
+        "LID-TA-ATT-RETAIL-NOTE_3": { "ko": "어떤 예외가 정산 오류로 이어지는가", "en": "Which exceptions will become payroll issues" },
+        "LID-TA-ATT-RETAIL-KPI_1": { "ko": "결원 매장", "en": "Stores with gaps" },
+        "LID-TA-ATT-RETAIL-KPI_2": { "ko": "체크인 누락", "en": "Missing check-ins" },
+        "LID-TA-ATT-RETAIL-KPI_3": { "ko": "브레이크 위반", "en": "Break violations" },
+        "LID-TA-ATT-RETAIL-KPI_4": { "ko": "오버타임 임박", "en": "Overtime nearing" },
+        "LID-TA-ATT-RETAIL-KPI_5": { "ko": "정산 전 예외", "en": "Pre-payroll exceptions" },
+        "LID-TA-ATT-RETAIL-QUEUE_TITLE": { "ko": "Store Exception Queue", "en": "Store Exception Queue" },
+        "LID-TA-ATT-RETAIL-QUEUE_1": { "ko": "강남 2호점 / 점심 피크 결원 2명", "en": "Gangnam Store 2 / short by 2 at lunch peak" },
+        "LID-TA-ATT-RETAIL-QUEUE_2": { "ko": "홍대점 / 브레이크 미배정 3건", "en": "Hongdae / 3 unassigned breaks" },
+        "LID-TA-ATT-RETAIL-QUEUE_3": { "ko": "잠실점 / 체크인 누락 1건", "en": "Jamsil / 1 missing check-in" },
+        "LID-TA-ATT-RETAIL-COVER_TITLE": { "ko": "Coverage Board", "en": "Coverage Board" },
+        "LID-TA-ATT-RETAIL-COVER_1": { "ko": "강남 2호점 / 74% / 추가 호출 필요", "en": "Gangnam Store 2 / 74% / needs call-in" },
+        "LID-TA-ATT-RETAIL-COVER_2": { "ko": "홍대점 / 81% / 브레이크 재배치 필요", "en": "Hongdae / 81% / needs break reallocation" },
+        "LID-TA-ATT-RETAIL-COVER_3": { "ko": "잠실점 / 89% / 오픈조 점검 필요", "en": "Jamsil / 89% / opening shift check needed" },
+        "LID-TA-ATT-RETAIL-CLOSE_TITLE": { "ko": "Payroll Risk Watch", "en": "Payroll Risk Watch" },
+        "LID-TA-ATT-RETAIL-CLOSE_1": { "ko": "야간수당 검토 6건", "en": "6 night allowance reviews" },
+        "LID-TA-ATT-RETAIL-CLOSE_2": { "ko": "브레이크 위반 반영 필요 5건", "en": "5 break violations to reflect" },
+        "LID-TA-ATT-RETAIL-CLOSE_3": { "ko": "미확정 실근무 4건", "en": "4 unresolved actual-work records" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TA-ATT-RETAIL-EYEBROW">WI-TA-003 / Retail Pack</p>
+          <h1 data-lid="LID-TA-ATT-RETAIL-TITLE">Retail Pack Attendance Dashboard</h1>
+          <p class="hero-text" data-lid="LID-TA-ATT-RETAIL-TEXT">리테일형 근태는 결원, 브레이크 위반, 피크타임 부족, 정산 전 예외를 먼저 봐야 합니다.</p>
+        </div>
+        <aside class="hero-note">
+          <h2>핵심 질문</h2>
+          <ul>
+            <li data-lid="LID-TA-ATT-RETAIL-NOTE_1">어느 매장에서 결원이 생기는가</li>
+            <li data-lid="LID-TA-ATT-RETAIL-NOTE_2">피크타임 커버리지가 충분한가</li>
+            <li data-lid="LID-TA-ATT-RETAIL-NOTE_3">어떤 예외가 정산 오류로 이어지는가</li>
+          </ul>
+        </aside>
+      </header>
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title"><span>R</span><div><h3>Retail Variant</h3><p>매장 커버리지와 정산 위험을 먼저 처리하는 근태 대시보드</p></div></div>
+            <div class="screen desktop compact">
+              <div class="topbar slim"><span class="brand">Attendance</span><span class="search wide">Search store, exception, shift</span><span class="pill active">Retail Pack</span></div>
+              <div class="main">
+                <div class="kpi-row five">
+                  <div class="kpi emphasis"><strong>3</strong><span data-lid="LID-TA-ATT-RETAIL-KPI_1">결원 매장</span></div>
+                  <div class="kpi"><strong>4</strong><span data-lid="LID-TA-ATT-RETAIL-KPI_2">체크인 누락</span></div>
+                  <div class="kpi"><strong>5</strong><span data-lid="LID-TA-ATT-RETAIL-KPI_3">브레이크 위반</span></div>
+                  <div class="kpi"><strong>7</strong><span data-lid="LID-TA-ATT-RETAIL-KPI_4">오버타임 임박</span></div>
+                  <div class="kpi"><strong>6</strong><span data-lid="LID-TA-ATT-RETAIL-KPI_5">정산 전 예외</span></div>
+                </div>
+                <div class="panel-row desktop-home">
+                  <section class="panel large">
+                    <div class="panel-head"><strong data-lid="LID-TA-ATT-RETAIL-QUEUE_TITLE">Store Exception Queue</strong><span>Priority</span></div>
+                    <div class="list dense">
+                      <span class="danger" data-lid="LID-TA-ATT-RETAIL-QUEUE_1">강남 2호점 / 점심 피크 결원 2명</span>
+                      <span data-lid="LID-TA-ATT-RETAIL-QUEUE_2">홍대점 / 브레이크 미배정 3건</span>
+                      <span data-lid="LID-TA-ATT-RETAIL-QUEUE_3">잠실점 / 체크인 누락 1건</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head"><strong data-lid="LID-TA-ATT-RETAIL-COVER_TITLE">Coverage Board</strong><span>Stores</span></div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-ATT-RETAIL-COVER_1">강남 2호점 / 74% / 추가 호출 필요</span>
+                      <span data-lid="LID-TA-ATT-RETAIL-COVER_2">홍대점 / 81% / 브레이크 재배치 필요</span>
+                      <span data-lid="LID-TA-ATT-RETAIL-COVER_3">잠실점 / 89% / 오픈조 점검 필요</span>
+                    </div>
+                  </section>
+                </div>
+                <section class="panel">
+                  <div class="panel-head"><strong data-lid="LID-TA-ATT-RETAIL-CLOSE_TITLE">Payroll Risk Watch</strong><span>Before payroll</span></div>
+                  <div class="mini-columns">
+                    <span data-lid="LID-TA-ATT-RETAIL-CLOSE_1">야간수당 검토 6건</span>
+                    <span data-lid="LID-TA-ATT-RETAIL-CLOSE_2">브레이크 위반 반영 필요 5건</span>
+                    <span data-lid="LID-TA-ATT-RETAIL-CLOSE_3">미확정 실근무 4건</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

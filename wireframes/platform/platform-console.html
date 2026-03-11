@@ -40,8 +40,12 @@
         "LID-PC-CONSOLE-OPS_2": { "ko": "오늘 만료 예정 플랜 5건", "en": "5 plans expiring today" },
         "LID-PC-CONSOLE-OPS_3": { "ko": "지원 영향 추적 테넌트 2건", "en": "2 tenants under incident watch" },
         "LID-PC-CONSOLE-OPS_4": { "ko": "보안 검토 대기 4건", "en": "4 security reviews pending" },
-        "LID-PC-CONSOLE-HEALTH_TITLE": { "ko": "Platform Health", "en": "Platform Health" },
-        "LID-PC-CONSOLE-HEALTH_SUB": { "ko": "실시간", "en": "Real-time" },
+        "LID-PC-CONSOLE-HEALTH_TITLE": { "ko": "Platform Health Signals", "en": "Platform Health Signals" },
+        "LID-PC-CONSOLE-HEALTH_SUB": { "ko": "지표 + 상태 + 액션", "en": "Metric + status + action" },
+        "LID-PC-CONSOLE-HEALTH_1": { "ko": "API 성공률 99.92% / 정상 / 장애 조치 불필요", "en": "API success rate 99.92% / Healthy / No action needed" },
+        "LID-PC-CONSOLE-HEALTH_2": { "ko": "Webhook 전달 성공률 94.10% / 주의 / 재시도 큐 확인", "en": "Webhook delivery 94.10% / Warning / Review retry queue" },
+        "LID-PC-CONSOLE-HEALTH_3": { "ko": "SSO 로그인 오류 18건 / 주의 / 테넌트 영향 확인", "en": "18 SSO login errors / Warning / Check tenant impact" },
+        "LID-PC-CONSOLE-HEALTH_4": { "ko": "동기화 지연 12분 / 조치 / 지원 공지 검토", "en": "Sync delay 12 min / Act / Review support notice" },
         "LID-PC-CONSOLE-RECENT_TITLE": { "ko": "Recent Tenant Changes", "en": "Recent Tenant Changes" },
         "LID-PC-CONSOLE-RECENT_SUB": { "ko": "상태 변경", "en": "Status changes" },
         "LID-PC-CONSOLE-SIGNAL_TITLE": { "ko": "Security Signals", "en": "Security Signals" },
@@ -194,14 +198,14 @@
                     </section>
                     <section class="panel">
                       <div class="panel-head">
-                        <strong data-lid="LID-PC-CONSOLE-HEALTH_TITLE">Platform Health</strong>
-                        <span data-lid="LID-PC-CONSOLE-HEALTH_SUB">실시간</span>
+                        <strong data-lid="LID-PC-CONSOLE-HEALTH_TITLE">Platform Health Signals</strong>
+                        <span data-lid="LID-PC-CONSOLE-HEALTH_SUB">지표 + 상태 + 액션</span>
                       </div>
-                      <div class="bars">
-                        <span style="--w: 91%"></span>
-                        <span style="--w: 77%"></span>
-                        <span style="--w: 63%"></span>
-                        <span style="--w: 88%"></span>
+                      <div class="list dense">
+                        <span data-lid="LID-PC-CONSOLE-HEALTH_1">API 성공률 99.92% / 정상 / 장애 조치 불필요</span>
+                        <span data-lid="LID-PC-CONSOLE-HEALTH_2">Webhook 전달 성공률 94.10% / 주의 / 재시도 큐 확인</span>
+                        <span data-lid="LID-PC-CONSOLE-HEALTH_3">SSO 로그인 오류 18건 / 주의 / 테넌트 영향 확인</span>
+                        <span class="danger" data-lid="LID-PC-CONSOLE-HEALTH_4">동기화 지연 12분 / 조치 / 지원 공지 검토</span>
                       </div>
                     </section>
                   </div>

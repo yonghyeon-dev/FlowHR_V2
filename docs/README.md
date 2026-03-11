@@ -79,6 +79,16 @@
 32. [구현 착수용 기술 선택안](./foundation/27-implementation-technology-decisions.md)
 33. [설계 상태 체크리스트](./foundation/28-design-status-checklist.md)
 34. [화면 승인 리뷰 패킷](./foundation/29-approval-review-packet.md)
+35. [목표 수렴 탐색 프레임](./foundation/30-goal-convergence-exploration.md)
+36. [업종 세분화 초안](./foundation/31-industry-segmentation.md)
+37. [업종 팩 및 기능 선택 구조](./foundation/32-industry-pack-feature-selection.md)
+38. [역할별 의사결정 시나리오 맵](./foundation/33-role-decision-scenario-map.md)
+39. [승인 리셋 계획](./foundation/34-approval-reset-plan.md)
+40. [Tenant Admin 홈 상세 설계](./tenant-admin/WI-TA-001-admin-home-dashboard.md)
+41. [Tenant Employee 홈 상세 설계](./tenant-employee/WI-TE-001-employee-home.md)
+42. [Tenant Admin 근태 상세 설계](./tenant-admin/WI-TA-003-attendance-module.md)
+43. [Tenant Employee 요청 허브 상세 설계](./tenant-employee/WI-TE-003-request-hub.md)
+44. [Pack 기반 리뷰 순서](./foundation/35-pack-review-sequence.md)
 
 ## 운영 원칙
 

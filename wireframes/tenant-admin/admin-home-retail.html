@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Admin Home Retail Pack</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <style>
+      .retail-board {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+      .coverage-stack,
+      .signal-stack,
+      .store-timeline {
+        display: grid;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .coverage-item,
+      .signal-item,
+      .store-slot {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+        align-items: center;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: rgba(17, 17, 17, 0.02);
+      }
+      .signal-item {
+        grid-template-columns: 1fr;
+      }
+      .store-slot {
+        grid-template-columns: 110px 1fr auto;
+      }
+      .coverage-item p,
+      .signal-item p {
+        margin: 6px 0 0;
+        color: var(--muted);
+      }
+      .coverage-bars {
+        display: grid;
+        gap: 12px;
+        margin-top: 14px;
+      }
+      .coverage-bar {
+        display: grid;
+        gap: 8px;
+      }
+      .track {
+        height: 14px;
+        border-radius: 999px;
+        background: rgba(17, 17, 17, 0.08);
+        overflow: hidden;
+      }
+      .fill {
+        display: block;
+        height: 100%;
+        width: var(--w);
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--accent), #3cb6aa);
+      }
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 8px 12px;
+        background: #fff;
+        font-size: 0.82rem;
+      }
+      @media (max-width: 1100px) {
+        .retail-board,
+        .coverage-item,
+        .store-slot {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-RETAIL-HOME-EYEBROW": { "ko": "WI-TA-001 / Retail Pack", "en": "WI-TA-001 / Retail Pack" },
+        "LID-TA-RETAIL-HOME-TITLE": { "ko": "Retail Pack Admin Home", "en": "Retail Pack Admin Home" },
+        "LID-TA-RETAIL-HOME-TEXT": { "ko": "매장별 결원, 피크타임 커버리지, 브레이크/오버타임 리스크를 먼저 보는 리테일형 관리자 홈입니다.", "en": "An admin home for retail operations that prioritizes store gaps, peak-time coverage, and break/overtime risk." },
+        "LID-TA-RETAIL-HOME-CHIP_1": { "ko": "리테일/매장형", "en": "Retail and stores" },
+        "LID-TA-RETAIL-HOME-CHIP_2": { "ko": "커버리지 우선", "en": "Coverage first" },
+        "LID-TA-RETAIL-HOME-CHIP_3": { "ko": "브레이크/오버타임 감시", "en": "Break and overtime watch" },
+        "LID-TA-RETAIL-HOME-NOTE_TITLE": { "ko": "이 홈이 풀어야 하는 질문", "en": "Questions this home must answer" },
+        "LID-TA-RETAIL-HOME-NOTE_1": { "ko": "오늘 어느 매장에서 결원이 생기는가", "en": "Which stores have staffing gaps today" },
+        "LID-TA-RETAIL-HOME-NOTE_2": { "ko": "피크타임 커버리지가 충분한가", "en": "Whether peak-time coverage is sufficient" },
+        "LID-TA-RETAIL-HOME-NOTE_3": { "ko": "브레이크와 오버타임 위반이 정산 리스크를 만드는가", "en": "Whether break and overtime violations create payroll risk" },
+        "LID-TA-RETAIL-HOME-LAYOUT_TITLE": { "ko": "Retail Variant", "en": "Retail Variant" },
+        "LID-TA-RETAIL-HOME-LAYOUT_TEXT": { "ko": "결원 대응, 시프트 커버리지, 규정 위반 감시를 한 흐름으로 배치", "en": "Lay out gap response, shift coverage, and compliance watch in one operational flow" },
+        "LID-TA-RETAIL-HOME-SEARCH": { "ko": "Search store, shift, employee, exception", "en": "Search store, shift, employee, exception" },
+        "LID-TA-RETAIL-HOME-KPI_1": { "ko": "결원 매장", "en": "Stores with gaps" },
+        "LID-TA-RETAIL-HOME-KPI_2": { "ko": "피크타임 부족 슬롯", "en": "Peak-time short slots" },
+        "LID-TA-RETAIL-HOME-KPI_3": { "ko": "브레이크 위반 위험", "en": "Break risks" },
+        "LID-TA-RETAIL-HOME-KPI_4": { "ko": "오버타임 임박", "en": "Overtime nearing" },
+        "LID-TA-RETAIL-HOME-KPI_5": { "ko": "정산 전 확인 예외", "en": "Pre-payroll exceptions" },
+        "LID-TA-RETAIL-HOME-QUEUE_TITLE": { "ko": "Store Action Queue", "en": "Store Action Queue" },
+        "LID-TA-RETAIL-HOME-QUEUE_SUB": { "ko": "매장별 우선 처리", "en": "Handle by store priority" },
+        "LID-TA-RETAIL-HOME-QUEUE_1_TITLE": { "ko": "강남 2호점 결원 2명", "en": "Gangnam Store 2 short by 2 people" },
+        "LID-TA-RETAIL-HOME-QUEUE_1_TEXT": { "ko": "점심 피크타임 12:00~14:00 / 대체 배치 필요", "en": "Lunch peak 12:00 to 14:00 / replacement assignment needed" },
+        "LID-TA-RETAIL-HOME-QUEUE_1_CTA": { "ko": "대체 배치", "en": "Reassign" },
+        "LID-TA-RETAIL-HOME-QUEUE_2_TITLE": { "ko": "홍대점 브레이크 위반 위험", "en": "Break violation risk at Hongdae store" },
+        "LID-TA-RETAIL-HOME-QUEUE_2_TEXT": { "ko": "2명 연속 근무 / 브레이크 미배정", "en": "2 workers on continuous shifts / no break assigned" },
+        "LID-TA-RETAIL-HOME-QUEUE_2_CTA": { "ko": "시프트 수정", "en": "Edit shift" },
+        "LID-TA-RETAIL-HOME-QUEUE_3_TITLE": { "ko": "잠실점 체크인 누락", "en": "Missing check-ins at Jamsil store" },
+        "LID-TA-RETAIL-HOME-QUEUE_3_TEXT": { "ko": "오픈조 3명 중 1명 미체크인", "en": "1 of 3 opening shift staff missing check-in" },
+        "LID-TA-RETAIL-HOME-QUEUE_3_CTA": { "ko": "연락", "en": "Contact" },
+        "LID-TA-RETAIL-HOME-QUEUE_4_TITLE": { "ko": "월말 정산 예외 누적", "en": "Month-end payroll exceptions accumulating" },
+        "LID-TA-RETAIL-HOME-QUEUE_4_TEXT": { "ko": "야간수당 검토 6건 / 확정 전 확인 필요", "en": "6 night allowance reviews / check before close" },
+        "LID-TA-RETAIL-HOME-QUEUE_4_CTA": { "ko": "정산 검토", "en": "Review payroll" },
+        "LID-TA-RETAIL-HOME-COVERAGE_TITLE": { "ko": "Coverage Board", "en": "Coverage Board" },
+        "LID-TA-RETAIL-HOME-COVERAGE_SUB": { "ko": "매장별 커버리지", "en": "Coverage by store" },
+        "LID-TA-RETAIL-HOME-COVERAGE_1_NAME": { "ko": "강남 2호점", "en": "Gangnam Store 2" },
+        "LID-TA-RETAIL-HOME-COVERAGE_1_TEXT": { "ko": "점심 피크타임 2명 부족", "en": "Short by 2 staff at lunch peak" },
+        "LID-TA-RETAIL-HOME-COVERAGE_2_NAME": { "ko": "홍대점", "en": "Hongdae store" },
+        "LID-TA-RETAIL-HOME-COVERAGE_2_TEXT": { "ko": "브레이크 재배치 필요", "en": "Needs break reallocation" },
+        "LID-TA-RETAIL-HOME-COVERAGE_3_NAME": { "ko": "잠실점", "en": "Jamsil store" },
+        "LID-TA-RETAIL-HOME-COVERAGE_3_TEXT": { "ko": "오픈조 체크인 누락 1건", "en": "1 missing opening shift check-in" },
+        "LID-TA-RETAIL-HOME-SIGNAL_TITLE": { "ko": "Compliance / Payroll Watch", "en": "Compliance and Payroll Watch" },
+        "LID-TA-RETAIL-HOME-SIGNAL_SUB": { "ko": "정산 영향 중심", "en": "Focus on payroll impact" },
+        "LID-TA-RETAIL-HOME-SIGNAL_1_TITLE": { "ko": "브레이크 위반 위험 5건", "en": "5 break violation risks" },
+        "LID-TA-RETAIL-HOME-SIGNAL_1_TEXT": { "ko": "현장 규정 위반 가능성 / 즉시 시프트 조정 필요", "en": "Potential labor rule breach / shift adjustment needed immediately" },
+        "LID-TA-RETAIL-HOME-SIGNAL_2_TITLE": { "ko": "오버타임 임박 7명", "en": "7 staff nearing overtime" },
+        "LID-TA-RETAIL-HOME-SIGNAL_2_TEXT": { "ko": "이번 주 한도 초과 가능 / 대체 배치 권장", "en": "Possible weekly limit breach / replacement assignment recommended" },
+        "LID-TA-RETAIL-HOME-SIGNAL_3_TITLE": { "ko": "야간수당 확인 6건", "en": "6 night allowance checks" },
+        "LID-TA-RETAIL-HOME-SIGNAL_3_TEXT": { "ko": "마감 전 수당 규칙 재검토 필요", "en": "Allowance rules need review before closing" },
+        "LID-TA-RETAIL-HOME-SLOT_TITLE": { "ko": "Peak Time Slots", "en": "Peak Time Slots" },
+        "LID-TA-RETAIL-HOME-SLOT_SUB": { "ko": "시간대별 부족 인원", "en": "Shortage by time slot" },
+        "LID-TA-RETAIL-HOME-SLOT_1_TIME": { "ko": "11:30 ~ 13:30", "en": "11:30 to 13:30" },
+        "LID-TA-RETAIL-HOME-SLOT_1_TEXT": { "ko": "강남 2호점 / 2명 부족", "en": "Gangnam Store 2 / short by 2" },
+        "LID-TA-RETAIL-HOME-SLOT_1_TAG": { "ko": "심각", "en": "Critical" },
+        "LID-TA-RETAIL-HOME-SLOT_2_TIME": { "ko": "14:00 ~ 16:00", "en": "14:00 to 16:00" },
+        "LID-TA-RETAIL-HOME-SLOT_2_TEXT": { "ko": "홍대점 / 브레이크 공백", "en": "Hongdae / break gap" },
+        "LID-TA-RETAIL-HOME-SLOT_2_TAG": { "ko": "주의", "en": "Watch" },
+        "LID-TA-RETAIL-HOME-SLOT_3_TIME": { "ko": "18:00 ~ 21:00", "en": "18:00 to 21:00" },
+        "LID-TA-RETAIL-HOME-SLOT_3_TEXT": { "ko": "잠실점 / 추가 호출 필요", "en": "Jamsil / extra call-in needed" },
+        "LID-TA-RETAIL-HOME-SLOT_3_TAG": { "ko": "조치", "en": "Act" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TA-RETAIL-HOME-EYEBROW">WI-TA-001 / Retail Pack</p>
+          <h1 data-lid="LID-TA-RETAIL-HOME-TITLE">Retail Pack Admin Home</h1>
+          <p class="hero-text" data-lid="LID-TA-RETAIL-HOME-TEXT">매장별 결원, 피크타임 커버리지, 브레이크/오버타임 리스크를 먼저 보는 리테일형 관리자 홈입니다.</p>
+          <div class="hero-chips">
+            <span data-lid="LID-TA-RETAIL-HOME-CHIP_1">리테일/매장형</span>
+            <span data-lid="LID-TA-RETAIL-HOME-CHIP_2">커버리지 우선</span>
+            <span data-lid="LID-TA-RETAIL-HOME-CHIP_3">브레이크/오버타임 감시</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2 data-lid="LID-TA-RETAIL-HOME-NOTE_TITLE">이 홈이 풀어야 하는 질문</h2>
+          <ul>
+            <li data-lid="LID-TA-RETAIL-HOME-NOTE_1">오늘 어느 매장에서 결원이 생기는가</li>
+            <li data-lid="LID-TA-RETAIL-HOME-NOTE_2">피크타임 커버리지가 충분한가</li>
+            <li data-lid="LID-TA-RETAIL-HOME-NOTE_3">브레이크와 오버타임 위반이 정산 리스크를 만드는가</li>
+          </ul>
+        </aside>
+      </header>
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>R</span>
+              <div>
+                <h3 data-lid="LID-TA-RETAIL-HOME-LAYOUT_TITLE">Retail Variant</h3>
+                <p data-lid="LID-TA-RETAIL-HOME-LAYOUT_TEXT">결원 대응, 시프트 커버리지, 규정 위반 감시를 한 흐름으로 배치</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar">
+                <span class="brand">FlowHR</span>
+                <span class="search wide" data-lid="LID-TA-RETAIL-HOME-SEARCH">Search store, shift, employee, exception</span>
+                <span class="pill active">Retail Pack</span>
+                <span class="avatar">AD</span>
+              </div>
+              <div class="layout">
+                <aside class="sidebar">
+                  <span class="active">Home</span>
+                  <span>Attendance</span>
+                  <span>Shift</span>
+                  <span>Leave</span>
+                  <span>Workflow</span>
+                  <span>People</span>
+                  <span>Documents</span>
+                  <span>Payroll</span>
+                </aside>
+                <div class="main">
+                  <div class="kpi-row five">
+                    <div class="kpi emphasis"><strong>3</strong><span data-lid="LID-TA-RETAIL-HOME-KPI_1">결원 매장</span></div>
+                    <div class="kpi"><strong>6</strong><span data-lid="LID-TA-RETAIL-HOME-KPI_2">피크타임 부족 슬롯</span></div>
+                    <div class="kpi"><strong>5</strong><span data-lid="LID-TA-RETAIL-HOME-KPI_3">브레이크 위반 위험</span></div>
+                    <div class="kpi"><strong>7</strong><span data-lid="LID-TA-RETAIL-HOME-KPI_4">오버타임 임박</span></div>
+                    <div class="kpi"><strong>6</strong><span data-lid="LID-TA-RETAIL-HOME-KPI_5">정산 전 확인 예외</span></div>
+                  </div>
+                  <div class="panel-row admin-hero">
+                    <section class="panel large">
+                      <div class="panel-head">
+                        <strong data-lid="LID-TA-RETAIL-HOME-QUEUE_TITLE">Store Action Queue</strong>
+                        <span data-lid="LID-TA-RETAIL-HOME-QUEUE_SUB">매장별 우선 처리</span>
+                      </div>
+                      <div class="queue-list">
+                        <div class="queue-item critical"><div><strong data-lid="LID-TA-RETAIL-HOME-QUEUE_1_TITLE">강남 2호점 결원 2명</strong><p data-lid="LID-TA-RETAIL-HOME-QUEUE_1_TEXT">점심 피크타임 12:00~14:00 / 대체 배치 필요</p></div><span data-lid="LID-TA-RETAIL-HOME-QUEUE_1_CTA">대체 배치</span></div>
+                        <div class="queue-item high"><div><strong data-lid="LID-TA-RETAIL-HOME-QUEUE_2_TITLE">홍대점 브레이크 위반 위험</strong><p data-lid="LID-TA-RETAIL-HOME-QUEUE_2_TEXT">2명 연속 근무 / 브레이크 미배정</p></div><span data-lid="LID-TA-RETAIL-HOME-QUEUE_2_CTA">시프트 수정</span></div>
+                        <div class="queue-item medium"><div><strong data-lid="LID-TA-RETAIL-HOME-QUEUE_3_TITLE">잠실점 체크인 누락</strong><p data-lid="LID-TA-RETAIL-HOME-QUEUE_3_TEXT">오픈조 3명 중 1명 미체크인</p></div><span data-lid="LID-TA-RETAIL-HOME-QUEUE_3_CTA">연락</span></div>
+                        <div class="queue-item medium"><div><strong data-lid="LID-TA-RETAIL-HOME-QUEUE_4_TITLE">월말 정산 예외 누적</strong><p data-lid="LID-TA-RETAIL-HOME-QUEUE_4_TEXT">야간수당 검토 6건 / 확정 전 확인 필요</p></div><span data-lid="LID-TA-RETAIL-HOME-QUEUE_4_CTA">정산 검토</span></div>
+                      </div>
+                    </section>
+                    <section class="panel">
+                      <div class="panel-head">
+                        <strong data-lid="LID-TA-RETAIL-HOME-SIGNAL_TITLE">Compliance / Payroll Watch</strong>
+                        <span data-lid="LID-TA-RETAIL-HOME-SIGNAL_SUB">정산 영향 중심</span>
+                      </div>
+                      <div class="signal-stack">
+                        <div class="signal-item"><strong data-lid="LID-TA-RETAIL-HOME-SIGNAL_1_TITLE">브레이크 위반 위험 5건</strong><p data-lid="LID-TA-RETAIL-HOME-SIGNAL_1_TEXT">현장 규정 위반 가능성 / 즉시 시프트 조정 필요</p></div>
+                        <div class="signal-item"><strong data-lid="LID-TA-RETAIL-HOME-SIGNAL_2_TITLE">오버타임 임박 7명</strong><p data-lid="LID-TA-RETAIL-HOME-SIGNAL_2_TEXT">이번 주 한도 초과 가능 / 대체 배치 권장</p></div>
+                        <div class="signal-item"><strong data-lid="LID-TA-RETAIL-HOME-SIGNAL_3_TITLE">야간수당 확인 6건</strong><p data-lid="LID-TA-RETAIL-HOME-SIGNAL_3_TEXT">마감 전 수당 규칙 재검토 필요</p></div>
+                      </div>
+                    </section>
+                  </div>
+                  <div class="retail-board">
+                    <section class="panel">
+                      <div class="panel-head">
+                        <strong data-lid="LID-TA-RETAIL-HOME-COVERAGE_TITLE">Coverage Board</strong>
+                        <span data-lid="LID-TA-RETAIL-HOME-COVERAGE_SUB">매장별 커버리지</span>
+                      </div>
+                      <div class="coverage-stack">
+                        <div class="coverage-item"><div><strong data-lid="LID-TA-RETAIL-HOME-COVERAGE_1_NAME">강남 2호점</strong><p data-lid="LID-TA-RETAIL-HOME-COVERAGE_1_TEXT">점심 피크타임 2명 부족</p></div><span class="tag">74%</span></div>
+                        <div class="coverage-item"><div><strong data-lid="LID-TA-RETAIL-HOME-COVERAGE_2_NAME">홍대점</strong><p data-lid="LID-TA-RETAIL-HOME-COVERAGE_2_TEXT">브레이크 재배치 필요</p></div><span class="tag">81%</span></div>
+                        <div class="coverage-item"><div><strong data-lid="LID-TA-RETAIL-HOME-COVERAGE_3_NAME">잠실점</strong><p data-lid="LID-TA-RETAIL-HOME-COVERAGE_3_TEXT">오픈조 체크인 누락 1건</p></div><span class="tag">89%</span></div>
+                      </div>
+                      <div class="coverage-bars">
+                        <div class="coverage-bar"><strong>Lunch Peak Coverage</strong><div class="track"><span class="fill" style="--w:74%"></span></div></div>
+                        <div class="coverage-bar"><strong>Break Allocation Health</strong><div class="track"><span class="fill" style="--w:81%"></span></div></div>
+                        <div class="coverage-bar"><strong>Closing Shift Readiness</strong><div class="track"><span class="fill" style="--w:89%"></span></div></div>
+                      </div>
+                    </section>
+                    <section class="panel">
+                      <div class="panel-head">
+                        <strong data-lid="LID-TA-RETAIL-HOME-SLOT_TITLE">Peak Time Slots</strong>
+                        <span data-lid="LID-TA-RETAIL-HOME-SLOT_SUB">시간대별 부족 인원</span>
+                      </div>
+                      <div class="store-timeline">
+                        <div class="store-slot"><strong data-lid="LID-TA-RETAIL-HOME-SLOT_1_TIME">11:30 ~ 13:30</strong><span data-lid="LID-TA-RETAIL-HOME-SLOT_1_TEXT">강남 2호점 / 2명 부족</span><span class="tag" data-lid="LID-TA-RETAIL-HOME-SLOT_1_TAG">심각</span></div>
+                        <div class="store-slot"><strong data-lid="LID-TA-RETAIL-HOME-SLOT_2_TIME">14:00 ~ 16:00</strong><span data-lid="LID-TA-RETAIL-HOME-SLOT_2_TEXT">홍대점 / 브레이크 공백</span><span class="tag" data-lid="LID-TA-RETAIL-HOME-SLOT_2_TAG">주의</span></div>
+                        <div class="store-slot"><strong data-lid="LID-TA-RETAIL-HOME-SLOT_3_TIME">18:00 ~ 21:00</strong><span data-lid="LID-TA-RETAIL-HOME-SLOT_3_TEXT">잠실점 / 추가 호출 필요</span><span class="tag" data-lid="LID-TA-RETAIL-HOME-SLOT_3_TAG">조치</span></div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

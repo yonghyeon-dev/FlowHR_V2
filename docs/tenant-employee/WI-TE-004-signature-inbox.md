@@ -4,42 +4,53 @@
 
 - `WI-TE-004`
 
-## 목적
+## 변경 배경
 
-직원 인박스는 단순 알림 목록이 아니라 `확인`, `서명`, `승인 결과`, `공지`를
-우선순위에 따라 처리하는 개인 작업 허브여야 한다.
+기존 Signature Inbox는 우선순위 인박스 방향은 맞았지만,
+업종별로 먼저 확인해야 할 문서 성격이 다르다.
 
-## 대상 화면
+따라서 `WI-TE-004`는 범용 Signature Inbox가 아니라
+`업종 팩별 Signature Inbox 변형`을 설계하는 작업으로 재정의한다.
 
-- `TE-301` My Inbox
-- `TE-302` Notification Detail
-- `TE-401` Signature Inbox
-- `TE-402` Document Viewer / Sign
-- `TE-403` My Document Archive
+## 현재 설계 범위
 
-## 핵심 UX
+### Variant A. Office Pack Signature Inbox
 
-- 가장 먼저 처리해야 할 항목이 상단에 모여야 한다.
-- 서명 요청은 일반 알림보다 높은 우선순위로 보여야 한다.
-- 문서 상세 화면에서 내용 확인과 서명이 한 흐름으로 이어져야 한다.
-- 완료 문서는 기록 보관과 재열람이 쉬워야 한다.
+대상:
 
-## 콘텐츠 분류
+- 전자계약
+- 정책 동의서
+- 인사 문서
 
-- 서명 요청
-- 승인 결과
-- 정책/공지 확인
-- 리마인더
-- 완료 문서 아카이브
+핵심 목적:
 
-## 주요 액션
+- 계약/정책 서명 우선 처리
+- 승인 결과와 연결
+- 완료 문서 보관
 
-- 열람
-- 서명
-- 보류 후 나중에 보기
-- 다운로드
-- 완료 문서 재확인
+산출물:
 
-## 산출물
+- [signature-inbox-office.html](../../wireframes/tenant-employee/signature-inbox-office.html)
 
-- 인박스/서명 와이어프레임: [signature-inbox-detailed.html](../../wireframes/tenant-employee/signature-inbox-detailed.html)
+### Variant B. Retail Pack Signature Inbox
+
+대상:
+
+- 매장 운영 규정
+- 현장 공지
+- 입사/근무 관련 동의서
+
+핵심 목적:
+
+- 근무 현장 관련 문서 확인
+- 매장별 공지/동의 우선 처리
+- 운영 리마인드 처리
+
+산출물:
+
+- [signature-inbox-retail.html](../../wireframes/tenant-employee/signature-inbox-retail.html)
+
+## 공통 설계 원칙
+
+- 인박스는 일반 알림보다 행동이 필요한 문서를 먼저 보여야 한다
+- 업종 팩에 따라 서명 우선순위와 문서 종류가 달라져야 한다

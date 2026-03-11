@@ -4,100 +4,135 @@
 
 - `WI-TA-001`
 
-## 목적
+## 변경 배경
 
-`Tenant Admin`의 첫 화면은 단순 통계판이 아니라 `전사 운영 관제 화면`이어야 한다.
-사용자는 이 화면 하나만으로 오늘 처리해야 할 승인, 근태 예외, 문서 병목,
-마감 리스크를 파악하고 바로 행동해야 한다.
+기존 `TA-001`은 모든 업종을 하나의 관리자 홈으로 수용하려는 범용 대시보드였다.
+하지만 목표 수렴 재검토 결과, `Tenant Admin`의 첫 화면은 업종 팩에 따라
+우선순위와 행동이 크게 달라지므로 단일 와이어로 유지하면 품질이 떨어진다.
 
-## 주요 사용자
+따라서 `WI-TA-001`은 이제 `공통 관리자 홈`이 아니라
+`업종 팩별 관리자 홈 변형`을 설계하는 작업으로 재정의한다.
 
-### Tenant Admin
+## 현재 설계 범위
 
-- 전사 운영 상태 확인
-- 리스크 우선 처리
-- People / Attendance / Workflow / Documents / Payroll 진입
+### Variant A. Office Pack Admin Home
 
-### Tenant Manager
+대상:
 
-- 담당 조직 단위 축소 버전 사용
-- 팀 출근 상태, 휴가 일정, 승인 병목 확인
+- IT / SaaS / 스타트업
+- 본사형 사무직 조직
 
-## 성공 기준
+핵심 목적:
 
-- 첫 진입 10초 안에 오늘의 우선 처리 항목이 읽힌다.
-- 예외 상세 화면으로 1클릭 안에 이동할 수 있다.
-- 승인/정정/재발송 같은 즉시 액션이 카드 단위로 제공된다.
+- 승인 적체
+- 문서/계약 병목
+- 유연근무 예외
+- 휴가/성과 후속 작업
 
-## 화면 구역
+핵심 결정:
 
-### Zone A. Top Summary Bar
+- 오늘 어떤 승인과 문서를 먼저 처리할 것인가
+- 어떤 예외가 운영 병목을 만들고 있는가
+- 어떤 팀이 유연근무/휴가로 결원 리스크를 안고 있는가
 
-- 오늘 승인 필요 건수
-- 체크아웃 누락 인원
-- 초과근무 위험 인원
-- 서명 대기 건수
-- 마감 병목 건수
+산출물:
 
-### Zone B. Today Queue
+- [admin-home-office.html](../../wireframes/tenant-admin/admin-home-office.html)
 
-- 우선순위가 높은 작업 목록
-- 예시:
-  - 초과근무 한도 초과 예상
-  - 체크아웃 누락
-  - 휴가 승인 적체
-  - 전자계약 미서명
+### Variant B. Retail Pack Admin Home
 
-정렬 기준:
+대상:
 
-1. 법규/정산 리스크
-2. 당일 마감
-3. 승인 병목
-4. 일반 알림
+- 외식
+- 리테일
+- 프랜차이즈
+- 다지점 서비스업
 
-### Zone C. Org Snapshot
+핵심 목적:
 
-- 부서별 출근율
-- 부서별 위험 신호
-- 부서별 승인 병목
+- 매장별 결원
+- 피크타임 커버리지
+- 브레이크/오버타임 위반
+- 대체 배치와 급여 반영 전 예외
 
-### Zone D. Approval Funnel
+핵심 결정:
 
-- Draft
-- Pending
-- Escalated
-- Done
+- 오늘 어느 매장에서 결원이 생기는가
+- 어느 시간대의 커버리지가 부족한가
+- 어떤 근태 예외가 정산 오류를 만들 수 있는가
 
-### Zone E. Exception Monitor
+산출물:
 
-- 지각
-- 체크인 누락
-- 체크아웃 누락
-- 휴게 위반
-- 초과근무 위험/초과
+- [admin-home-retail.html](../../wireframes/tenant-admin/admin-home-retail.html)
 
-### Zone F. Documents & Payroll Watch
+## 공통 설계 원칙
 
+- 관리자 홈은 `숫자 요약`이 아니라 `즉시 처리할 운영 대기열`이어야 한다
+- 모든 핵심 구역은 다음 액션과 연결되어야 한다
+- 업종 팩에 따라 `첫 줄 KPI`, `우선 큐`, `메뉴 순서`가 달라져야 한다
+- 공통 구조를 억지로 맞추기보다, 업종별로 더 자주 하는 결정을 먼저 노출해야 한다
+
+## Office Pack 화면 구역
+
+### Zone A. Action KPI
+
+- 오늘 승인 필요
+- SLA 지연 승인
 - 서명 대기
-- 만료 예정 계약
-- 정산 전 확인 필요
-- 급여 마감 병목
+- 만료 임박 계약
+- 정정 요청
 
-## UI 원칙
+### Zone B. Decision Queue
 
-- 첫 줄은 숫자 KPI보다 `행동 유도 KPI`여야 한다.
-- 두 번째 줄은 `Today Queue`를 메인으로 둔다.
-- 아래 영역에서 예외, 승인, 문서/급여 감시가 이어져야 한다.
-- 모바일 축소판이 아니라 데스크톱 운영 화면으로 설계한다.
+- 법적/문서 리스크
+- 승인 적체
+- 유연근무 예외
+- 팀 결원 신호
 
-## 연결 화면
+### Zone C. Approval / Document Split
 
-- Attendance Exceptions
-- Approval Inbox
-- Employee Directory
-- Document Dashboard
-- Payroll Closing
+- 승인 유형별 병목
+- 문서 유형별 병목
+- 재발송/재지정 필요 항목
 
-## 산출물
+### Zone D. Team Risk Snapshot
 
-- 상세 와이어프레임: [admin-home-detailed.html](../../wireframes/tenant-admin/admin-home-detailed.html)
+- 팀별 결원
+- 원격/휴가 집중
+- 승인 대기 과다 팀
+
+## Retail Pack 화면 구역
+
+### Zone A. Coverage KPI
+
+- 오늘 결원 매장
+- 피크타임 부족 슬롯
+- 브레이크 위반 위험
+- 오버타임 임박
+- 정산 전 확인 예외
+
+### Zone B. Store Action Queue
+
+- 결원 발생 매장
+- 대체 배치 필요
+- 출근 누락
+- 피크타임 공백
+
+### Zone C. Coverage Board
+
+- 매장별 커버리지
+- 시간대별 부족 인원
+- 매장별 위험 레벨
+
+### Zone D. Compliance / Payroll Watch
+
+- 브레이크 위반
+- 오버타임 위험
+- 급여 반영 전 예외
+- 현장 승인 병목
+
+## 연결 문서
+
+- 업종 세분화: [31-industry-segmentation.md](../foundation/31-industry-segmentation.md)
+- 업종 팩 및 기능 선택: [32-industry-pack-feature-selection.md](../foundation/32-industry-pack-feature-selection.md)
+- 역할별 의사결정 시나리오: [33-role-decision-scenario-map.md](../foundation/33-role-decision-scenario-map.md)

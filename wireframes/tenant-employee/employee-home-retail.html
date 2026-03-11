@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Employee Home Retail Pack</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TE-RETAIL-HOME-EYEBROW": { "ko": "WI-TE-001 / Retail Pack", "en": "WI-TE-001 / Retail Pack" },
+        "LID-TE-RETAIL-HOME-TITLE": { "ko": "Retail Pack Employee Home", "en": "Retail Pack Employee Home" },
+        "LID-TE-RETAIL-HOME-TEXT": { "ko": "리테일형 직원은 요청보다 먼저 오늘 근무와 체크인 상태를 확인해야 합니다.", "en": "Retail employees need to check today's shift and attendance state before requests." },
+        "LID-TE-RETAIL-HOME-NOTE_1": { "ko": "오늘 내 근무 시간과 매장은 어디인가", "en": "Where and when is my shift today" },
+        "LID-TE-RETAIL-HOME-NOTE_2": { "ko": "지금 체크인해야 하는가", "en": "Do I need to check in now" },
+        "LID-TE-RETAIL-HOME-NOTE_3": { "ko": "시프트 변경이나 대체 배치가 있었는가", "en": "Was there a shift change or replacement assignment" },
+        "LID-TE-RETAIL-HOME-DESKTOP_TITLE": { "ko": "Retail Desktop Variant", "en": "Retail Desktop Variant" },
+        "LID-TE-RETAIL-HOME-DESKTOP_DESC": { "ko": "오늘 근무와 예외를 먼저 확인하는 현장형 직원 홈", "en": "A frontline employee home that starts with today's shift and exceptions" },
+        "LID-TE-RETAIL-HOME-SHIFT_TITLE": { "ko": "Today Shift", "en": "Today Shift" },
+        "LID-TE-RETAIL-HOME-SHIFT_1": { "ko": "강남 2호점 / 10:00 - 19:00", "en": "Gangnam Store 2 / 10:00 to 19:00" },
+        "LID-TE-RETAIL-HOME-SHIFT_2": { "ko": "점심 피크 12:00 - 14:00 집중 배치", "en": "Lunch peak focus from 12:00 to 14:00" },
+        "LID-TE-RETAIL-HOME-CHECK_TITLE": { "ko": "Check Status", "en": "Check Status" },
+        "LID-TE-RETAIL-HOME-CHECK_1": { "ko": "09:56 체크인 완료", "en": "Checked in at 09:56" },
+        "LID-TE-RETAIL-HOME-CHECK_2": { "ko": "브레이크 예정 14:30", "en": "Break scheduled at 14:30" },
+        "LID-TE-RETAIL-HOME-ALERT_TITLE": { "ko": "Shift Alerts", "en": "Shift Alerts" },
+        "LID-TE-RETAIL-HOME-ALERT_1": { "ko": "홍대점 지원 가능 여부 확인", "en": "Confirm availability for Hongdae support shift" },
+        "LID-TE-RETAIL-HOME-ALERT_2": { "ko": "어제 체크아웃 정정 필요", "en": "Yesterday's check-out needs correction" },
+        "LID-TE-RETAIL-HOME-ACT_1": { "ko": "체크아웃", "en": "Check out" },
+        "LID-TE-RETAIL-HOME-ACT_2": { "ko": "정정 요청", "en": "Request correction" },
+        "LID-TE-RETAIL-HOME-ACT_3": { "ko": "시프트 확인", "en": "View shift" },
+        "LID-TE-RETAIL-HOME-ACT_4": { "ko": "대체 근무 회신", "en": "Reply to replacement shift" },
+        "LID-TE-RETAIL-HOME-MOBILE_TITLE": { "ko": "Retail Mobile Variant", "en": "Retail Mobile Variant" },
+        "LID-TE-RETAIL-HOME-MOBILE_DESC": { "ko": "체크인과 오늘 근무를 상단에서 즉시 확인하는 모바일 구조", "en": "A mobile structure that lets staff see check-in and today's shift immediately" },
+        "LID-TE-RETAIL-HOME-MOBILE_HERO_TITLE": { "ko": "지금 근무 중", "en": "On shift now" },
+        "LID-TE-RETAIL-HOME-MOBILE_HERO_TEXT": { "ko": "강남 2호점 / 09:56 체크인 / 19:00 퇴근 예정", "en": "Gangnam Store 2 / Checked in at 09:56 / Off at 19:00" },
+        "LID-TE-RETAIL-HOME-TAB_1": { "ko": "홈", "en": "Home" },
+        "LID-TE-RETAIL-HOME-TAB_2": { "ko": "근무", "en": "Shift" },
+        "LID-TE-RETAIL-HOME-TAB_3": { "ko": "요청", "en": "Requests" },
+        "LID-TE-RETAIL-HOME-TAB_4": { "ko": "인박스", "en": "Inbox" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TE-RETAIL-HOME-EYEBROW">WI-TE-001 / Retail Pack</p>
+          <h1 data-lid="LID-TE-RETAIL-HOME-TITLE">Retail Pack Employee Home</h1>
+          <p class="hero-text" data-lid="LID-TE-RETAIL-HOME-TEXT">리테일형 직원은 요청보다 먼저 오늘 근무와 체크인 상태를 확인해야 합니다.</p>
+        </div>
+        <aside class="hero-note">
+          <h2>핵심 질문</h2>
+          <ul>
+            <li data-lid="LID-TE-RETAIL-HOME-NOTE_1">오늘 내 근무 시간과 매장은 어디인가</li>
+            <li data-lid="LID-TE-RETAIL-HOME-NOTE_2">지금 체크인해야 하는가</li>
+            <li data-lid="LID-TE-RETAIL-HOME-NOTE_3">시프트 변경이나 대체 배치가 있었는가</li>
+          </ul>
+        </aside>
+      </header>
+      <main class="content">
+        <section class="wireframe-grid two-up">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>R</span>
+              <div>
+                <h3 data-lid="LID-TE-RETAIL-HOME-DESKTOP_TITLE">Retail Desktop Variant</h3>
+                <p data-lid="LID-TE-RETAIL-HOME-DESKTOP_DESC">오늘 근무와 예외를 먼저 확인하는 현장형 직원 홈</p>
+              </div>
+            </div>
+            <div class="screen desktop compact">
+              <div class="topbar slim"><span class="brand">My Shift</span><span class="search wide">Search shift, notice, request</span><span class="avatar">MJ</span></div>
+              <div class="panel-row desktop-home">
+                <section class="panel large">
+                  <div class="panel-head"><strong data-lid="LID-TE-RETAIL-HOME-SHIFT_TITLE">Today Shift</strong><span>Live</span></div>
+                  <div class="list dense">
+                    <span data-lid="LID-TE-RETAIL-HOME-SHIFT_1">강남 2호점 / 10:00 - 19:00</span>
+                    <span data-lid="LID-TE-RETAIL-HOME-SHIFT_2">점심 피크 12:00 - 14:00 집중 배치</span>
+                  </div>
+                  <div class="mini-columns two">
+                    <span data-lid="LID-TE-RETAIL-HOME-ACT_1">체크아웃</span>
+                    <span data-lid="LID-TE-RETAIL-HOME-ACT_3">시프트 확인</span>
+                  </div>
+                </section>
+                <section class="panel">
+                  <div class="panel-head"><strong data-lid="LID-TE-RETAIL-HOME-CHECK_TITLE">Check Status</strong><span>Now</span></div>
+                  <div class="list dense">
+                    <span data-lid="LID-TE-RETAIL-HOME-CHECK_1">09:56 체크인 완료</span>
+                    <span data-lid="LID-TE-RETAIL-HOME-CHECK_2">브레이크 예정 14:30</span>
+                  </div>
+                </section>
+              </div>
+              <div class="panel-row desktop-home">
+                <section class="panel">
+                  <div class="panel-head"><strong data-lid="LID-TE-RETAIL-HOME-ALERT_TITLE">Shift Alerts</strong><span>2</span></div>
+                  <div class="list dense">
+                    <span data-lid="LID-TE-RETAIL-HOME-ALERT_1">홍대점 지원 가능 여부 확인</span>
+                    <span data-lid="LID-TE-RETAIL-HOME-ALERT_2">어제 체크아웃 정정 필요</span>
+                  </div>
+                </section>
+                <section class="panel">
+                  <div class="panel-head"><strong>Quick Actions</strong><span>Now</span></div>
+                  <div class="mini-columns two">
+                    <span data-lid="LID-TE-RETAIL-HOME-ACT_2">정정 요청</span>
+                    <span data-lid="LID-TE-RETAIL-HOME-ACT_4">대체 근무 회신</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>M</span>
+              <div>
+                <h3 data-lid="LID-TE-RETAIL-HOME-MOBILE_TITLE">Retail Mobile Variant</h3>
+                <p data-lid="LID-TE-RETAIL-HOME-MOBILE_DESC">체크인과 오늘 근무를 상단에서 즉시 확인하는 모바일 구조</p>
+              </div>
+            </div>
+            <div class="mobile-wrap">
+              <div class="screen mobile">
+                <div class="mobile-notch"></div>
+                <div class="mobile-head"><span>10:04</span><span>FlowHR</span><span>5G</span></div>
+                <div class="mobile-body">
+                  <div class="mobile-card hero-card strong-hero">
+                    <strong data-lid="LID-TE-RETAIL-HOME-MOBILE_HERO_TITLE">지금 근무 중</strong>
+                    <p data-lid="LID-TE-RETAIL-HOME-MOBILE_HERO_TEXT">강남 2호점 / 09:56 체크인 / 19:00 퇴근 예정</p>
+                    <div class="mini-columns two">
+                      <span data-lid="LID-TE-RETAIL-HOME-ACT_1">체크아웃</span>
+                      <span data-lid="LID-TE-RETAIL-HOME-ACT_3">시프트 확인</span>
+                    </div>
+                  </div>
+                  <div class="mobile-card">
+                    <strong data-lid="LID-TE-RETAIL-HOME-ALERT_TITLE">Shift Alerts</strong>
+                    <ul>
+                      <li data-lid="LID-TE-RETAIL-HOME-ALERT_1">홍대점 지원 가능 여부 확인</li>
+                      <li data-lid="LID-TE-RETAIL-HOME-ALERT_2">어제 체크아웃 정정 필요</li>
+                    </ul>
+                  </div>
+                  <div class="mobile-card">
+                    <strong>Quick Actions</strong>
+                    <div class="mini-columns two">
+                      <span data-lid="LID-TE-RETAIL-HOME-ACT_2">정정 요청</span>
+                      <span data-lid="LID-TE-RETAIL-HOME-ACT_4">대체 근무 회신</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-tabbar">
+                  <span class="active" data-lid="LID-TE-RETAIL-HOME-TAB_1">홈</span>
+                  <span data-lid="LID-TE-RETAIL-HOME-TAB_2">근무</span>
+                  <span data-lid="LID-TE-RETAIL-HOME-TAB_3">요청</span>
+                  <span data-lid="LID-TE-RETAIL-HOME-TAB_4">인박스</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

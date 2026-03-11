@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Employee Home Office Pack</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TE-OFFICE-HOME-EYEBROW": { "ko": "WI-TE-001 / Office Pack", "en": "WI-TE-001 / Office Pack" },
+        "LID-TE-OFFICE-HOME-TITLE": { "ko": "Office Pack Employee Home", "en": "Office Pack Employee Home" },
+        "LID-TE-OFFICE-HOME-TEXT": { "ko": "오피스형 직원은 출퇴근보다 요청, 서명, 일정 확인을 먼저 처리해야 합니다.", "en": "Office employees typically need to handle requests, signatures, and schedule checks before anything else." },
+        "LID-TE-OFFICE-HOME-NOTE_1": { "ko": "오늘 내가 제출하거나 확인해야 할 요청이 무엇인가", "en": "What requests do I need to submit or review today" },
+        "LID-TE-OFFICE-HOME-NOTE_2": { "ko": "서명해야 할 문서가 있는가", "en": "Do I have documents to sign" },
+        "LID-TE-OFFICE-HOME-NOTE_3": { "ko": "이번 주 일정과 휴가에 충돌이 있는가", "en": "Are there conflicts in my week or leave plans" },
+        "LID-TE-OFFICE-HOME-DESKTOP_TITLE": { "ko": "Office Desktop Variant", "en": "Office Desktop Variant" },
+        "LID-TE-OFFICE-HOME-DESKTOP_DESC": { "ko": "요청과 서명을 먼저 처리하는 사무직 셀프서비스 홈", "en": "A self-service home for office workers that prioritizes requests and signatures" },
+        "LID-TE-OFFICE-HOME-SEARCH": { "ko": "Search request, policy, document", "en": "Search request, policy, document" },
+        "LID-TE-OFFICE-HOME-TASK_TITLE": { "ko": "Today Must-Do", "en": "Today Must-Do" },
+        "LID-TE-OFFICE-HOME-TASK_1": { "ko": "연봉 변경 계약 서명", "en": "Sign salary change contract" },
+        "LID-TE-OFFICE-HOME-TASK_2": { "ko": "휴가 초안 제출", "en": "Submit leave draft" },
+        "LID-TE-OFFICE-HOME-TASK_3": { "ko": "팀 공지 확인", "en": "Review team notice" },
+        "LID-TE-OFFICE-HOME-ACT_TITLE": { "ko": "Quick Requests", "en": "Quick Requests" },
+        "LID-TE-OFFICE-HOME-ACT_1": { "ko": "휴가 요청", "en": "Request leave" },
+        "LID-TE-OFFICE-HOME-ACT_2": { "ko": "정정 요청", "en": "Request correction" },
+        "LID-TE-OFFICE-HOME-ACT_3": { "ko": "일반 요청", "en": "General request" },
+        "LID-TE-OFFICE-HOME-ACT_4": { "ko": "문서 서명", "en": "Sign document" },
+        "LID-TE-OFFICE-HOME-WEEK_TITLE": { "ko": "This Week", "en": "This Week" },
+        "LID-TE-OFFICE-HOME-WEEK_1": { "ko": "수요일 재택", "en": "Remote on Wednesday" },
+        "LID-TE-OFFICE-HOME-WEEK_2": { "ko": "금요일 연차 예정", "en": "Leave planned on Friday" },
+        "LID-TE-OFFICE-HOME-WEEK_3": { "ko": "1:1 미팅 14:00", "en": "1:1 meeting at 14:00" },
+        "LID-TE-OFFICE-HOME-SUMMARY_TITLE": { "ko": "My Summary", "en": "My Summary" },
+        "LID-TE-OFFICE-HOME-SUMMARY_1": { "ko": "잔여 연차 8.5일", "en": "8.5 leave days left" },
+        "LID-TE-OFFICE-HOME-SUMMARY_2": { "ko": "진행 중 요청 2건", "en": "2 active requests" },
+        "LID-TE-OFFICE-HOME-SUMMARY_3": { "ko": "서명 대기 1건", "en": "1 pending signature" },
+        "LID-TE-OFFICE-HOME-MOBILE_TITLE": { "ko": "Office Mobile Variant", "en": "Office Mobile Variant" },
+        "LID-TE-OFFICE-HOME-MOBILE_DESC": { "ko": "요청, 서명, 잔여 현황을 모바일 상단에서 바로 처리", "en": "Handle requests, signatures, and balances from the top of mobile home" },
+        "LID-TE-OFFICE-HOME-MOBILE_HERO_TITLE": { "ko": "오늘 처리할 일 3건", "en": "3 items to handle today" },
+        "LID-TE-OFFICE-HOME-MOBILE_HERO_TEXT": { "ko": "서명 1건 / 제출 필요 2건", "en": "1 signature / 2 items to submit" },
+        "LID-TE-OFFICE-HOME-TAB_1": { "ko": "홈", "en": "Home" },
+        "LID-TE-OFFICE-HOME-TAB_2": { "ko": "요청", "en": "Requests" },
+        "LID-TE-OFFICE-HOME-TAB_3": { "ko": "문서", "en": "Documents" },
+        "LID-TE-OFFICE-HOME-TAB_4": { "ko": "내 정보", "en": "Me" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TE-OFFICE-HOME-EYEBROW">WI-TE-001 / Office Pack</p>
+          <h1 data-lid="LID-TE-OFFICE-HOME-TITLE">Office Pack Employee Home</h1>
+          <p class="hero-text" data-lid="LID-TE-OFFICE-HOME-TEXT">오피스형 직원은 출퇴근보다 요청, 서명, 일정 확인을 먼저 처리해야 합니다.</p>
+        </div>
+        <aside class="hero-note">
+          <h2>핵심 질문</h2>
+          <ul>
+            <li data-lid="LID-TE-OFFICE-HOME-NOTE_1">오늘 내가 제출하거나 확인해야 할 요청이 무엇인가</li>
+            <li data-lid="LID-TE-OFFICE-HOME-NOTE_2">서명해야 할 문서가 있는가</li>
+            <li data-lid="LID-TE-OFFICE-HOME-NOTE_3">이번 주 일정과 휴가에 충돌이 있는가</li>
+          </ul>
+        </aside>
+      </header>
+      <main class="content">
+        <section class="wireframe-grid two-up">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>O</span>
+              <div>
+                <h3 data-lid="LID-TE-OFFICE-HOME-DESKTOP_TITLE">Office Desktop Variant</h3>
+                <p data-lid="LID-TE-OFFICE-HOME-DESKTOP_DESC">요청과 서명을 먼저 처리하는 사무직 셀프서비스 홈</p>
+              </div>
+            </div>
+            <div class="screen desktop compact">
+              <div class="topbar slim">
+                <span class="brand">My Home</span>
+                <span class="search wide" data-lid="LID-TE-OFFICE-HOME-SEARCH">Search request, policy, document</span>
+                <span class="avatar">MJ</span>
+              </div>
+              <div class="panel-row desktop-home">
+                <section class="panel large">
+                  <div class="panel-head">
+                    <strong data-lid="LID-TE-OFFICE-HOME-TASK_TITLE">Today Must-Do</strong>
+                    <span>3</span>
+                  </div>
+                  <div class="list dense">
+                    <span data-lid="LID-TE-OFFICE-HOME-TASK_1">연봉 변경 계약 서명</span>
+                    <span data-lid="LID-TE-OFFICE-HOME-TASK_2">휴가 초안 제출</span>
+                    <span data-lid="LID-TE-OFFICE-HOME-TASK_3">팀 공지 확인</span>
+                  </div>
+                </section>
+                <section class="panel">
+                  <div class="panel-head">
+                    <strong data-lid="LID-TE-OFFICE-HOME-ACT_TITLE">Quick Requests</strong>
+                    <span>Now</span>
+                  </div>
+                  <div class="mini-columns two">
+                    <span data-lid="LID-TE-OFFICE-HOME-ACT_1">휴가 요청</span>
+                    <span data-lid="LID-TE-OFFICE-HOME-ACT_2">정정 요청</span>
+                    <span data-lid="LID-TE-OFFICE-HOME-ACT_3">일반 요청</span>
+                    <span data-lid="LID-TE-OFFICE-HOME-ACT_4">문서 서명</span>
+                  </div>
+                </section>
+              </div>
+              <div class="panel-row desktop-home">
+                <section class="panel">
+                  <div class="panel-head">
+                    <strong data-lid="LID-TE-OFFICE-HOME-WEEK_TITLE">This Week</strong>
+                    <span>Plan</span>
+                  </div>
+                  <div class="list dense">
+                    <span data-lid="LID-TE-OFFICE-HOME-WEEK_1">수요일 재택</span>
+                    <span data-lid="LID-TE-OFFICE-HOME-WEEK_2">금요일 연차 예정</span>
+                    <span data-lid="LID-TE-OFFICE-HOME-WEEK_3">1:1 미팅 14:00</span>
+                  </div>
+                </section>
+                <section class="panel">
+                  <div class="panel-head">
+                    <strong data-lid="LID-TE-OFFICE-HOME-SUMMARY_TITLE">My Summary</strong>
+                    <span>Mine</span>
+                  </div>
+                  <div class="mini-columns">
+                    <span data-lid="LID-TE-OFFICE-HOME-SUMMARY_1">잔여 연차 8.5일</span>
+                    <span data-lid="LID-TE-OFFICE-HOME-SUMMARY_2">진행 중 요청 2건</span>
+                    <span data-lid="LID-TE-OFFICE-HOME-SUMMARY_3">서명 대기 1건</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>M</span>
+              <div>
+                <h3 data-lid="LID-TE-OFFICE-HOME-MOBILE_TITLE">Office Mobile Variant</h3>
+                <p data-lid="LID-TE-OFFICE-HOME-MOBILE_DESC">요청, 서명, 잔여 현황을 모바일 상단에서 바로 처리</p>
+              </div>
+            </div>
+            <div class="mobile-wrap">
+              <div class="screen mobile">
+                <div class="mobile-notch"></div>
+                <div class="mobile-head"><span>09:12</span><span>FlowHR</span><span>LTE</span></div>
+                <div class="mobile-body">
+                  <div class="mobile-card hero-card strong-hero">
+                    <strong data-lid="LID-TE-OFFICE-HOME-MOBILE_HERO_TITLE">오늘 처리할 일 3건</strong>
+                    <p data-lid="LID-TE-OFFICE-HOME-MOBILE_HERO_TEXT">서명 1건 / 제출 필요 2건</p>
+                    <div class="mini-columns two">
+                      <span data-lid="LID-TE-OFFICE-HOME-ACT_4">문서 서명</span>
+                      <span data-lid="LID-TE-OFFICE-HOME-ACT_1">휴가 요청</span>
+                    </div>
+                  </div>
+                  <div class="mobile-card">
+                    <strong data-lid="LID-TE-OFFICE-HOME-ACT_TITLE">Quick Requests</strong>
+                    <div class="mini-columns two">
+                      <span data-lid="LID-TE-OFFICE-HOME-ACT_2">정정 요청</span>
+                      <span data-lid="LID-TE-OFFICE-HOME-ACT_3">일반 요청</span>
+                      <span data-lid="LID-TE-OFFICE-HOME-SUMMARY_1">잔여 연차 8.5일</span>
+                      <span data-lid="LID-TE-OFFICE-HOME-SUMMARY_2">진행 중 요청 2건</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-tabbar">
+                  <span class="active" data-lid="LID-TE-OFFICE-HOME-TAB_1">홈</span>
+                  <span data-lid="LID-TE-OFFICE-HOME-TAB_2">요청</span>
+                  <span data-lid="LID-TE-OFFICE-HOME-TAB_3">문서</span>
+                  <span data-lid="LID-TE-OFFICE-HOME-TAB_4">내 정보</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
