@@ -3,9 +3,11 @@
 import { startTransition, useState } from "react";
 import { tx } from "@/lib/content/appCopy";
 import type {
+  ActionActor,
   ActionScenario,
   ActionSimulationFailure,
   ActionSimulationSuccess,
+  SupportedPack,
 } from "@/lib/api/types";
 import type { LocalizedText } from "@/lib/content/types";
 
@@ -21,6 +23,8 @@ type ActionSimulatorProps = {
   description: LocalizedText;
   endpoint: string;
   primaryLabel: LocalizedText;
+  pack?: SupportedPack;
+  actor?: ActionActor;
 };
 
 export function ActionSimulator({
@@ -29,6 +33,8 @@ export function ActionSimulator({
   description,
   endpoint,
   primaryLabel,
+  pack,
+  actor,
 }: ActionSimulatorProps) {
   const [scenario, setScenario] = useState<ActionScenario>("success");
   const [submitting, setSubmitting] = useState(false);
@@ -48,6 +54,8 @@ export function ActionSimulator({
       body: JSON.stringify({
         scenario,
         locale: language,
+        pack,
+        actor,
       }),
     });
 

@@ -3,7 +3,7 @@ import { AdminClient } from "@/components/flowhr-client";
 import { fetchAdminPage } from "@/lib/api/fetchers";
 import { tx } from "@/lib/content/appCopy";
 import type { DashboardPage } from "@/lib/content/types";
-import type { AdminView, SupportedPack } from "@/lib/api/types";
+import type { ActionActor, AdminView, SupportedPack } from "@/lib/api/types";
 
 const VALID_PACKS = ["office", "retail"] as const;
 const VALID_VIEWS = ["home", "attendance", "leave", "workflow", "documents", "settings"] as const;
@@ -16,6 +16,7 @@ type ViewActionPanel = {
   description: ReturnType<typeof tx>;
   endpoint: string;
   primaryLabel: ReturnType<typeof tx>;
+  actor?: ActionActor;
 };
 
 type ViewMeta = {
@@ -48,6 +49,7 @@ const VIEW_META: Record<View, ViewMeta> = {
       ),
       endpoint: "/api/admin/approvals/approve",
       primaryLabel: tx("승인 처리 테스트", "Test approval action"),
+      actor: "tenant_manager",
     },
   },
   documents: {
@@ -65,6 +67,7 @@ const VIEW_META: Record<View, ViewMeta> = {
       ),
       endpoint: "/api/admin/settings/save",
       primaryLabel: tx("설정 저장 테스트", "Test settings save"),
+      actor: "tenant_admin",
     },
   },
 };
@@ -97,6 +100,7 @@ export default async function Page({
         `WI-TA-${VIEW_META[typedView].wi} / ${typedPack === "office" ? "Office" : "Retail"} Pack`,
       )}
       tone={typedPack === "office" ? "office-tone" : "retail-tone"}
+      pack={typedPack}
       navigation={VALID_VIEWS.map((item) => ({
         href: `/admin/${typedPack}/${item}`,
         label: VIEW_META[item].label,

@@ -64,6 +64,32 @@ export type PackSetupSelection = {
   savedAt?: string;
 };
 
+export type ActionActor =
+  | "tenant_admin"
+  | "tenant_manager"
+  | "employee";
+
+export type ActionDomain =
+  | "settings"
+  | "approval"
+  | "request"
+  | "signature";
+
+export type ActionEvent = {
+  id: string;
+  domain: ActionDomain;
+  actionType: ActionSimulationRequest["actionType"];
+  actor: ActionActor;
+  pack?: SupportedPack;
+  message: string;
+  createdAt: string;
+};
+
+export type MockStoreState = {
+  selection: PackSetupSelection;
+  actionEvents: ActionEvent[];
+};
+
 export type PackSetupResponse = {
   recommendedOrder: SupportedPack[];
   packs: PackSetup[];
@@ -90,6 +116,7 @@ export type ActionSimulationRequest = {
   scenario: ActionScenario;
   locale?: "ko" | "en";
   pack?: SupportedPack;
+  actor?: ActionActor;
 };
 
 export type ActionSimulationSuccess = {

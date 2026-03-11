@@ -6,11 +6,17 @@ import type { DashboardPage } from "@/lib/content/types";
 import { EMPLOYEE_PAGES } from "@/lib/content/employeeContent";
 import { PLATFORM_PAGE } from "@/lib/content/platformContent";
 import type {
+  ActionActor,
+  ActionDomain,
+  ActionEvent,
+  ActionSimulationRequest,
+  ActionSimulationSuccess,
   AdminPageResponse,
   AdminView,
   ApiResponse,
   EmployeeFlowResponse,
   EmployeeHomeResponse,
+  MockStoreState,
   EmployeeView,
   PackSetupSaveRequest,
   PackSetupSaveResponse,
@@ -61,23 +67,81 @@ const defaultPackSelection: PackSetupResponse["selection"] = {
   savedAt: now(),
 };
 
-function readPackSelection(): PackSetupResponse["selection"] {
+const defaultStoreState: MockStoreState = {
+  selection: defaultPackSelection,
+  actionEvents: [],
+};
+
+function readStoreState(): MockStoreState {
   if (!existsSync(STORE_PATH)) {
-    writeFileSync(STORE_PATH, JSON.stringify(defaultPackSelection, null, 2), "utf8");
-    return defaultPackSelection;
+    writeFileSync(STORE_PATH, JSON.stringify(defaultStoreState, null, 2), "utf8");
+    return defaultStoreState;
   }
 
   try {
     const raw = readFileSync(STORE_PATH, "utf8");
-    return JSON.parse(raw) as PackSetupResponse["selection"];
+    const parsed = JSON.parse(raw) as Partial<MockStoreState> | PackSetupResponse["selection"];
+    if ("selection" in parsed) {
+      return {
+        selection: parsed.selection ?? defaultStoreState.selection,
+        actionEvents: parsed.actionEvents ?? [],
+      };
+    }
+    return {
+      selection: parsed as PackSetupResponse["selection"],
+      actionEvents: [],
+    };
   } catch {
-    writeFileSync(STORE_PATH, JSON.stringify(defaultPackSelection, null, 2), "utf8");
-    return defaultPackSelection;
+    writeFileSync(STORE_PATH, JSON.stringify(defaultStoreState, null, 2), "utf8");
+    return defaultStoreState;
   }
 }
 
-function writePackSelection(selection: PackSetupResponse["selection"]) {
-  writeFileSync(STORE_PATH, JSON.stringify(selection, null, 2), "utf8");
+function writeStoreState(state: MockStoreState) {
+  writeFileSync(STORE_PATH, JSON.stringify(state, null, 2), "utf8");
+}
+
+function getRelevantEvents(domain: ActionDomain, pack?: SupportedPack): ActionEvent[] {
+  const state = readStoreState();
+  return state.actionEvents
+    .filter((item) => item.domain === domain && (!pack || item.pack === pack))
+    .slice(-3)
+    .reverse();
+}
+
+function formatEventLine(event: ActionEvent): ReturnType<typeof tx> {
+  const actorMap = {
+    tenant_admin: tx("관리자", "Admin"),
+    tenant_manager: tx("매니저", "Manager"),
+    employee: tx("직원", "Employee"),
+  } satisfies Record<ActionActor, ReturnType<typeof tx>>;
+
+  return tx(
+    `${actorMap[event.actor].ko} / ${event.message} / ${new Date(event.createdAt).toLocaleString("ko-KR")}`,
+    `${actorMap[event.actor].en} / ${event.message} / ${new Date(event.createdAt).toLocaleString("en-US")}`,
+  );
+}
+
+export function recordActionEvent(
+  domain: ActionDomain,
+  payload: Pick<ActionSimulationRequest, "actionType" | "locale" | "pack" | "actor">,
+  success: ActionSimulationSuccess,
+) {
+  const state = readStoreState();
+  const nextEvent: ActionEvent = {
+    id: success.resourceId,
+    domain,
+    actionType: payload.actionType,
+    actor: payload.actor ?? "tenant_admin",
+    pack: payload.pack,
+    message: success.message,
+    createdAt: now(),
+  };
+
+  writeStoreState({
+    ...state,
+    actionEvents: [...state.actionEvents, nextEvent].slice(-50),
+  });
 }
 
 export function getPlatformOverview(): ApiResponse<PlatformOverviewResponse> {
@@ -89,9 +153,12 @@ export function getAdminPage(
   view: AdminView,
 ): ApiResponse<AdminPageResponse> {
   const page = ADMIN_PAGES[pack][view] as DashboardPage;
-  const currentPackSelection = readPackSelection();
+  const storeState = readStoreState();
+  const currentPackSelection = storeState.selection;
   const enabledFeatures = currentPackSelection.featureSelections[pack] ?? [];
   const featureItems = page.contextSummary?.items ?? [];
+  const settingsEvents = getRelevantEvents("settings", pack);
+  const approvalEvents = getRelevantEvents("approval", pack);
 
   return wrap(`admin.${pack}.${view}`, {
     ...page,
@@ -120,9 +187,19 @@ export function getAdminPage(
                     ),
                   ]
                 : []),
+              ...settingsEvents.map(formatEventLine),
               ...featureItems,
             ],
           }
+        : view === "workflow" && approvalEvents.length
+          ? {
+              title: tx("최근 승인 실행 기록", "Recent approval activity"),
+              description: tx(
+                "승인 실행 엔드포인트를 통해 반영된 최근 기록이다.",
+                "Recent activity recorded through the approval execution endpoint.",
+              ),
+              items: approvalEvents.map(formatEventLine),
+            }
         : page.contextSummary,
     eyebrow: tx(
       `WI-TA-${adminEyebrowMap[view]} / ${pack === "office" ? "Office" : "Retail"} Pack`,
@@ -158,9 +235,12 @@ export function getEmployeePage(
         hints: EMPLOYEE_PAGES[pack].signatures.alerts,
         history: EMPLOYEE_PAGES[pack].signatures.detail,
       };
+  const recentEvents = getRelevantEvents(view === "requests" ? "request" : "signature", pack);
+  const recentHistory = recentEvents.map(formatEventLine);
 
   return wrap(`employee.${pack}.${view}`, {
     ...detailView,
+    history: [...recentHistory, ...detailView.history].slice(0, 6),
     eyebrow: tx(
       `WI-TE-00${view === "requests" ? "3" : "4"} / ${pack === "office" ? "Office" : "Retail"} Pack`,
       `WI-TE-00${view === "requests" ? "3" : "4"} / ${pack === "office" ? "Office" : "Retail"} Pack`,
@@ -171,7 +251,7 @@ export function getEmployeePage(
 }
 
 export function getPackSetup(): ApiResponse<PackSetupResponse> {
-  const currentPackSelection = readPackSelection();
+  const currentPackSelection = readStoreState().selection;
   return wrap("setup.packs", {
     recommendedOrder: ["office", "retail"],
     selection: currentPackSelection,
@@ -281,7 +361,11 @@ export function savePackSetup(
     savedAt,
   };
 
-  writePackSelection(nextSelection);
+  const state = readStoreState();
+  writeStoreState({
+    ...state,
+    selection: nextSelection,
+  });
 
   return wrap("setup.packs.save", {
     result: "success",

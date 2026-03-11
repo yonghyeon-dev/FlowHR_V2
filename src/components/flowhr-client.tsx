@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ActionSimulator } from "@/components/action-simulator";
 import { APP_COPY, SUPPORTED_LANGUAGES, tx } from "@/lib/content/appCopy";
+import type { ActionActor, SupportedPack } from "@/lib/api/types";
 import type {
   DashboardPage,
   DashboardSection,
@@ -25,6 +26,7 @@ type ActionPanelConfig = {
   description: LocalizedText;
   endpoint: string;
   primaryLabel: LocalizedText;
+  actor?: ActionActor;
 };
 
 function resolveText(language: Language, value: LocalizedText | string | undefined): string {
@@ -311,7 +313,7 @@ export function PlatformClient({
         language={language}
         title={resolveText(language, page.eyebrow)}
         subtitle={resolveText(language, page.title)}
-        navigation={[{ href: "/platform/overview", label: tx("Overview", "Overview") }]}
+        navigation={[{ href: "/platform/overview", label: tx("개요", "Overview") }]}
       >
         <div className="page-stack">
           <HeroBlock
@@ -341,6 +343,7 @@ export function AdminClient({
   eyebrow,
   tone,
   actionPanel,
+  pack,
 }: {
   packTitle: LocalizedText;
   subtitle: LocalizedText;
@@ -349,6 +352,7 @@ export function AdminClient({
   eyebrow: LocalizedText;
   tone: "office-tone" | "retail-tone";
   actionPanel?: ActionPanelConfig;
+  pack: SupportedPack;
 }) {
   const [language, setLanguage] = useLanguage();
 
@@ -402,6 +406,8 @@ export function AdminClient({
               description={actionPanel.description}
               endpoint={actionPanel.endpoint}
               primaryLabel={actionPanel.primaryLabel}
+              actor={actionPanel.actor}
+              pack={pack}
             />
           ) : null}
         </div>
@@ -453,7 +459,7 @@ export function EmployeeHomeClient({
             <article className="content-card content-card-primary">
               <div className="card-head">
                 <div>
-                  <h3>{resolveText(language, tx("Today Must-Do", "Today Must-Do"))}</h3>
+                  <h3>{resolveText(language, tx("오늘 할 일", "Today Must-Do"))}</h3>
                   <p>{copy.nowLabel}</p>
                 </div>
               </div>
@@ -470,7 +476,7 @@ export function EmployeeHomeClient({
             <article className="content-card">
               <div className="card-head">
                 <div>
-                  <h3>{resolveText(language, tx("Quick Actions", "Quick Actions"))}</h3>
+                  <h3>{resolveText(language, tx("빠른 실행", "Quick Actions"))}</h3>
                 </div>
               </div>
               <div className="chip-grid">
@@ -487,7 +493,7 @@ export function EmployeeHomeClient({
             <article className="content-card">
               <div className="card-head">
                 <div>
-                  <h3>{resolveText(language, tx("This Week", "This Week"))}</h3>
+                  <h3>{resolveText(language, tx("이번 주", "This Week"))}</h3>
                 </div>
               </div>
               <div className="item-list">
@@ -503,7 +509,7 @@ export function EmployeeHomeClient({
             <article className="content-card">
               <div className="card-head">
                 <div>
-                  <h3>{resolveText(language, tx("My Summary", "My Summary"))}</h3>
+                  <h3>{resolveText(language, tx("내 요약", "My Summary"))}</h3>
                 </div>
               </div>
               <div className="chip-grid">
@@ -555,6 +561,7 @@ export function EmployeeFlowClient({
   detailTitle,
   detailMeta,
   actionPanel,
+  pack,
 }: {
   packTitle: LocalizedText;
   subtitle: LocalizedText;
@@ -565,6 +572,7 @@ export function EmployeeFlowClient({
   detailTitle: LocalizedText;
   detailMeta: LocalizedText;
   actionPanel?: ActionPanelConfig;
+  pack: SupportedPack;
 }) {
   const [language, setLanguage] = useLanguage();
 
@@ -590,7 +598,7 @@ export function EmployeeFlowClient({
             <article className="content-card content-card-primary">
               <div className="card-head">
                 <div>
-                  <h3>{resolveText(language, tx("Quick Requests", "Quick Requests"))}</h3>
+                  <h3>{resolveText(language, tx("빠른 요청", "Quick Requests"))}</h3>
                 </div>
               </div>
               <div className="chip-grid">
@@ -604,7 +612,7 @@ export function EmployeeFlowClient({
             <article className="content-card">
               <div className="card-head">
                 <div>
-                  <h3>{resolveText(language, tx("Policy Hints", "Policy Hints"))}</h3>
+                  <h3>{resolveText(language, tx("정책 힌트", "Policy Hints"))}</h3>
                 </div>
               </div>
               <div className="item-list">
@@ -622,7 +630,7 @@ export function EmployeeFlowClient({
             <article className="content-card">
               <div className="card-head">
                 <div>
-                  <h3>{resolveText(language, tx("Recent Requests", "Recent Requests"))}</h3>
+                  <h3>{resolveText(language, tx("최근 요청", "Recent Requests"))}</h3>
                 </div>
               </div>
               <div className="item-list">
@@ -660,6 +668,8 @@ export function EmployeeFlowClient({
               description={actionPanel.description}
               endpoint={actionPanel.endpoint}
               primaryLabel={actionPanel.primaryLabel}
+              actor={actionPanel.actor}
+              pack={pack}
             />
           ) : null}
         </div>

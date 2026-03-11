@@ -5,13 +5,16 @@ import {
   createActionSuccess,
   pickLocale,
 } from "@/lib/api/action-responses";
+import { recordActionEvent } from "@/lib/api/mock";
 
 export async function POST(request: Request) {
   const body = (await request.json()) as ActionSimulationRequest;
   const locale = pickLocale(body.locale);
 
   if (body.scenario === "success") {
-    return NextResponse.json(createActionSuccess("settings_save", locale));
+    const success = createActionSuccess("settings_save", locale);
+    recordActionEvent("settings", { ...body, actionType: "settings_save" }, success);
+    return NextResponse.json(success);
   }
 
   const failure = createActionFailure(body.scenario, locale);

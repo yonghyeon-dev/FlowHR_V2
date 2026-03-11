@@ -74,7 +74,9 @@ export default async function Page({
           ),
           endpoint: "/api/employee/requests/submit",
           primaryLabel: tx("요청 제출 테스트", "Test request submit"),
+          actor: "employee",
         }}
+        pack={typedPack}
       />
     );
   }
@@ -97,7 +99,9 @@ export default async function Page({
         ),
         endpoint: "/api/employee/signatures/submit",
         primaryLabel: tx("서명 처리 테스트", "Test signature action"),
+        actor: "employee",
       }}
+      pack={typedPack}
     />
   );
 }
