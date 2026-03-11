@@ -3,7 +3,7 @@ import { getAdminPage } from "@/lib/api/mock";
 import type { AdminView, SupportedPack } from "@/lib/api/types";
 
 const validPacks: SupportedPack[] = ["office", "retail"];
-const validViews: AdminView[] = ["home", "attendance", "leave", "workflow", "documents"];
+const validViews: AdminView[] = ["home", "attendance", "leave", "workflow", "documents", "settings"];
 
 export async function GET(
   _: Request,

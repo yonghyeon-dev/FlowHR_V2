@@ -33,6 +33,7 @@ const adminEyebrowMap: Record<AdminView, string> = {
   leave: "004",
   workflow: "005",
   documents: "006",
+  settings: "007",
 };
 
 export function getPlatformOverview(): ApiResponse<PlatformOverviewResponse> {

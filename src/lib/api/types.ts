@@ -6,7 +6,7 @@ import type {
 } from "@/lib/content/types";
 
 export type SupportedPack = "office" | "retail";
-export type AdminView = "home" | "attendance" | "leave" | "workflow" | "documents";
+export type AdminView = "home" | "attendance" | "leave" | "workflow" | "documents" | "settings";
 export type EmployeeView = "home" | "requests" | "signatures";
 
 export type ApiMeta = {
@@ -61,4 +61,26 @@ export type PackSetup = {
 export type PackSetupResponse = {
   recommendedOrder: SupportedPack[];
   packs: PackSetup[];
+};
+
+export type ActionScenario = "success" | "validation_error" | "access_denied" | "server_error";
+
+export type ActionSimulationRequest = {
+  actionType: "request_submit" | "signature_submit" | "approval_approve" | "settings_save" | "feature_selection_save";
+  scenario: ActionScenario;
+  locale?: "ko" | "en";
+  pack?: SupportedPack;
+};
+
+export type ActionSimulationSuccess = {
+  result: "success";
+  message: string;
+  resourceId: string;
+};
+
+export type ActionSimulationFailure = {
+  result: "error";
+  code: "VALIDATION_ERROR" | "ACCESS_DENIED" | "SERVER_ERROR";
+  message: string;
+  fieldErrors?: Record<string, string>;
 };

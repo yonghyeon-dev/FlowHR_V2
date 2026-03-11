@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ActionSimulator } from "@/components/action-simulator";
 import { APP_COPY, SUPPORTED_LANGUAGES, tx } from "@/lib/content/appCopy";
+import type { ActionSimulationRequest } from "@/lib/api/types";
 import type {
   DashboardPage,
   DashboardSection,
@@ -17,6 +19,13 @@ type Language = "ko" | "en";
 type NavItem = {
   href: string;
   label: LocalizedText;
+};
+
+type ActionPanelConfig = {
+  title: LocalizedText;
+  description: LocalizedText;
+  actionType: ActionSimulationRequest["actionType"];
+  primaryLabel: LocalizedText;
 };
 
 function resolveText(language: Language, value: LocalizedText | string | undefined): string {
@@ -332,6 +341,7 @@ export function AdminClient({
   page,
   eyebrow,
   tone,
+  actionPanel,
 }: {
   packTitle: LocalizedText;
   subtitle: LocalizedText;
@@ -339,6 +349,7 @@ export function AdminClient({
   page: DashboardPage;
   eyebrow: LocalizedText;
   tone: "office-tone" | "retail-tone";
+  actionPanel?: ActionPanelConfig;
 }) {
   const [language, setLanguage] = useLanguage();
 
@@ -366,6 +377,15 @@ export function AdminClient({
               <ContentSection key={resolveText(language, section.title)} language={language} section={section} />
             ))}
           </section>
+          {actionPanel ? (
+            <ActionSimulator
+              language={language}
+              title={actionPanel.title}
+              description={actionPanel.description}
+              actionType={actionPanel.actionType}
+              primaryLabel={actionPanel.primaryLabel}
+            />
+          ) : null}
         </div>
       </AppShell>
     </div>
@@ -516,6 +536,7 @@ export function EmployeeFlowClient({
   tone,
   detailTitle,
   detailMeta,
+  actionPanel,
 }: {
   packTitle: LocalizedText;
   subtitle: LocalizedText;
@@ -525,6 +546,7 @@ export function EmployeeFlowClient({
   tone: "employee-tone" | "retail-tone";
   detailTitle: LocalizedText;
   detailMeta: LocalizedText;
+  actionPanel?: ActionPanelConfig;
 }) {
   const [language, setLanguage] = useLanguage();
 
@@ -613,6 +635,15 @@ export function EmployeeFlowClient({
               </div>
             </article>
           </section>
+          {actionPanel ? (
+            <ActionSimulator
+              language={language}
+              title={actionPanel.title}
+              description={actionPanel.description}
+              actionType={actionPanel.actionType}
+              primaryLabel={actionPanel.primaryLabel}
+            />
+          ) : null}
         </div>
       </AppShell>
     </div>

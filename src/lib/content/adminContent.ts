@@ -148,6 +148,35 @@ export const ADMIN_PAGES = {
         ] },
       ],
     },
+    settings: {
+      title: tx("Office Pack Settings", "Office Pack Settings"),
+      description: tx(
+        "오피스형 설정은 역할, 개인정보 접근, 문서 발송 권한, 알림 기준을 안정적으로 관리해야 합니다.",
+        "Office settings should control roles, personal-data access, document delivery permissions, and notification rules in a stable way.",
+      ),
+      questions: [
+        tx("누가 무엇을 볼 수 있는가", "Who can see what"),
+        tx("민감 권한 변경이 어떤 영향을 주는가", "What impact a sensitive permission change will have"),
+        tx("최근 변경 이력과 저장 전 검토가 충분한가", "Whether recent changes and pre-save review are clear enough"),
+      ],
+      columns: [
+        { title: tx("Role Templates", "Role Templates"), eyebrow: tx("Roles", "Roles"), tone: "primary", items: [
+          { title: tx("Tenant Admin", "Tenant Admin"), meta: tx("조직 전체 설정, 정책, 권한, 감사 접근", "Full org settings, policy, permission, and audit access"), tone: "critical" },
+          { title: tx("Tenant Manager", "Tenant Manager"), meta: tx("팀 승인, 일정, 인력 커버 확인", "Team approvals, schedules, and coverage review"), tone: "watch" },
+          { title: tx("Document Manager", "Document Manager"), meta: tx("문서 발송과 회수, 만료 감시", "Document sending, recall, and expiry watch"), tone: "watch" },
+        ] },
+        { title: tx("Sensitive Scopes", "Sensitive Scopes"), eyebrow: tx("Review before save", "Review before save"), items: [
+          { title: tx("개인정보 열람", "Personal data access"), meta: tx("주민번호/주소/연락처 일부 열람", "Partial access to identity, address, and contact data"), tone: "critical" },
+          { title: tx("급여 접근", "Payroll access"), meta: tx("급여 요약, 마감 전 정산 정보 열람", "Access to payroll summary and pre-close payroll data"), tone: "critical" },
+          { title: tx("문서 발송/회수", "Document send and recall"), meta: tx("계약 발송, 재발송, 회수 가능", "Can send, resend, and recall contracts"), tone: "watch" },
+        ] },
+        { title: tx("Recent Change Log", "Recent Change Log"), eyebrow: tx("Latest changes", "Latest changes"), timeline: [
+          { lead: "09:10", text: tx("Payroll Admin 권한 범위 축소", "Payroll Admin scope reduced"), badge: tx("권한", "Permissions") },
+          { lead: "10:30", text: tx("문서 관리자 재발송 권한 추가", "Document Manager resend permission added"), badge: tx("문서", "Documents") },
+          { lead: "14:20", text: tx("알림 수신 정책 업데이트", "Notification policy updated"), badge: tx("알림", "Notifications") },
+        ] },
+      ],
+    },
   },
   retail: {
     home: {
@@ -283,6 +312,35 @@ export const ADMIN_PAGES = {
         { title: tx("Read and Sign Watch", "Read and Sign Watch"), eyebrow: tx("Store notices", "Store notices"), items: [
           { title: tx("현장 공지 동의 지연", "Notice acknowledgement delayed"), meta: tx("내일 오픈 전 확인", "Review before tomorrow open"), tone: "watch" },
           { title: tx("동의 누락 8건", "8 missing acknowledgements"), meta: tx("매장장 후속조치 필요", "Needs manager follow-up"), tone: "critical" },
+        ] },
+      ],
+    },
+    settings: {
+      title: tx("Retail Pack Settings", "Retail Pack Settings"),
+      description: tx(
+        "리테일형 설정은 매장 범위 접근, 브레이크와 오버타임 권한, 현장 공지와 문서 제어를 분명하게 관리해야 합니다.",
+        "Retail settings should clearly manage store-scope access, break and overtime permissions, field notices, and document control.",
+      ),
+      questions: [
+        tx("어느 매장까지 접근 가능한가", "Which stores each role can access"),
+        tx("브레이크와 초과근무 승인 권한이 적절한가", "Whether break and overtime approval authority is appropriate"),
+        tx("현장 공지와 문서 통제가 누구에게 있는가", "Who controls field notices and work documents"),
+      ],
+      columns: [
+        { title: tx("Store Roles", "Store Roles"), eyebrow: tx("Roles", "Roles"), tone: "primary", items: [
+          { title: tx("Tenant Admin", "Tenant Admin"), meta: tx("전 매장 정책, 정산, 감사 로그 접근", "Access to all stores, payroll policy, and audit logs"), tone: "critical" },
+          { title: tx("Store Manager", "Store Manager"), meta: tx("담당 매장 시프트, 결원, 승인 처리", "Shift, gap, and approval operations for assigned stores"), tone: "watch" },
+          { title: tx("Payroll Admin", "Payroll Admin"), meta: tx("수당과 마감 예외 처리", "Allowance and close exception handling"), tone: "critical" },
+        ] },
+        { title: tx("Sensitive Scopes", "Sensitive Scopes"), eyebrow: tx("Risk review", "Risk review"), items: [
+          { title: tx("브레이크 규정 수정", "Break policy edit"), meta: tx("현장 운영과 정산 리스크에 직접 영향", "Directly affects field operations and payroll risk"), tone: "critical" },
+          { title: tx("초과근무 승인 권한", "Overtime approval scope"), meta: tx("주간 한도와 수당 계산에 영향", "Affects weekly limits and allowance calculations"), tone: "critical" },
+          { title: tx("현장 공지 발송", "Field notice delivery"), meta: tx("매장 운영 공지를 전 직원에게 배포", "Broadcasts operational notices to store staff"), tone: "watch" },
+        ] },
+        { title: tx("Recent Change Log", "Recent Change Log"), eyebrow: tx("Latest changes", "Latest changes"), timeline: [
+          { lead: "08:50", text: tx("강남 2호점 Store Manager 범위 변경", "Gangnam Store 2 manager scope changed"), badge: tx("매장", "Store") },
+          { lead: "11:40", text: tx("브레이크 규정 알림 수신자 수정", "Break policy recipients updated"), badge: tx("알림", "Notifications") },
+          { lead: "15:10", text: tx("초과근무 승인선 재정렬", "Overtime approval route reordered"), badge: tx("승인", "Approvals") },
         ] },
       ],
     },
