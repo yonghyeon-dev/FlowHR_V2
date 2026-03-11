@@ -8,21 +8,21 @@ export const APP_COPY = {
     landingEyebrow: "승인된 코어 팩 구현",
     landingTitle: "Office, Retail, Platform 코어 운영 화면",
     landingText:
-      "승인된 코어 팩을 실제 앱 라우트와 공통 셸 위에 구현한 첫 번째 운영 빌드입니다.",
+      "승인된 코어 팩 UX를 실제 라우트와 공통 셸 위에 구현한 첫 번째 운영 빌드입니다.",
     roleCards: [
       {
         title: "Platform Console",
-        text: "SaaS 운영 리스크, 테넌트 상태, 보안 신호를 먼저 본다.",
+        text: "SaaS 운영 리스크, 테넌트 상태, 보안 신호를 한 곳에서 먼저 확인합니다.",
         cta: "Platform 보기",
       },
       {
         title: "Office Pack",
-        text: "승인, 문서, 유연근무 예외를 중심으로 운영한다.",
+        text: "승인, 문서, 유연근무 예외 중심의 오피스형 운영 흐름입니다.",
         cta: "Office 보기",
       },
       {
         title: "Retail Pack",
-        text: "매장 커버리지, 피크타임, 브레이크와 오버타임을 중심으로 운영한다.",
+        text: "커버리지, 피크타임, 브레이크, 초과근무 리스크 중심의 리테일형 운영 흐름입니다.",
         cta: "Retail 보기",
       },
     ],

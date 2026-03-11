@@ -51,7 +51,7 @@ const VIEW_META: Record<View, ViewMeta> = {
     actionPanel: {
       title: tx("승인 실행 상태", "Approval execution state"),
       description: tx(
-        "승인 실행 이후 성공, 검증 실패, 권한 오류 상태가 어떻게 드러나는지 먼저 검토한다.",
+        "승인 실행 이후 성공, 검증 실패, 권한 오류 상태가 어떻게 드러나는지 먼저 검토합니다.",
         "Review how success, validation failures, and permission errors appear after an approval action.",
       ),
       endpoint: "/api/admin/approvals/approve",
@@ -69,7 +69,7 @@ const VIEW_META: Record<View, ViewMeta> = {
     actionPanel: {
       title: tx("설정 저장 상태", "Settings save state"),
       description: tx(
-        "권한과 민감 범위 변경을 저장할 때 발생할 수 있는 성공, 검증 실패, 권한 오류를 미리 본다.",
+        "권한과 민감 범위 변경을 저장할 때 성공, 검증 실패, 권한 오류가 어떻게 보이는지 확인합니다.",
         "Preview success, validation, and permission states when saving roles and sensitive access settings.",
       ),
       endpoint: "/api/admin/settings/save",

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { APP_COPY, tx } from "@/lib/content/appCopy";
 import type { LocalizedText } from "@/lib/content/types";
 import type {
@@ -8,7 +9,6 @@ import type {
   PackSetupSaveResponse,
   SupportedPack,
 } from "@/lib/api/types";
-import { useEffect, useState } from "react";
 
 type Language = "ko" | "en";
 
@@ -45,10 +45,7 @@ export function SetupClient({ data }: { data: PackSetupResponse }) {
   }>({
     status: "idle",
     message: data.selection.savedAt
-      ? resolveText(
-          language,
-          tx("이전 저장값이 반영되어 있습니다.", "Previously saved values are loaded."),
-        )
+      ? resolveText(language, tx("이전에 저장된 값이 반영되어 있습니다.", "Previously saved values are loaded."))
       : undefined,
     savedAt: data.selection.savedAt,
   });
@@ -149,7 +146,7 @@ export function SetupClient({ data }: { data: PackSetupResponse }) {
             {resolveText(
               language,
               tx(
-                "초기 도입은 오피스형과 리테일형 두 축으로 나누고, 기능 팩은 조직 운영 방식에 맞게 조합한다.",
+                "초기 도입은 오피스형과 리테일형 두 축으로 나누고, 기능 팩은 조직 운영 방식에 맞게 조합합니다.",
                 "Start with office and retail as the two primary tracks, then combine feature packs to match the way the organization operates.",
               ),
             )}
@@ -261,7 +258,7 @@ export function SetupClient({ data }: { data: PackSetupResponse }) {
                   {resolveText(
                     language,
                     tx(
-                      "선택한 팩과 기능 구성을 저장하면 관리자 설정 화면에서 동일한 상태를 확인할 수 있다.",
+                      "선택된 팩과 기능 구성을 저장하면 관리자 설정 화면에서 동일한 상태를 확인할 수 있습니다.",
                       "Save the selected pack and feature set, then verify the same state in admin settings.",
                     ),
                   )}
@@ -280,7 +277,7 @@ export function SetupClient({ data }: { data: PackSetupResponse }) {
                   : resolveText(language, tx("팩 선택 저장", "Save pack selection"))}
               </button>
               <Link className="inline-link-button" href={`/admin/${selectedPack}/settings`}>
-                {resolveText(language, tx("선택 팩 설정 열기", "Open selected pack settings"))}
+                {resolveText(language, tx("선택한 팩 설정 열기", "Open selected pack settings"))}
               </Link>
             </div>
             {saveState.message ? (

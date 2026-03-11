@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { ActionSimulator } from "@/components/action-simulator";
 import { APP_COPY, SUPPORTED_LANGUAGES, tx } from "@/lib/content/appCopy";
 import type { ActionActor, SessionRole, SupportedPack } from "@/lib/api/types";
@@ -238,7 +238,7 @@ function PlatformTenantManager({ language }: { language: Language }) {
         };
       };
 
-      if (!active) return;
+      if (!active || !json.data) return;
       setTenants(json.data.tenants);
     }
 
@@ -500,7 +500,7 @@ function AppShell({
   title: string;
   subtitle: string;
   navigation: NavItem[];
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   const pathname = usePathname();
   const shell = APP_COPY[language][shellKey];
@@ -735,7 +735,7 @@ export function EmployeeHomeClient({
             <article className="content-card content-card-primary">
               <div className="card-head">
                 <div>
-                  <h3>{resolveText(language, tx("오늘 할 일", "Today Must-Do"))}</h3>
+                  <h3>{resolveText(language, tx("오늘 꼭 할 일", "Today Must-Do"))}</h3>
                   <p>{copy.nowLabel}</p>
                 </div>
               </div>
