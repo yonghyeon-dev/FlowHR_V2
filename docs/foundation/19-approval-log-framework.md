@@ -2,98 +2,105 @@
 
 ## 목적
 
-와이어 승인과 다음 단계 진입을 임의로 판단하지 않도록,
-승인 기록과 상태 변경 이력을 남기는 공통 체계를 정의한다.
+승인 로그는 단순 메모가 아니라, 설계 진행 상태를 문서 기준으로 고정하는 기록이다.
+앞으로는 `화면 단위 승인`만으로 다음 단계로 넘어가지 않고, 반드시 `Pack 번들 승인 -> 개별 화면 승인 -> 구현 준비도 승인` 순서로 관리한다.
 
-## 왜 필요한가
-
-- 와이어 컨펌 후 다음 단계로 이동한다는 사용자 요구가 있었다.
-- 지금까지는 승인 여부가 대화 문맥에만 남아 있어 루프 기준점으로 약하다.
-- 이후에는 문서 기반 승인 로그가 있어야 단계 변경과 WI 상태 변경을 일관되게 판단할 수 있다.
-
-## 승인 로그 단위
-
-승인 로그는 화면 또는 WI 단위로 남긴다.
+## 승인 로그 범위
 
 - 화면 승인: `APP-SCREEN-*`
-- 설계 묶음 승인: `APP-BUNDLE-*`
-- 구현 진입 승인: `APP-READY-*`
+- 번들 승인: `APP-BUNDLE-*`
+- 구현 준비도 승인: `APP-READY-*`
 
-## 로그 필드
+## 승인 단위
+
+### 1. Bundle Approval
+
+- 대상: `Office Pack`, `Retail Pack`, `Platform Risk-first Console` 같은 검토 묶음
+- 목적: 특정 업종/운영 맥락에서 화면 세트가 일관되게 동작하는지 확인
+- 원칙: 번들 승인이 `approved` 되기 전에는 해당 묶음의 개별 화면을 최종 `approved`로 승격하지 않는다
+
+### 2. Screen Approval
+
+- 대상: 개별 화면
+- 목적: 화면 구조, 정보 우선순위, 액션 연결, 상태/예외 노출이 충분한지 확인
+- 원칙: 화면 승인 로그는 반드시 `packContext` 또는 `reviewBundle`을 명시한다
+
+### 3. Readiness Approval
+
+- 대상: 구현 진입 여부
+- 목적: API 계약, i18n, 상태 패턴, 권한 노출 기준, 컴포넌트 연결이 구현 가능한 수준인지 확인
+
+## 공통 필드
 
 | 필드 | 설명 |
 |---|---|
 | `approvalId` | 승인 로그 ID |
 | `targetType` | `screen`, `bundle`, `readiness` |
-| `targetId` | 화면 ID 또는 WI ID |
+| `targetId` | 화면 ID, 번들 ID, 준비도 ID |
 | `title` | 승인 대상 이름 |
 | `requestedBy` | 요청자 |
 | `reviewedAt` | 검토 일시 |
 | `decision` | `approved`, `changes_requested`, `hold` |
-| `reason` | 승인/보류 사유 |
+| `reason` | 승인/보류/수정 요청 사유 |
 | `followUp` | 다음 액션 |
-| `evidence` | 관련 문서/와이어 링크 |
+| `evidence` | 관련 문서, 와이어, 규칙 문서 링크 |
 
-## 승인 단계
+## Pack 기반 추가 필드
 
-### 1. Wire Approval
+| 필드 | 설명 |
+|---|---|
+| `packContext` | `office`, `retail`, `platform`, `shared` |
+| `variant` | 같은 화면의 변형 이름. 예: `office_home`, `retail_home`, `risk_first_console` |
+| `reviewBundle` | 어떤 번들 승인에 귀속되는지 명시. 예: `BUNDLE-OFFICE-CORE` |
 
-- 저해상도 와이어 구조 승인
-- 정보 우선순위와 핵심 동선 확인
-- 다음 단계: IA 세분화 또는 상세 와이어
-
-### 2. Detail Design Approval
-
-- 상세 상태, 액션, 권한 노출 방식 확인
-- 다음 단계: 구현 연결 설계
-
-### 3. Implementation Readiness Approval
-
-- 라우트, API, 상태, i18n, 컴포넌트 기준 확인
-- 다음 단계: 구현 착수
-
-## 결정 규칙
+## 승인 결정 규칙
 
 - `approved`: 다음 단계 이동 가능
 - `changes_requested`: 현재 단계 유지, 수정 후 재검토
-- `hold`: 선행 조건이 없어서 일시 정지
+- `hold`: 선행 조건이 부족하거나, 사용자 결정 전이라 보류
 
-## WI 상태와의 연결
+## 비관적 검토 체크
 
-- `changes_requested`면 WI는 `in_progress` 유지
-- `approved`면 다음 WI를 `next` 또는 `in_progress`로 이동 가능
-- `Implementation Readiness Approval` 전에는 `구현 직전` 표현을 사용하지 않는다
+승인 후보로 올리기 전에 아래 질문을 먼저 통과해야 한다.
+
+1. 이 화면은 왜 실무에서 외면될 수 있는가
+2. 이 화면은 특정 업종에서 어디가 가장 먼저 깨지는가
+3. 장식 요소나 의미 없는 카드가 남아 있는가
+4. 첫 화면에서 사용자가 내려야 할 결정이 한 문장으로 설명되는가
+5. 모든 핵심 정보가 다음 행동과 연결되는가
+
+하나라도 명확히 답하지 못하면 `hold` 또는 `changes_requested`가 맞다.
+
+## 상태 연결 규칙
+
+- `changes_requested`이면 관련 WI는 `in_progress` 유지
+- `bundle approved` 이전에는 관련 `APP-SCREEN-*`를 최종 `approved`로 올리지 않음
+- `screen approved`가 누적되어도 `APP-READY-*`가 없으면 `구현 직전`으로 표기하지 않음
 
 ## 기록 예시
 
 ```md
-- approvalId: APP-SCREEN-TA-001-001
-- targetType: screen
-- targetId: TA-001
-- title: Admin Home Dashboard
-- requestedBy: user
-- reviewedAt: 2026-03-11
-- decision: changes_requested
-- reason: 예외 큐 우선순위는 맞지만 승인 로그 패턴이 없음
-- followUp: 상태/예외 매핑표 작성 후 재검토
+- approvalId: `APP-BUNDLE-OFFICE-001`
+- targetType: `bundle`
+- targetId: `BUNDLE-OFFICE-CORE`
+- title: `Office Pack Core Review Set`
+- requestedBy: `codex`
+- reviewedAt: `2026-03-12`
+- decision: `hold`
+- reason: `업종 팩 기준으로 묶음은 정리됐지만 사용자 승인 전이므로 보류`
+- followUp: `Office Pack 핵심 화면 검토 후 approved 또는 changes_requested로 갱신`
+- packContext: `office`
+- variant: `office_core_bundle`
+- reviewBundle: `BUNDLE-OFFICE-CORE`
 - evidence:
-  - /C:/Team-jane/FlowHR_V2/wireframes/tenant-admin/admin-home-detailed.html
-  - /C:/Team-jane/FlowHR_V2/docs/tenant-admin/WI-TA-001-admin-home-dashboard.md
+  - /C:/Team-jane/FlowHR_V2/docs/foundation/29-approval-review-packet.md
+  - /C:/Team-jane/FlowHR_V2/docs/foundation/35-pack-review-sequence.md
 ```
-
-## 운영 규칙
-
-- 승인 로그는 대화 기억이 아니라 문서 기록으로 남긴다.
-- 화면 맵과 WI 백로그를 변경할 때 승인 로그의 최신 decision을 참고한다.
-- `approved`가 없는 화면은 후속 단계에서 완료로 표현하지 않는다.
-
-## 다음 단계
-
-- 실제 승인 로그 저장 파일을 `docs/foundation/approvals/` 아래에 누적 생성
-- 화면별 첫 승인 로그는 코어 화면부터 작성
 
 ## 연결 문서
 
-- 단계 게이트: [00-stage-gates.md](./00-stage-gates.md)
-- 요구사항 추적: [16-requirement-traceability.md](./16-requirement-traceability.md)
-- WI 백로그: [05-wi-backlog.md](./05-wi-backlog.md)
+- [00-stage-gates.md](./00-stage-gates.md)
+- [05-wi-backlog.md](./05-wi-backlog.md)
+- [22-final-approval-pass-criteria.md](./22-final-approval-pass-criteria.md)
+- [29-approval-review-packet.md](./29-approval-review-packet.md)
+- [35-pack-review-sequence.md](./35-pack-review-sequence.md)

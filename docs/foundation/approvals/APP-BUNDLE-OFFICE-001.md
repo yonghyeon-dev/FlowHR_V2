@@ -1,0 +1,25 @@
+# APP-BUNDLE-OFFICE-001
+
+- approvalId: `APP-BUNDLE-OFFICE-001`
+- targetType: `bundle`
+- targetId: `BUNDLE-OFFICE-CORE`
+- title: `Office Pack Core Review Set`
+- requestedBy: `codex`
+- reviewedAt: `2026-03-12`
+- decision: `hold`
+- reason: `Office Pack 핵심 화면 묶음은 재구성됐지만 아직 사용자 승인 전이다`
+- followUp: `Office Pack 전체 흐름 검토 후 approved 또는 changes_requested로 갱신`
+- packContext: `office`
+- variant: `office_core_bundle`
+- reviewBundle: `BUNDLE-OFFICE-CORE`
+- evidence:
+  - [admin-home-office.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-admin/admin-home-office.html)
+  - [attendance-office.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-admin/attendance-office.html)
+  - [workflow-office.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-admin/workflow-office.html)
+  - [documents-office.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-admin/documents-office.html)
+  - [leave-office.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-admin/leave-office.html)
+  - [employee-home-office.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-employee/employee-home-office.html)
+  - [request-hub-office.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-employee/request-hub-office.html)
+  - [signature-inbox-office.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-employee/signature-inbox-office.html)
+  - [29-approval-review-packet.md](/C:/Team-jane/FlowHR_V2/docs/foundation/29-approval-review-packet.md)
+  - [35-pack-review-sequence.md](/C:/Team-jane/FlowHR_V2/docs/foundation/35-pack-review-sequence.md)

@@ -62,6 +62,12 @@
 | WI-DM-008 | completed | Domain | 최종 승인 패스 기준 정의 |
 | WI-DM-009 | completed | Domain | 구현 스프린트 분해 |
 | WI-DM-010 | completed | Domain | 로컬라이제이션 적용 현황 정리 |
+| WI-DM-011 | in_progress | Domain | 우선 공략 업종 세분화와 제외 업종 정의 |
+| WI-DM-012 | in_progress | Domain | 공통 코어 / 업종 팩 / 기능 팩 구조 정의 |
+| WI-DM-013 | in_progress | Domain | 역할별 의사결정 시나리오 맵 작성 |
+| WI-DM-014 | in_progress | Domain | 기존 승인 세트 리셋과 재검토 기준 정리 |
+| WI-DM-015 | in_progress | Domain | Pack 기반 승인 로그 체계 재정의 |
+| WI-DM-016 | in_progress | Domain | Office / Retail / Platform 번들 승인 로그 작성 |
 
 ## Epic E. 확장 모듈
 
@@ -88,7 +94,7 @@
 
 ## 다음 우선순위
 
-1. 비코어 화면 승인 로그 확대
-2. 남은 비코어 화면 `LID-*` 마이그레이션
-3. 사용자 decision 반영
-4. `approved` 화면 R5 승격
+1. 우선 공략 업종 확정
+2. 업종 팩 / 기능 팩 기준으로 홈 재설계
+3. 승인 후보 세트 재구성
+4. 그 다음 사용자 decision 반영

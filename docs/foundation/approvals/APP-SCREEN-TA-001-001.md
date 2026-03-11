@@ -5,11 +5,16 @@
 - targetId: `TA-001`
 - title: `Admin Home Dashboard`
 - requestedBy: `user`
-- reviewedAt: `2026-03-11`
+- reviewedAt: `2026-03-12`
 - decision: `hold`
-- reason: `핵심 큐와 KPI 구조는 정리됐지만 사용자 컨펌 전이므로 승인 완료로 간주하지 않음`
-- followUp: `사용자 검토 후 승인 또는 수정 요청으로 상태 변경`
+- reason: `Office / Retail 변형이 분리됐지만 번들 승인 전이므로 보류`
+- followUp: `Office 또는 Retail 번들 승인 결과에 맞춰 screen decision을 갱신`
+- packContext: `shared`
+- variant: `office_home | retail_home`
+- reviewBundle: `BUNDLE-OFFICE-CORE | BUNDLE-RETAIL-CORE`
 - evidence:
-  - [admin-home-detailed.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-admin/admin-home-detailed.html)
+  - [admin-home-office.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-admin/admin-home-office.html)
+  - [admin-home-retail.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-admin/admin-home-retail.html)
   - [WI-TA-001-admin-home-dashboard.md](/C:/Team-jane/FlowHR_V2/docs/tenant-admin/WI-TA-001-admin-home-dashboard.md)
-  - [WI-DS-009-screen-state-exception-matrix.md](/C:/Team-jane/FlowHR_V2/docs/design-system/WI-DS-009-screen-state-exception-matrix.md)
+  - [APP-BUNDLE-OFFICE-001.md](/C:/Team-jane/FlowHR_V2/docs/foundation/approvals/APP-BUNDLE-OFFICE-001.md)
+  - [APP-BUNDLE-RETAIL-001.md](/C:/Team-jane/FlowHR_V2/docs/foundation/approvals/APP-BUNDLE-RETAIL-001.md)

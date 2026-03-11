@@ -5,11 +5,16 @@
 - targetId: `TA-401`
 - title: `Approval Inbox`
 - requestedBy: `user`
-- reviewedAt: `2026-03-11`
+- reviewedAt: `2026-03-12`
 - decision: `hold`
-- reason: `인박스 우선 승인 구조와 상세 문맥 연결은 정리됐지만 사용자 승인 전이므로 보류`
-- followUp: `사용자 검토 후 approved 또는 changes_requested로 상태 변경`
+- reason: `Office / Retail 워크플로 변형으로 재구성됐지만 번들 승인 전이라 보류`
+- followUp: `Office 또는 Retail 번들 승인 결과에 맞춰 screen decision을 갱신`
+- packContext: `shared`
+- variant: `office_workflow | retail_workflow`
+- reviewBundle: `BUNDLE-OFFICE-CORE | BUNDLE-RETAIL-CORE`
 - evidence:
-  - [workflow-module-detailed.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-admin/workflow-module-detailed.html)
+  - [workflow-office.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-admin/workflow-office.html)
+  - [workflow-retail.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-admin/workflow-retail.html)
   - [WI-TA-005-workflow-module.md](/C:/Team-jane/FlowHR_V2/docs/tenant-admin/WI-TA-005-workflow-module.md)
-  - [WI-DS-009-screen-state-exception-matrix.md](/C:/Team-jane/FlowHR_V2/docs/design-system/WI-DS-009-screen-state-exception-matrix.md)
+  - [APP-BUNDLE-OFFICE-001.md](/C:/Team-jane/FlowHR_V2/docs/foundation/approvals/APP-BUNDLE-OFFICE-001.md)
+  - [APP-BUNDLE-RETAIL-001.md](/C:/Team-jane/FlowHR_V2/docs/foundation/approvals/APP-BUNDLE-RETAIL-001.md)
