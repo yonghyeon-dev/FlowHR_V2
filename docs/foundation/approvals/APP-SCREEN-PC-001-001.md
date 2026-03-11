@@ -6,9 +6,9 @@
 - title: `Platform Overview Dashboard`
 - requestedBy: `user`
 - reviewedAt: `2026-03-12`
-- decision: `hold`
-- reason: `Risk-first 변형으로 재설계됐지만 운영 우선순위에 대한 사용자 검토 전이므로 보류`
-- followUp: `Platform 번들 승인 로그를 먼저 갱신한 뒤 screen decision을 재검토`
+- decision: `approved`
+- reason: `사용자가 Risk-first Platform Console 화면을 승인했다`
+- followUp: `Platform 번들 승인과 준비도 문서에 승인 결과를 반영`
 - packContext: `platform`
 - variant: `risk_first_console`
 - reviewBundle: `BUNDLE-PLATFORM-RISK-FIRST`

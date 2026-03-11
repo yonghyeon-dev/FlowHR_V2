@@ -20,13 +20,13 @@
 |---|---|---|---|
 | `BUNDLE-OFFICE-CORE` | `TA-001`, `TA-201`, `TA-301`, `TA-401`, `TA-501`, `TE-001/002`, `TE-201`, `TE-401` | `APP-BUNDLE-OFFICE-001` | `R5 candidate` |
 | `BUNDLE-RETAIL-CORE` | `TA-001`, `TA-201`, `TA-301`, `TA-401`, `TA-501`, `TE-001/002`, `TE-201`, `TE-401` | `APP-BUNDLE-RETAIL-001` | `R5 candidate` |
-| `BUNDLE-PLATFORM-RISK-FIRST` | `PC-001` | `APP-BUNDLE-PLATFORM-001` | `R5 candidate` |
+| `BUNDLE-PLATFORM-RISK-FIRST` | `PC-001` | `APP-BUNDLE-PLATFORM-001` | `R5` |
 
 ## Platform
 
 | 화면 ID | Pack 변형 | WI | 와이어 | API | i18n | 승인 로그 | 준비도 |
 |---|---|---|---|---|---|---|---|
-| `PC-001` | `risk_first_console` | `WI-PC-004` | 있음 | 요약/상세 | 적용 | `hold` | `R5 candidate` |
+| `PC-001` | `risk_first_console` | `WI-PC-004` | 있음 | 요약/상세 | 적용 | `approved` | `R5` |
 | `PC-103` | `shared` | `WI-PC-001`, `WI-PC-004` | 있음 | 목록/상세 | 적용 | 없음 | `R4` |
 | `PC-201`~`PC-205` | `shared` | `WI-PC-006` | 있음 | 요약/액션 | 적용 | 없음 | `R4` |
 | `PC-601`~`PC-603` | `shared` | `WI-PC-005` | 있음 | 목록/상세 | 적용 | 없음 | `R4` |
@@ -36,7 +36,7 @@
 
 | 화면 ID | Pack 변형 | WI | 와이어 | API | i18n | 승인 로그 | 준비도 |
 |---|---|---|---|---|---|---|---|
-| `TA-001` | `office_home`, `retail_home` | `WI-TA-001` | 있음 | 요약/큐 | 적용 | `hold` | `R5 candidate` |
+| `TA-001` | `office_home`, `retail_home` | `WI-TA-001` | 있음 | 요약/큐 | 적용 | `approved` | `R5 candidate` |
 | `TA-101` | `shared` | `WI-TA-002` | 있음 | 목록/상세 | 적용 | `hold` | `R5 candidate` |
 | `TA-102`~`TA-105` | `shared` | `WI-TA-002` | 있음 | 목록/상세 | 적용 | 없음 | `R4` |
 | `TA-201` | `office_attendance`, `retail_attendance` | `WI-TA-003` | 있음 | 요약/예외/액션 | 적용 | `hold` | `R5 candidate` |
@@ -72,6 +72,7 @@
 ## 해석 규칙
 
 - `hold` 상태의 코어 화면은 `R5 candidate`다.
+- Screen이 `approved`여도 관련 Bundle이 `hold`면 `R5 candidate`로 유지한다.
 - `approved`로 갱신되기 전에는 `R5`로 올리지 않는다.
 - Pack 변형이 필요한 화면은 변형이 분리되지 않으면 `R4` 이상으로 보지 않는다.
 

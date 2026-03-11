@@ -6,9 +6,9 @@
 - title: `Platform Risk-first Console Review Set`
 - requestedBy: `codex`
 - reviewedAt: `2026-03-12`
-- decision: `hold`
-- reason: `Platform Console은 의미 없는 그래프를 제거하고 재구성했지만 아직 사용자 승인 전이다`
-- followUp: `운영 리스크 우선순위와 지표 의미를 검토한 뒤 approved 또는 changes_requested로 갱신`
+- decision: `approved`
+- reason: `사용자가 Platform Risk-first Console 검토를 마쳤고 승인 결정을 내렸다`
+- followUp: `PC-001을 R5로 승격하고 이후 Platform 확장 화면 검토를 이어간다`
 - packContext: `platform`
 - variant: `risk_first_console`
 - reviewBundle: `BUNDLE-PLATFORM-RISK-FIRST`

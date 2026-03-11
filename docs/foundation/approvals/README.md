@@ -2,16 +2,22 @@
 
 ## 목적
 
-승인 로그를 번들 기준과 화면 기준으로 한 번에 추적하기 위한 인덱스다.
+승인 로그를 번들 기준과 화면 기준으로 함께 추적하기 위한 인덱스다.
 
 ## 현재 상태
 
 - 총 승인 로그: `18`
 - Bundle 승인 로그: `3`
 - Screen 승인 로그: `15`
-- `approved`: `0`
-- `hold`: `18`
+- `approved`: `3`
+- `hold`: `15`
 - `changes_requested`: `0`
+
+## 현재 승인 반영
+
+- `APP-SCREEN-TA-001-001`
+- `APP-SCREEN-PC-001-001`
+- `APP-BUNDLE-PLATFORM-001`
 
 ## Bundle Approval
 
@@ -45,6 +51,6 @@
 
 ## 운영 규칙
 
-- 번들 승인 로그가 `approved` 되기 전에는 귀속된 화면 승인 로그를 최종 승인으로 보지 않는다.
-- 사용자 결정 전에는 `hold`가 기본 상태다.
-- 승인 상태 변경 시 [29-approval-review-packet.md](/C:/Team-jane/FlowHR_V2/docs/foundation/29-approval-review-packet.md), [28-design-status-checklist.md](/C:/Team-jane/FlowHR_V2/docs/foundation/28-design-status-checklist.md), [14-screen-readiness-matrix.md](/C:/Team-jane/FlowHR_V2/docs/foundation/14-screen-readiness-matrix.md)를 같이 갱신한다.
+- Office / Retail 번들은 아직 `hold`다.
+- Platform 번들은 `approved`로 반영됐다.
+- 번들 승인 상태가 바뀌면 [29-approval-review-packet.md](/C:/Team-jane/FlowHR_V2/docs/foundation/29-approval-review-packet.md), [28-design-status-checklist.md](/C:/Team-jane/FlowHR_V2/docs/foundation/28-design-status-checklist.md), [14-screen-readiness-matrix.md](/C:/Team-jane/FlowHR_V2/docs/foundation/14-screen-readiness-matrix.md)를 함께 갱신한다.

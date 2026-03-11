@@ -26,7 +26,7 @@
 |---|---|---|---|
 | `BUNDLE-OFFICE-CORE` | Office Pack Core Review Set | [APP-BUNDLE-OFFICE-001.md](/C:/Team-jane/FlowHR_V2/docs/foundation/approvals/APP-BUNDLE-OFFICE-001.md) | `hold` |
 | `BUNDLE-RETAIL-CORE` | Retail Pack Core Review Set | [APP-BUNDLE-RETAIL-001.md](/C:/Team-jane/FlowHR_V2/docs/foundation/approvals/APP-BUNDLE-RETAIL-001.md) | `hold` |
-| `BUNDLE-PLATFORM-RISK-FIRST` | Platform Risk-first Console Review Set | [APP-BUNDLE-PLATFORM-001.md](/C:/Team-jane/FlowHR_V2/docs/foundation/approvals/APP-BUNDLE-PLATFORM-001.md) | `hold` |
+| `BUNDLE-PLATFORM-RISK-FIRST` | Platform Risk-first Console Review Set | [APP-BUNDLE-PLATFORM-001.md](/C:/Team-jane/FlowHR_V2/docs/foundation/approvals/APP-BUNDLE-PLATFORM-001.md) | `approved` |
 
 ## Office Pack 리뷰 세트
 

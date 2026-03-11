@@ -38,14 +38,14 @@
 - 총 승인 로그: `18`
 - Bundle 승인 로그: `3`
 - Screen 승인 로그: `15`
-- `approved`: `0`
-- `hold`: `18`
+- `approved`: `3`
+- `hold`: `15`
 - `changes_requested`: `0`
 
 현재 해석:
 - 기존 화면 승인 로그는 유지하되, 이제 단독 승인 기준이 아니다.
 - `Office Pack`, `Retail Pack`, `Platform` 번들 승인 로그가 먼저 존재해야 한다.
-- 따라서 지금은 `승인 구조를 업종 팩 기준으로 재정렬한 상태`이지, 승인 완료 상태가 아니다.
+- 현재 `TA-001`, `PC-001`, `APP-BUNDLE-PLATFORM-001`은 승인 반영이 끝났고, 나머지는 `hold` 상태다.
 
 근거:
 - [approvals/README.md](/C:/Team-jane/FlowHR_V2/docs/foundation/approvals/README.md)

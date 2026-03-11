@@ -6,9 +6,9 @@
 - title: `Admin Home Dashboard`
 - requestedBy: `user`
 - reviewedAt: `2026-03-12`
-- decision: `hold`
-- reason: `Office / Retail 변형이 분리됐지만 번들 승인 전이므로 보류`
-- followUp: `Office 또는 Retail 번들 승인 결과에 맞춰 screen decision을 갱신`
+- decision: `approved`
+- reason: `사용자가 Office Home과 Retail Home 변형을 모두 승인했다`
+- followUp: `Office / Retail Pack의 나머지 코어 화면 검토를 이어가고 번들 승인 여부를 별도로 갱신`
 - packContext: `shared`
 - variant: `office_home | retail_home`
 - reviewBundle: `BUNDLE-OFFICE-CORE | BUNDLE-RETAIL-CORE`
