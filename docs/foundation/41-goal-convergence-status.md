@@ -59,6 +59,13 @@
 - `/api/admin/[pack]/[view]`
 - `/api/employee/[pack]/[view]`
 - `/api/setup/packs`
+- `/api/actions/simulate`
+
+다음 구현 연결도 실제 동작 기준으로 붙어 있다.
+
+- `/setup`에서 `Pack 선택 + 기능 선택 + 저장` 가능
+- 저장된 선택 상태가 `관리자 settings` 화면에 반영됨
+- 코어 화면에서 성공/실패 상태를 API 응답 기반으로 검증 가능
 
 ## 현재 합의된 비목표
 
@@ -75,8 +82,8 @@
 
 1. 실제 API 계약을 Next 구조에 맞게 연결
 2. mock 기반 코어 화면을 live data 기반으로 전환
-3. Pack별 settings / feature selection 흐름 상세화
-4. 관리자/직원 핵심 액션의 성공/실패 상태를 실제 서버 응답과 연결
+3. mock 저장 상태를 실제 백엔드 저장소와 권한 모델로 전환
+4. 관리자/직원 핵심 액션을 도메인별 전용 엔드포인트로 분리
 
 ## 현재 결론
 

@@ -1,5 +1,8 @@
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { ADMIN_PAGES } from "@/lib/content/adminContent";
 import { tx } from "@/lib/content/appCopy";
+import type { DashboardPage } from "@/lib/content/types";
 import { EMPLOYEE_PAGES } from "@/lib/content/employeeContent";
 import { PLATFORM_PAGE } from "@/lib/content/platformContent";
 import type {
@@ -9,6 +12,8 @@ import type {
   EmployeeFlowResponse,
   EmployeeHomeResponse,
   EmployeeView,
+  PackSetupSaveRequest,
+  PackSetupSaveResponse,
   PackSetupResponse,
   PlatformOverviewResponse,
   SupportedPack,
@@ -36,6 +41,45 @@ const adminEyebrowMap: Record<AdminView, string> = {
   settings: "007",
 };
 
+const packCatalog = {
+  office: {
+    required: ["core-hr", "attendance"],
+  },
+  retail: {
+    required: ["coverage-core", "shift-response"],
+  },
+} satisfies Record<SupportedPack, { required: string[] }>;
+
+const STORE_PATH = resolve(process.cwd(), ".flowhr-mock-state.json");
+
+const defaultPackSelection: PackSetupResponse["selection"] = {
+  selectedPack: "office",
+  featureSelections: {
+    office: [...packCatalog.office.required],
+    retail: [...packCatalog.retail.required],
+  },
+  savedAt: now(),
+};
+
+function readPackSelection(): PackSetupResponse["selection"] {
+  if (!existsSync(STORE_PATH)) {
+    writeFileSync(STORE_PATH, JSON.stringify(defaultPackSelection, null, 2), "utf8");
+    return defaultPackSelection;
+  }
+
+  try {
+    const raw = readFileSync(STORE_PATH, "utf8");
+    return JSON.parse(raw) as PackSetupResponse["selection"];
+  } catch {
+    writeFileSync(STORE_PATH, JSON.stringify(defaultPackSelection, null, 2), "utf8");
+    return defaultPackSelection;
+  }
+}
+
+function writePackSelection(selection: PackSetupResponse["selection"]) {
+  writeFileSync(STORE_PATH, JSON.stringify(selection, null, 2), "utf8");
+}
+
 export function getPlatformOverview(): ApiResponse<PlatformOverviewResponse> {
   return wrap("platform.overview", PLATFORM_PAGE as PlatformOverviewResponse);
 }
@@ -44,8 +88,42 @@ export function getAdminPage(
   pack: SupportedPack,
   view: AdminView,
 ): ApiResponse<AdminPageResponse> {
+  const page = ADMIN_PAGES[pack][view] as DashboardPage;
+  const currentPackSelection = readPackSelection();
+  const enabledFeatures = currentPackSelection.featureSelections[pack] ?? [];
+  const featureItems = page.contextSummary?.items ?? [];
+
   return wrap(`admin.${pack}.${view}`, {
-    ...ADMIN_PAGES[pack][view],
+    ...page,
+    contextSummary:
+      view === "settings"
+        ? {
+            title: tx("현재 적용된 팩 설정", "Current applied pack configuration"),
+            description: tx(
+              "도입 설정에서 저장한 팩과 기능 선택이 이 화면에 반영된다.",
+              "The pack and feature selection saved during setup are reflected on this screen.",
+            ),
+            items: [
+              tx(
+                `선택 팩: ${currentPackSelection.selectedPack === "office" ? "Office Pack" : "Retail Pack"}`,
+                `Selected pack: ${currentPackSelection.selectedPack === "office" ? "Office Pack" : "Retail Pack"}`,
+              ),
+              tx(
+                `이 팩 활성 기능 수: ${enabledFeatures.length}`,
+                `Enabled features for this pack: ${enabledFeatures.length}`,
+              ),
+              ...(currentPackSelection.savedAt
+                ? [
+                    tx(
+                      `최근 저장: ${new Date(currentPackSelection.savedAt).toLocaleString("ko-KR")}`,
+                      `Last saved: ${new Date(currentPackSelection.savedAt).toLocaleString("en-US")}`,
+                    ),
+                  ]
+                : []),
+              ...featureItems,
+            ],
+          }
+        : page.contextSummary,
     eyebrow: tx(
       `WI-TA-${adminEyebrowMap[view]} / ${pack === "office" ? "Office" : "Retail"} Pack`,
       `WI-TA-${adminEyebrowMap[view]} / ${pack === "office" ? "Office" : "Retail"} Pack`,
@@ -93,8 +171,10 @@ export function getEmployeePage(
 }
 
 export function getPackSetup(): ApiResponse<PackSetupResponse> {
+  const currentPackSelection = readPackSelection();
   return wrap("setup.packs", {
     recommendedOrder: ["office", "retail"],
+    selection: currentPackSelection,
     packs: [
       {
         id: "office",
@@ -175,5 +255,41 @@ export function getPackSetup(): ApiResponse<PackSetupResponse> {
         ],
       },
     ],
+  });
+}
+
+export function savePackSetup(
+  payload: PackSetupSaveRequest,
+): ApiResponse<PackSetupSaveResponse> {
+  const savedAt = now();
+  const nextSelection: PackSetupResponse["selection"] = {
+    selectedPack: payload.selectedPack,
+    featureSelections: {
+      office: Array.from(
+        new Set([
+          ...packCatalog.office.required,
+          ...(payload.featureSelections.office ?? []),
+        ]),
+      ),
+      retail: Array.from(
+        new Set([
+          ...packCatalog.retail.required,
+          ...(payload.featureSelections.retail ?? []),
+        ]),
+      ),
+    },
+    savedAt,
+  };
+
+  writePackSelection(nextSelection);
+
+  return wrap("setup.packs.save", {
+    result: "success",
+    message:
+      payload.locale === "en"
+        ? "Pack selection was saved."
+        : "팩 선택이 저장되었습니다.",
+    savedAt,
+    selection: nextSelection,
   });
 }

@@ -364,6 +364,25 @@ export function AdminClient({
         navigation={navigation}
       >
         <div className="page-stack">
+          {page.contextSummary ? (
+            <article className="content-card content-card-primary">
+              <div className="card-head">
+                <div>
+                  <h3>{resolveText(language, page.contextSummary.title)}</h3>
+                  {page.contextSummary.description ? (
+                    <p>{resolveText(language, page.contextSummary.description)}</p>
+                  ) : null}
+                </div>
+              </div>
+              <div className="chip-grid">
+                {page.contextSummary.items.map((item) => (
+                  <span key={resolveText(language, item)} className="chip">
+                    {resolveText(language, item)}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ) : null}
           <HeroBlock
             language={language}
             eyebrow={eyebrow}

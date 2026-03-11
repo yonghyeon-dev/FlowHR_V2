@@ -36,6 +36,11 @@ export type DashboardPage = {
   description: LocalizedText;
   questions: LocalizedText[];
   kpis?: KpiItem[];
+  contextSummary?: {
+    title: LocalizedText;
+    description?: LocalizedText;
+    items: LocalizedText[];
+  };
   columns: DashboardSection[];
 };
 

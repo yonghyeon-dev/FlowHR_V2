@@ -58,9 +58,29 @@ export type PackSetup = {
   featurePacks: PackFeature[];
 };
 
+export type PackSetupSelection = {
+  selectedPack: SupportedPack;
+  featureSelections: Record<SupportedPack, string[]>;
+  savedAt?: string;
+};
+
 export type PackSetupResponse = {
   recommendedOrder: SupportedPack[];
   packs: PackSetup[];
+  selection: PackSetupSelection;
+};
+
+export type PackSetupSaveRequest = {
+  selectedPack: SupportedPack;
+  featureSelections: Record<SupportedPack, string[]>;
+  locale?: "ko" | "en";
+};
+
+export type PackSetupSaveResponse = {
+  result: "success";
+  message: string;
+  savedAt: string;
+  selection: PackSetupSelection;
 };
 
 export type ActionScenario = "success" | "validation_error" | "access_denied" | "server_error";

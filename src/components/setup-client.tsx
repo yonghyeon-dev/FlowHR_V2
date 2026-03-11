@@ -1,10 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { ActionSimulator } from "@/components/action-simulator";
 import { APP_COPY, tx } from "@/lib/content/appCopy";
 import type { LocalizedText } from "@/lib/content/types";
-import type { PackSetupResponse } from "@/lib/api/types";
+import type {
+  PackSetupResponse,
+  PackSetupSaveResponse,
+  SupportedPack,
+} from "@/lib/api/types";
 import { useEffect, useState } from "react";
 
 type Language = "ko" | "en";
@@ -22,14 +25,33 @@ function pickInitialLanguage(): Language {
 
 export function SetupClient({ data }: { data: PackSetupResponse }) {
   const [language, setLanguage] = useState<Language>(() => pickInitialLanguage());
-  const [selectedPack, setSelectedPack] = useState(data.recommendedOrder[0] ?? data.packs[0]?.id ?? "office");
+  const [selectedPack, setSelectedPack] = useState<SupportedPack>(
+    data.selection.selectedPack ?? data.recommendedOrder[0] ?? data.packs[0]?.id ?? "office",
+  );
   const [featureState, setFeatureState] = useState<Record<string, boolean>>(() =>
     Object.fromEntries(
       data.packs.flatMap((pack) =>
-        pack.featurePacks.map((feature) => [`${pack.id}:${feature.id}`, feature.included]),
+        pack.featurePacks.map((feature) => [
+          `${pack.id}:${feature.id}`,
+          data.selection.featureSelections[pack.id]?.includes(feature.id) ?? feature.included,
+        ]),
       ),
     ),
   );
+  const [saveState, setSaveState] = useState<{
+    status: "idle" | "saving" | "saved" | "error";
+    message?: string;
+    savedAt?: string;
+  }>({
+    status: "idle",
+    message: data.selection.savedAt
+      ? resolveText(
+          language,
+          tx("이전 저장값이 반영되어 있습니다.", "Previously saved values are loaded."),
+        )
+      : undefined,
+    savedAt: data.selection.savedAt,
+  });
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -48,6 +70,51 @@ export function SetupClient({ data }: { data: PackSetupResponse }) {
       ...current,
       [key]: !current[key],
     }));
+  }
+
+  async function handleSaveSelection() {
+    setSaveState({ status: "saving" });
+
+    const featureSelections = data.packs.reduce<Record<SupportedPack, string[]>>(
+      (acc, pack) => {
+        acc[pack.id] = pack.featurePacks
+          .filter((feature) => featureState[`${pack.id}:${feature.id}`])
+          .map((feature) => feature.id);
+        return acc;
+      },
+      { office: [], retail: [] },
+    );
+
+    const response = await fetch("/api/setup/packs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        selectedPack,
+        featureSelections,
+        locale: language,
+      }),
+    });
+
+    const result = (await response.json()) as { data?: PackSetupSaveResponse };
+
+    if (!response.ok || !result.data) {
+      setSaveState({
+        status: "error",
+        message: resolveText(
+          language,
+          tx("팩 선택 저장에 실패했습니다. 다시 시도해 주세요.", "Failed to save pack selection. Try again."),
+        ),
+      });
+      return;
+    }
+
+    setSaveState({
+      status: "saved",
+      message: result.data.message,
+      savedAt: result.data.savedAt,
+    });
   }
 
   return (
@@ -186,16 +253,50 @@ export function SetupClient({ data }: { data: PackSetupResponse }) {
             </article>
           ) : null}
 
-          <ActionSimulator
-            language={language}
-            title={tx("기능 선택 저장 시뮬레이션", "Feature selection save simulation")}
-            description={tx(
-              "도입 단계에서 팩과 기능 선택을 저장할 때 성공, 검증 실패, 권한 오류 상태를 먼저 확인한다.",
-              "Review success, validation, and permission states before saving pack and feature selections during setup.",
-            )}
-            actionType="feature_selection_save"
-            primaryLabel={tx("선택 저장 테스트", "Test save selection")}
-          />
+          <article className="content-card action-panel">
+            <div className="card-head">
+              <div>
+                <h3>{resolveText(language, tx("도입 선택 저장", "Save rollout selection"))}</h3>
+                <p>
+                  {resolveText(
+                    language,
+                    tx(
+                      "선택한 팩과 기능 구성을 저장하면 관리자 설정 화면에서 동일한 상태를 확인할 수 있다.",
+                      "Save the selected pack and feature set, then verify the same state in admin settings.",
+                    ),
+                  )}
+                </p>
+              </div>
+            </div>
+            <div className="action-controls">
+              <button
+                className="action-button"
+                type="button"
+                disabled={saveState.status === "saving"}
+                onClick={handleSaveSelection}
+              >
+                {saveState.status === "saving"
+                  ? resolveText(language, tx("저장 중...", "Saving..."))
+                  : resolveText(language, tx("팩 선택 저장", "Save pack selection"))}
+              </button>
+              <Link className="inline-link-button" href={`/admin/${selectedPack}/settings`}>
+                {resolveText(language, tx("선택 팩 설정 열기", "Open selected pack settings"))}
+              </Link>
+            </div>
+            {saveState.message ? (
+              <div className={`item-row ${saveState.status === "error" ? "tone-critical" : "tone-healthy"}`}>
+                <div>
+                  <strong>{saveState.message}</strong>
+                  {saveState.savedAt ? (
+                    <span>
+                      {resolveText(language, tx("최근 저장 시각", "Last saved"))}:{" "}
+                      {new Date(saveState.savedAt).toLocaleString(language === "ko" ? "ko-KR" : "en-US")}
+                    </span>
+                  ) : null}
+                </div>
+              </div>
+            ) : null}
+          </article>
         </section>
       </div>
     </div>
