@@ -89,6 +89,7 @@
 42. [Tenant Admin 근태 상세 설계](./tenant-admin/WI-TA-003-attendance-module.md)
 43. [Tenant Employee 요청 허브 상세 설계](./tenant-employee/WI-TE-003-request-hub.md)
 44. [Pack 기반 리뷰 순서](./foundation/35-pack-review-sequence.md)
+45. [Pack 승인 체크리스트](./foundation/36-pack-approval-checklists.md)
 
 ## 운영 원칙
 

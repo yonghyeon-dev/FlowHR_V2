@@ -6,21 +6,30 @@
 
 ## 목적
 
-[14-screen-readiness-matrix.md](./14-screen-readiness-matrix.md)의 `R5` 기준을 실제 화면에 적용했을 때,
-어떤 화면이 `R5 candidate`이고 어떤 화면이 아직 `R4`에 머무는지 재판정한다.
+[14-screen-readiness-matrix.md](./14-screen-readiness-matrix.md)를 기준으로
+어떤 화면과 번들이 `R5 candidate`인지, 무엇이 `R5` 확정인지 재판정한다.
 
 ## R5 판정 규칙
 
-- 승인 로그가 존재해야 한다
-- 승인 로그 decision이 `approved`여야 한다
-- API, i18n, 상태 기준이 화면에 연결돼 있어야 한다
-- 구현 진입 시 필요한 핵심 문서 링크가 있어야 한다
-
-즉, `hold`는 `R5 candidate`이지 `R5 확정`이 아니다.
+- Bundle 로그 또는 Screen 로그가 존재해야 한다
+- `decision`이 `approved`여야 `R5`다
+- `hold`는 `R5 candidate`다
+- Pack 변형이 필요한 화면은 해당 변형이 존재해야 한다
 
 ## 현재 판정
 
-### R5 candidate
+### Bundle: R5 candidate
+
+- `BUNDLE-OFFICE-CORE`
+- `BUNDLE-RETAIL-CORE`
+- `BUNDLE-PLATFORM-RISK-FIRST`
+
+사유:
+
+- 번들 승인 로그는 존재
+- 사용자 최종 결정은 아직 없음
+
+### Screen: R5 candidate
 
 - `PC-001`
 - `TA-001`
@@ -41,31 +50,22 @@
 사유:
 
 - 승인 로그 존재
-- 상태/예외 기준 존재
-- API 또는 화면 기준 문서 존재
-- 다만 사용자의 최종 decision이 아직 없음
+- API, i18n, 상태 기준 존재
+- 다만 승인 결과가 아직 `hold`
 
-### R5 확정 화면
+### R5 확정
 
 - 현재 없음
 
-사유:
-
-- 모든 코어 화면 승인 로그가 아직 `hold` 상태다.
-
-### R4 유지 화면
-
-- 승인 로그가 없는 나머지 화면
-- 또는 i18n / API / 상태 기준이 일부만 연결된 화면
-
 ## 다음 액션
 
-1. 사용자 리뷰를 반영해 `hold` 화면의 decision을 갱신
-2. `approved`로 전환된 화면을 `R5`로 승격
-3. 구현 진입 세트와 비핵심 화면을 분리해 승인 패스 운영
+1. Office Pack 번들 검토
+2. Retail Pack 번들 검토
+3. Platform 번들 검토
+4. `approved` 반영 후 화면별 `R5` 승격 검토
 
 ## 연결 문서
 
-- 화면 준비도 매트릭스: [14-screen-readiness-matrix.md](./14-screen-readiness-matrix.md)
-- 승인 로그 체계: [19-approval-log-framework.md](./19-approval-log-framework.md)
-- 최종 승인 패스 기준: [22-final-approval-pass-criteria.md](./22-final-approval-pass-criteria.md)
+- [14-screen-readiness-matrix.md](./14-screen-readiness-matrix.md)
+- [22-final-approval-pass-criteria.md](./22-final-approval-pass-criteria.md)
+- [29-approval-review-packet.md](./29-approval-review-packet.md)

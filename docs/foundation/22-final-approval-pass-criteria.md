@@ -6,82 +6,103 @@
 
 ## 목적
 
-코어 화면과 설계 묶음을 어떤 기준으로 `approved`까지 올릴지 고정한다.
-이 문서는 승인 로그의 decision을 바꿀 때 사용하는 체크리스트다.
+어떤 조건이 충족되어야 `approved`로 올릴 수 있는지 고정하는 체크리스트다.
+이제 승인 기준은 `개별 화면 단독`이 아니라 `Pack 번들 -> Screen -> Readiness` 순서다.
 
 ## 승인 대상
 
-- 화면 단위 승인
-- 모듈 묶음 승인
-- 구현 진입 승인
+- Screen Approval
+- Bundle Approval
+- Implementation Readiness Approval
 
-## 1. Screen Approval 기준
-
-아래가 모두 충족되면 `APP-SCREEN-*`를 `approved`로 변경할 수 있다.
-
-- 화면 목적이 한 줄로 명확하다
-- 핵심 CTA가 1순위로 보인다
-- 권한 노출이 올바르다
-- `loading`, `empty`, `error`, `no-permission` 상태가 정의돼 있다
-- 다국어 전환 기준이 있다
-- 후속 상세 화면/행동으로의 연결이 자연스럽다
-
-## 2. Bundle Approval 기준
+## 1. Bundle Approval 기준
 
 아래가 모두 충족되면 `APP-BUNDLE-*`를 `approved`로 변경할 수 있다.
 
-- 같은 모듈의 주요 화면이 모두 정의돼 있다
-- 화면 사이의 데이터 흐름이 이어진다
-- 공통 컴포넌트와 상태 패턴이 일관된다
-- API 계약 초안이 화면 요구를 커버한다
-- 승인 로그에서 치명적 `changes_requested`가 없다
+- 같은 Pack 안의 핵심 화면이 모두 존재한다
+- 관리자 흐름과 직원 흐름이 하나의 운영 시나리오로 이어진다
+- Pack의 우선 KPI와 위험 신호가 업종 특성에 맞다
+- 장식 요소 없이 의사결정에 필요한 정보만 남아 있다
+- 각 핵심 카드가 다음 액션과 연결된다
+- 관련 Screen 로그에 치명적인 `changes_requested`가 없다
+
+## 2. Screen Approval 기준
+
+아래가 모두 충족되면 `APP-SCREEN-*`를 `approved`로 변경할 수 있다.
+
+- 화면 목적이 한 문장으로 설명된다
+- 사용자가 내려야 할 핵심 결정이 분명하다
+- 첫 화면의 CTA와 우선순위가 자연스럽다
+- 권한 노출 기준이 맞다
+- `loading`, `empty`, `error`, `no-permission` 상태가 정의돼 있다
+- Pack 변형이 필요한 화면이면 해당 변형 기준이 문서와 와이어에 반영돼 있다
+- 연계 화면이나 다음 행동으로 자연스럽게 이어진다
 
 ## 3. Implementation Readiness Approval 기준
 
 아래가 모두 충족되면 `APP-READY-*`를 `approved`로 변경할 수 있다.
 
 - Stage 3 완료
-- Stage 4 완료 수준의 핵심 화면 확보
+- Stage 4 완료
 - Stage 5 완료
-- Stage 6의 핵심 산출물 확보
-- 코어 화면 승인 로그 존재
+- Stage 6 완료
+- 필요한 Bundle 승인 로그가 `approved`
+- 코어 Screen 승인 로그가 `approved`
 - API / i18n / 상태 / 권한 기준이 서로 충돌하지 않는다
 
 ## 4. Decision Rule
 
-### approved
+### `approved`
 
 - 즉시 다음 단계 이동 가능
 
-### changes_requested
+### `changes_requested`
 
-- 구조적 수정 필요
+- 구조나 우선순위 수정 필요
 - 같은 단계 유지
 
-### hold
+### `hold`
 
-- 사용자 명시 승인 또는 선행 문서가 없음
-- 보류 상태 유지
+- 사용자 결정 대기
+- 선행 검토 문서가 부족
+- 다음 라운드로 이월
 
-## 5. Core Screen Pass Set
+## 5. 현재 코어 승인 세트
 
-1차 코어 화면 승인 세트:
+### Office Pack
+
+- `TA-001`
+- `TA-201`
+- `TA-301`
+- `TA-401`
+- `TA-501`
+- `TE-001/002`
+- `TE-201`
+- `TE-401`
+
+### Retail Pack
+
+- `TA-001`
+- `TA-201`
+- `TA-301`
+- `TA-401`
+- `TA-501`
+- `TE-001/002`
+- `TE-201`
+- `TE-401`
+
+### Platform
 
 - `PC-001`
-- `TA-001`
-- `TE-001`
-- `TE-002`
-- `TA-201`
-- `TE-201`
 
 ## 6. 운영 규칙
 
-- `approved`는 사용자 명시 컨펌 또는 그에 준하는 결정 없이는 올리지 않는다.
-- `hold`는 미완료가 아니라, 결정을 기다리는 상태다.
-- `changes_requested`가 있으면 이유와 follow-up을 반드시 기록한다.
+- 사용자 명시 결정 없이는 `approved`로 올리지 않는다.
+- `hold`는 미완료가 아니라 `결정 대기 상태`다.
+- Bundle 승인이 없으면 Screen 승인만으로 최종 확정하지 않는다.
 
 ## 연결 문서
 
-- 승인 로그 체계: [19-approval-log-framework.md](./19-approval-log-framework.md)
-- 화면 준비도 매트릭스: [14-screen-readiness-matrix.md](./14-screen-readiness-matrix.md)
-- 요구사항 추적: [16-requirement-traceability.md](./16-requirement-traceability.md)
+- [19-approval-log-framework.md](./19-approval-log-framework.md)
+- [29-approval-review-packet.md](./29-approval-review-packet.md)
+- [35-pack-review-sequence.md](./35-pack-review-sequence.md)
