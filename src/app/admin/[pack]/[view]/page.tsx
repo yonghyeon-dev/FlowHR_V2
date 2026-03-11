@@ -1,9 +1,16 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { AccessDeniedClient } from "@/components/access-denied-client";
 import { AdminClient } from "@/components/flowhr-client";
 import { fetchAdminPage } from "@/lib/api/fetchers";
 import { tx } from "@/lib/content/appCopy";
 import type { DashboardPage } from "@/lib/content/types";
 import type { ActionActor, AdminView, SupportedPack } from "@/lib/api/types";
+import {
+  canAccessArea,
+  getServerSession,
+  getSessionTenant,
+  resolvePackPath,
+} from "@/lib/server/session";
 
 const VALID_PACKS = ["office", "retail"] as const;
 const VALID_VIEWS = ["home", "attendance", "leave", "workflow", "documents", "settings"] as const;
@@ -77,32 +84,44 @@ export default async function Page({
 }: {
   params: Promise<{ pack: string; view: string }>;
 }) {
+  const session = await getServerSession();
   const { pack, view } = await params;
 
   if (!VALID_PACKS.includes(pack as Pack) || !VALID_VIEWS.includes(view as View)) {
     notFound();
   }
 
+  if (!canAccessArea(session.role, "admin")) {
+    return <AccessDeniedClient />;
+  }
+
+  const activeTenant = getSessionTenant(session.tenantId);
   const typedPack = pack as Pack;
   const typedView = view as View;
+  const canonicalPack = activeTenant.pack as Pack;
+
+  if (typedPack !== canonicalPack) {
+    redirect(resolvePackPath("admin", canonicalPack, typedView));
+  }
+
   const page = (await fetchAdminPage(
-    typedPack as SupportedPack,
+    canonicalPack as SupportedPack,
     typedView as AdminView,
   )) as DashboardPage;
 
   return (
     <AdminClient
-      packTitle={typedPack === "office" ? tx("Office Pack", "Office Pack") : tx("Retail Pack", "Retail Pack")}
+      packTitle={canonicalPack === "office" ? tx("Office Pack", "Office Pack") : tx("Retail Pack", "Retail Pack")}
       subtitle={page.title}
       page={page}
       eyebrow={tx(
-        `WI-TA-${VIEW_META[typedView].wi} / ${typedPack === "office" ? "Office" : "Retail"} Pack`,
-        `WI-TA-${VIEW_META[typedView].wi} / ${typedPack === "office" ? "Office" : "Retail"} Pack`,
+        `WI-TA-${VIEW_META[typedView].wi} / ${canonicalPack === "office" ? "Office" : "Retail"} Pack`,
+        `WI-TA-${VIEW_META[typedView].wi} / ${canonicalPack === "office" ? "Office" : "Retail"} Pack`,
       )}
-      tone={typedPack === "office" ? "office-tone" : "retail-tone"}
-      pack={typedPack}
+      tone={canonicalPack === "office" ? "office-tone" : "retail-tone"}
+      pack={canonicalPack}
       navigation={VALID_VIEWS.map((item) => ({
-        href: `/admin/${typedPack}/${item}`,
+        href: `/admin/${canonicalPack}/${item}`,
         label: VIEW_META[item].label,
       }))}
       actionPanel={VIEW_META[typedView].actionPanel}

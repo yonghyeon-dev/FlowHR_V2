@@ -3,9 +3,11 @@ import type {
   AppSession,
   PackSetupResponse,
   SessionRole,
+  SupportedPack,
   TenantOption,
+  TenantRecord,
 } from "@/lib/api/types";
-import { listTenantOptions } from "@/lib/server/store";
+import { getTenantById, listTenantOptions } from "@/lib/server/store";
 
 const SESSION_COOKIE = "flowhr_session";
 
@@ -16,6 +18,8 @@ const defaultPackSelection: PackSetupResponse["selection"] = {
     retail: ["coverage-core", "shift-response"],
   },
 };
+
+export type SessionArea = "platform" | "admin" | "employee" | "setup";
 
 function defaultTenantId() {
   return listTenantOptions(defaultPackSelection)[0]?.id ?? "acme-corp";
@@ -79,6 +83,10 @@ export function listSessionTenants(): TenantOption[] {
   return listTenantOptions(defaultPackSelection);
 }
 
+export function getSessionTenant(tenantId: string | undefined): TenantRecord {
+  return getTenantById(tenantId, defaultPackSelection);
+}
+
 export function roleLabel(role: SessionRole): { ko: string; en: string } {
   switch (role) {
     case "platform_operator":
@@ -92,9 +100,27 @@ export function roleLabel(role: SessionRole): { ko: string; en: string } {
   }
 }
 
+export function canAccessArea(role: SessionRole, area: SessionArea) {
+  switch (area) {
+    case "platform":
+      return role === "platform_operator";
+    case "admin":
+      return role === "tenant_admin" || role === "tenant_manager";
+    case "employee":
+      return role === "tenant_employee";
+    case "setup":
+      return role === "tenant_admin";
+  }
+}
+
 export function canAccessAction(
   role: SessionRole,
-  action: "settings_save" | "approval_approve" | "request_submit" | "signature_submit" | "feature_selection_save",
+  action:
+    | "settings_save"
+    | "approval_approve"
+    | "request_submit"
+    | "signature_submit"
+    | "feature_selection_save",
 ) {
   switch (action) {
     case "settings_save":
@@ -107,4 +133,12 @@ export function canAccessAction(
     case "feature_selection_save":
       return role === "tenant_admin";
   }
+}
+
+export function resolvePackPath(
+  area: "admin" | "employee",
+  pack: SupportedPack,
+  view: string,
+) {
+  return `/${area}/${pack}/${view}`;
 }

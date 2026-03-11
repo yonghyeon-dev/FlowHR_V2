@@ -5,7 +5,7 @@ import type {
   TenantUpdateResponse,
 } from "@/lib/api/types";
 import { listTenants, updateTenantConfig } from "@/lib/server/store";
-import { getServerSession } from "@/lib/server/session";
+import { canAccessArea, getServerSession } from "@/lib/server/session";
 
 const defaultPackSelection: PackSetupResponse["selection"] = {
   selectedPack: "office",
@@ -16,6 +16,20 @@ const defaultPackSelection: PackSetupResponse["selection"] = {
 };
 
 export async function GET() {
+  const session = await getServerSession();
+
+  if (!canAccessArea(session.role, "platform")) {
+    return NextResponse.json(
+      {
+        error: {
+          code: "ACCESS_DENIED",
+          message: "Only platform operators can view tenant configuration.",
+        },
+      },
+      { status: 403 },
+    );
+  }
+
   return NextResponse.json({
     data: {
       tenants: listTenants(defaultPackSelection),
@@ -26,7 +40,7 @@ export async function GET() {
 export async function PATCH(request: Request) {
   const session = await getServerSession();
 
-  if (session.role !== "platform_operator") {
+  if (!canAccessArea(session.role, "platform")) {
     return NextResponse.json(
       {
         error: {

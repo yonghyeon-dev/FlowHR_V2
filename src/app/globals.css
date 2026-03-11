@@ -373,6 +373,40 @@ button {
   opacity: 0.7;
 }
 
+.access-denied-layout {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 28px;
+}
+
+.access-denied-card {
+  width: min(100%, 720px);
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.access-denied-card h1 {
+  margin: 8px 0 14px;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  letter-spacing: -0.04em;
+}
+
+.access-denied-card p:last-of-type {
+  color: var(--text-subtle);
+  line-height: 1.6;
+}
+
+.access-denied-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
 .app-shell {
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
