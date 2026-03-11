@@ -5,29 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FlowHR_V2 Request Hub Detailed Wireframe</title>
     <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TE-REQUEST-EYEBROW": { "ko": "WI-TE-003 / Request Hub", "en": "WI-TE-003 / Request Hub" },
+        "LID-TE-REQUEST-HERO_TITLE": { "ko": "요청 생성, 정책 확인, 상태 추적을 묶는<br />Request Hub", "en": "A Request Hub<br />that unifies creation, policy guidance, and status tracking" },
+        "LID-TE-REQUEST-HERO_TEXT": { "ko": "요청 허브는 여러 메뉴를 모은 화면이 아니라, 자주 쓰는 요청을 빠르게 시작하고 제출 뒤 상태와 반려 사유까지 추적하는 개인 운영 허브여야 합니다.", "en": "The request hub should not just be a collection of menus. It should help employees start frequent requests quickly and track status and rejection reasons after submission." },
+        "LID-TE-REQUEST-CHIP_REQUEST": { "ko": "Request-first", "en": "Request-first" },
+        "LID-TE-REQUEST-CHIP_POLICY": { "ko": "Policy hint", "en": "Policy hint" },
+        "LID-TE-REQUEST-CHIP_HISTORY": { "ko": "History-linked", "en": "History-linked" },
+        "LID-TE-REQUEST-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-TE-REQUEST-NOTE_1": { "ko": "주요 요청 유형이 첫 화면에서 바로 보이는지", "en": "Whether primary request types are visible on the first screen" },
+        "LID-TE-REQUEST-NOTE_2": { "ko": "작성 전에 필요한 정책 요약이 짧게 보이는지", "en": "Whether policy guidance appears briefly before form entry" },
+        "LID-TE-REQUEST-NOTE_3": { "ko": "반려와 재제출 흐름이 자연스럽게 이어지는지", "en": "Whether reject and resubmit flows feel natural" },
+        "LID-TE-REQUEST-SCREEN_A_TITLE": { "ko": "Mobile Request Hub", "en": "Mobile Request Hub" },
+        "LID-TE-REQUEST-SCREEN_A_DESC": { "ko": "요청 유형 선택, 정책 힌트, 최근 요청을 첫 화면에 배치", "en": "Put request types, policy hints, and recent requests on the first screen" },
+        "LID-TE-REQUEST-MOBILE_TITLE": { "ko": "요청 허브", "en": "Request Hub" },
+        "LID-TE-REQUEST-QUICK_TITLE": { "ko": "빠른 요청", "en": "Quick requests" },
+        "LID-TE-REQUEST-QUICK_1": { "ko": "연차 요청", "en": "Leave request" },
+        "LID-TE-REQUEST-QUICK_2": { "ko": "반차 요청", "en": "Half-day request" },
+        "LID-TE-REQUEST-QUICK_3": { "ko": "출퇴근 정정", "en": "Attendance correction" },
+        "LID-TE-REQUEST-QUICK_4": { "ko": "초과근무 요청", "en": "Overtime request" },
+        "LID-TE-REQUEST-POLICY_TITLE": { "ko": "정책 힌트", "en": "Policy hints" },
+        "LID-TE-REQUEST-POLICY_1": { "ko": "반차는 4시간 단위", "en": "Half day is counted in 4-hour units" },
+        "LID-TE-REQUEST-POLICY_2": { "ko": "시간 단위 휴가는 팀장 승인 필요", "en": "Hourly leave requires manager approval" },
+        "LID-TE-REQUEST-POLICY_3": { "ko": "정정 요청은 7일 이내 가능", "en": "Correction requests are allowed within 7 days" },
+        "LID-TE-REQUEST-RECENT_TITLE": { "ko": "최근 요청", "en": "Recent requests" },
+        "LID-TE-REQUEST-RECENT_1": { "ko": "연차 요청 / 승인 대기", "en": "Leave request / awaiting approval" },
+        "LID-TE-REQUEST-RECENT_2": { "ko": "체크아웃 정정 / 반려", "en": "Checkout correction / rejected" },
+        "LID-TE-REQUEST-RECENT_3": { "ko": "초과근무 요청 / 승인 완료", "en": "Overtime request / approved" },
+        "LID-TE-REQUEST-TAB_HOME": { "ko": "Home", "en": "Home" },
+        "LID-TE-REQUEST-TAB_REQUEST": { "ko": "Request", "en": "Request" },
+        "LID-TE-REQUEST-TAB_SCHEDULE": { "ko": "Schedule", "en": "Schedule" },
+        "LID-TE-REQUEST-TAB_INBOX": { "ko": "Inbox", "en": "Inbox" },
+        "LID-TE-REQUEST-SCREEN_B_TITLE": { "ko": "Request Form + History", "en": "Request Form + History" },
+        "LID-TE-REQUEST-SCREEN_B_DESC": { "ko": "입력과 상태 추적, 반려 재진입을 연결한 구조", "en": "A structure that connects form input, status tracking, and rejected re-entry" },
+        "LID-TE-REQUEST-BRAND": { "ko": "New Request", "en": "New Request" },
+        "LID-TE-REQUEST-SEARCH": { "ko": "Search request type, policy, history", "en": "Search request type, policy, history" },
+        "LID-TE-REQUEST-PILL_LEAVE": { "ko": "휴가", "en": "Leave" },
+        "LID-TE-REQUEST-PILL_CORRECTION": { "ko": "정정", "en": "Correction" },
+        "LID-TE-REQUEST-FORM_TITLE": { "ko": "Request Form", "en": "Request Form" },
+        "LID-TE-REQUEST-FORM_1": { "ko": "요청 유형 / 일정 / 사유", "en": "Request type / schedule / reason" },
+        "LID-TE-REQUEST-FORM_2": { "ko": "정책 요약 / 잔여 현황", "en": "Policy summary / balance" },
+        "LID-TE-REQUEST-FORM_3": { "ko": "첨부 / 초안 저장 / 제출", "en": "Attachment / draft / submit" },
+        "LID-TE-REQUEST-FORM_4": { "ko": "팀 일정 충돌 시 경고 배지", "en": "Warning badge on team schedule conflicts" },
+        "LID-TE-REQUEST-ACTION_1": { "ko": "초안 저장", "en": "Save draft" },
+        "LID-TE-REQUEST-ACTION_2": { "ko": "제출", "en": "Submit" },
+        "LID-TE-REQUEST-ACTION_3": { "ko": "취소", "en": "Cancel" },
+        "LID-TE-REQUEST-ACTION_4": { "ko": "정책 보기", "en": "View policy" },
+        "LID-TE-REQUEST-HISTORY_1_TITLE": { "ko": "연차 요청", "en": "Leave request" },
+        "LID-TE-REQUEST-HISTORY_1_TEXT": { "ko": "승인 대기 / 초안", "en": "Awaiting approval / draft" },
+        "LID-TE-REQUEST-HISTORY_1_STATUS": { "ko": "진행 중", "en": "In progress" },
+        "LID-TE-REQUEST-HISTORY_2_TITLE": { "ko": "체크아웃 정정", "en": "Checkout correction" },
+        "LID-TE-REQUEST-HISTORY_2_TEXT": { "ko": "반려 / 사유 확인 필요", "en": "Rejected / reason review needed" },
+        "LID-TE-REQUEST-HISTORY_2_STATUS": { "ko": "재제출 필요", "en": "Needs resubmission" },
+        "LID-TE-REQUEST-HISTORY_3_TITLE": { "ko": "초과근무 요청", "en": "Overtime request" },
+        "LID-TE-REQUEST-HISTORY_3_TEXT": { "ko": "승인 완료", "en": "Approved" },
+        "LID-TE-REQUEST-HISTORY_3_STATUS": { "ko": "완료", "en": "Done" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
   </head>
   <body>
     <div class="page-shell">
       <header class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">WI-TE-003 / Request Hub</p>
-          <h1>요청 생성, 정책 확인, 상태 추적을 묶는<br />Request Hub</h1>
-          <p class="hero-text">
-            요청 허브는 여러 폼 링크 모음이 아니라, 자주 쓰는 요청을 빠르게 시작하고
-            제출 후 상태와 반려 사유까지 추적하는 셀프서비스 허브여야 합니다.
-          </p>
+          <p class="eyebrow" data-lid="LID-TE-REQUEST-EYEBROW">WI-TE-003 / Request Hub</p>
+          <h1 data-lid="LID-TE-REQUEST-HERO_TITLE" data-lid-html="true">요청 생성, 정책 확인, 상태 추적을 묶는<br />Request Hub</h1>
+          <p class="hero-text" data-lid="LID-TE-REQUEST-HERO_TEXT">요청 허브는 여러 메뉴를 모은 화면이 아니라, 자주 쓰는 요청을 빠르게 시작하고 제출 뒤 상태와 반려 사유까지 추적하는 개인 운영 허브여야 합니다.</p>
           <div class="hero-chips">
-            <span>Request-first</span>
-            <span>Policy hint</span>
-            <span>History-linked</span>
+            <span data-lid="LID-TE-REQUEST-CHIP_REQUEST">Request-first</span>
+            <span data-lid="LID-TE-REQUEST-CHIP_POLICY">Policy hint</span>
+            <span data-lid="LID-TE-REQUEST-CHIP_HISTORY">History-linked</span>
           </div>
         </div>
         <aside class="hero-note">
-          <h2>핵심 확인 포인트</h2>
+          <h2 data-lid="LID-TE-REQUEST-NOTE_TITLE">핵심 확인 포인트</h2>
           <ul>
-            <li>주요 요청 유형이 첫 화면에서 바로 보이는지</li>
-            <li>작성 전에 필요한 정책 요약이 짧게 보이는지</li>
-            <li>반려와 재제출 흐름이 자연스러운지</li>
+            <li data-lid="LID-TE-REQUEST-NOTE_1">주요 요청 유형이 첫 화면에서 바로 보이는지</li>
+            <li data-lid="LID-TE-REQUEST-NOTE_2">작성 전에 필요한 정책 요약이 짧게 보이는지</li>
+            <li data-lid="LID-TE-REQUEST-NOTE_3">반려와 재제출 흐름이 자연스럽게 이어지는지</li>
           </ul>
         </aside>
       </header>
@@ -38,8 +94,8 @@
             <div class="screen-title">
               <span>01</span>
               <div>
-                <h3>Mobile Request Hub</h3>
-                <p>요청 유형 선택과 정책 힌트, 최근 요청을 한 화면에 배치</p>
+                <h3 data-lid="LID-TE-REQUEST-SCREEN_A_TITLE">Mobile Request Hub</h3>
+                <p data-lid="LID-TE-REQUEST-SCREEN_A_DESC">요청 유형 선택, 정책 힌트, 최근 요청을 첫 화면에 배치</p>
               </div>
             </div>
             <div class="mobile-wrap">
@@ -47,41 +103,41 @@
                 <div class="mobile-notch"></div>
                 <div class="mobile-head">
                   <span>10:22</span>
-                  <span>요청 허브</span>
+                  <span data-lid="LID-TE-REQUEST-MOBILE_TITLE">요청 허브</span>
                   <span>LTE</span>
                 </div>
                 <div class="mobile-body">
                   <div class="mobile-card hero-card">
-                    <strong>빠른 요청</strong>
+                    <strong data-lid="LID-TE-REQUEST-QUICK_TITLE">빠른 요청</strong>
                     <div class="mini-columns two">
-                      <span>연차 신청</span>
-                      <span>반차 신청</span>
-                      <span>출퇴근 정정</span>
-                      <span>초과근무 요청</span>
+                      <span data-lid="LID-TE-REQUEST-QUICK_1">연차 요청</span>
+                      <span data-lid="LID-TE-REQUEST-QUICK_2">반차 요청</span>
+                      <span data-lid="LID-TE-REQUEST-QUICK_3">출퇴근 정정</span>
+                      <span data-lid="LID-TE-REQUEST-QUICK_4">초과근무 요청</span>
                     </div>
                   </div>
                   <div class="mobile-card">
-                    <strong>정책 힌트</strong>
+                    <strong data-lid="LID-TE-REQUEST-POLICY_TITLE">정책 힌트</strong>
                     <div class="list dense">
-                      <span>반차는 4시간 단위</span>
-                      <span>시간 단위 휴가는 팀장 승인 필요</span>
-                      <span>정정 요청은 7일 이내 가능</span>
+                      <span data-lid="LID-TE-REQUEST-POLICY_1">반차는 4시간 단위</span>
+                      <span data-lid="LID-TE-REQUEST-POLICY_2">시간 단위 휴가는 팀장 승인 필요</span>
+                      <span data-lid="LID-TE-REQUEST-POLICY_3">정정 요청은 7일 이내 가능</span>
                     </div>
                   </div>
                   <div class="mobile-card">
-                    <strong>최근 요청</strong>
+                    <strong data-lid="LID-TE-REQUEST-RECENT_TITLE">최근 요청</strong>
                     <ul>
-                      <li>연차 신청 / 승인 대기</li>
-                      <li>체크아웃 정정 / 반려</li>
-                      <li>초과근무 요청 / 승인 완료</li>
+                      <li data-lid="LID-TE-REQUEST-RECENT_1">연차 요청 / 승인 대기</li>
+                      <li data-lid="LID-TE-REQUEST-RECENT_2">체크아웃 정정 / 반려</li>
+                      <li data-lid="LID-TE-REQUEST-RECENT_3">초과근무 요청 / 승인 완료</li>
                     </ul>
                   </div>
                 </div>
                 <div class="mobile-tabbar">
-                  <span>Home</span>
-                  <span class="active">Request</span>
-                  <span>Schedule</span>
-                  <span>Inbox</span>
+                  <span data-lid="LID-TE-REQUEST-TAB_HOME">Home</span>
+                  <span class="active" data-lid="LID-TE-REQUEST-TAB_REQUEST">Request</span>
+                  <span data-lid="LID-TE-REQUEST-TAB_SCHEDULE">Schedule</span>
+                  <span data-lid="LID-TE-REQUEST-TAB_INBOX">Inbox</span>
                 </div>
               </div>
             </div>
@@ -91,50 +147,50 @@
             <div class="screen-title">
               <span>02</span>
               <div>
-                <h3>Request Form + History</h3>
-                <p>입력 폼, 상태 추적, 반려 재진입을 연결한 구조</p>
+                <h3 data-lid="LID-TE-REQUEST-SCREEN_B_TITLE">Request Form + History</h3>
+                <p data-lid="LID-TE-REQUEST-SCREEN_B_DESC">입력과 상태 추적, 반려 재진입을 연결한 구조</p>
               </div>
             </div>
             <div class="screen desktop compact">
               <div class="topbar slim">
-                <span class="brand">New Request</span>
-                <span class="search wide">Search request type, policy, history</span>
-                <span class="pill active">Leave</span>
-                <span class="pill">Correction</span>
+                <span class="brand" data-lid="LID-TE-REQUEST-BRAND">New Request</span>
+                <span class="search wide" data-lid="LID-TE-REQUEST-SEARCH">Search request type, policy, history</span>
+                <span class="pill active" data-lid="LID-TE-REQUEST-PILL_LEAVE">휴가</span>
+                <span class="pill" data-lid="LID-TE-REQUEST-PILL_CORRECTION">정정</span>
               </div>
               <div class="split wide-split">
                 <section class="column detail-column">
                   <div class="detail-box tall">
-                    <strong>Request Form</strong>
+                    <strong data-lid="LID-TE-REQUEST-FORM_TITLE">Request Form</strong>
                     <div class="list dense">
-                      <span>요청 유형 / 일정 / 사유</span>
-                      <span>정책 요약 / 잔여 현황</span>
-                      <span>첨부 / 초안 저장 / 제출</span>
-                      <span>팀 일정 충돌 시 경고 배지</span>
+                      <span data-lid="LID-TE-REQUEST-FORM_1">요청 유형 / 일정 / 사유</span>
+                      <span data-lid="LID-TE-REQUEST-FORM_2">정책 요약 / 잔여 현황</span>
+                      <span data-lid="LID-TE-REQUEST-FORM_3">첨부 / 초안 저장 / 제출</span>
+                      <span data-lid="LID-TE-REQUEST-FORM_4">팀 일정 충돌 시 경고 배지</span>
                     </div>
                   </div>
                   <div class="detail-actions">
-                    <span>초안 저장</span>
-                    <span>제출</span>
-                    <span>취소</span>
-                    <span>정책 보기</span>
+                    <span data-lid="LID-TE-REQUEST-ACTION_1">초안 저장</span>
+                    <span data-lid="LID-TE-REQUEST-ACTION_2">제출</span>
+                    <span data-lid="LID-TE-REQUEST-ACTION_3">취소</span>
+                    <span data-lid="LID-TE-REQUEST-ACTION_4">정책 보기</span>
                   </div>
                 </section>
                 <section class="column list-column">
                   <div class="stack-card active">
-                    <strong>연차 신청</strong>
-                    <span>승인 대기 / 팀장</span>
-                    <span class="status wait">진행 중</span>
+                    <strong data-lid="LID-TE-REQUEST-HISTORY_1_TITLE">연차 요청</strong>
+                    <span data-lid="LID-TE-REQUEST-HISTORY_1_TEXT">승인 대기 / 초안</span>
+                    <span class="status wait" data-lid="LID-TE-REQUEST-HISTORY_1_STATUS">진행 중</span>
                   </div>
                   <div class="stack-card">
-                    <strong>체크아웃 정정</strong>
-                    <span>반려 / 사유 확인 필요</span>
-                    <span class="status risk">재제출 필요</span>
+                    <strong data-lid="LID-TE-REQUEST-HISTORY_2_TITLE">체크아웃 정정</strong>
+                    <span data-lid="LID-TE-REQUEST-HISTORY_2_TEXT">반려 / 사유 확인 필요</span>
+                    <span class="status risk" data-lid="LID-TE-REQUEST-HISTORY_2_STATUS">재제출 필요</span>
                   </div>
                   <div class="stack-card">
-                    <strong>초과근무 요청</strong>
-                    <span>승인 완료</span>
-                    <span class="status">완료</span>
+                    <strong data-lid="LID-TE-REQUEST-HISTORY_3_TITLE">초과근무 요청</strong>
+                    <span data-lid="LID-TE-REQUEST-HISTORY_3_TEXT">승인 완료</span>
+                    <span class="status" data-lid="LID-TE-REQUEST-HISTORY_3_STATUS">완료</span>
                   </div>
                 </section>
               </div>

@@ -5,29 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FlowHR_V2 Attendance Module Detailed Wireframe</title>
     <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-ATT-EYEBROW": { "ko": "WI-TA-003 / Attendance Module", "en": "WI-TA-003 / Attendance Module" },
+        "LID-TA-ATT-HERO_TITLE": { "ko": "실시간 운영 보드와 예외 처리를 묶은<br />Attendance Module", "en": "An Attendance Module<br />that unifies live operations and exception handling" },
+        "LID-TA-ATT-HERO_TEXT": { "ko": "출결 기록 조회만으로는 운영이 끝나지 않습니다. 오늘의 근무 현황, 예외, 마감 준비를 한 모듈 안에서 연결해 처리해야 합니다.", "en": "Attendance operations are not just about record lookup. Today's work status, exceptions, and closing readiness need to be handled together in one module." },
+        "LID-TA-ATT-CHIP_OPS": { "ko": "Ops board", "en": "Ops board" },
+        "LID-TA-ATT-CHIP_EXCEPTION": { "ko": "Exceptions-first", "en": "Exceptions-first" },
+        "LID-TA-ATT-CHIP_CLOSE": { "ko": "Closing-ready", "en": "Closing-ready" },
+        "LID-TA-ATT-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-TA-ATT-NOTE_1": { "ko": "예외가 메인 흐름으로 드러나는지", "en": "Whether exceptions appear in the main workflow" },
+        "LID-TA-ATT-NOTE_2": { "ko": "교대 운영과 실제 기록 차이가 한눈에 보이는지", "en": "Whether shift plans and actual logs can be compared at a glance" },
+        "LID-TA-ATT-NOTE_3": { "ko": "마감 전 검토 흐름이 자연스럽게 이어지는지", "en": "Whether the pre-close review flow feels natural" },
+        "LID-TA-ATT-SCREEN_TITLE": { "ko": "Dashboard + Shift Board + Exceptions", "en": "Dashboard + Shift Board + Exceptions" },
+        "LID-TA-ATT-SCREEN_DESC": { "ko": "운영 지표, 주간 매트릭스, 예외 큐를 한 모듈에 배치", "en": "Place operational KPIs, a weekly matrix, and the exception queue in one module" },
+        "LID-TA-ATT-BRAND": { "ko": "Attendance", "en": "Attendance" },
+        "LID-TA-ATT-SEARCH": { "ko": "Search employee, exception, shift rule", "en": "Search employee, exception, shift rule" },
+        "LID-TA-ATT-PILL_TODAY": { "ko": "오늘", "en": "Today" },
+        "LID-TA-ATT-PILL_WEEK": { "ko": "이번 주", "en": "This week" },
+        "LID-TA-ATT-KPI_1": { "ko": "출근율", "en": "Attendance rate" },
+        "LID-TA-ATT-KPI_2": { "ko": "누락 기록", "en": "Missing logs" },
+        "LID-TA-ATT-KPI_3": { "ko": "지각 / 조퇴", "en": "Late / early leave" },
+        "LID-TA-ATT-KPI_4": { "ko": "초과근무 위험", "en": "Overtime risk" },
+        "LID-TA-ATT-KPI_5": { "ko": "휴게 위반", "en": "Break violations" },
+        "LID-TA-ATT-SHIFT_TITLE": { "ko": "Shift Board", "en": "Shift Board" },
+        "LID-TA-ATT-SHIFT_SUB": { "ko": "주간 / 예외 강조", "en": "Week / exceptions highlighted" },
+        "LID-TA-ATT-MATRIX_NAME": { "ko": "이름", "en": "Name" },
+        "LID-TA-ATT-ROW_1_NAME": { "ko": "김하늘", "en": "Haneul Kim" },
+        "LID-TA-ATT-ROW_2_NAME": { "ko": "박준", "en": "Jun Park" },
+        "LID-TA-ATT-ROW_3_NAME": { "ko": "이서윤", "en": "Seoyun Lee" },
+        "LID-TA-ATT-ROW_1_FRI": { "ko": "휴가", "en": "Leave" },
+        "LID-TA-ATT-ROW_2_THU": { "ko": "원격", "en": "Remote" },
+        "LID-TA-ATT-ROW_3_MON": { "ko": "야간", "en": "Night" },
+        "LID-TA-ATT-ROW_3_TUE": { "ko": "야간", "en": "Night" },
+        "LID-TA-ATT-ROW_3_THU": { "ko": "휴무", "en": "Off" },
+        "LID-TA-ATT-ROW_3_FRI": { "ko": "휴무", "en": "Off" },
+        "LID-TA-ATT-EXCEPTION_TITLE": { "ko": "Exception Queue", "en": "Exception Queue" },
+        "LID-TA-ATT-EXCEPTION_SUB": { "ko": "심각도", "en": "Severity" },
+        "LID-TA-ATT-EXCEPTION_1": { "ko": "체크아웃 누락 / 4명", "en": "Checkout missing / 4 people" },
+        "LID-TA-ATT-EXCEPTION_2": { "ko": "지각 / 5명", "en": "Late / 5 people" },
+        "LID-TA-ATT-EXCEPTION_3": { "ko": "휴게 미준수 / 2명", "en": "Break rule missed / 2 people" },
+        "LID-TA-ATT-EXCEPTION_4": { "ko": "연속 야간근무 / 3명", "en": "Consecutive night shifts / 3 people" },
+        "LID-TA-ATT-RISK_TITLE": { "ko": "Risk Rules", "en": "Risk Rules" },
+        "LID-TA-ATT-RISK_SUB": { "ko": "자동 감지", "en": "Auto detection" },
+        "LID-TA-ATT-RISK_1": { "ko": "주 52시간 초과 위험", "en": "52-hour weekly limit risk" },
+        "LID-TA-ATT-RISK_2": { "ko": "연속 야간근무 누적", "en": "Consecutive night shift accumulation" },
+        "LID-TA-ATT-RISK_3": { "ko": "계획 대비 실제 충돌", "en": "Planned vs actual conflict" },
+        "LID-TA-ATT-ACTION_TITLE": { "ko": "Quick Actions", "en": "Quick Actions" },
+        "LID-TA-ATT-ACTION_SUB": { "ko": "실행", "en": "Ops" },
+        "LID-TA-ATT-ACTION_1": { "ko": "보정 요청", "en": "Open corrections" },
+        "LID-TA-ATT-ACTION_2": { "ko": "교대 조정", "en": "Adjust shifts" },
+        "LID-TA-ATT-ACTION_3": { "ko": "리포트 추출", "en": "Export report" },
+        "LID-TA-ATT-CLOSE_TITLE": { "ko": "Closing Watch", "en": "Closing Watch" },
+        "LID-TA-ATT-CLOSE_SUB": { "ko": "마감 전 체크", "en": "Before close" },
+        "LID-TA-ATT-CLOSE_1": { "ko": "미확정 기록 5건", "en": "5 unresolved records" },
+        "LID-TA-ATT-CLOSE_2": { "ko": "미정리 초과근무 2건", "en": "2 unprocessed overtime items" },
+        "LID-TA-ATT-CLOSE_3": { "ko": "정산 연계 필요 1건", "en": "1 payroll-linked item" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
   </head>
   <body>
     <div class="page-shell">
       <header class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">WI-TA-003 / Attendance Module</p>
-          <h1>실시간 운영 보드와 예외 처리 허브를 합친<br />Attendance Module</h1>
-          <p class="hero-text">
-            출근 기록 조회가 아니라 오늘의 운영 현황, 예외, 마감 준비를 한 모듈 안에서
-            처리하는 구조입니다.
-          </p>
+          <p class="eyebrow" data-lid="LID-TA-ATT-EYEBROW">WI-TA-003 / Attendance Module</p>
+          <h1 data-lid="LID-TA-ATT-HERO_TITLE" data-lid-html="true">실시간 운영 보드와 예외 처리를 묶은<br />Attendance Module</h1>
+          <p class="hero-text" data-lid="LID-TA-ATT-HERO_TEXT">출결 기록 조회만으로는 운영이 끝나지 않습니다. 오늘의 근무 현황, 예외, 마감 준비를 한 모듈 안에서 연결해 처리해야 합니다.</p>
           <div class="hero-chips">
-            <span>Ops board</span>
-            <span>Exceptions-first</span>
-            <span>Closing-ready</span>
+            <span data-lid="LID-TA-ATT-CHIP_OPS">Ops board</span>
+            <span data-lid="LID-TA-ATT-CHIP_EXCEPTION">Exceptions-first</span>
+            <span data-lid="LID-TA-ATT-CHIP_CLOSE">Closing-ready</span>
           </div>
         </div>
         <aside class="hero-note">
-          <h2>핵심 확인 포인트</h2>
+          <h2 data-lid="LID-TA-ATT-NOTE_TITLE">핵심 확인 포인트</h2>
           <ul>
-            <li>예외가 메인으로 드러나는지</li>
-            <li>스케줄과 실제 기록이 함께 보이는지</li>
-            <li>마감 전 검증 흐름이 자연스러운지</li>
+            <li data-lid="LID-TA-ATT-NOTE_1">예외가 메인 흐름으로 드러나는지</li>
+            <li data-lid="LID-TA-ATT-NOTE_2">교대 운영과 실제 기록 차이가 한눈에 보이는지</li>
+            <li data-lid="LID-TA-ATT-NOTE_3">마감 전 검토 흐름이 자연스럽게 이어지는지</li>
           </ul>
         </aside>
       </header>
@@ -38,49 +94,34 @@
             <div class="screen-title">
               <span>T</span>
               <div>
-                <h3>Dashboard + Shift Board + Exceptions</h3>
-                <p>운영 지표, 주간 매트릭스, 예외 큐를 한 모듈 안에 배치</p>
+                <h3 data-lid="LID-TA-ATT-SCREEN_TITLE">Dashboard + Shift Board + Exceptions</h3>
+                <p data-lid="LID-TA-ATT-SCREEN_DESC">운영 지표, 주간 매트릭스, 예외 큐를 한 모듈에 배치</p>
               </div>
             </div>
             <div class="screen desktop">
               <div class="topbar slim">
-                <span class="brand">Attendance</span>
-                <span class="search wide">Search employee, exception, shift rule</span>
-                <span class="pill active">오늘</span>
-                <span class="pill">이번 주</span>
+                <span class="brand" data-lid="LID-TA-ATT-BRAND">Attendance</span>
+                <span class="search wide" data-lid="LID-TA-ATT-SEARCH">Search employee, exception, shift rule</span>
+                <span class="pill active" data-lid="LID-TA-ATT-PILL_TODAY">오늘</span>
+                <span class="pill" data-lid="LID-TA-ATT-PILL_WEEK">이번 주</span>
               </div>
               <div class="main">
                 <div class="kpi-row five">
-                  <div class="kpi emphasis">
-                    <strong>91%</strong>
-                    <span>출근율</span>
-                  </div>
-                  <div class="kpi">
-                    <strong>9</strong>
-                    <span>누락 기록</span>
-                  </div>
-                  <div class="kpi">
-                    <strong>8</strong>
-                    <span>지각 / 조퇴</span>
-                  </div>
-                  <div class="kpi">
-                    <strong>6</strong>
-                    <span>초과근무 위험</span>
-                  </div>
-                  <div class="kpi">
-                    <strong>2</strong>
-                    <span>휴게 위반</span>
-                  </div>
+                  <div class="kpi emphasis"><strong>91%</strong><span data-lid="LID-TA-ATT-KPI_1">출근율</span></div>
+                  <div class="kpi"><strong>9</strong><span data-lid="LID-TA-ATT-KPI_2">누락 기록</span></div>
+                  <div class="kpi"><strong>8</strong><span data-lid="LID-TA-ATT-KPI_3">지각 / 조퇴</span></div>
+                  <div class="kpi"><strong>6</strong><span data-lid="LID-TA-ATT-KPI_4">초과근무 위험</span></div>
+                  <div class="kpi"><strong>2</strong><span data-lid="LID-TA-ATT-KPI_5">휴게 위반</span></div>
                 </div>
                 <div class="panel-row admin-hero">
                   <section class="panel large">
                     <div class="panel-head">
-                      <strong>Shift Board</strong>
-                      <span>Week / Exceptions highlighted</span>
+                      <strong data-lid="LID-TA-ATT-SHIFT_TITLE">Shift Board</strong>
+                      <span data-lid="LID-TA-ATT-SHIFT_SUB">주간 / 예외 강조</span>
                     </div>
                     <div class="matrix">
                       <div class="matrix-head">
-                        <span>Name</span>
+                        <span data-lid="LID-TA-ATT-MATRIX_NAME">이름</span>
                         <span>Mon</span>
                         <span>Tue</span>
                         <span>Wed</span>
@@ -88,76 +129,76 @@
                         <span>Fri</span>
                       </div>
                       <div class="matrix-row warn">
-                        <span>김하늘</span>
+                        <span data-lid="LID-TA-ATT-ROW_1_NAME">김하늘</span>
                         <span>09:03</span>
                         <span>09:01</span>
                         <span>Missing</span>
                         <span>09:12</span>
-                        <span>Leave</span>
+                        <span data-lid="LID-TA-ATT-ROW_1_FRI">휴가</span>
                       </div>
                       <div class="matrix-row">
-                        <span>박준</span>
+                        <span data-lid="LID-TA-ATT-ROW_2_NAME">박준</span>
                         <span>08:41</span>
                         <span>08:44</span>
                         <span>08:39</span>
-                        <span>Remote</span>
+                        <span data-lid="LID-TA-ATT-ROW_2_THU">원격</span>
                         <span>08:48</span>
                       </div>
                       <div class="matrix-row danger">
-                        <span>이서윤</span>
-                        <span>Night</span>
-                        <span>Night</span>
+                        <span data-lid="LID-TA-ATT-ROW_3_NAME">이서윤</span>
+                        <span data-lid="LID-TA-ATT-ROW_3_MON">야간</span>
+                        <span data-lid="LID-TA-ATT-ROW_3_TUE">야간</span>
                         <span>Night+</span>
-                        <span>Off</span>
-                        <span>Off</span>
+                        <span data-lid="LID-TA-ATT-ROW_3_THU">휴무</span>
+                        <span data-lid="LID-TA-ATT-ROW_3_FRI">휴무</span>
                       </div>
                     </div>
                   </section>
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Exception Queue</strong>
-                      <span>Severity</span>
+                      <strong data-lid="LID-TA-ATT-EXCEPTION_TITLE">Exception Queue</strong>
+                      <span data-lid="LID-TA-ATT-EXCEPTION_SUB">심각도</span>
                     </div>
                     <div class="list dense">
-                      <span class="danger">체크아웃 누락 / 4명</span>
-                      <span>지각 / 5명</span>
-                      <span>휴게 미준수 / 2명</span>
-                      <span>연속 야간근무 / 3명</span>
+                      <span class="danger" data-lid="LID-TA-ATT-EXCEPTION_1">체크아웃 누락 / 4명</span>
+                      <span data-lid="LID-TA-ATT-EXCEPTION_2">지각 / 5명</span>
+                      <span data-lid="LID-TA-ATT-EXCEPTION_3">휴게 미준수 / 2명</span>
+                      <span data-lid="LID-TA-ATT-EXCEPTION_4">연속 야간근무 / 3명</span>
                     </div>
                   </section>
                 </div>
                 <div class="panel-row admin-bottom">
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Risk Rules</strong>
-                      <span>자동 감지</span>
+                      <strong data-lid="LID-TA-ATT-RISK_TITLE">Risk Rules</strong>
+                      <span data-lid="LID-TA-ATT-RISK_SUB">자동 감지</span>
                     </div>
                     <div class="list dense">
-                      <span>주 52시간 임박</span>
-                      <span>연속 야간근무 누적</span>
-                      <span>계획 대비 충돌</span>
+                      <span data-lid="LID-TA-ATT-RISK_1">주 52시간 초과 위험</span>
+                      <span data-lid="LID-TA-ATT-RISK_2">연속 야간근무 누적</span>
+                      <span data-lid="LID-TA-ATT-RISK_3">계획 대비 실제 충돌</span>
                     </div>
                   </section>
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Quick Actions</strong>
-                      <span>실행</span>
+                      <strong data-lid="LID-TA-ATT-ACTION_TITLE">Quick Actions</strong>
+                      <span data-lid="LID-TA-ATT-ACTION_SUB">실행</span>
                     </div>
                     <div class="list dense">
-                      <span>정정 요청</span>
-                      <span>스케줄 조정</span>
-                      <span>리포트 추출</span>
+                      <span data-lid="LID-TA-ATT-ACTION_1">보정 요청</span>
+                      <span data-lid="LID-TA-ATT-ACTION_2">교대 조정</span>
+                      <span data-lid="LID-TA-ATT-ACTION_3">리포트 추출</span>
                     </div>
                   </section>
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Closing Watch</strong>
-                      <span>마감 전 체크</span>
+                      <strong data-lid="LID-TA-ATT-CLOSE_TITLE">Closing Watch</strong>
+                      <span data-lid="LID-TA-ATT-CLOSE_SUB">마감 전 체크</span>
                     </div>
                     <div class="list dense">
-                      <span>미확정 기록 5건</span>
-                      <span>미정리 초과근무 2건</span>
-                      <span>정산 연계 필요 1건</span>
+                      <span data-lid="LID-TA-ATT-CLOSE_1">미확정 기록 5건</span>
+                      <span data-lid="LID-TA-ATT-CLOSE_2">미정리 초과근무 2건</span>
+                      <span data-lid="LID-TA-ATT-CLOSE_3">정산 연계 필요 1건</span>
                     </div>
                   </section>
                 </div>
