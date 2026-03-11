@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Reports Insights Detailed Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-RPT-EYEBROW": { "ko": "WI-TA-011 / Reports & Insights", "en": "WI-TA-011 / Reports & Insights" },
+        "LID-TA-RPT-HERO_TITLE": { "ko": "운영 지표와 이상 징후를 함께 읽는<br />Reports & Insights", "en": "Reports & Insights<br />for metrics and anomalies" },
+        "LID-TA-RPT-HERO_TEXT": { "ko": "리포트는 다운로드 센터가 아니라, 조직 상태와 추세를 읽고 다음 조치를 결정하는 인사이트 허브여야 합니다.", "en": "Reports should not be a download center. They should be an insight hub for reading trends and deciding next actions." },
+        "LID-TA-RPT-CHIP_TREND": { "ko": "Trend-first", "en": "Trend-first" },
+        "LID-TA-RPT-CHIP_ALERT": { "ko": "Anomaly-aware", "en": "Anomaly-aware" },
+        "LID-TA-RPT-CHIP_EXPORT": { "ko": "Export-ready", "en": "Export-ready" },
+        "LID-TA-RPT-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-TA-RPT-NOTE_1": { "ko": "핵심 추세와 이상 징후가 먼저 보이는지", "en": "Whether key trends and anomalies appear first" },
+        "LID-TA-RPT-NOTE_2": { "ko": "People와 Attendance 인사이트가 연결되는지", "en": "Whether people and attendance insights connect" },
+        "LID-TA-RPT-NOTE_3": { "ko": "추출과 예약 발송이 자연스럽게 이어지는지", "en": "Whether export and scheduled delivery connect naturally" },
+        "LID-TA-RPT-SCREEN_TITLE": { "ko": "Insight Dashboard + Export Center", "en": "Insight Dashboard + Export Center" },
+        "LID-TA-RPT-SCREEN_DESC": { "ko": "핵심 추세, 이상 징후, 추출/예약 발송을 결합한 구조", "en": "A structure combining trends, anomalies, and export scheduling" },
+        "LID-TA-RPT-BRAND": { "ko": "Reports", "en": "Reports" },
+        "LID-TA-RPT-SEARCH": { "ko": "Search report, metric, anomaly, schedule", "en": "Search report, metric, anomaly, schedule" },
+        "LID-TA-RPT-PILL_ACTIVE": { "ko": "People Insights", "en": "People Insights" },
+        "LID-TA-RPT-PILL_ATT": { "ko": "Attendance Insights", "en": "Attendance Insights" },
+        "LID-TA-RPT-KPI_1": { "ko": "인원 증가율 6.2%", "en": "6.2% headcount growth" },
+        "LID-TA-RPT-KPI_2": { "ko": "근태 예외 14건", "en": "14 attendance anomalies" },
+        "LID-TA-RPT-KPI_3": { "ko": "휴가 사용률 71%", "en": "71% leave usage" },
+        "LID-TA-RPT-KPI_4": { "ko": "승인 병목 5건", "en": "5 approval bottlenecks" },
+        "LID-TA-RPT-KPI_5": { "ko": "예약 발송 8건", "en": "8 scheduled exports" },
+        "LID-TA-RPT-TREND_TITLE": { "ko": "Trend Monitor", "en": "Trend Monitor" },
+        "LID-TA-RPT-TREND_SUB": { "ko": "최근 30일", "en": "Last 30 days" },
+        "LID-TA-RPT-TREND_1": { "ko": "Product 채용 증가", "en": "Product hiring up" },
+        "LID-TA-RPT-TREND_2": { "ko": "Engineering 초과근무 감소", "en": "Engineering overtime down" },
+        "LID-TA-RPT-TREND_3": { "ko": "Sales 휴가 사용 집중", "en": "Sales leave spike" },
+        "LID-TA-RPT-ALERT_TITLE": { "ko": "Anomaly Signals", "en": "Anomaly Signals" },
+        "LID-TA-RPT-ALERT_SUB": { "ko": "즉시 확인", "en": "Needs review" },
+        "LID-TA-RPT-ALERT_1": { "ko": "지각 급증 / Support 팀", "en": "Tardiness spike / Support" },
+        "LID-TA-RPT-ALERT_2": { "ko": "승인 적체 / 비용 품의", "en": "Approval backlog / Expense workflow" },
+        "LID-TA-RPT-ALERT_3": { "ko": "휴가 촉진 대상 증가", "en": "Leave prompt target increase" },
+        "LID-TA-RPT-EXPORT_TITLE": { "ko": "Export Center", "en": "Export Center" },
+        "LID-TA-RPT-EXPORT_SUB": { "ko": "수동 추출", "en": "Manual export" },
+        "LID-TA-RPT-EXPORT_1": { "ko": "CSV / XLSX / PDF", "en": "CSV / XLSX / PDF" },
+        "LID-TA-RPT-EXPORT_2": { "ko": "기간 / 조직 필터", "en": "Date / org filters" },
+        "LID-TA-RPT-EXPORT_3": { "ko": "다운로드 이력", "en": "Download history" },
+        "LID-TA-RPT-SCHED_TITLE": { "ko": "Scheduled Reports", "en": "Scheduled Reports" },
+        "LID-TA-RPT-SCHED_SUB": { "ko": "정기 발송", "en": "Recurring delivery" },
+        "LID-TA-RPT-SCHED_1": { "ko": "매주 월요일 / People Summary", "en": "Every Monday / People Summary" },
+        "LID-TA-RPT-SCHED_2": { "ko": "매월 1일 / Attendance Summary", "en": "1st of month / Attendance Summary" },
+        "LID-TA-RPT-SCHED_3": { "ko": "발송 실패 1건", "en": "1 delivery failure" },
+        "LID-TA-RPT-ACTION_TITLE": { "ko": "Quick Actions", "en": "Quick Actions" },
+        "LID-TA-RPT-ACTION_SUB": { "ko": "실행", "en": "Ops" },
+        "LID-TA-RPT-ACTION_1": { "ko": "인사이트 열기", "en": "Open insight" },
+        "LID-TA-RPT-ACTION_2": { "ko": "파일 추출", "en": "Export file" },
+        "LID-TA-RPT-ACTION_3": { "ko": "정기 발송 설정", "en": "Schedule report" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TA-RPT-EYEBROW">WI-TA-011 / Reports & Insights</p>
+          <h1 data-lid="LID-TA-RPT-HERO_TITLE" data-lid-html="true">운영 지표와 이상 징후를 함께 읽는<br />Reports &amp; Insights</h1>
+          <p class="hero-text" data-lid="LID-TA-RPT-HERO_TEXT">리포트는 다운로드 센터가 아니라, 조직 상태와 추세를 읽고 다음 조치를 결정하는 인사이트 허브여야 합니다.</p>
+          <div class="hero-chips">
+            <span data-lid="LID-TA-RPT-CHIP_TREND">Trend-first</span>
+            <span data-lid="LID-TA-RPT-CHIP_ALERT">Anomaly-aware</span>
+            <span data-lid="LID-TA-RPT-CHIP_EXPORT">Export-ready</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2 data-lid="LID-TA-RPT-NOTE_TITLE">핵심 확인 포인트</h2>
+          <ul>
+            <li data-lid="LID-TA-RPT-NOTE_1">핵심 추세와 이상 징후가 먼저 보이는지</li>
+            <li data-lid="LID-TA-RPT-NOTE_2">People와 Attendance 인사이트가 연결되는지</li>
+            <li data-lid="LID-TA-RPT-NOTE_3">추출과 예약 발송이 자연스럽게 이어지는지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>I</span>
+              <div>
+                <h3 data-lid="LID-TA-RPT-SCREEN_TITLE">Insight Dashboard + Export Center</h3>
+                <p data-lid="LID-TA-RPT-SCREEN_DESC">핵심 추세, 이상 징후, 추출/예약 발송을 결합한 구조</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar slim">
+                <span class="brand" data-lid="LID-TA-RPT-BRAND">Reports</span>
+                <span class="search wide" data-lid="LID-TA-RPT-SEARCH">Search report, metric, anomaly, schedule</span>
+                <span class="pill active" data-lid="LID-TA-RPT-PILL_ACTIVE">People Insights</span>
+                <span class="pill" data-lid="LID-TA-RPT-PILL_ATT">Attendance Insights</span>
+              </div>
+              <div class="main">
+                <div class="kpi-row five">
+                  <div class="kpi emphasis"><strong>6.2%</strong><span data-lid="LID-TA-RPT-KPI_1">인원 증가율 6.2%</span></div>
+                  <div class="kpi"><strong>14</strong><span data-lid="LID-TA-RPT-KPI_2">근태 예외 14건</span></div>
+                  <div class="kpi"><strong>71%</strong><span data-lid="LID-TA-RPT-KPI_3">휴가 사용률 71%</span></div>
+                  <div class="kpi"><strong>5</strong><span data-lid="LID-TA-RPT-KPI_4">승인 병목 5건</span></div>
+                  <div class="kpi"><strong>8</strong><span data-lid="LID-TA-RPT-KPI_5">예약 발송 8건</span></div>
+                </div>
+                <div class="panel-row admin-hero">
+                  <section class="panel large">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-RPT-TREND_TITLE">Trend Monitor</strong>
+                      <span data-lid="LID-TA-RPT-TREND_SUB">최근 30일</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-RPT-TREND_1">Product 채용 증가</span>
+                      <span data-lid="LID-TA-RPT-TREND_2">Engineering 초과근무 감소</span>
+                      <span data-lid="LID-TA-RPT-TREND_3">Sales 휴가 사용 집중</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-RPT-ALERT_TITLE">Anomaly Signals</strong>
+                      <span data-lid="LID-TA-RPT-ALERT_SUB">즉시 확인</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-RPT-ALERT_1">지각 급증 / Support 팀</span>
+                      <span data-lid="LID-TA-RPT-ALERT_2">승인 적체 / 비용 품의</span>
+                      <span data-lid="LID-TA-RPT-ALERT_3">휴가 촉진 대상 증가</span>
+                    </div>
+                  </section>
+                </div>
+                <div class="panel-row admin-bottom">
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-RPT-EXPORT_TITLE">Export Center</strong>
+                      <span data-lid="LID-TA-RPT-EXPORT_SUB">수동 추출</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-RPT-EXPORT_1">CSV / XLSX / PDF</span>
+                      <span data-lid="LID-TA-RPT-EXPORT_2">기간 / 조직 필터</span>
+                      <span data-lid="LID-TA-RPT-EXPORT_3">다운로드 이력</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-RPT-SCHED_TITLE">Scheduled Reports</strong>
+                      <span data-lid="LID-TA-RPT-SCHED_SUB">정기 발송</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-RPT-SCHED_1">매주 월요일 / People Summary</span>
+                      <span data-lid="LID-TA-RPT-SCHED_2">매월 1일 / Attendance Summary</span>
+                      <span data-lid="LID-TA-RPT-SCHED_3">발송 실패 1건</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-RPT-ACTION_TITLE">Quick Actions</strong>
+                      <span data-lid="LID-TA-RPT-ACTION_SUB">실행</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-RPT-ACTION_1">인사이트 열기</span>
+                      <span data-lid="LID-TA-RPT-ACTION_2">파일 추출</span>
+                      <span data-lid="LID-TA-RPT-ACTION_3">정기 발송 설정</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

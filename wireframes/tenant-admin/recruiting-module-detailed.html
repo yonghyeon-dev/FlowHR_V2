@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Recruiting Module Detailed Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-REC-EYEBROW": { "ko": "WI-TA-009 / Recruiting Module", "en": "WI-TA-009 / Recruiting Module" },
+        "LID-TA-REC-HERO_TITLE": { "ko": "채용, 온보딩, 오프보딩을 이어서 보는<br />Recruiting Module", "en": "A Recruiting Module<br />for hiring, onboarding, and offboarding" },
+        "LID-TA-REC-HERO_TEXT": { "ko": "채용 파이프라인과 입사 체크리스트, 퇴사 절차는 같은 인력 라이프사이클 흐름 안에서 이어져야 합니다.", "en": "Hiring pipelines, onboarding checklists, and offboarding steps should connect within the same workforce lifecycle." },
+        "LID-TA-REC-CHIP_PIPELINE": { "ko": "Pipeline-led", "en": "Pipeline-led" },
+        "LID-TA-REC-CHIP_ONBOARD": { "ko": "Checklist-driven", "en": "Checklist-driven" },
+        "LID-TA-REC-CHIP_OFFBOARD": { "ko": "Lifecycle-linked", "en": "Lifecycle-linked" },
+        "LID-TA-REC-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-TA-REC-NOTE_1": { "ko": "채용 병목이 먼저 보이는지", "en": "Whether hiring bottlenecks show up first" },
+        "LID-TA-REC-NOTE_2": { "ko": "온보딩과 오프보딩이 체크리스트 중심으로 읽히는지", "en": "Whether onboarding and offboarding read as checklist-driven flows" },
+        "LID-TA-REC-NOTE_3": { "ko": "후보자에서 직원 전환 흐름이 자연스러운지", "en": "Whether the candidate-to-employee transition feels natural" },
+        "LID-TA-REC-SCREEN_TITLE": { "ko": "Hiring Dashboard + Lifecycle Board", "en": "Hiring Dashboard + Lifecycle Board" },
+        "LID-TA-REC-SCREEN_DESC": { "ko": "채용 단계, 온보딩 체크리스트, 오프보딩 상태를 한 보드에 배치", "en": "Place hiring stages, onboarding checklists, and offboarding status in one board" },
+        "LID-TA-REC-BRAND": { "ko": "Recruiting", "en": "Recruiting" },
+        "LID-TA-REC-SEARCH": { "ko": "Search candidate, posting, onboarding, offboarding", "en": "Search candidate, posting, onboarding, offboarding" },
+        "LID-TA-REC-PILL_ACTIVE": { "ko": "진행 중 채용", "en": "Active hiring" },
+        "LID-TA-REC-PILL_ONBOARD": { "ko": "온보딩", "en": "Onboarding" },
+        "LID-TA-REC-KPI_1": { "ko": "오픈 포지션 14개", "en": "14 open positions" },
+        "LID-TA-REC-KPI_2": { "ko": "면접 대기 23명", "en": "23 interviews pending" },
+        "LID-TA-REC-KPI_3": { "ko": "오퍼 검토 4건", "en": "4 offers under review" },
+        "LID-TA-REC-KPI_4": { "ko": "이번 주 입사 6명", "en": "6 starts this week" },
+        "LID-TA-REC-KPI_5": { "ko": "퇴사 절차 진행 3건", "en": "3 offboardings in progress" },
+        "LID-TA-REC-QUEUE_TITLE": { "ko": "Hiring Queue", "en": "Hiring Queue" },
+        "LID-TA-REC-QUEUE_SUB": { "ko": "병목 우선", "en": "Bottlenecks first" },
+        "LID-TA-REC-QUEUE_1_TITLE": { "ko": "최종 면접 일정 미확정", "en": "Final interview unscheduled" },
+        "LID-TA-REC-QUEUE_1_TEXT": { "ko": "Backend / 2명 / 이번 주", "en": "Backend / 2 candidates / this week" },
+        "LID-TA-REC-QUEUE_1_ACTION": { "ko": "일정 확정", "en": "Schedule" },
+        "LID-TA-REC-QUEUE_2_TITLE": { "ko": "온보딩 문서 미완료", "en": "Onboarding documents incomplete" },
+        "LID-TA-REC-QUEUE_2_TEXT": { "ko": "입사 예정 3명 / 서명 대기", "en": "3 upcoming hires / signature pending" },
+        "LID-TA-REC-QUEUE_2_ACTION": { "ko": "재발송", "en": "Resend" },
+        "LID-TA-REC-QUEUE_3_TITLE": { "ko": "오프보딩 자산 회수 대기", "en": "Offboarding asset return pending" },
+        "LID-TA-REC-QUEUE_3_TEXT": { "ko": "퇴사 예정 1명 / 노트북 미회수", "en": "1 offboarding / laptop pending" },
+        "LID-TA-REC-QUEUE_3_ACTION": { "ko": "추적", "en": "Track" },
+        "LID-TA-REC-PIPELINE_TITLE": { "ko": "Candidate Pipeline", "en": "Candidate Pipeline" },
+        "LID-TA-REC-PIPELINE_SUB": { "ko": "단계별", "en": "By stage" },
+        "LID-TA-REC-PIPELINE_1": { "ko": "서류 32명", "en": "32 in screening" },
+        "LID-TA-REC-PIPELINE_2": { "ko": "1차 면접 14명", "en": "14 in 1st interview" },
+        "LID-TA-REC-PIPELINE_3": { "ko": "오퍼 4명", "en": "4 offers" },
+        "LID-TA-REC-ONBOARD_TITLE": { "ko": "Onboarding Center", "en": "Onboarding Center" },
+        "LID-TA-REC-ONBOARD_SUB": { "ko": "이번 주", "en": "This week" },
+        "LID-TA-REC-ONBOARD_1": { "ko": "계정 생성 5건", "en": "5 account setups" },
+        "LID-TA-REC-ONBOARD_2": { "ko": "장비 지급 4건", "en": "4 equipment issues" },
+        "LID-TA-REC-ONBOARD_3": { "ko": "문서 완료 3건", "en": "3 document completions" },
+        "LID-TA-REC-OFFBOARD_TITLE": { "ko": "Offboarding Center", "en": "Offboarding Center" },
+        "LID-TA-REC-OFFBOARD_SUB": { "ko": "진행 중", "en": "In progress" },
+        "LID-TA-REC-OFFBOARD_1": { "ko": "권한 종료 대기 2건", "en": "2 access removals pending" },
+        "LID-TA-REC-OFFBOARD_2": { "ko": "자산 회수 1건", "en": "1 asset return pending" },
+        "LID-TA-REC-OFFBOARD_3": { "ko": "퇴사 문서 완료 2건", "en": "2 exit document completions" },
+        "LID-TA-REC-ACTION_TITLE": { "ko": "Quick Actions", "en": "Quick Actions" },
+        "LID-TA-REC-ACTION_SUB": { "ko": "실행", "en": "Ops" },
+        "LID-TA-REC-ACTION_1": { "ko": "공고 생성", "en": "Create posting" },
+        "LID-TA-REC-ACTION_2": { "ko": "후보자 이동", "en": "Move candidate" },
+        "LID-TA-REC-ACTION_3": { "ko": "온보딩 시작", "en": "Start onboarding" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TA-REC-EYEBROW">WI-TA-009 / Recruiting Module</p>
+          <h1 data-lid="LID-TA-REC-HERO_TITLE" data-lid-html="true">채용, 온보딩, 오프보딩을 이어서 보는<br />Recruiting Module</h1>
+          <p class="hero-text" data-lid="LID-TA-REC-HERO_TEXT">채용 파이프라인과 입사 체크리스트, 퇴사 절차는 같은 인력 라이프사이클 흐름 안에서 이어져야 합니다.</p>
+          <div class="hero-chips">
+            <span data-lid="LID-TA-REC-CHIP_PIPELINE">Pipeline-led</span>
+            <span data-lid="LID-TA-REC-CHIP_ONBOARD">Checklist-driven</span>
+            <span data-lid="LID-TA-REC-CHIP_OFFBOARD">Lifecycle-linked</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2 data-lid="LID-TA-REC-NOTE_TITLE">핵심 확인 포인트</h2>
+          <ul>
+            <li data-lid="LID-TA-REC-NOTE_1">채용 병목이 먼저 보이는지</li>
+            <li data-lid="LID-TA-REC-NOTE_2">온보딩과 오프보딩이 체크리스트 중심으로 읽히는지</li>
+            <li data-lid="LID-TA-REC-NOTE_3">후보자에서 직원 전환 흐름이 자연스러운지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>R</span>
+              <div>
+                <h3 data-lid="LID-TA-REC-SCREEN_TITLE">Hiring Dashboard + Lifecycle Board</h3>
+                <p data-lid="LID-TA-REC-SCREEN_DESC">채용 단계, 온보딩 체크리스트, 오프보딩 상태를 한 보드에 배치</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar slim">
+                <span class="brand" data-lid="LID-TA-REC-BRAND">Recruiting</span>
+                <span class="search wide" data-lid="LID-TA-REC-SEARCH">Search candidate, posting, onboarding, offboarding</span>
+                <span class="pill active" data-lid="LID-TA-REC-PILL_ACTIVE">진행 중 채용</span>
+                <span class="pill" data-lid="LID-TA-REC-PILL_ONBOARD">온보딩</span>
+              </div>
+              <div class="main">
+                <div class="kpi-row five">
+                  <div class="kpi emphasis"><strong>14</strong><span data-lid="LID-TA-REC-KPI_1">오픈 포지션 14개</span></div>
+                  <div class="kpi"><strong>23</strong><span data-lid="LID-TA-REC-KPI_2">면접 대기 23명</span></div>
+                  <div class="kpi"><strong>4</strong><span data-lid="LID-TA-REC-KPI_3">오퍼 검토 4건</span></div>
+                  <div class="kpi"><strong>6</strong><span data-lid="LID-TA-REC-KPI_4">이번 주 입사 6명</span></div>
+                  <div class="kpi"><strong>3</strong><span data-lid="LID-TA-REC-KPI_5">퇴사 절차 진행 3건</span></div>
+                </div>
+                <div class="panel-row admin-hero">
+                  <section class="panel large">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-REC-QUEUE_TITLE">Hiring Queue</strong>
+                      <span data-lid="LID-TA-REC-QUEUE_SUB">병목 우선</span>
+                    </div>
+                    <div class="queue-list">
+                      <div class="queue-item critical">
+                        <div>
+                          <strong data-lid="LID-TA-REC-QUEUE_1_TITLE">최종 면접 일정 미확정</strong>
+                          <p data-lid="LID-TA-REC-QUEUE_1_TEXT">Backend / 2명 / 이번 주</p>
+                        </div>
+                        <span data-lid="LID-TA-REC-QUEUE_1_ACTION">일정 확정</span>
+                      </div>
+                      <div class="queue-item high">
+                        <div>
+                          <strong data-lid="LID-TA-REC-QUEUE_2_TITLE">온보딩 문서 미완료</strong>
+                          <p data-lid="LID-TA-REC-QUEUE_2_TEXT">입사 예정 3명 / 서명 대기</p>
+                        </div>
+                        <span data-lid="LID-TA-REC-QUEUE_2_ACTION">재발송</span>
+                      </div>
+                      <div class="queue-item medium">
+                        <div>
+                          <strong data-lid="LID-TA-REC-QUEUE_3_TITLE">오프보딩 자산 회수 대기</strong>
+                          <p data-lid="LID-TA-REC-QUEUE_3_TEXT">퇴사 예정 1명 / 노트북 미회수</p>
+                        </div>
+                        <span data-lid="LID-TA-REC-QUEUE_3_ACTION">추적</span>
+                      </div>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-REC-PIPELINE_TITLE">Candidate Pipeline</strong>
+                      <span data-lid="LID-TA-REC-PIPELINE_SUB">단계별</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-REC-PIPELINE_1">서류 32명</span>
+                      <span data-lid="LID-TA-REC-PIPELINE_2">1차 면접 14명</span>
+                      <span data-lid="LID-TA-REC-PIPELINE_3">오퍼 4명</span>
+                    </div>
+                  </section>
+                </div>
+                <div class="panel-row admin-bottom">
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-REC-ONBOARD_TITLE">Onboarding Center</strong>
+                      <span data-lid="LID-TA-REC-ONBOARD_SUB">이번 주</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-REC-ONBOARD_1">계정 생성 5건</span>
+                      <span data-lid="LID-TA-REC-ONBOARD_2">장비 지급 4건</span>
+                      <span data-lid="LID-TA-REC-ONBOARD_3">문서 완료 3건</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-REC-OFFBOARD_TITLE">Offboarding Center</strong>
+                      <span data-lid="LID-TA-REC-OFFBOARD_SUB">진행 중</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-REC-OFFBOARD_1">권한 종료 대기 2건</span>
+                      <span data-lid="LID-TA-REC-OFFBOARD_2">자산 회수 1건</span>
+                      <span data-lid="LID-TA-REC-OFFBOARD_3">퇴사 문서 완료 2건</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-REC-ACTION_TITLE">Quick Actions</strong>
+                      <span data-lid="LID-TA-REC-ACTION_SUB">실행</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-REC-ACTION_1">공고 생성</span>
+                      <span data-lid="LID-TA-REC-ACTION_2">후보자 이동</span>
+                      <span data-lid="LID-TA-REC-ACTION_3">온보딩 시작</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

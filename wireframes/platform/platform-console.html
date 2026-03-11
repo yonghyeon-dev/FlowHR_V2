@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Platform Console Wireframes</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-PC-CONSOLE-EYEBROW": { "ko": "WI-PC-004 / Platform Console", "en": "WI-PC-004 / Platform Console" },
+        "LID-PC-CONSOLE-HERO_TITLE": { "ko": "우리 SaaS 운영조직을 위한<br />Platform Console 기준 화면", "en": "Platform Console<br />for SaaS operations teams" },
+        "LID-PC-CONSOLE-HERO_TEXT": { "ko": "고객사 HR 운영 화면과 분리된 백오피스입니다. 테넌트 상태, 과금, 지원, 보안, 감사가 한 흐름 안에서 이어지되 화면 목적은 명확히 분리합니다.", "en": "This is a back office separated from tenant HR operations. Tenant health, billing, support, security, and audit connect in one flow while each screen keeps a clear purpose." },
+        "LID-PC-CONSOLE-CHIP_OPS": { "ko": "Platform Operator", "en": "Platform Operator" },
+        "LID-PC-CONSOLE-CHIP_BILLING": { "ko": "Billing Admin", "en": "Billing Admin" },
+        "LID-PC-CONSOLE-CHIP_SECURITY": { "ko": "Security / Auditor", "en": "Security / Auditor" },
+        "LID-PC-CONSOLE-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-PC-CONSOLE-NOTE_1": { "ko": "고객사 운영 화면과 충분히 다른 콘솔처럼 보이는지", "en": "Whether it feels clearly distinct from tenant operations" },
+        "LID-PC-CONSOLE-NOTE_2": { "ko": "오늘 처리할 운영 리스크가 먼저 읽히는지", "en": "Whether today's operational risks appear first" },
+        "LID-PC-CONSOLE-NOTE_3": { "ko": "지원, 과금, 보안 흐름이 자연스럽게 분리되는지", "en": "Whether support, billing, and security stay clearly separated" },
+        "LID-PC-CONSOLE-MODULE_EYEBROW": { "ko": "Modules", "en": "Modules" },
+        "LID-PC-CONSOLE-MODULE_TITLE": { "ko": "Platform Console 모듈", "en": "Platform Console modules" },
+        "LID-PC-CONSOLE-MOD_1": { "ko": "Overview", "en": "Overview" },
+        "LID-PC-CONSOLE-MOD_2": { "ko": "Tenants", "en": "Tenants" },
+        "LID-PC-CONSOLE-MOD_3": { "ko": "Plans & Billing", "en": "Plans & Billing" },
+        "LID-PC-CONSOLE-MOD_4": { "ko": "Support Ops", "en": "Support Ops" },
+        "LID-PC-CONSOLE-MOD_5": { "ko": "Monitoring", "en": "Monitoring" },
+        "LID-PC-CONSOLE-MOD_6": { "ko": "Audit & Security", "en": "Audit & Security" },
+        "LID-PC-CONSOLE-MOD_7": { "ko": "Platform Settings", "en": "Platform Settings" },
+        "LID-PC-CONSOLE-SCREEN_1_TITLE": { "ko": "Platform Overview Dashboard", "en": "Platform Overview Dashboard" },
+        "LID-PC-CONSOLE-SCREEN_1_DESC": { "ko": "운영 위험과 긴급 처리 항목을 먼저 읽는 대시보드", "en": "A dashboard that surfaces risks and urgent work first" },
+        "LID-PC-CONSOLE-BRAND": { "ko": "FlowHR Console", "en": "FlowHR Console" },
+        "LID-PC-CONSOLE-SEARCH": { "ko": "Search tenant, invoice, support ticket", "en": "Search tenant, invoice, support ticket" },
+        "LID-PC-CONSOLE-KPI_1": { "ko": "활성 테넌트", "en": "Active tenants" },
+        "LID-PC-CONSOLE-KPI_2": { "ko": "유예 고객", "en": "Grace accounts" },
+        "LID-PC-CONSOLE-KPI_3": { "ko": "결제 실패", "en": "Payment failures" },
+        "LID-PC-CONSOLE-KPI_4": { "ko": "미해결 지원 이슈", "en": "Open support issues" },
+        "LID-PC-CONSOLE-OPS_TITLE": { "ko": "Operations Queue", "en": "Operations Queue" },
+        "LID-PC-CONSOLE-OPS_SUB": { "ko": "지금 처리할 항목", "en": "Needs action now" },
+        "LID-PC-CONSOLE-OPS_1": { "ko": "결제 실패 고객사 3건", "en": "3 tenants with payment failures" },
+        "LID-PC-CONSOLE-OPS_2": { "ko": "오늘 만료 예정 플랜 5건", "en": "5 plans expiring today" },
+        "LID-PC-CONSOLE-OPS_3": { "ko": "지원 영향 추적 테넌트 2건", "en": "2 tenants under incident watch" },
+        "LID-PC-CONSOLE-OPS_4": { "ko": "보안 검토 대기 4건", "en": "4 security reviews pending" },
+        "LID-PC-CONSOLE-HEALTH_TITLE": { "ko": "Platform Health", "en": "Platform Health" },
+        "LID-PC-CONSOLE-HEALTH_SUB": { "ko": "실시간", "en": "Real-time" },
+        "LID-PC-CONSOLE-RECENT_TITLE": { "ko": "Recent Tenant Changes", "en": "Recent Tenant Changes" },
+        "LID-PC-CONSOLE-RECENT_SUB": { "ko": "상태 변경", "en": "Status changes" },
+        "LID-PC-CONSOLE-SIGNAL_TITLE": { "ko": "Security Signals", "en": "Security Signals" },
+        "LID-PC-CONSOLE-SIGNAL_SUB": { "ko": "운영자 기준", "en": "Operator scope" },
+        "LID-PC-CONSOLE-SIGNAL_1": { "ko": "민감 권한 변경 2건", "en": "2 sensitive permission changes" },
+        "LID-PC-CONSOLE-SIGNAL_2": { "ko": "비정상 로그인 시도 4건", "en": "4 suspicious login attempts" },
+        "LID-PC-CONSOLE-SIGNAL_3": { "ko": "감사 검토 필요 1건", "en": "1 audit review required" },
+        "LID-PC-CONSOLE-SIDEBAR_1": { "ko": "Overview", "en": "Overview" },
+        "LID-PC-CONSOLE-SIDEBAR_2": { "ko": "Tenants", "en": "Tenants" },
+        "LID-PC-CONSOLE-SIDEBAR_3": { "ko": "Plans & Billing", "en": "Plans & Billing" },
+        "LID-PC-CONSOLE-SIDEBAR_4": { "ko": "Support Ops", "en": "Support Ops" },
+        "LID-PC-CONSOLE-SIDEBAR_5": { "ko": "Monitoring", "en": "Monitoring" },
+        "LID-PC-CONSOLE-SIDEBAR_6": { "ko": "Audit & Security", "en": "Audit & Security" },
+        "LID-PC-CONSOLE-SIDEBAR_7": { "ko": "Settings", "en": "Settings" },
+        "LID-PC-CONSOLE-RECENT_1": { "ko": "Acme Corp / 체험판 → 활성", "en": "Acme Corp / Trial → Active" },
+        "LID-PC-CONSOLE-RECENT_2": { "ko": "Nova Team / 활성 → 유예", "en": "Nova Team / Active → Grace" },
+        "LID-PC-CONSOLE-RECENT_3": { "ko": "DeepField / 플랜 업그레이드", "en": "DeepField / Plan upgraded" },
+        "LID-PC-CONSOLE-SCREEN_2_TITLE": { "ko": "Tenant Operations", "en": "Tenant Operations" },
+        "LID-PC-CONSOLE-SCREEN_2_DESC": { "ko": "테넌트 리스트와 상세 메타 뷰를 중심으로 운영하는 구조", "en": "An operating model centered on tenant list and tenant meta detail" },
+        "LID-PC-CONSOLE-SCREEN_2_BRAND": { "ko": "Tenants", "en": "Tenants" },
+        "LID-PC-CONSOLE-SCREEN_2_SEARCH": { "ko": "Search by tenant, admin, domain", "en": "Search by tenant, admin, domain" },
+        "LID-PC-CONSOLE-SCREEN_2_FILTER": { "ko": "활성", "en": "Active" },
+        "LID-PC-CONSOLE-TENANT_1_NAME": { "ko": "Acme Corp", "en": "Acme Corp" },
+        "LID-PC-CONSOLE-TENANT_1_PLAN": { "ko": "활성 / Growth 플랜", "en": "Active / Growth Plan" },
+        "LID-PC-CONSOLE-TENANT_1_SEATS": { "ko": "좌석 1,240개", "en": "1,240 seats" },
+        "LID-PC-CONSOLE-TENANT_2_NAME": { "ko": "Nova Team", "en": "Nova Team" },
+        "LID-PC-CONSOLE-TENANT_2_PLAN": { "ko": "유예 기간", "en": "Grace Period" },
+        "LID-PC-CONSOLE-TENANT_2_SEATS": { "ko": "결제 실패", "en": "Payment failed" },
+        "LID-PC-CONSOLE-TENANT_3_NAME": { "ko": "DeepField", "en": "DeepField" },
+        "LID-PC-CONSOLE-TENANT_3_PLAN": { "ko": "체험판", "en": "Trial" },
+        "LID-PC-CONSOLE-TENANT_3_SEATS": { "ko": "온보딩 대기", "en": "Onboarding pending" },
+        "LID-PC-CONSOLE-DETAIL_TITLE": { "ko": "Tenant Detail Meta View", "en": "Tenant Detail Meta View" },
+        "LID-PC-CONSOLE-DETAIL_TEXT": { "ko": "기본 정보, 플랜, 결제 상태, 사용량 지표, 지원 이력, 운영 메모, 최근 상태 변경을 한 흐름으로 배치합니다.", "en": "Places core profile, plan, billing state, usage signals, support history, ops notes, and recent status changes in one flow." },
+        "LID-PC-CONSOLE-DETAIL_ACTION_1": { "ko": "상태 변경", "en": "Change status" },
+        "LID-PC-CONSOLE-DETAIL_ACTION_2": { "ko": "플랜 변경", "en": "Change plan" },
+        "LID-PC-CONSOLE-DETAIL_ACTION_3": { "ko": "공지 발송", "en": "Send notice" },
+        "LID-PC-CONSOLE-DETAIL_ACTION_4": { "ko": "지원 등록", "en": "Create support case" },
+        "LID-PC-CONSOLE-SCREEN_3_TITLE": { "ko": "Support Ops & Audit", "en": "Support Ops & Audit" },
+        "LID-PC-CONSOLE-SCREEN_3_DESC": { "ko": "지원 이슈와 운영자 감사 흐름을 한 콘솔 안에서 묶는 구성", "en": "A shared console structure for support issues and operator audit review" },
+        "LID-PC-CONSOLE-SCREEN_3_BRAND": { "ko": "Support Ops", "en": "Support Ops" },
+        "LID-PC-CONSOLE-SCREEN_3_TAB_1": { "ko": "진행 중 티켓", "en": "Open Tickets" },
+        "LID-PC-CONSOLE-SCREEN_3_TAB_2": { "ko": "감사 검토", "en": "Audit Review" },
+        "LID-PC-CONSOLE-SUPPORT_TITLE": { "ko": "Support Inbox", "en": "Support Inbox" },
+        "LID-PC-CONSOLE-SUPPORT_SUB": { "ko": "SLA 우선순위", "en": "SLA priority" },
+        "LID-PC-CONSOLE-SUPPORT_1": { "ko": "Nova Team / 결제 실패 / 4시간", "en": "Nova Team / Payment failure / 4h" },
+        "LID-PC-CONSOLE-SUPPORT_2": { "ko": "Acme Corp / SSO 설정 문의 / 8시간", "en": "Acme Corp / SSO setup question / 8h" },
+        "LID-PC-CONSOLE-SUPPORT_3": { "ko": "DeepField / 온보딩 요청 / 1일", "en": "DeepField / Onboarding request / 1d" },
+        "LID-PC-CONSOLE-SUPPORT_4": { "ko": "Orbit Labs / 권한 이슈 / 1일", "en": "Orbit Labs / Access issue / 1d" },
+        "LID-PC-CONSOLE-AUDIT_REVIEW_TITLE": { "ko": "Audit Review Queue", "en": "Audit Review Queue" },
+        "LID-PC-CONSOLE-AUDIT_REVIEW_SUB": { "ko": "민감 작업", "en": "Sensitive actions" },
+        "LID-PC-CONSOLE-AUDIT_REVIEW_1": { "ko": "운영자 권한 승격", "en": "Operator privilege escalation" },
+        "LID-PC-CONSOLE-AUDIT_REVIEW_2": { "ko": "테넌트 중지 처리", "en": "Tenant suspension" },
+        "LID-PC-CONSOLE-AUDIT_REVIEW_3": { "ko": "결제 수동 조정", "en": "Manual billing adjustment" },
+        "LID-PC-CONSOLE-NOTICE_TITLE": { "ko": "Notice Composer", "en": "Notice Composer" },
+        "LID-PC-CONSOLE-NOTICE_SUB": { "ko": "배포 / 장애 / 점검", "en": "Release / incident / maintenance" },
+        "LID-PC-CONSOLE-NOTICE_1": { "ko": "공지 제목", "en": "Notice title" },
+        "LID-PC-CONSOLE-NOTICE_2": { "ko": "대상 테넌트", "en": "Target tenants" },
+        "LID-PC-CONSOLE-NOTICE_3": { "ko": "발송 채널", "en": "Delivery channel" },
+        "LID-PC-CONSOLE-OP_AUDIT_TITLE": { "ko": "Operator Audit Log", "en": "Operator Audit Log" },
+        "LID-PC-CONSOLE-OP_AUDIT_SUB": { "ko": "최근 기록", "en": "Recent activity" },
+        "LID-PC-CONSOLE-OP_AUDIT_1": { "ko": "admin@flowhr / 플랜 변경", "en": "admin@flowhr / Plan changed" },
+        "LID-PC-CONSOLE-OP_AUDIT_2": { "ko": "ops@flowhr / 테넌트 유예 처리", "en": "ops@flowhr / Tenant moved to grace" },
+        "LID-PC-CONSOLE-OP_AUDIT_3": { "ko": "sec@flowhr / MFA 정책 수정", "en": "sec@flowhr / MFA policy updated" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-PC-CONSOLE-EYEBROW">WI-PC-004 / Platform Console</p>
+          <h1 data-lid="LID-PC-CONSOLE-HERO_TITLE" data-lid-html="true">우리 SaaS 운영조직을 위한<br />Platform Console 기준 화면</h1>
+          <p class="hero-text" data-lid="LID-PC-CONSOLE-HERO_TEXT">고객사 HR 운영 화면과 분리된 백오피스입니다. 테넌트 상태, 과금, 지원, 보안, 감사가 한 흐름 안에서 이어지되 화면 목적은 명확히 분리합니다.</p>
+          <div class="hero-chips">
+            <span data-lid="LID-PC-CONSOLE-CHIP_OPS">Platform Operator</span>
+            <span data-lid="LID-PC-CONSOLE-CHIP_BILLING">Billing Admin</span>
+            <span data-lid="LID-PC-CONSOLE-CHIP_SECURITY">Security / Auditor</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2 data-lid="LID-PC-CONSOLE-NOTE_TITLE">핵심 확인 포인트</h2>
+          <ul>
+            <li data-lid="LID-PC-CONSOLE-NOTE_1">고객사 운영 화면과 충분히 다른 콘솔처럼 보이는지</li>
+            <li data-lid="LID-PC-CONSOLE-NOTE_2">오늘 처리할 운영 리스크가 먼저 읽히는지</li>
+            <li data-lid="LID-PC-CONSOLE-NOTE_3">지원, 과금, 보안 흐름이 자연스럽게 분리되는지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="section-head">
+          <p class="eyebrow" data-lid="LID-PC-CONSOLE-MODULE_EYEBROW">Modules</p>
+          <h2 data-lid="LID-PC-CONSOLE-MODULE_TITLE">Platform Console 모듈</h2>
+          <div class="hero-chips">
+            <span data-lid="LID-PC-CONSOLE-MOD_1">Overview</span>
+            <span data-lid="LID-PC-CONSOLE-MOD_2">Tenants</span>
+            <span data-lid="LID-PC-CONSOLE-MOD_3">Plans & Billing</span>
+            <span data-lid="LID-PC-CONSOLE-MOD_4">Support Ops</span>
+            <span data-lid="LID-PC-CONSOLE-MOD_5">Monitoring</span>
+            <span data-lid="LID-PC-CONSOLE-MOD_6">Audit & Security</span>
+            <span data-lid="LID-PC-CONSOLE-MOD_7">Platform Settings</span>
+          </div>
+        </section>
+
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>01</span>
+              <div>
+                <h3 data-lid="LID-PC-CONSOLE-SCREEN_1_TITLE">Platform Overview Dashboard</h3>
+                <p data-lid="LID-PC-CONSOLE-SCREEN_1_DESC">운영 위험과 긴급 처리 항목을 먼저 읽는 대시보드</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar">
+                <span class="brand" data-lid="LID-PC-CONSOLE-BRAND">FlowHR Console</span>
+                <span class="search wide" data-lid="LID-PC-CONSOLE-SEARCH">Search tenant, invoice, support ticket</span>
+                <span class="avatar">OP</span>
+              </div>
+              <div class="layout">
+                <aside class="sidebar">
+                  <span class="active" data-lid="LID-PC-CONSOLE-SIDEBAR_1">Overview</span>
+                  <span data-lid="LID-PC-CONSOLE-SIDEBAR_2">Tenants</span>
+                  <span data-lid="LID-PC-CONSOLE-SIDEBAR_3">Plans & Billing</span>
+                  <span data-lid="LID-PC-CONSOLE-SIDEBAR_4">Support Ops</span>
+                  <span data-lid="LID-PC-CONSOLE-SIDEBAR_5">Monitoring</span>
+                  <span data-lid="LID-PC-CONSOLE-SIDEBAR_6">Audit & Security</span>
+                  <span data-lid="LID-PC-CONSOLE-SIDEBAR_7">Settings</span>
+                </aside>
+                <div class="main">
+                  <div class="kpi-row">
+                    <div class="kpi emphasis"><strong>124</strong><span data-lid="LID-PC-CONSOLE-KPI_1">활성 테넌트</span></div>
+                    <div class="kpi"><strong>7</strong><span data-lid="LID-PC-CONSOLE-KPI_2">유예 고객</span></div>
+                    <div class="kpi"><strong>3</strong><span data-lid="LID-PC-CONSOLE-KPI_3">결제 실패</span></div>
+                    <div class="kpi"><strong>12</strong><span data-lid="LID-PC-CONSOLE-KPI_4">미해결 지원 이슈</span></div>
+                  </div>
+                  <div class="panel-row">
+                    <section class="panel large">
+                      <div class="panel-head">
+                        <strong data-lid="LID-PC-CONSOLE-OPS_TITLE">Operations Queue</strong>
+                        <span data-lid="LID-PC-CONSOLE-OPS_SUB">지금 처리할 항목</span>
+                      </div>
+                      <div class="list dense">
+                        <span class="danger" data-lid="LID-PC-CONSOLE-OPS_1">결제 실패 고객사 3건</span>
+                        <span data-lid="LID-PC-CONSOLE-OPS_2">오늘 만료 예정 플랜 5건</span>
+                        <span data-lid="LID-PC-CONSOLE-OPS_3">지원 영향 추적 테넌트 2건</span>
+                        <span data-lid="LID-PC-CONSOLE-OPS_4">보안 검토 대기 4건</span>
+                      </div>
+                    </section>
+                    <section class="panel">
+                      <div class="panel-head">
+                        <strong data-lid="LID-PC-CONSOLE-HEALTH_TITLE">Platform Health</strong>
+                        <span data-lid="LID-PC-CONSOLE-HEALTH_SUB">실시간</span>
+                      </div>
+                      <div class="bars">
+                        <span style="--w: 91%"></span>
+                        <span style="--w: 77%"></span>
+                        <span style="--w: 63%"></span>
+                        <span style="--w: 88%"></span>
+                      </div>
+                    </section>
+                  </div>
+                  <div class="panel-row">
+                    <section class="panel">
+                      <div class="panel-head">
+                        <strong data-lid="LID-PC-CONSOLE-RECENT_TITLE">Recent Tenant Changes</strong>
+                        <span data-lid="LID-PC-CONSOLE-RECENT_SUB">상태 변경</span>
+                      </div>
+                      <div class="list">
+                        <span data-lid="LID-PC-CONSOLE-RECENT_1">Acme Corp / Trial → Active</span>
+                        <span data-lid="LID-PC-CONSOLE-RECENT_2">Nova Team / Active → Grace</span>
+                        <span data-lid="LID-PC-CONSOLE-RECENT_3">DeepField / Plan upgraded</span>
+                      </div>
+                    </section>
+                    <section class="panel">
+                      <div class="panel-head">
+                        <strong data-lid="LID-PC-CONSOLE-SIGNAL_TITLE">Security Signals</strong>
+                        <span data-lid="LID-PC-CONSOLE-SIGNAL_SUB">운영자 기준</span>
+                      </div>
+                      <div class="list">
+                        <span data-lid="LID-PC-CONSOLE-SIGNAL_1">민감 권한 변경 2건</span>
+                        <span data-lid="LID-PC-CONSOLE-SIGNAL_2">비정상 로그인 시도 4건</span>
+                        <span data-lid="LID-PC-CONSOLE-SIGNAL_3">감사 검토 필요 1건</span>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>02</span>
+              <div>
+                <h3 data-lid="LID-PC-CONSOLE-SCREEN_2_TITLE">Tenant Operations</h3>
+                <p data-lid="LID-PC-CONSOLE-SCREEN_2_DESC">테넌트 리스트와 상세 메타 뷰를 중심으로 운영하는 구조</p>
+              </div>
+            </div>
+            <div class="screen desktop compact">
+              <div class="topbar slim">
+                <span class="brand" data-lid="LID-PC-CONSOLE-SCREEN_2_BRAND">Tenants</span>
+                <span class="search wide" data-lid="LID-PC-CONSOLE-SCREEN_2_SEARCH">Search by tenant, admin, domain</span>
+                <span class="pill active" data-lid="LID-PC-CONSOLE-SCREEN_2_FILTER">Active</span>
+              </div>
+              <div class="split">
+                <section class="column list-column">
+                  <div class="stack-card active">
+                    <strong data-lid="LID-PC-CONSOLE-TENANT_1_NAME">Acme Corp</strong>
+                    <span data-lid="LID-PC-CONSOLE-TENANT_1_PLAN">Active / Growth Plan</span>
+                    <span class="status" data-lid="LID-PC-CONSOLE-TENANT_1_SEATS">1,240 seats</span>
+                  </div>
+                  <div class="stack-card">
+                    <strong data-lid="LID-PC-CONSOLE-TENANT_2_NAME">Nova Team</strong>
+                    <span data-lid="LID-PC-CONSOLE-TENANT_2_PLAN">Grace Period</span>
+                    <span class="status risk" data-lid="LID-PC-CONSOLE-TENANT_2_SEATS">결제 실패</span>
+                  </div>
+                  <div class="stack-card">
+                    <strong data-lid="LID-PC-CONSOLE-TENANT_3_NAME">DeepField</strong>
+                    <span data-lid="LID-PC-CONSOLE-TENANT_3_PLAN">Trial</span>
+                    <span class="status wait" data-lid="LID-PC-CONSOLE-TENANT_3_SEATS">온보딩 대기</span>
+                  </div>
+                </section>
+                <section class="column detail-column">
+                  <div class="detail-box tall">
+                    <strong data-lid="LID-PC-CONSOLE-DETAIL_TITLE">Tenant Detail Meta View</strong>
+                    <p data-lid="LID-PC-CONSOLE-DETAIL_TEXT">기본 정보, 플랜, 결제 상태, 사용량 지표, 지원 이력, 운영 메모, 최근 상태 변경을 한 흐름으로 배치합니다.</p>
+                  </div>
+                  <div class="detail-actions">
+                    <span data-lid="LID-PC-CONSOLE-DETAIL_ACTION_1">상태 변경</span>
+                    <span data-lid="LID-PC-CONSOLE-DETAIL_ACTION_2">플랜 변경</span>
+                    <span data-lid="LID-PC-CONSOLE-DETAIL_ACTION_3">공지 발송</span>
+                    <span data-lid="LID-PC-CONSOLE-DETAIL_ACTION_4">지원 등록</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>03</span>
+              <div>
+                <h3 data-lid="LID-PC-CONSOLE-SCREEN_3_TITLE">Support Ops & Audit</h3>
+                <p data-lid="LID-PC-CONSOLE-SCREEN_3_DESC">지원 이슈와 운영자 감사 흐름을 한 콘솔 안에서 묶는 구성</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar slim">
+                <span class="brand" data-lid="LID-PC-CONSOLE-SCREEN_3_BRAND">Support Ops</span>
+                <span class="pill active" data-lid="LID-PC-CONSOLE-SCREEN_3_TAB_1">Open Tickets</span>
+                <span class="pill" data-lid="LID-PC-CONSOLE-SCREEN_3_TAB_2">Audit Review</span>
+              </div>
+              <div class="panel-row bottom-gap">
+                <section class="panel large">
+                  <div class="panel-head">
+                    <strong data-lid="LID-PC-CONSOLE-SUPPORT_TITLE">Support Inbox</strong>
+                    <span data-lid="LID-PC-CONSOLE-SUPPORT_SUB">SLA 우선순위</span>
+                  </div>
+                  <div class="list dense">
+                    <span class="danger" data-lid="LID-PC-CONSOLE-SUPPORT_1">Nova Team / 결제 실패 / 4h</span>
+                    <span data-lid="LID-PC-CONSOLE-SUPPORT_2">Acme Corp / SSO 설정 문의 / 8h</span>
+                    <span data-lid="LID-PC-CONSOLE-SUPPORT_3">DeepField / 온보딩 요청 / 1d</span>
+                    <span data-lid="LID-PC-CONSOLE-SUPPORT_4">Orbit Labs / 권한 이슈 / 1d</span>
+                  </div>
+                </section>
+                <section class="panel">
+                  <div class="panel-head">
+                    <strong data-lid="LID-PC-CONSOLE-AUDIT_REVIEW_TITLE">Audit Review Queue</strong>
+                    <span data-lid="LID-PC-CONSOLE-AUDIT_REVIEW_SUB">민감 작업</span>
+                  </div>
+                  <div class="list">
+                    <span data-lid="LID-PC-CONSOLE-AUDIT_REVIEW_1">운영자 권한 승격</span>
+                    <span data-lid="LID-PC-CONSOLE-AUDIT_REVIEW_2">테넌트 중지 처리</span>
+                    <span data-lid="LID-PC-CONSOLE-AUDIT_REVIEW_3">결제 수동 조정</span>
+                  </div>
+                </section>
+              </div>
+              <div class="panel-row bottom-gap">
+                <section class="panel">
+                  <div class="panel-head">
+                    <strong data-lid="LID-PC-CONSOLE-NOTICE_TITLE">Notice Composer</strong>
+                    <span data-lid="LID-PC-CONSOLE-NOTICE_SUB">배포 / 장애 / 점검</span>
+                  </div>
+                  <div class="list">
+                    <span data-lid="LID-PC-CONSOLE-NOTICE_1">공지 제목</span>
+                    <span data-lid="LID-PC-CONSOLE-NOTICE_2">대상 테넌트</span>
+                    <span data-lid="LID-PC-CONSOLE-NOTICE_3">발송 채널</span>
+                  </div>
+                </section>
+                <section class="panel">
+                  <div class="panel-head">
+                    <strong data-lid="LID-PC-CONSOLE-OP_AUDIT_TITLE">Operator Audit Log</strong>
+                    <span data-lid="LID-PC-CONSOLE-OP_AUDIT_SUB">최근 기록</span>
+                  </div>
+                  <div class="list">
+                    <span data-lid="LID-PC-CONSOLE-OP_AUDIT_1">admin@flowhr / 플랜 변경</span>
+                    <span data-lid="LID-PC-CONSOLE-OP_AUDIT_2">ops@flowhr / 테넌트 유예 처리</span>
+                    <span data-lid="LID-PC-CONSOLE-OP_AUDIT_3">sec@flowhr / MFA 정책 수정</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

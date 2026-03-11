@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Performance Module Detailed Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-PERF-EYEBROW": { "ko": "WI-TA-008 / Performance Module", "en": "WI-TA-008 / Performance Module" },
+        "LID-TA-PERF-HERO_TITLE": { "ko": "목표, 평가, 1:1을 이어서 보는<br />Performance Module", "en": "A Performance Module<br />for goals, reviews, and 1:1s" },
+        "LID-TA-PERF-HERO_TEXT": { "ko": "성과 관리는 평가 시즌 전용 화면이 아니라, 목표 진행, 평가 병목, 1:1 일정, 리마인더를 함께 운영하는 모듈이어야 합니다.", "en": "Performance management should not be a seasonal review screen. It should operate goals, review bottlenecks, 1:1 schedules, and reminders together." },
+        "LID-TA-PERF-CHIP_GOAL": { "ko": "Goal-led", "en": "Goal-led" },
+        "LID-TA-PERF-CHIP_REVIEW": { "ko": "Cycle-aware", "en": "Cycle-aware" },
+        "LID-TA-PERF-CHIP_ONEONONE": { "ko": "1:1-linked", "en": "1:1-linked" },
+        "LID-TA-PERF-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-TA-PERF-NOTE_1": { "ko": "평가 병목이 먼저 보이는지", "en": "Whether review bottlenecks are visible first" },
+        "LID-TA-PERF-NOTE_2": { "ko": "목표와 평가 상태가 함께 읽히는지", "en": "Whether goals and review status read together" },
+        "LID-TA-PERF-NOTE_3": { "ko": "1:1 허브가 부가 기능처럼 보이지 않는지", "en": "Whether the 1:1 hub feels core rather than optional" },
+        "LID-TA-PERF-SCREEN_TITLE": { "ko": "Goal Dashboard + Review Cycle", "en": "Goal Dashboard + Review Cycle" },
+        "LID-TA-PERF-SCREEN_DESC": { "ko": "평가 일정, 진행률, 누락 평가자를 한 흐름으로 배치", "en": "Place review schedule, progress, and missing reviewers in one flow" },
+        "LID-TA-PERF-BRAND": { "ko": "Performance", "en": "Performance" },
+        "LID-TA-PERF-SEARCH": { "ko": "Search goal, reviewer, cycle, team", "en": "Search goal, reviewer, cycle, team" },
+        "LID-TA-PERF-PILL_ACTIVE": { "ko": "진행 중 사이클", "en": "Active cycle" },
+        "LID-TA-PERF-PILL_GOAL": { "ko": "목표", "en": "Goals" },
+        "LID-TA-PERF-KPI_1": { "ko": "이번 분기 목표 124개", "en": "124 goals this quarter" },
+        "LID-TA-PERF-KPI_2": { "ko": "자기평가 대기 18명", "en": "18 self reviews pending" },
+        "LID-TA-PERF-KPI_3": { "ko": "관리자 평가 누락 7명", "en": "7 manager reviews missing" },
+        "LID-TA-PERF-KPI_4": { "ko": "1:1 예정 23건", "en": "23 one-on-ones scheduled" },
+        "LID-TA-PERF-KPI_5": { "ko": "리마인더 필요 9건", "en": "9 reminders needed" },
+        "LID-TA-PERF-QUEUE_TITLE": { "ko": "Review Queue", "en": "Review Queue" },
+        "LID-TA-PERF-QUEUE_SUB": { "ko": "마감 우선", "en": "Deadline first" },
+        "LID-TA-PERF-QUEUE_1_TITLE": { "ko": "자기평가 미제출", "en": "Self review missing" },
+        "LID-TA-PERF-QUEUE_1_TEXT": { "ko": "Product / 5명 / 03-20 마감", "en": "Product / 5 people / due 03-20" },
+        "LID-TA-PERF-QUEUE_1_ACTION": { "ko": "리마인더", "en": "Remind" },
+        "LID-TA-PERF-QUEUE_2_TITLE": { "ko": "관리자 평가 적체", "en": "Manager review backlog" },
+        "LID-TA-PERF-QUEUE_2_TEXT": { "ko": "Engineering / 3명 / 병목 발생", "en": "Engineering / 3 people / bottleneck" },
+        "LID-TA-PERF-QUEUE_2_ACTION": { "ko": "상세 보기", "en": "Open details" },
+        "LID-TA-PERF-QUEUE_3_TITLE": { "ko": "1:1 준비 메모 누락", "en": "1:1 prep notes missing" },
+        "LID-TA-PERF-QUEUE_3_TEXT": { "ko": "Sales / 4건 / 이번 주", "en": "Sales / 4 items / this week" },
+        "LID-TA-PERF-QUEUE_3_ACTION": { "ko": "요청", "en": "Request" },
+        "LID-TA-PERF-GOAL_TITLE": { "ko": "Goal Snapshot", "en": "Goal Snapshot" },
+        "LID-TA-PERF-GOAL_SUB": { "ko": "조직 비교", "en": "Org compare" },
+        "LID-TA-PERF-GOAL_1": { "ko": "Product / 달성률 68%", "en": "Product / 68% progress" },
+        "LID-TA-PERF-GOAL_2": { "ko": "Engineering / 달성률 61%", "en": "Engineering / 61% progress" },
+        "LID-TA-PERF-GOAL_3": { "ko": "Sales / 달성률 74%", "en": "Sales / 74% progress" },
+        "LID-TA-PERF-SETUP_TITLE": { "ko": "Evaluation Setup", "en": "Evaluation Setup" },
+        "LID-TA-PERF-SETUP_SUB": { "ko": "설정", "en": "Setup" },
+        "LID-TA-PERF-SETUP_1": { "ko": "사이클 생성", "en": "Create cycle" },
+        "LID-TA-PERF-SETUP_2": { "ko": "문항 관리", "en": "Manage questions" },
+        "LID-TA-PERF-SETUP_3": { "ko": "평가자 매핑", "en": "Map reviewers" },
+        "LID-TA-PERF-ONEONONE_TITLE": { "ko": "One-on-One Hub", "en": "One-on-One Hub" },
+        "LID-TA-PERF-ONEONONE_SUB": { "ko": "이번 주", "en": "This week" },
+        "LID-TA-PERF-ONEONONE_1": { "ko": "예정 23건", "en": "23 scheduled" },
+        "LID-TA-PERF-ONEONONE_2": { "ko": "메모 누락 4건", "en": "4 notes missing" },
+        "LID-TA-PERF-ONEONONE_3": { "ko": "후속 액션 6건", "en": "6 follow-ups" },
+        "LID-TA-PERF-ACTIONS_TITLE": { "ko": "Quick Actions", "en": "Quick Actions" },
+        "LID-TA-PERF-ACTIONS_SUB": { "ko": "실행", "en": "Ops" },
+        "LID-TA-PERF-ACTIONS_1": { "ko": "사이클 생성", "en": "Create cycle" },
+        "LID-TA-PERF-ACTIONS_2": { "ko": "리마인더 발송", "en": "Send reminder" },
+        "LID-TA-PERF-ACTIONS_3": { "ko": "요약 추출", "en": "Export summary" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TA-PERF-EYEBROW">WI-TA-008 / Performance Module</p>
+          <h1 data-lid="LID-TA-PERF-HERO_TITLE" data-lid-html="true">목표, 평가, 1:1을 이어서 보는<br />Performance Module</h1>
+          <p class="hero-text" data-lid="LID-TA-PERF-HERO_TEXT">성과 관리는 평가 시즌 전용 화면이 아니라, 목표 진행, 평가 병목, 1:1 일정, 리마인더를 함께 운영하는 모듈이어야 합니다.</p>
+          <div class="hero-chips">
+            <span data-lid="LID-TA-PERF-CHIP_GOAL">Goal-led</span>
+            <span data-lid="LID-TA-PERF-CHIP_REVIEW">Cycle-aware</span>
+            <span data-lid="LID-TA-PERF-CHIP_ONEONONE">1:1-linked</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2 data-lid="LID-TA-PERF-NOTE_TITLE">핵심 확인 포인트</h2>
+          <ul>
+            <li data-lid="LID-TA-PERF-NOTE_1">평가 병목이 먼저 보이는지</li>
+            <li data-lid="LID-TA-PERF-NOTE_2">목표와 평가 상태가 함께 읽히는지</li>
+            <li data-lid="LID-TA-PERF-NOTE_3">1:1 허브가 부가 기능처럼 보이지 않는지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>P</span>
+              <div>
+                <h3 data-lid="LID-TA-PERF-SCREEN_TITLE">Goal Dashboard + Review Cycle</h3>
+                <p data-lid="LID-TA-PERF-SCREEN_DESC">평가 일정, 진행률, 누락 평가자를 한 흐름으로 배치</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar slim">
+                <span class="brand" data-lid="LID-TA-PERF-BRAND">Performance</span>
+                <span class="search wide" data-lid="LID-TA-PERF-SEARCH">Search goal, reviewer, cycle, team</span>
+                <span class="pill active" data-lid="LID-TA-PERF-PILL_ACTIVE">진행 중 사이클</span>
+                <span class="pill" data-lid="LID-TA-PERF-PILL_GOAL">목표</span>
+              </div>
+              <div class="main">
+                <div class="kpi-row five">
+                  <div class="kpi emphasis"><strong>124</strong><span data-lid="LID-TA-PERF-KPI_1">이번 분기 목표 124개</span></div>
+                  <div class="kpi"><strong>18</strong><span data-lid="LID-TA-PERF-KPI_2">자기평가 대기 18명</span></div>
+                  <div class="kpi"><strong>7</strong><span data-lid="LID-TA-PERF-KPI_3">관리자 평가 누락 7명</span></div>
+                  <div class="kpi"><strong>23</strong><span data-lid="LID-TA-PERF-KPI_4">1:1 예정 23건</span></div>
+                  <div class="kpi"><strong>9</strong><span data-lid="LID-TA-PERF-KPI_5">리마인더 필요 9건</span></div>
+                </div>
+                <div class="panel-row admin-hero">
+                  <section class="panel large">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-PERF-QUEUE_TITLE">Review Queue</strong>
+                      <span data-lid="LID-TA-PERF-QUEUE_SUB">마감 우선</span>
+                    </div>
+                    <div class="queue-list">
+                      <div class="queue-item critical">
+                        <div>
+                          <strong data-lid="LID-TA-PERF-QUEUE_1_TITLE">자기평가 미제출</strong>
+                          <p data-lid="LID-TA-PERF-QUEUE_1_TEXT">Product / 5명 / 03-20 마감</p>
+                        </div>
+                        <span data-lid="LID-TA-PERF-QUEUE_1_ACTION">리마인더</span>
+                      </div>
+                      <div class="queue-item high">
+                        <div>
+                          <strong data-lid="LID-TA-PERF-QUEUE_2_TITLE">관리자 평가 적체</strong>
+                          <p data-lid="LID-TA-PERF-QUEUE_2_TEXT">Engineering / 3명 / 병목 발생</p>
+                        </div>
+                        <span data-lid="LID-TA-PERF-QUEUE_2_ACTION">상세 보기</span>
+                      </div>
+                      <div class="queue-item medium">
+                        <div>
+                          <strong data-lid="LID-TA-PERF-QUEUE_3_TITLE">1:1 준비 메모 누락</strong>
+                          <p data-lid="LID-TA-PERF-QUEUE_3_TEXT">Sales / 4건 / 이번 주</p>
+                        </div>
+                        <span data-lid="LID-TA-PERF-QUEUE_3_ACTION">요청</span>
+                      </div>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-PERF-GOAL_TITLE">Goal Snapshot</strong>
+                      <span data-lid="LID-TA-PERF-GOAL_SUB">조직 비교</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-PERF-GOAL_1">Product / 달성률 68%</span>
+                      <span data-lid="LID-TA-PERF-GOAL_2">Engineering / 달성률 61%</span>
+                      <span data-lid="LID-TA-PERF-GOAL_3">Sales / 달성률 74%</span>
+                    </div>
+                  </section>
+                </div>
+                <div class="panel-row admin-bottom">
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-PERF-SETUP_TITLE">Evaluation Setup</strong>
+                      <span data-lid="LID-TA-PERF-SETUP_SUB">설정</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-PERF-SETUP_1">사이클 생성</span>
+                      <span data-lid="LID-TA-PERF-SETUP_2">문항 관리</span>
+                      <span data-lid="LID-TA-PERF-SETUP_3">평가자 매핑</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-PERF-ONEONONE_TITLE">One-on-One Hub</strong>
+                      <span data-lid="LID-TA-PERF-ONEONONE_SUB">이번 주</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-PERF-ONEONONE_1">예정 23건</span>
+                      <span data-lid="LID-TA-PERF-ONEONONE_2">메모 누락 4건</span>
+                      <span data-lid="LID-TA-PERF-ONEONONE_3">후속 액션 6건</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-PERF-ACTIONS_TITLE">Quick Actions</strong>
+                      <span data-lid="LID-TA-PERF-ACTIONS_SUB">실행</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-PERF-ACTIONS_1">사이클 생성</span>
+                      <span data-lid="LID-TA-PERF-ACTIONS_2">리마인더 발송</span>
+                      <span data-lid="LID-TA-PERF-ACTIONS_3">요약 추출</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

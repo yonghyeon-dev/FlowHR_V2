@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Employee Home Detailed Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TE-HOME-EYEBROW": { "ko": "WI-TE-001 / Tenant Employee", "en": "WI-TE-001 / Tenant Employee" },
+        "LID-TE-HOME-HERO_TITLE": { "ko": "오늘의 셀프서비스 허브<br />Employee Home & Mobile Home", "en": "Employee Home & Mobile Home<br />as today's self-service hub" },
+        "LID-TE-HOME-HERO_TEXT": { "ko": "상태를 먼저 보여주고, 그 다음 필요한 행동을 제안하는 구조입니다. 직원은 메뉴를 탐색하기보다 홈에서 바로 출퇴근, 요청, 서명, 확인을 끝낼 수 있어야 합니다.", "en": "The structure shows status first and then suggests the next action. Employees should finish attendance, requests, signatures, and checks directly from home instead of exploring menus." },
+        "LID-TE-HOME-CHIP_1": { "ko": "상태 우선", "en": "Status-first" },
+        "LID-TE-HOME-CHIP_2": { "ko": "한 손 사용", "en": "One-hand mobile" },
+        "LID-TE-HOME-CHIP_3": { "ko": "셀프서비스", "en": "Self-service" },
+        "LID-TE-HOME-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-TE-HOME-NOTE_1": { "ko": "상태와 액션이 첫 화면에서 함께 보이는지", "en": "Whether status and actions appear together on first view" },
+        "LID-TE-HOME-NOTE_2": { "ko": "직원 입장에서 과하게 복잡하지 않은지", "en": "Whether it stays simple enough for employees" },
+        "LID-TE-HOME-NOTE_3": { "ko": "모바일이 데스크톱 축소판이 아닌지", "en": "Whether mobile feels purpose-built rather than a shrunken desktop" },
+        "LID-TE-HOME-DESKTOP_TITLE": { "ko": "Employee Desktop Home", "en": "Employee Desktop Home" },
+        "LID-TE-HOME-DESKTOP_DESC": { "ko": "오늘의 상태, 할 일, 주간 일정, 개인 요약을 자연스럽게 연결", "en": "Connects today's status, tasks, weekly schedule, and personal summary" },
+        "LID-TE-HOME-SEARCH": { "ko": "Search request, policy, document", "en": "Search request, policy, document" },
+        "LID-TE-HOME-TODAY_TITLE": { "ko": "Today Status", "en": "Today Status" },
+        "LID-TE-HOME-TODAY_SUB": { "ko": "근무 중", "en": "Working" },
+        "LID-TE-HOME-CHECKIN_DONE": { "ko": "출근 완료", "en": "Checked in" },
+        "LID-TE-HOME-ACT_1": { "ko": "퇴근", "en": "Check out" },
+        "LID-TE-HOME-ACT_2": { "ko": "외근", "en": "Out of office" },
+        "LID-TE-HOME-ACT_3": { "ko": "휴가 요청", "en": "Request leave" },
+        "LID-TE-HOME-ACT_4": { "ko": "정정 요청", "en": "Request correction" },
+        "LID-TE-HOME-TASK_TITLE": { "ko": "My Tasks", "en": "My Tasks" },
+        "LID-TE-HOME-TASK_SUB": { "ko": "3건", "en": "3 items" },
+        "LID-TE-HOME-TASK_1": { "ko": "전자계약 서명 1건", "en": "1 e-contract to sign" },
+        "LID-TE-HOME-TASK_2": { "ko": "휴가 초안 1건", "en": "1 leave draft" },
+        "LID-TE-HOME-TASK_3": { "ko": "팀 공지 확인 필요", "en": "Team notice to review" },
+        "LID-TE-HOME-WEEK_TITLE": { "ko": "This Week", "en": "This Week" },
+        "LID-TE-HOME-WEEK_SUB": { "ko": "일정 요약", "en": "Schedule summary" },
+        "LID-TE-HOME-SUMMARY_TITLE": { "ko": "My Summary", "en": "My Summary" },
+        "LID-TE-HOME-SUMMARY_SUB": { "ko": "개인 상태", "en": "Personal status" },
+        "LID-TE-HOME-SUM_1": { "ko": "연차 잔여 8.5일", "en": "8.5 leave days left" },
+        "LID-TE-HOME-SUM_2": { "ko": "진행 중 요청 2건", "en": "2 active requests" },
+        "LID-TE-HOME-SUM_3": { "ko": "이번 달 지각 0회", "en": "0 late arrivals this month" },
+        "LID-TE-HOME-SUM_4": { "ko": "최근 문서 3건", "en": "3 recent documents" },
+        "LID-TE-HOME-MOBILE_TITLE": { "ko": "Employee Mobile Home", "en": "Employee Mobile Home" },
+        "LID-TE-HOME-MOBILE_DESC": { "ko": "상단 상태 히어로와 하단 빠른 액션 중심의 모바일 구조", "en": "A mobile structure centered on a top status hero and quick actions" },
+        "LID-TE-HOME-MOBILE_HERO_TITLE": { "ko": "근무 중", "en": "Working" },
+        "LID-TE-HOME-MOBILE_HERO_TEXT": { "ko": "09:02 출근 완료 / 예정 퇴근 18:00", "en": "Checked in at 09:02 / Scheduled check-out 18:00" },
+        "LID-TE-HOME-QUICK_TITLE": { "ko": "빠른 액션", "en": "Quick Actions" },
+        "LID-TE-HOME-TODO_TITLE": { "ko": "오늘 할 일", "en": "Today's tasks" },
+        "LID-TE-HOME-TODO_1": { "ko": "전자계약 서명 1건", "en": "1 e-contract to sign" },
+        "LID-TE-HOME-TODO_2": { "ko": "휴가 초안 제출", "en": "Submit leave draft" },
+        "LID-TE-HOME-TODO_3": { "ko": "공지 확인 필요", "en": "Review company notice" },
+        "LID-TE-HOME-WEEKLY_TITLE": { "ko": "이번 주 요약", "en": "This Week Summary" },
+        "LID-TE-HOME-WEEKLY_1": { "ko": "금요일 연차 예정", "en": "Leave scheduled for Friday" },
+        "LID-TE-HOME-WEEKLY_2": { "ko": "진행 중 요청 2건", "en": "2 active requests" },
+        "LID-TE-HOME-WEEKLY_3": { "ko": "연차 잔여 8.5일", "en": "8.5 leave days left" },
+        "LID-TE-HOME-TAB_1": { "ko": "홈", "en": "Home" },
+        "LID-TE-HOME-TAB_2": { "ko": "요청", "en": "Request" },
+        "LID-TE-HOME-TAB_3": { "ko": "일정", "en": "Schedule" },
+        "LID-TE-HOME-TAB_4": { "ko": "인박스", "en": "Inbox" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TE-HOME-EYEBROW">WI-TE-001 / Tenant Employee</p>
+          <h1 data-lid="LID-TE-HOME-HERO_TITLE" data-lid-html="true">오늘의 셀프서비스 허브<br />Employee Home &amp; Mobile Home</h1>
+          <p class="hero-text" data-lid="LID-TE-HOME-HERO_TEXT">상태를 먼저 보여주고, 그 다음 필요한 행동을 제안하는 구조입니다. 직원은 메뉴를 탐색하기보다 홈에서 바로 출퇴근, 요청, 서명, 확인을 끝낼 수 있어야 합니다.</p>
+          <div class="hero-chips">
+            <span data-lid="LID-TE-HOME-CHIP_1">상태 우선</span>
+            <span data-lid="LID-TE-HOME-CHIP_2">한 손 사용</span>
+            <span data-lid="LID-TE-HOME-CHIP_3">셀프서비스</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2 data-lid="LID-TE-HOME-NOTE_TITLE">핵심 확인 포인트</h2>
+          <ul>
+            <li data-lid="LID-TE-HOME-NOTE_1">상태와 액션이 첫 화면에서 함께 보이는지</li>
+            <li data-lid="LID-TE-HOME-NOTE_2">직원 입장에서 과하게 복잡하지 않은지</li>
+            <li data-lid="LID-TE-HOME-NOTE_3">모바일이 데스크톱 축소판이 아닌지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid two-up">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>D</span>
+              <div>
+                <h3 data-lid="LID-TE-HOME-DESKTOP_TITLE">Employee Desktop Home</h3>
+                <p data-lid="LID-TE-HOME-DESKTOP_DESC">오늘의 상태, 할 일, 주간 일정, 개인 요약을 자연스럽게 연결</p>
+              </div>
+            </div>
+            <div class="screen desktop compact">
+              <div class="topbar slim">
+                <span class="brand">My Home</span>
+                <span class="search wide" data-lid="LID-TE-HOME-SEARCH">Search request, policy, document</span>
+                <span class="avatar">MJ</span>
+              </div>
+              <div class="panel-row desktop-home">
+                <section class="panel large">
+                  <div class="panel-head">
+                    <strong data-lid="LID-TE-HOME-TODAY_TITLE">Today Status</strong>
+                    <span data-lid="LID-TE-HOME-TODAY_SUB">근무 중</span>
+                  </div>
+                  <div class="status-hero">
+                    <div class="kpi emphasis">
+                      <strong>09:02</strong>
+                      <span data-lid="LID-TE-HOME-CHECKIN_DONE">출근 완료</span>
+                    </div>
+                    <div class="mini-columns four">
+                      <span data-lid="LID-TE-HOME-ACT_1">퇴근</span>
+                      <span data-lid="LID-TE-HOME-ACT_2">외근</span>
+                      <span data-lid="LID-TE-HOME-ACT_3">휴가 요청</span>
+                      <span data-lid="LID-TE-HOME-ACT_4">정정 요청</span>
+                    </div>
+                  </div>
+                </section>
+                <section class="panel">
+                  <div class="panel-head">
+                    <strong data-lid="LID-TE-HOME-TASK_TITLE">My Tasks</strong>
+                    <span data-lid="LID-TE-HOME-TASK_SUB">3건</span>
+                  </div>
+                  <div class="list dense">
+                    <span data-lid="LID-TE-HOME-TASK_1">전자계약 서명 1건</span>
+                    <span data-lid="LID-TE-HOME-TASK_2">휴가 초안 1건</span>
+                    <span data-lid="LID-TE-HOME-TASK_3">팀 공지 확인 필요</span>
+                  </div>
+                </section>
+              </div>
+              <div class="panel-row desktop-home">
+                <section class="panel">
+                  <div class="panel-head">
+                    <strong data-lid="LID-TE-HOME-WEEK_TITLE">This Week</strong>
+                    <span data-lid="LID-TE-HOME-WEEK_SUB">일정 요약</span>
+                  </div>
+                  <div class="calendar-grid small-week">
+                    <span>M 09-18</span>
+                    <span>T 09-18</span>
+                    <span>W Remote</span>
+                    <span>T 09-18</span>
+                    <span>F Leave</span>
+                  </div>
+                </section>
+                <section class="panel">
+                  <div class="panel-head">
+                    <strong data-lid="LID-TE-HOME-SUMMARY_TITLE">My Summary</strong>
+                    <span data-lid="LID-TE-HOME-SUMMARY_SUB">개인 상태</span>
+                  </div>
+                  <div class="mini-columns four">
+                    <span data-lid="LID-TE-HOME-SUM_1">연차 잔여 8.5일</span>
+                    <span data-lid="LID-TE-HOME-SUM_2">진행 중 요청 2건</span>
+                    <span data-lid="LID-TE-HOME-SUM_3">이번 달 지각 0회</span>
+                    <span data-lid="LID-TE-HOME-SUM_4">최근 문서 3건</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>M</span>
+              <div>
+                <h3 data-lid="LID-TE-HOME-MOBILE_TITLE">Employee Mobile Home</h3>
+                <p data-lid="LID-TE-HOME-MOBILE_DESC">상단 상태 히어로와 하단 빠른 액션 중심의 모바일 구조</p>
+              </div>
+            </div>
+            <div class="mobile-wrap">
+              <div class="screen mobile">
+                <div class="mobile-notch"></div>
+                <div class="mobile-head">
+                  <span>09:12</span>
+                  <span>FlowHR</span>
+                  <span>LTE</span>
+                </div>
+                <div class="mobile-body">
+                  <div class="mobile-card hero-card strong-hero">
+                    <strong data-lid="LID-TE-HOME-MOBILE_HERO_TITLE">근무 중</strong>
+                    <p data-lid="LID-TE-HOME-MOBILE_HERO_TEXT">09:02 출근 완료 / 예정 퇴근 18:00</p>
+                    <div class="mini-columns two">
+                      <span data-lid="LID-TE-HOME-ACT_1">퇴근</span>
+                      <span data-lid="LID-TE-HOME-ACT_2">외근</span>
+                    </div>
+                  </div>
+                  <div class="mobile-card">
+                    <strong data-lid="LID-TE-HOME-QUICK_TITLE">빠른 액션</strong>
+                    <div class="mini-columns two">
+                      <span data-lid="LID-TE-HOME-ACT_3">휴가 요청</span>
+                      <span data-lid="LID-TE-HOME-ACT_4">정정 요청</span>
+                      <span>문서 서명</span>
+                      <span>일반 요청</span>
+                    </div>
+                  </div>
+                  <div class="mobile-card">
+                    <strong data-lid="LID-TE-HOME-TODO_TITLE">오늘 할 일</strong>
+                    <ul>
+                      <li data-lid="LID-TE-HOME-TODO_1">전자계약 서명 1건</li>
+                      <li data-lid="LID-TE-HOME-TODO_2">휴가 초안 제출</li>
+                      <li data-lid="LID-TE-HOME-TODO_3">공지 확인 필요</li>
+                    </ul>
+                  </div>
+                  <div class="mobile-card">
+                    <strong data-lid="LID-TE-HOME-WEEKLY_TITLE">이번 주 요약</strong>
+                    <div class="list dense">
+                      <span data-lid="LID-TE-HOME-WEEKLY_1">금요일 연차 예정</span>
+                      <span data-lid="LID-TE-HOME-WEEKLY_2">진행 중 요청 2건</span>
+                      <span data-lid="LID-TE-HOME-WEEKLY_3">연차 잔여 8.5일</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-tabbar">
+                  <span class="active" data-lid="LID-TE-HOME-TAB_1">홈</span>
+                  <span data-lid="LID-TE-HOME-TAB_2">요청</span>
+                  <span data-lid="LID-TE-HOME-TAB_3">일정</span>
+                  <span data-lid="LID-TE-HOME-TAB_4">인박스</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

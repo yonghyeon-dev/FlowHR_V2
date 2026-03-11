@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Request Hub Detailed Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">WI-TE-003 / Request Hub</p>
+          <h1>요청 생성, 정책 확인, 상태 추적을 묶는<br />Request Hub</h1>
+          <p class="hero-text">
+            요청 허브는 여러 폼 링크 모음이 아니라, 자주 쓰는 요청을 빠르게 시작하고
+            제출 후 상태와 반려 사유까지 추적하는 셀프서비스 허브여야 합니다.
+          </p>
+          <div class="hero-chips">
+            <span>Request-first</span>
+            <span>Policy hint</span>
+            <span>History-linked</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2>핵심 확인 포인트</h2>
+          <ul>
+            <li>주요 요청 유형이 첫 화면에서 바로 보이는지</li>
+            <li>작성 전에 필요한 정책 요약이 짧게 보이는지</li>
+            <li>반려와 재제출 흐름이 자연스러운지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid two-up">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>01</span>
+              <div>
+                <h3>Mobile Request Hub</h3>
+                <p>요청 유형 선택과 정책 힌트, 최근 요청을 한 화면에 배치</p>
+              </div>
+            </div>
+            <div class="mobile-wrap">
+              <div class="screen mobile">
+                <div class="mobile-notch"></div>
+                <div class="mobile-head">
+                  <span>10:22</span>
+                  <span>요청 허브</span>
+                  <span>LTE</span>
+                </div>
+                <div class="mobile-body">
+                  <div class="mobile-card hero-card">
+                    <strong>빠른 요청</strong>
+                    <div class="mini-columns two">
+                      <span>연차 신청</span>
+                      <span>반차 신청</span>
+                      <span>출퇴근 정정</span>
+                      <span>초과근무 요청</span>
+                    </div>
+                  </div>
+                  <div class="mobile-card">
+                    <strong>정책 힌트</strong>
+                    <div class="list dense">
+                      <span>반차는 4시간 단위</span>
+                      <span>시간 단위 휴가는 팀장 승인 필요</span>
+                      <span>정정 요청은 7일 이내 가능</span>
+                    </div>
+                  </div>
+                  <div class="mobile-card">
+                    <strong>최근 요청</strong>
+                    <ul>
+                      <li>연차 신청 / 승인 대기</li>
+                      <li>체크아웃 정정 / 반려</li>
+                      <li>초과근무 요청 / 승인 완료</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mobile-tabbar">
+                  <span>Home</span>
+                  <span class="active">Request</span>
+                  <span>Schedule</span>
+                  <span>Inbox</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>02</span>
+              <div>
+                <h3>Request Form + History</h3>
+                <p>입력 폼, 상태 추적, 반려 재진입을 연결한 구조</p>
+              </div>
+            </div>
+            <div class="screen desktop compact">
+              <div class="topbar slim">
+                <span class="brand">New Request</span>
+                <span class="search wide">Search request type, policy, history</span>
+                <span class="pill active">Leave</span>
+                <span class="pill">Correction</span>
+              </div>
+              <div class="split wide-split">
+                <section class="column detail-column">
+                  <div class="detail-box tall">
+                    <strong>Request Form</strong>
+                    <div class="list dense">
+                      <span>요청 유형 / 일정 / 사유</span>
+                      <span>정책 요약 / 잔여 현황</span>
+                      <span>첨부 / 초안 저장 / 제출</span>
+                      <span>팀 일정 충돌 시 경고 배지</span>
+                    </div>
+                  </div>
+                  <div class="detail-actions">
+                    <span>초안 저장</span>
+                    <span>제출</span>
+                    <span>취소</span>
+                    <span>정책 보기</span>
+                  </div>
+                </section>
+                <section class="column list-column">
+                  <div class="stack-card active">
+                    <strong>연차 신청</strong>
+                    <span>승인 대기 / 팀장</span>
+                    <span class="status wait">진행 중</span>
+                  </div>
+                  <div class="stack-card">
+                    <strong>체크아웃 정정</strong>
+                    <span>반려 / 사유 확인 필요</span>
+                    <span class="status risk">재제출 필요</span>
+                  </div>
+                  <div class="stack-card">
+                    <strong>초과근무 요청</strong>
+                    <span>승인 완료</span>
+                    <span class="status">완료</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Plans Billing Feature Flags Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-PC-BILL-EYEBROW": { "ko": "WI-PC-006 / Plans, Billing, Feature Flags", "en": "WI-PC-006 / Plans, Billing, Feature Flags" },
+        "LID-PC-BILL-HERO_TITLE": { "ko": "계약, 청구, 기능 가용 범위를 함께 다루는<br />Platform Plans & Billing Ops", "en": "Platform Plans & Billing Ops<br />for contracts, billing, and feature access" },
+        "LID-PC-BILL-HERO_TEXT": { "ko": "플랜, 결제 상태, 예외 할인, 기능 플래그를 별도 화면으로만 분리하지 않고 테넌트 운영 맥락에서 함께 읽히게 설계합니다.", "en": "Plans, payment health, billing exceptions, and feature flags are designed to be read together in tenant operations rather than as isolated screens." },
+        "LID-PC-BILL-CHIP_1": { "ko": "Contract-aware", "en": "Contract-aware" },
+        "LID-PC-BILL-CHIP_2": { "ko": "Billing-risk first", "en": "Billing-risk first" },
+        "LID-PC-BILL-CHIP_3": { "ko": "Flag-governed", "en": "Flag-governed" },
+        "LID-PC-BILL-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-PC-BILL-NOTE_1": { "ko": "결제 실패와 기능 제한이 한 흐름으로 보이는지", "en": "Whether payment failure and feature restriction connect in one flow" },
+        "LID-PC-BILL-NOTE_2": { "ko": "계약 예외와 개발용 플래그가 구분되는지", "en": "Whether contract exceptions are distinct from product flags" },
+        "LID-PC-BILL-NOTE_3": { "ko": "수동 조정 기록이 충분히 추적 가능한지", "en": "Whether manual adjustments remain fully traceable" },
+        "LID-PC-BILL-SCREEN_1_TITLE": { "ko": "Plans & Billing Control Board", "en": "Plans & Billing Control Board" },
+        "LID-PC-BILL-SCREEN_1_DESC": { "ko": "계약, 결제, 예외, 플래그 불일치를 동시에 읽는 운영 보드", "en": "An ops board for contracts, billing, exceptions, and flag mismatches" },
+        "LID-PC-BILL-BRAND": { "ko": "Plans & Billing", "en": "Plans & Billing" },
+        "LID-PC-BILL-SEARCH": { "ko": "Search tenant, invoice, feature flag, contract", "en": "Search tenant, invoice, feature flag, contract" },
+        "LID-PC-BILL-PILL_1": { "ko": "Billing risk", "en": "Billing risk" },
+        "LID-PC-BILL-PILL_2": { "ko": "Feature flags", "en": "Feature flags" },
+        "LID-PC-BILL-KPI_1": { "ko": "결제 실패", "en": "Payment failures" },
+        "LID-PC-BILL-KPI_2": { "ko": "수동 조정", "en": "Manual adjustments" },
+        "LID-PC-BILL-KPI_3": { "ko": "예외 플래그", "en": "Exception flags" },
+        "LID-PC-BILL-KPI_4": { "ko": "업그레이드 후보", "en": "Upgrade candidates" },
+        "LID-PC-BILL-QUEUE_TITLE": { "ko": "Billing Risk Queue", "en": "Billing Risk Queue" },
+        "LID-PC-BILL-QUEUE_SUB": { "ko": "오늘 확인", "en": "Review today" },
+        "LID-PC-BILL-QUEUE_1": { "ko": "Nova Team / 카드 실패 / 기능 제한 2일 전", "en": "Nova Team / Card failed / 2 days until feature restriction" },
+        "LID-PC-BILL-QUEUE_2": { "ko": "Orbit Labs / 좌석 초과 / 청구 조정 필요", "en": "Orbit Labs / Seat overage / billing adjustment required" },
+        "LID-PC-BILL-QUEUE_3": { "ko": "Acme Corp / 예외 할인 만료 임박", "en": "Acme Corp / exception discount expiring soon" },
+        "LID-PC-BILL-FLAG_TITLE": { "ko": "Flag Exceptions", "en": "Flag Exceptions" },
+        "LID-PC-BILL-FLAG_SUB": { "ko": "계약 외 활성화", "en": "Out-of-contract enablement" },
+        "LID-PC-BILL-FLAG_1": { "ko": "AI Summary Beta / 4개 테넌트", "en": "AI Summary Beta / 4 tenants" },
+        "LID-PC-BILL-FLAG_2": { "ko": "Payroll Preview / 만료 예정 2건", "en": "Payroll Preview / 2 expiring grants" },
+        "LID-PC-BILL-FLAG_3": { "ko": "Shift Auto Rules / 영업팀 시범 적용", "en": "Shift Auto Rules / sales pilot rollout" },
+        "LID-PC-BILL-SCREEN_2_TITLE": { "ko": "Plan Catalog & Tenant Billing Detail", "en": "Plan Catalog & Tenant Billing Detail" },
+        "LID-PC-BILL-SCREEN_2_DESC": { "ko": "플랜 정보와 테넌트 청구 상세를 함께 보는 구조", "en": "A structure that combines plan catalog and tenant billing detail" },
+        "LID-PC-BILL-CATALOG_TITLE": { "ko": "Plan Catalog", "en": "Plan Catalog" },
+        "LID-PC-BILL-CATALOG_SUB": { "ko": "모듈 포함 범위", "en": "Included modules" },
+        "LID-PC-BILL-CATALOG_1": { "ko": "Starter / Core HR / 100 seats", "en": "Starter / Core HR / 100 seats" },
+        "LID-PC-BILL-CATALOG_2": { "ko": "Growth / HR + Payroll / 500 seats", "en": "Growth / HR + Payroll / 500 seats" },
+        "LID-PC-BILL-CATALOG_3": { "ko": "Enterprise / Full suite / unlimited", "en": "Enterprise / Full suite / unlimited" },
+        "LID-PC-BILL-DETAIL_TITLE": { "ko": "Tenant Billing Detail", "en": "Tenant Billing Detail" },
+        "LID-PC-BILL-DETAIL_TEXT": { "ko": "계약 플랜, 결제 수단, 송장 상태, 좌석 수, 할인 예외, 플래그 예외를 한 패널에 모은다.", "en": "Groups plan, payment method, invoice status, seat count, billing exceptions, and flag exceptions in one panel." },
+        "LID-PC-BILL-ACTION_1": { "ko": "플랜 변경", "en": "Change plan" },
+        "LID-PC-BILL-ACTION_2": { "ko": "송장 열기", "en": "Open invoice" },
+        "LID-PC-BILL-ACTION_3": { "ko": "조정 등록", "en": "Add adjustment" },
+        "LID-PC-BILL-ACTION_4": { "ko": "플래그 검토", "en": "Review flags" },
+        "LID-PC-BILL-SCREEN_3_TITLE": { "ko": "Feature Flag Console", "en": "Feature Flag Console" },
+        "LID-PC-BILL-SCREEN_3_DESC": { "ko": "글로벌, 세그먼트, 테넌트 예외 플래그를 분리해 운영하는 구조", "en": "A structure for running global, segment, and tenant exception flags separately" },
+        "LID-PC-BILL-MATRIX_TITLE": { "ko": "Flag Rollout Matrix", "en": "Flag Rollout Matrix" },
+        "LID-PC-BILL-MATRIX_SUB": { "ko": "범위와 만료", "en": "Scope and expiry" },
+        "LID-PC-BILL-MATRIX_COL_1": { "ko": "플래그", "en": "Flag" },
+        "LID-PC-BILL-MATRIX_COL_2": { "ko": "글로벌", "en": "Global" },
+        "LID-PC-BILL-MATRIX_COL_3": { "ko": "세그먼트", "en": "Segment" },
+        "LID-PC-BILL-MATRIX_COL_4": { "ko": "테넌트", "en": "Tenant" },
+        "LID-PC-BILL-MATRIX_COL_5": { "ko": "만료일", "en": "Expiry" },
+        "LID-PC-BILL-MATRIX_COL_6": { "ko": "담당자", "en": "Owner" },
+        "LID-PC-BILL-MATRIX_ROW_1_1": { "ko": "AI Summary Beta", "en": "AI Summary Beta" },
+        "LID-PC-BILL-MATRIX_ROW_1_2": { "ko": "off", "en": "off" },
+        "LID-PC-BILL-MATRIX_ROW_1_3": { "ko": "디자인 파트너", "en": "Design partners" },
+        "LID-PC-BILL-MATRIX_ROW_1_4": { "ko": "4", "en": "4" },
+        "LID-PC-BILL-MATRIX_ROW_1_5": { "ko": "2026-04-30", "en": "2026-04-30" },
+        "LID-PC-BILL-MATRIX_ROW_1_6": { "ko": "Product Ops", "en": "Product Ops" },
+        "LID-PC-BILL-MATRIX_ROW_2_1": { "ko": "Payroll Preview", "en": "Payroll Preview" },
+        "LID-PC-BILL-MATRIX_ROW_2_2": { "ko": "off", "en": "off" },
+        "LID-PC-BILL-MATRIX_ROW_2_3": { "ko": "베타", "en": "Beta" },
+        "LID-PC-BILL-MATRIX_ROW_2_4": { "ko": "2", "en": "2" },
+        "LID-PC-BILL-MATRIX_ROW_2_5": { "ko": "2026-03-25", "en": "2026-03-25" },
+        "LID-PC-BILL-MATRIX_ROW_2_6": { "ko": "Billing Admin", "en": "Billing Admin" },
+        "LID-PC-BILL-MATRIX_ROW_3_1": { "ko": "Shift Auto Rules", "en": "Shift Auto Rules" },
+        "LID-PC-BILL-MATRIX_ROW_3_2": { "ko": "off", "en": "off" },
+        "LID-PC-BILL-MATRIX_ROW_3_3": { "ko": "영업 파일럿", "en": "Sales pilot" },
+        "LID-PC-BILL-MATRIX_ROW_3_4": { "ko": "1", "en": "1" },
+        "LID-PC-BILL-MATRIX_ROW_3_5": { "ko": "누락", "en": "Missing" },
+        "LID-PC-BILL-MATRIX_ROW_3_6": { "ko": "Platform Ops", "en": "Platform Ops" },
+        "LID-PC-BILL-POLICY_TITLE": { "ko": "Adjustment Policy", "en": "Adjustment Policy" },
+        "LID-PC-BILL-POLICY_SUB": { "ko": "운영 기준", "en": "Ops rules" },
+        "LID-PC-BILL-POLICY_1": { "ko": "만료일 없는 예외 플래그 금지", "en": "No exception flag without expiry" },
+        "LID-PC-BILL-POLICY_2": { "ko": "수동 할인에는 사유와 승인자 필요", "en": "Manual discounts require reason and approver" },
+        "LID-PC-BILL-POLICY_3": { "ko": "플래그 변경은 감사 로그와 연결", "en": "Flag changes must link to audit log" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-PC-BILL-EYEBROW">WI-PC-006 / Plans, Billing, Feature Flags</p>
+          <h1 data-lid="LID-PC-BILL-HERO_TITLE" data-lid-html="true">계약, 청구, 기능 가용 범위를 함께 다루는<br />Platform Plans &amp; Billing Ops</h1>
+          <p class="hero-text" data-lid="LID-PC-BILL-HERO_TEXT">플랜, 결제 상태, 예외 할인, 기능 플래그를 별도 화면으로만 분리하지 않고 테넌트 운영 맥락에서 함께 읽히게 설계합니다.</p>
+          <div class="hero-chips">
+            <span data-lid="LID-PC-BILL-CHIP_1">Contract-aware</span>
+            <span data-lid="LID-PC-BILL-CHIP_2">Billing-risk first</span>
+            <span data-lid="LID-PC-BILL-CHIP_3">Flag-governed</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2 data-lid="LID-PC-BILL-NOTE_TITLE">핵심 확인 포인트</h2>
+          <ul>
+            <li data-lid="LID-PC-BILL-NOTE_1">결제 실패와 기능 제한이 한 흐름으로 보이는지</li>
+            <li data-lid="LID-PC-BILL-NOTE_2">계약 예외와 개발용 플래그가 구분되는지</li>
+            <li data-lid="LID-PC-BILL-NOTE_3">수동 조정 기록이 충분히 추적 가능한지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>B1</span>
+              <div>
+                <h3 data-lid="LID-PC-BILL-SCREEN_1_TITLE">Plans & Billing Control Board</h3>
+                <p data-lid="LID-PC-BILL-SCREEN_1_DESC">계약, 결제, 예외, 플래그 불일치를 동시에 읽는 운영 보드</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar slim">
+                <span class="brand" data-lid="LID-PC-BILL-BRAND">Plans & Billing</span>
+                <span class="search wide" data-lid="LID-PC-BILL-SEARCH">Search tenant, invoice, feature flag, contract</span>
+                <span class="pill active" data-lid="LID-PC-BILL-PILL_1">Billing risk</span>
+                <span class="pill" data-lid="LID-PC-BILL-PILL_2">Feature flags</span>
+              </div>
+              <div class="main">
+                <div class="kpi-row">
+                  <div class="kpi emphasis"><strong>6</strong><span data-lid="LID-PC-BILL-KPI_1">결제 실패</span></div>
+                  <div class="kpi"><strong>9</strong><span data-lid="LID-PC-BILL-KPI_2">수동 조정</span></div>
+                  <div class="kpi"><strong>12</strong><span data-lid="LID-PC-BILL-KPI_3">예외 플래그</span></div>
+                  <div class="kpi"><strong>14</strong><span data-lid="LID-PC-BILL-KPI_4">업그레이드 후보</span></div>
+                </div>
+                <div class="panel-row admin-hero">
+                  <section class="panel large">
+                    <div class="panel-head">
+                      <strong data-lid="LID-PC-BILL-QUEUE_TITLE">Billing Risk Queue</strong>
+                      <span data-lid="LID-PC-BILL-QUEUE_SUB">오늘 확인</span>
+                    </div>
+                    <div class="list dense">
+                      <span class="danger" data-lid="LID-PC-BILL-QUEUE_1">Nova Team / 카드 실패 / 기능 제한 2일 전</span>
+                      <span data-lid="LID-PC-BILL-QUEUE_2">Orbit Labs / 좌석 초과 / 청구 조정 필요</span>
+                      <span data-lid="LID-PC-BILL-QUEUE_3">Acme Corp / 예외 할인 만료 임박</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-PC-BILL-FLAG_TITLE">Flag Exceptions</strong>
+                      <span data-lid="LID-PC-BILL-FLAG_SUB">계약 외 활성화</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-PC-BILL-FLAG_1">AI Summary Beta / 4개 테넌트</span>
+                      <span data-lid="LID-PC-BILL-FLAG_2">Payroll Preview / 만료 예정 2건</span>
+                      <span data-lid="LID-PC-BILL-FLAG_3">Shift Auto Rules / 영업팀 시범 적용</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>B2</span>
+              <div>
+                <h3 data-lid="LID-PC-BILL-SCREEN_2_TITLE">Plan Catalog & Tenant Billing Detail</h3>
+                <p data-lid="LID-PC-BILL-SCREEN_2_DESC">플랜 정보와 테넌트 청구 상세를 함께 보는 구조</p>
+              </div>
+            </div>
+            <div class="screen desktop compact">
+              <div class="split wide-split">
+                <section class="column">
+                  <div class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-PC-BILL-CATALOG_TITLE">Plan Catalog</strong>
+                      <span data-lid="LID-PC-BILL-CATALOG_SUB">모듈 포함 범위</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-PC-BILL-CATALOG_1">Starter / Core HR / 100 seats</span>
+                      <span data-lid="LID-PC-BILL-CATALOG_2">Growth / HR + Payroll / 500 seats</span>
+                      <span data-lid="LID-PC-BILL-CATALOG_3">Enterprise / Full suite / unlimited</span>
+                    </div>
+                  </div>
+                </section>
+                <section class="column">
+                  <div class="detail-box tall">
+                    <strong data-lid="LID-PC-BILL-DETAIL_TITLE">Tenant Billing Detail</strong>
+                    <p data-lid="LID-PC-BILL-DETAIL_TEXT">계약 플랜, 결제 수단, 송장 상태, 좌석 수, 할인 예외, 플래그 예외를 한 패널에 모은다.</p>
+                  </div>
+                  <div class="detail-actions">
+                    <span data-lid="LID-PC-BILL-ACTION_1">플랜 변경</span>
+                    <span data-lid="LID-PC-BILL-ACTION_2">송장 열기</span>
+                    <span data-lid="LID-PC-BILL-ACTION_3">조정 등록</span>
+                    <span data-lid="LID-PC-BILL-ACTION_4">플래그 검토</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>B3</span>
+              <div>
+                <h3 data-lid="LID-PC-BILL-SCREEN_3_TITLE">Feature Flag Console</h3>
+                <p data-lid="LID-PC-BILL-SCREEN_3_DESC">글로벌, 세그먼트, 테넌트 예외 플래그를 분리해 운영하는 구조</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="board-head">
+                <strong data-lid="LID-PC-BILL-MATRIX_TITLE">Flag Rollout Matrix</strong>
+                <span data-lid="LID-PC-BILL-MATRIX_SUB">범위와 만료</span>
+              </div>
+              <div class="matrix">
+                <div class="matrix-head">
+                  <span data-lid="LID-PC-BILL-MATRIX_COL_1">Flag</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_COL_2">Global</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_COL_3">Segment</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_COL_4">Tenant</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_COL_5">Expiry</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_COL_6">Owner</span>
+                </div>
+                <div class="matrix-row">
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_1_1">AI Summary Beta</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_1_2">off</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_1_3">Design partners</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_1_4">4</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_1_5">2026-04-30</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_1_6">Product Ops</span>
+                </div>
+                <div class="matrix-row warn">
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_2_1">Payroll Preview</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_2_2">off</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_2_3">Beta</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_2_4">2</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_2_5">2026-03-25</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_2_6">Billing Admin</span>
+                </div>
+                <div class="matrix-row danger">
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_3_1">Shift Auto Rules</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_3_2">off</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_3_3">Sales pilot</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_3_4">1</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_3_5">missing</span>
+                  <span data-lid="LID-PC-BILL-MATRIX_ROW_3_6">Platform Ops</span>
+                </div>
+              </div>
+              <div class="panel-row bottom-gap">
+                <section class="panel">
+                  <div class="panel-head">
+                    <strong data-lid="LID-PC-BILL-POLICY_TITLE">Adjustment Policy</strong>
+                    <span data-lid="LID-PC-BILL-POLICY_SUB">운영 기준</span>
+                  </div>
+                  <div class="list dense">
+                    <span data-lid="LID-PC-BILL-POLICY_1">만료일 없는 예외 플래그 금지</span>
+                    <span data-lid="LID-PC-BILL-POLICY_2">수동 할인에는 사유와 승인자 필요</span>
+                    <span data-lid="LID-PC-BILL-POLICY_3">플래그 변경은 감사 로그와 연결</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Admin Home Detailed Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-HOME-EYEBROW": { "ko": "WI-TA-001 / Tenant Admin", "en": "WI-TA-001 / Tenant Admin" },
+        "LID-TA-HOME-HERO_TITLE": { "ko": "전사 운영 관제형<br />Admin Home Dashboard", "en": "Admin Home Dashboard<br />for operational oversight" },
+        "LID-TA-HOME-HERO_TEXT": { "ko": "숫자만 보여주는 홈이 아니라, 승인과 예외와 리스크를 한 번에 읽고 바로 처리하는 운영형 대시보드입니다.", "en": "This is not a KPI-only home. It is an operational dashboard for reading approvals, exceptions, and risks at once and acting immediately." },
+        "LID-TA-HOME-CHIP_1": { "ko": "행동 우선", "en": "Action-first" },
+        "LID-TA-HOME-CHIP_2": { "ko": "예외 우선", "en": "Exceptions-first" },
+        "LID-TA-HOME-CHIP_3": { "ko": "고객사 관리자 범위", "en": "Tenant Admin scope" },
+        "LID-TA-HOME-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-TA-HOME-NOTE_1": { "ko": "첫 화면에서 오늘의 운영 우선순위가 보이는지", "en": "Whether today's operating priorities appear on first view" },
+        "LID-TA-HOME-NOTE_2": { "ko": "예외와 승인 병목이 숫자보다 먼저 읽히는지", "en": "Whether exceptions and approval bottlenecks surface before raw numbers" },
+        "LID-TA-HOME-NOTE_3": { "ko": "전사 운영 화면으로 충분한 밀도가 있는지", "en": "Whether it feels dense enough for company-wide operations" },
+        "LID-TA-HOME-SCREEN_TITLE": { "ko": "Primary Layout", "en": "Primary Layout" },
+        "LID-TA-HOME-SCREEN_DESC": { "ko": "요약, 큐, 스냅샷, 예외, 문서/정산 감시를 한 흐름으로 배치", "en": "A layout combining summaries, queues, snapshots, exceptions, and document/payroll watch" },
+        "LID-TA-HOME-SEARCH": { "ko": "Search employee, issue, policy, request", "en": "Search employee, issue, policy, request" },
+        "LID-TA-HOME-KPI_1": { "ko": "오늘 승인 필요", "en": "Needs approval today" },
+        "LID-TA-HOME-KPI_2": { "ko": "체크아웃 누락", "en": "Missing check-outs" },
+        "LID-TA-HOME-KPI_3": { "ko": "초과근무 임박", "en": "Overtime risk" },
+        "LID-TA-HOME-KPI_4": { "ko": "서명 대기", "en": "Pending signatures" },
+        "LID-TA-HOME-KPI_5": { "ko": "마감 병목", "en": "Closing blockers" },
+        "LID-TA-HOME-QUEUE_TITLE": { "ko": "Today Queue", "en": "Today Queue" },
+        "LID-TA-HOME-QUEUE_SUB": { "ko": "중요도 순", "en": "Critical to low" },
+        "LID-TA-HOME-QUEUE_1_TITLE": { "ko": "초과근무 한도 초과 예상", "en": "Overtime cap likely to be exceeded" },
+        "LID-TA-HOME-QUEUE_1_TEXT": { "ko": "Design Team / 6명 / 오늘 18:00 전 조정 필요", "en": "Design Team / 6 people / needs adjustment before 18:00 today" },
+        "LID-TA-HOME-QUEUE_1_CTA": { "ko": "조정", "en": "Adjust" },
+        "LID-TA-HOME-QUEUE_2_TITLE": { "ko": "체크아웃 누락", "en": "Missing check-out" },
+        "LID-TA-HOME-QUEUE_2_TEXT": { "ko": "Sales / 4명 / 정정 요청 필요", "en": "Sales / 4 people / correction request needed" },
+        "LID-TA-HOME-QUEUE_2_CTA": { "ko": "정정 요청", "en": "Request correction" },
+        "LID-TA-HOME-QUEUE_3_TITLE": { "ko": "휴가 승인 적체", "en": "Leave approval backlog" },
+        "LID-TA-HOME-QUEUE_3_TEXT": { "ko": "2단계 승인 대기 / 5건", "en": "Step 2 approvals pending / 5 items" },
+        "LID-TA-HOME-QUEUE_3_CTA": { "ko": "승인함 이동", "en": "Open approval inbox" },
+        "LID-TA-HOME-QUEUE_4_TITLE": { "ko": "전자계약 미서명", "en": "Unsigned e-contracts" },
+        "LID-TA-HOME-QUEUE_4_TEXT": { "ko": "연봉 변경 계약 / 2건 / 오늘 마감", "en": "Salary change contracts / 2 items / due today" },
+        "LID-TA-HOME-QUEUE_4_CTA": { "ko": "재발송", "en": "Resend" },
+        "LID-TA-HOME-SNAPSHOT_TITLE": { "ko": "Org Snapshot", "en": "Org Snapshot" },
+        "LID-TA-HOME-SNAPSHOT_SUB": { "ko": "부서 비교", "en": "Department comparison" },
+        "LID-TA-HOME-SNAPSHOT_1": { "ko": "출근율 93%", "en": "93% attendance" },
+        "LID-TA-HOME-SNAPSHOT_2": { "ko": "위험 2건", "en": "2 risks" },
+        "LID-TA-HOME-SNAPSHOT_3": { "ko": "누락 4건", "en": "4 missing records" },
+        "LID-TA-HOME-SNAPSHOT_4": { "ko": "승인 병목 1건", "en": "1 approval blocker" },
+        "LID-TA-HOME-FUNNEL_TITLE": { "ko": "Approval Funnel", "en": "Approval Funnel" },
+        "LID-TA-HOME-FUNNEL_SUB": { "ko": "근태 / 문서 / 비용", "en": "Attendance / Document / Expense" },
+        "LID-TA-HOME-FUNNEL_1": { "ko": "초안 12", "en": "Draft 12" },
+        "LID-TA-HOME-FUNNEL_2": { "ko": "대기 17", "en": "Pending 17" },
+        "LID-TA-HOME-FUNNEL_3": { "ko": "상향 4", "en": "Escalated 4" },
+        "LID-TA-HOME-FUNNEL_4": { "ko": "완료 28", "en": "Done 28" },
+        "LID-TA-HOME-EXC_TITLE": { "ko": "Exception Monitor", "en": "Exception Monitor" },
+        "LID-TA-HOME-EXC_SUB": { "ko": "오늘 기준", "en": "Today" },
+        "LID-TA-HOME-EXC_1": { "ko": "지각 8명", "en": "8 late arrivals" },
+        "LID-TA-HOME-EXC_2": { "ko": "휴게 위반 2명", "en": "2 break violations" },
+        "LID-TA-HOME-EXC_3": { "ko": "연속 야간근무 3명", "en": "3 consecutive night shifts" },
+        "LID-TA-HOME-EXC_4": { "ko": "기록 충돌 1건", "en": "1 record conflict" },
+        "LID-TA-HOME-DOC_TITLE": { "ko": "Documents & Payroll Watch", "en": "Documents & Payroll Watch" },
+        "LID-TA-HOME-DOC_SUB": { "ko": "마감 연계", "en": "Closing watch" },
+        "LID-TA-HOME-DOC_1": { "ko": "급여 마감 전 확인 3건", "en": "3 payroll checks before closing" },
+        "LID-TA-HOME-DOC_2": { "ko": "서명 미완료 12건", "en": "12 unsigned documents" },
+        "LID-TA-HOME-DOC_3": { "ko": "만료 예정 계약 5건", "en": "5 contracts nearing expiry" },
+        "LID-TA-HOME-DOC_4": { "ko": "명세서 재발행 요청 2건", "en": "2 payslip reissue requests" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TA-HOME-EYEBROW">WI-TA-001 / Tenant Admin</p>
+          <h1 data-lid="LID-TA-HOME-HERO_TITLE" data-lid-html="true">전사 운영 관제형<br />Admin Home Dashboard</h1>
+          <p class="hero-text" data-lid="LID-TA-HOME-HERO_TEXT">숫자만 보여주는 홈이 아니라, 승인과 예외와 리스크를 한 번에 읽고 바로 처리하는 운영형 대시보드입니다.</p>
+          <div class="hero-chips">
+            <span data-lid="LID-TA-HOME-CHIP_1">행동 우선</span>
+            <span data-lid="LID-TA-HOME-CHIP_2">예외 우선</span>
+            <span data-lid="LID-TA-HOME-CHIP_3">고객사 관리자 범위</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2 data-lid="LID-TA-HOME-NOTE_TITLE">핵심 확인 포인트</h2>
+          <ul>
+            <li data-lid="LID-TA-HOME-NOTE_1">첫 화면에서 오늘의 운영 우선순위가 보이는지</li>
+            <li data-lid="LID-TA-HOME-NOTE_2">예외와 승인 병목이 숫자보다 먼저 읽히는지</li>
+            <li data-lid="LID-TA-HOME-NOTE_3">전사 운영 화면으로 충분한 밀도가 있는지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>A</span>
+              <div>
+                <h3 data-lid="LID-TA-HOME-SCREEN_TITLE">Primary Layout</h3>
+                <p data-lid="LID-TA-HOME-SCREEN_DESC">요약, 큐, 스냅샷, 예외, 문서/정산 감시를 한 흐름으로 배치</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar">
+                <span class="brand">FlowHR</span>
+                <span class="search wide" data-lid="LID-TA-HOME-SEARCH">Search employee, issue, policy, request</span>
+                <span class="pill active">HQ</span>
+                <span class="avatar">AD</span>
+              </div>
+              <div class="layout">
+                <aside class="sidebar">
+                  <span class="active">Home</span>
+                  <span>People</span>
+                  <span>Attendance</span>
+                  <span>Leave</span>
+                  <span>Workflow</span>
+                  <span>Documents</span>
+                  <span>Payroll</span>
+                  <span>Reports</span>
+                </aside>
+                <div class="main">
+                  <div class="kpi-row five">
+                    <div class="kpi emphasis"><strong>17</strong><span data-lid="LID-TA-HOME-KPI_1">오늘 승인 필요</span></div>
+                    <div class="kpi"><strong>9</strong><span data-lid="LID-TA-HOME-KPI_2">체크아웃 누락</span></div>
+                    <div class="kpi"><strong>6</strong><span data-lid="LID-TA-HOME-KPI_3">초과근무 임박</span></div>
+                    <div class="kpi"><strong>12</strong><span data-lid="LID-TA-HOME-KPI_4">서명 대기</span></div>
+                    <div class="kpi"><strong>3</strong><span data-lid="LID-TA-HOME-KPI_5">마감 병목</span></div>
+                  </div>
+                  <div class="panel-row admin-hero">
+                    <section class="panel large">
+                      <div class="panel-head">
+                        <strong data-lid="LID-TA-HOME-QUEUE_TITLE">Today Queue</strong>
+                        <span data-lid="LID-TA-HOME-QUEUE_SUB">중요도 순</span>
+                      </div>
+                      <div class="queue-list">
+                        <div class="queue-item critical">
+                          <div>
+                            <strong data-lid="LID-TA-HOME-QUEUE_1_TITLE">초과근무 한도 초과 예상</strong>
+                            <p data-lid="LID-TA-HOME-QUEUE_1_TEXT">Design Team / 6명 / 오늘 18:00 전 조정 필요</p>
+                          </div>
+                          <span data-lid="LID-TA-HOME-QUEUE_1_CTA">조정</span>
+                        </div>
+                        <div class="queue-item high">
+                          <div>
+                            <strong data-lid="LID-TA-HOME-QUEUE_2_TITLE">체크아웃 누락</strong>
+                            <p data-lid="LID-TA-HOME-QUEUE_2_TEXT">Sales / 4명 / 정정 요청 필요</p>
+                          </div>
+                          <span data-lid="LID-TA-HOME-QUEUE_2_CTA">정정 요청</span>
+                        </div>
+                        <div class="queue-item medium">
+                          <div>
+                            <strong data-lid="LID-TA-HOME-QUEUE_3_TITLE">휴가 승인 적체</strong>
+                            <p data-lid="LID-TA-HOME-QUEUE_3_TEXT">2단계 승인 대기 / 5건</p>
+                          </div>
+                          <span data-lid="LID-TA-HOME-QUEUE_3_CTA">승인함 이동</span>
+                        </div>
+                        <div class="queue-item medium">
+                          <div>
+                            <strong data-lid="LID-TA-HOME-QUEUE_4_TITLE">전자계약 미서명</strong>
+                            <p data-lid="LID-TA-HOME-QUEUE_4_TEXT">연봉 변경 계약 / 2건 / 오늘 마감</p>
+                          </div>
+                          <span data-lid="LID-TA-HOME-QUEUE_4_CTA">재발송</span>
+                        </div>
+                      </div>
+                    </section>
+                    <section class="panel">
+                      <div class="panel-head">
+                        <strong data-lid="LID-TA-HOME-SNAPSHOT_TITLE">Org Snapshot</strong>
+                        <span data-lid="LID-TA-HOME-SNAPSHOT_SUB">부서 비교</span>
+                      </div>
+                      <div class="snapshot-stack">
+                        <div class="snapshot-row"><span>Product</span><span data-lid="LID-TA-HOME-SNAPSHOT_1">출근율 93%</span></div>
+                        <div class="snapshot-row"><span>Engineering</span><span data-lid="LID-TA-HOME-SNAPSHOT_2">위험 2건</span></div>
+                        <div class="snapshot-row"><span>Sales</span><span data-lid="LID-TA-HOME-SNAPSHOT_3">누락 4건</span></div>
+                        <div class="snapshot-row"><span>HR</span><span data-lid="LID-TA-HOME-SNAPSHOT_4">승인 병목 1건</span></div>
+                      </div>
+                    </section>
+                  </div>
+                  <div class="panel-row admin-bottom">
+                    <section class="panel">
+                      <div class="panel-head">
+                        <strong data-lid="LID-TA-HOME-FUNNEL_TITLE">Approval Funnel</strong>
+                        <span data-lid="LID-TA-HOME-FUNNEL_SUB">근태 / 문서 / 비용</span>
+                      </div>
+                      <div class="mini-columns four">
+                        <span data-lid="LID-TA-HOME-FUNNEL_1">초안 12</span>
+                        <span data-lid="LID-TA-HOME-FUNNEL_2">대기 17</span>
+                        <span data-lid="LID-TA-HOME-FUNNEL_3">상향 4</span>
+                        <span data-lid="LID-TA-HOME-FUNNEL_4">완료 28</span>
+                      </div>
+                    </section>
+                    <section class="panel">
+                      <div class="panel-head">
+                        <strong data-lid="LID-TA-HOME-EXC_TITLE">Exception Monitor</strong>
+                        <span data-lid="LID-TA-HOME-EXC_SUB">오늘 기준</span>
+                      </div>
+                      <div class="list dense">
+                        <span data-lid="LID-TA-HOME-EXC_1">지각 8명</span>
+                        <span data-lid="LID-TA-HOME-EXC_2">휴게 위반 2명</span>
+                        <span data-lid="LID-TA-HOME-EXC_3">연속 야간근무 3명</span>
+                        <span data-lid="LID-TA-HOME-EXC_4">기록 충돌 1건</span>
+                      </div>
+                    </section>
+                    <section class="panel">
+                      <div class="panel-head">
+                        <strong data-lid="LID-TA-HOME-DOC_TITLE">Documents & Payroll Watch</strong>
+                        <span data-lid="LID-TA-HOME-DOC_SUB">마감 연계</span>
+                      </div>
+                      <div class="list dense">
+                        <span data-lid="LID-TA-HOME-DOC_1">급여 마감 전 확인 3건</span>
+                        <span data-lid="LID-TA-HOME-DOC_2">서명 미완료 12건</span>
+                        <span data-lid="LID-TA-HOME-DOC_3">만료 예정 계약 5건</span>
+                        <span data-lid="LID-TA-HOME-DOC_4">명세서 재발행 요청 2건</span>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

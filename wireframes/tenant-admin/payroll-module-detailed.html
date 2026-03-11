@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Payroll Module Detailed Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-PAY-EYEBROW": { "ko": "WI-TA-010 / Payroll Module", "en": "WI-TA-010 / Payroll Module" },
+        "LID-TA-PAY-HERO_TITLE": { "ko": "정산 리스크와 마감 준비를 먼저 읽는<br />Payroll Module", "en": "A Payroll Module<br />that reads closing risk first" },
+        "LID-TA-PAY-HERO_TEXT": { "ko": "급여 마감은 계산 화면이 아니라 근태, 휴가, 승인, 문서 완료 상태를 연결해 검토하는 운영 허브여야 합니다.", "en": "Payroll closing should not be just a calculation screen. It should be an operational hub connecting attendance, leave, approvals, and document completion." },
+        "LID-TA-PAY-CHIP_CLOSE": { "ko": "Closing-first", "en": "Closing-first" },
+        "LID-TA-PAY-CHIP_RISK": { "ko": "Risk-aware", "en": "Risk-aware" },
+        "LID-TA-PAY-CHIP_PSLIP": { "ko": "Payslip-ready", "en": "Payslip-ready" },
+        "LID-TA-PAY-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-TA-PAY-NOTE_1": { "ko": "마감 병목이 첫 화면에서 읽히는지", "en": "Whether closing bottlenecks are visible on first view" },
+        "LID-TA-PAY-NOTE_2": { "ko": "예외 검토와 마감 실행이 분리되는지", "en": "Whether exception review and close execution are separated" },
+        "LID-TA-PAY-NOTE_3": { "ko": "명세서 발행 준비 상태가 보이는지", "en": "Whether payslip readiness is visible" },
+        "LID-TA-PAY-SCREEN_TITLE": { "ko": "Payroll Dashboard + Closing Watch", "en": "Payroll Dashboard + Closing Watch" },
+        "LID-TA-PAY-SCREEN_DESC": { "ko": "예외 항목, 마감 큐, 명세서 준비 상태를 결합한 구조", "en": "A structure combining exceptions, closing queue, and payslip readiness" },
+        "LID-TA-PAY-BRAND": { "ko": "Payroll", "en": "Payroll" },
+        "LID-TA-PAY-SEARCH": { "ko": "Search employee, exception, payroll rule, closing item", "en": "Search employee, exception, payroll rule, closing item" },
+        "LID-TA-PAY-PILL_ACTIVE": { "ko": "마감 준비", "en": "Closing prep" },
+        "LID-TA-PAY-PILL_RULES": { "ko": "정산 규칙", "en": "Rules" },
+        "LID-TA-PAY-KPI_1": { "ko": "미확정 근태 12건", "en": "12 unconfirmed attendance items" },
+        "LID-TA-PAY-KPI_2": { "ko": "미승인 초과근무 5건", "en": "5 overtime approvals pending" },
+        "LID-TA-PAY-KPI_3": { "ko": "휴가 차감 충돌 3건", "en": "3 leave deduction conflicts" },
+        "LID-TA-PAY-KPI_4": { "ko": "수동 보정 7건", "en": "7 manual adjustments" },
+        "LID-TA-PAY-KPI_5": { "ko": "명세서 발행 대기 146건", "en": "146 payslips pending" },
+        "LID-TA-PAY-QUEUE_TITLE": { "ko": "Closing Queue", "en": "Closing Queue" },
+        "LID-TA-PAY-QUEUE_SUB": { "ko": "리스크 우선", "en": "Risk first" },
+        "LID-TA-PAY-QUEUE_1_TITLE": { "ko": "미확정 체크아웃 누락", "en": "Unresolved checkout misses" },
+        "LID-TA-PAY-QUEUE_1_TEXT": { "ko": "Sales / 4건 / 정산 반영 전 처리 필요", "en": "Sales / 4 items / resolve before payroll" },
+        "LID-TA-PAY-QUEUE_1_ACTION": { "ko": "검토", "en": "Review" },
+        "LID-TA-PAY-QUEUE_2_TITLE": { "ko": "초과근무 승인 대기", "en": "Overtime approval pending" },
+        "LID-TA-PAY-QUEUE_2_TEXT": { "ko": "Engineering / 5건 / 오늘 마감", "en": "Engineering / 5 items / due today" },
+        "LID-TA-PAY-QUEUE_2_ACTION": { "ko": "승인함 이동", "en": "Open inbox" },
+        "LID-TA-PAY-QUEUE_3_TITLE": { "ko": "수당 규칙 충돌", "en": "Allowance rule conflict" },
+        "LID-TA-PAY-QUEUE_3_TEXT": { "ko": "현장수당 2건 / 수동 확인", "en": "2 field allowance items / manual check" },
+        "LID-TA-PAY-QUEUE_3_ACTION": { "ko": "보정", "en": "Adjust" },
+        "LID-TA-PAY-RULES_TITLE": { "ko": "Payroll Rules", "en": "Payroll Rules" },
+        "LID-TA-PAY-RULES_SUB": { "ko": "연동 상태", "en": "Rule sync" },
+        "LID-TA-PAY-RULES_1": { "ko": "기본급 / 계약 기준", "en": "Base pay / contract-based" },
+        "LID-TA-PAY-RULES_2": { "ko": "초과근무 / 승인 연동", "en": "Overtime / approval-linked" },
+        "LID-TA-PAY-RULES_3": { "ko": "휴가 차감 / 자동 반영", "en": "Leave deduction / auto-reflected" },
+        "LID-TA-PAY-CLOSE_TITLE": { "ko": "Ready to Close", "en": "Ready to Close" },
+        "LID-TA-PAY-CLOSE_SUB": { "ko": "상태", "en": "Status" },
+        "LID-TA-PAY-CLOSE_1": { "ko": "사전 점검 완료 89%", "en": "89% pre-check complete" },
+        "LID-TA-PAY-CLOSE_2": { "ko": "조직별 검토 2곳 남음", "en": "2 org reviews remaining" },
+        "LID-TA-PAY-CLOSE_3": { "ko": "명세서 생성 대기", "en": "Payslip generation pending" },
+        "LID-TA-PAY-PSLIP_TITLE": { "ko": "Payslip Center", "en": "Payslip Center" },
+        "LID-TA-PAY-PSLIP_SUB": { "ko": "발행 준비", "en": "Ready state" },
+        "LID-TA-PAY-PSLIP_1": { "ko": "발행 가능 146건", "en": "146 ready to issue" },
+        "LID-TA-PAY-PSLIP_2": { "ko": "재발행 요청 2건", "en": "2 reissue requests" },
+        "LID-TA-PAY-PSLIP_3": { "ko": "미열람 18건", "en": "18 unopened payslips" },
+        "LID-TA-PAY-ACTION_TITLE": { "ko": "Quick Actions", "en": "Quick Actions" },
+        "LID-TA-PAY-ACTION_SUB": { "ko": "실행", "en": "Ops" },
+        "LID-TA-PAY-ACTION_1": { "ko": "예외 검토", "en": "Review exceptions" },
+        "LID-TA-PAY-ACTION_2": { "ko": "급여 마감", "en": "Close payroll" },
+        "LID-TA-PAY-ACTION_3": { "ko": "명세서 발행", "en": "Issue payslips" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TA-PAY-EYEBROW">WI-TA-010 / Payroll Module</p>
+          <h1 data-lid="LID-TA-PAY-HERO_TITLE" data-lid-html="true">정산 리스크와 마감 준비를 먼저 읽는<br />Payroll Module</h1>
+          <p class="hero-text" data-lid="LID-TA-PAY-HERO_TEXT">급여 마감은 계산 화면이 아니라 근태, 휴가, 승인, 문서 완료 상태를 연결해 검토하는 운영 허브여야 합니다.</p>
+          <div class="hero-chips">
+            <span data-lid="LID-TA-PAY-CHIP_CLOSE">Closing-first</span>
+            <span data-lid="LID-TA-PAY-CHIP_RISK">Risk-aware</span>
+            <span data-lid="LID-TA-PAY-CHIP_PSLIP">Payslip-ready</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2 data-lid="LID-TA-PAY-NOTE_TITLE">핵심 확인 포인트</h2>
+          <ul>
+            <li data-lid="LID-TA-PAY-NOTE_1">마감 병목이 첫 화면에서 읽히는지</li>
+            <li data-lid="LID-TA-PAY-NOTE_2">예외 검토와 마감 실행이 분리되는지</li>
+            <li data-lid="LID-TA-PAY-NOTE_3">명세서 발행 준비 상태가 보이는지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>Y</span>
+              <div>
+                <h3 data-lid="LID-TA-PAY-SCREEN_TITLE">Payroll Dashboard + Closing Watch</h3>
+                <p data-lid="LID-TA-PAY-SCREEN_DESC">예외 항목, 마감 큐, 명세서 준비 상태를 결합한 구조</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar slim">
+                <span class="brand" data-lid="LID-TA-PAY-BRAND">Payroll</span>
+                <span class="search wide" data-lid="LID-TA-PAY-SEARCH">Search employee, exception, payroll rule, closing item</span>
+                <span class="pill active" data-lid="LID-TA-PAY-PILL_ACTIVE">마감 준비</span>
+                <span class="pill" data-lid="LID-TA-PAY-PILL_RULES">정산 규칙</span>
+              </div>
+              <div class="main">
+                <div class="kpi-row five">
+                  <div class="kpi emphasis"><strong>12</strong><span data-lid="LID-TA-PAY-KPI_1">미확정 근태 12건</span></div>
+                  <div class="kpi"><strong>5</strong><span data-lid="LID-TA-PAY-KPI_2">미승인 초과근무 5건</span></div>
+                  <div class="kpi"><strong>3</strong><span data-lid="LID-TA-PAY-KPI_3">휴가 차감 충돌 3건</span></div>
+                  <div class="kpi"><strong>7</strong><span data-lid="LID-TA-PAY-KPI_4">수동 보정 7건</span></div>
+                  <div class="kpi"><strong>146</strong><span data-lid="LID-TA-PAY-KPI_5">명세서 발행 대기 146건</span></div>
+                </div>
+                <div class="panel-row admin-hero">
+                  <section class="panel large">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-PAY-QUEUE_TITLE">Closing Queue</strong>
+                      <span data-lid="LID-TA-PAY-QUEUE_SUB">리스크 우선</span>
+                    </div>
+                    <div class="queue-list">
+                      <div class="queue-item critical">
+                        <div>
+                          <strong data-lid="LID-TA-PAY-QUEUE_1_TITLE">미확정 체크아웃 누락</strong>
+                          <p data-lid="LID-TA-PAY-QUEUE_1_TEXT">Sales / 4건 / 정산 반영 전 처리 필요</p>
+                        </div>
+                        <span data-lid="LID-TA-PAY-QUEUE_1_ACTION">검토</span>
+                      </div>
+                      <div class="queue-item high">
+                        <div>
+                          <strong data-lid="LID-TA-PAY-QUEUE_2_TITLE">초과근무 승인 대기</strong>
+                          <p data-lid="LID-TA-PAY-QUEUE_2_TEXT">Engineering / 5건 / 오늘 마감</p>
+                        </div>
+                        <span data-lid="LID-TA-PAY-QUEUE_2_ACTION">승인함 이동</span>
+                      </div>
+                      <div class="queue-item medium">
+                        <div>
+                          <strong data-lid="LID-TA-PAY-QUEUE_3_TITLE">수당 규칙 충돌</strong>
+                          <p data-lid="LID-TA-PAY-QUEUE_3_TEXT">현장수당 2건 / 수동 확인</p>
+                        </div>
+                        <span data-lid="LID-TA-PAY-QUEUE_3_ACTION">보정</span>
+                      </div>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-PAY-RULES_TITLE">Payroll Rules</strong>
+                      <span data-lid="LID-TA-PAY-RULES_SUB">연동 상태</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-PAY-RULES_1">기본급 / 계약 기준</span>
+                      <span data-lid="LID-TA-PAY-RULES_2">초과근무 / 승인 연동</span>
+                      <span data-lid="LID-TA-PAY-RULES_3">휴가 차감 / 자동 반영</span>
+                    </div>
+                  </section>
+                </div>
+                <div class="panel-row admin-bottom">
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-PAY-CLOSE_TITLE">Ready to Close</strong>
+                      <span data-lid="LID-TA-PAY-CLOSE_SUB">상태</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-PAY-CLOSE_1">사전 점검 완료 89%</span>
+                      <span data-lid="LID-TA-PAY-CLOSE_2">조직별 검토 2곳 남음</span>
+                      <span data-lid="LID-TA-PAY-CLOSE_3">명세서 생성 대기</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-PAY-PSLIP_TITLE">Payslip Center</strong>
+                      <span data-lid="LID-TA-PAY-PSLIP_SUB">발행 준비</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-PAY-PSLIP_1">발행 가능 146건</span>
+                      <span data-lid="LID-TA-PAY-PSLIP_2">재발행 요청 2건</span>
+                      <span data-lid="LID-TA-PAY-PSLIP_3">미열람 18건</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TA-PAY-ACTION_TITLE">Quick Actions</strong>
+                      <span data-lid="LID-TA-PAY-ACTION_SUB">실행</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TA-PAY-ACTION_1">예외 검토</span>
+                      <span data-lid="LID-TA-PAY-ACTION_2">급여 마감</span>
+                      <span data-lid="LID-TA-PAY-ACTION_3">명세서 발행</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

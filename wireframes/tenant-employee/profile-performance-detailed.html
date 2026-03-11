@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Profile Performance Detailed Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TE-PROFILE-EYEBROW": { "ko": "WI-TE-005 / My Profile & Performance", "en": "WI-TE-005 / My Profile & Performance" },
+        "LID-TE-PROFILE-HERO_TITLE": { "ko": "내 프로필과 성장 상태를 함께 보는<br />My Profile & Performance", "en": "My Profile & Performance<br />in one place" },
+        "LID-TE-PROFILE-HERO_TEXT": { "ko": "직원은 인사정보, 잔여 휴가, 목표 진행, 평가 일정을 흩어 보지 않아야 합니다. 개인 정보와 성장 흐름이 한 화면에서 자연스럽게 이어져야 합니다.", "en": "Employees should not check HR info, leave balance, goals, and review schedules across scattered screens. Personal information and growth flow should connect naturally in one place." },
+        "LID-TE-PROFILE-CHIP_PROFILE": { "ko": "Profile-first", "en": "Profile-first" },
+        "LID-TE-PROFILE-CHIP_GROWTH": { "ko": "Growth-linked", "en": "Growth-linked" },
+        "LID-TE-PROFILE-CHIP_SELF": { "ko": "Self-service", "en": "Self-service" },
+        "LID-TE-PROFILE-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-TE-PROFILE-NOTE_1": { "ko": "기본 프로필과 성장 정보가 자연스럽게 연결되는지", "en": "Whether profile and growth information connect naturally" },
+        "LID-TE-PROFILE-NOTE_2": { "ko": "휴가 잔여와 평가 일정이 과하게 무겁지 않은지", "en": "Whether leave balance and review schedule feel lightweight enough" },
+        "LID-TE-PROFILE-NOTE_3": { "ko": "직원이 확인해야 할 다음 행동이 보이는지", "en": "Whether the next employee action is visible" },
+        "LID-TE-PROFILE-SCREEN_A_TITLE": { "ko": "Desktop Profile + Performance", "en": "Desktop Profile + Performance" },
+        "LID-TE-PROFILE-SCREEN_A_DESC": { "ko": "기본 정보, 잔여 휴가, 목표 상태, 평가 일정을 한 흐름으로 배치", "en": "Place core info, leave balance, goal status, and review schedule in one flow" },
+        "LID-TE-PROFILE-BRAND": { "ko": "My Profile", "en": "My Profile" },
+        "LID-TE-PROFILE-SEARCH": { "ko": "Search profile, leave, goal, review", "en": "Search profile, leave, goal, review" },
+        "LID-TE-PROFILE-CARD_PROFILE_TITLE": { "ko": "Profile", "en": "Profile" },
+        "LID-TE-PROFILE-CARD_PROFILE_SUB": { "ko": "기본 정보", "en": "Core info" },
+        "LID-TE-PROFILE-ITEM_ORG": { "ko": "소속 / Product Design", "en": "Org / Product Design" },
+        "LID-TE-PROFILE-ITEM_ROLE": { "ko": "직무 / Product Designer", "en": "Role / Product Designer" },
+        "LID-TE-PROFILE-ITEM_JOIN": { "ko": "입사일 / 2023-02-01", "en": "Join date / 2023-02-01" },
+        "LID-TE-PROFILE-CARD_LEAVE_TITLE": { "ko": "Leave Balance", "en": "Leave Balance" },
+        "LID-TE-PROFILE-CARD_LEAVE_SUB": { "ko": "잔여 현황", "en": "Balance" },
+        "LID-TE-PROFILE-ITEM_BALANCE": { "ko": "잔여 연차 8.5일", "en": "8.5 days left" },
+        "LID-TE-PROFILE-ITEM_SCHEDULED": { "ko": "예정 사용 1.0일", "en": "1.0 day scheduled" },
+        "LID-TE-PROFILE-ITEM_POLICY": { "ko": "시간 단위 휴가 가능", "en": "Hourly leave allowed" },
+        "LID-TE-PROFILE-CARD_GOAL_TITLE": { "ko": "Goals & Reviews", "en": "Goals & Reviews" },
+        "LID-TE-PROFILE-CARD_GOAL_SUB": { "ko": "성장 상태", "en": "Growth status" },
+        "LID-TE-PROFILE-ITEM_GOAL": { "ko": "진행 중 목표 3개", "en": "3 active goals" },
+        "LID-TE-PROFILE-ITEM_REVIEW": { "ko": "자기평가 마감 03/20", "en": "Self review due 03/20" },
+        "LID-TE-PROFILE-ITEM_ONEONONE": { "ko": "다음 1:1 / 금요일 14:00", "en": "Next 1:1 / Friday 14:00" },
+        "LID-TE-PROFILE-CARD_ACTION_TITLE": { "ko": "Quick Actions", "en": "Quick Actions" },
+        "LID-TE-PROFILE-CARD_ACTION_SUB": { "ko": "실행", "en": "Actions" },
+        "LID-TE-PROFILE-ACTION_1": { "ko": "프로필 확인", "en": "View profile" },
+        "LID-TE-PROFILE-ACTION_2": { "ko": "휴가 정책 보기", "en": "View leave policy" },
+        "LID-TE-PROFILE-ACTION_3": { "ko": "평가 상세 보기", "en": "Open review details" },
+        "LID-TE-PROFILE-ACTION_4": { "ko": "1:1 메모 확인", "en": "Check 1:1 notes" },
+        "LID-TE-PROFILE-SCREEN_B_TITLE": { "ko": "Mobile Profile Snapshot", "en": "Mobile Profile Snapshot" },
+        "LID-TE-PROFILE-SCREEN_B_DESC": { "ko": "모바일에서는 핵심 상태와 다음 행동만 먼저 보여주는 구조", "en": "On mobile, show core status and next actions first" },
+        "LID-TE-PROFILE-MOBILE_TOP": { "ko": "내 상태", "en": "My status" },
+        "LID-TE-PROFILE-MOBILE_TOP_TEXT": { "ko": "프로필 정상 / 연차 8.5일 / 목표 3개 진행 중", "en": "Profile OK / 8.5 leave days / 3 goals in progress" },
+        "LID-TE-PROFILE-MOBILE_GROWTH": { "ko": "성장 일정", "en": "Growth schedule" },
+        "LID-TE-PROFILE-MOBILE_GROWTH_1": { "ko": "자기평가 마감 03/20", "en": "Self review due 03/20" },
+        "LID-TE-PROFILE-MOBILE_GROWTH_2": { "ko": "팀장 피드백 예정", "en": "Manager feedback pending" },
+        "LID-TE-PROFILE-MOBILE_GROWTH_3": { "ko": "다음 1:1 금요일", "en": "Next 1:1 on Friday" },
+        "LID-TE-PROFILE-MOBILE_ACTION": { "ko": "바로가기", "en": "Quick links" },
+        "LID-TE-PROFILE-MOBILE_ACTION_1": { "ko": "휴가", "en": "Leave" },
+        "LID-TE-PROFILE-MOBILE_ACTION_2": { "ko": "평가", "en": "Review" },
+        "LID-TE-PROFILE-MOBILE_ACTION_3": { "ko": "프로필", "en": "Profile" },
+        "LID-TE-PROFILE-MOBILE_ACTION_4": { "ko": "1:1", "en": "1:1" },
+        "LID-TE-PROFILE-TAB_HOME": { "ko": "Home", "en": "Home" },
+        "LID-TE-PROFILE-TAB_REQUEST": { "ko": "Request", "en": "Request" },
+        "LID-TE-PROFILE-TAB_PROFILE": { "ko": "Profile", "en": "Profile" },
+        "LID-TE-PROFILE-TAB_INBOX": { "ko": "Inbox", "en": "Inbox" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-TE-PROFILE-EYEBROW">WI-TE-005 / My Profile & Performance</p>
+          <h1 data-lid="LID-TE-PROFILE-HERO_TITLE" data-lid-html="true">내 프로필과 성장 상태를 함께 보는<br />My Profile &amp; Performance</h1>
+          <p class="hero-text" data-lid="LID-TE-PROFILE-HERO_TEXT">직원은 인사정보, 잔여 휴가, 목표 진행, 평가 일정을 흩어 보지 않아야 합니다. 개인 정보와 성장 흐름이 한 화면에서 자연스럽게 이어져야 합니다.</p>
+          <div class="hero-chips">
+            <span data-lid="LID-TE-PROFILE-CHIP_PROFILE">Profile-first</span>
+            <span data-lid="LID-TE-PROFILE-CHIP_GROWTH">Growth-linked</span>
+            <span data-lid="LID-TE-PROFILE-CHIP_SELF">Self-service</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2 data-lid="LID-TE-PROFILE-NOTE_TITLE">핵심 확인 포인트</h2>
+          <ul>
+            <li data-lid="LID-TE-PROFILE-NOTE_1">기본 프로필과 성장 정보가 자연스럽게 연결되는지</li>
+            <li data-lid="LID-TE-PROFILE-NOTE_2">휴가 잔여와 평가 일정이 과하게 무겁지 않은지</li>
+            <li data-lid="LID-TE-PROFILE-NOTE_3">직원이 확인해야 할 다음 행동이 보이는지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid two-up">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>01</span>
+              <div>
+                <h3 data-lid="LID-TE-PROFILE-SCREEN_A_TITLE">Desktop Profile + Performance</h3>
+                <p data-lid="LID-TE-PROFILE-SCREEN_A_DESC">기본 정보, 잔여 휴가, 목표 상태, 평가 일정을 한 흐름으로 배치</p>
+              </div>
+            </div>
+            <div class="screen desktop compact">
+              <div class="topbar slim">
+                <span class="brand" data-lid="LID-TE-PROFILE-BRAND">My Profile</span>
+                <span class="search wide" data-lid="LID-TE-PROFILE-SEARCH">Search profile, leave, goal, review</span>
+                <span class="avatar">MJ</span>
+              </div>
+              <div class="main">
+                <div class="panel-row admin-bottom">
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TE-PROFILE-CARD_PROFILE_TITLE">Profile</strong>
+                      <span data-lid="LID-TE-PROFILE-CARD_PROFILE_SUB">기본 정보</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TE-PROFILE-ITEM_ORG">소속 / Product Design</span>
+                      <span data-lid="LID-TE-PROFILE-ITEM_ROLE">직무 / Product Designer</span>
+                      <span data-lid="LID-TE-PROFILE-ITEM_JOIN">입사일 / 2023-02-01</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TE-PROFILE-CARD_LEAVE_TITLE">Leave Balance</strong>
+                      <span data-lid="LID-TE-PROFILE-CARD_LEAVE_SUB">잔여 현황</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TE-PROFILE-ITEM_BALANCE">잔여 연차 8.5일</span>
+                      <span data-lid="LID-TE-PROFILE-ITEM_SCHEDULED">예정 사용 1.0일</span>
+                      <span data-lid="LID-TE-PROFILE-ITEM_POLICY">시간 단위 휴가 가능</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-TE-PROFILE-CARD_GOAL_TITLE">Goals & Reviews</strong>
+                      <span data-lid="LID-TE-PROFILE-CARD_GOAL_SUB">성장 상태</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-TE-PROFILE-ITEM_GOAL">진행 중 목표 3개</span>
+                      <span data-lid="LID-TE-PROFILE-ITEM_REVIEW">자기평가 마감 03/20</span>
+                      <span data-lid="LID-TE-PROFILE-ITEM_ONEONONE">다음 1:1 / 금요일 14:00</span>
+                    </div>
+                  </section>
+                </div>
+                <section class="panel">
+                  <div class="panel-head">
+                    <strong data-lid="LID-TE-PROFILE-CARD_ACTION_TITLE">Quick Actions</strong>
+                    <span data-lid="LID-TE-PROFILE-CARD_ACTION_SUB">실행</span>
+                  </div>
+                  <div class="mini-columns four">
+                    <span data-lid="LID-TE-PROFILE-ACTION_1">프로필 확인</span>
+                    <span data-lid="LID-TE-PROFILE-ACTION_2">휴가 정책 보기</span>
+                    <span data-lid="LID-TE-PROFILE-ACTION_3">평가 상세 보기</span>
+                    <span data-lid="LID-TE-PROFILE-ACTION_4">1:1 메모 확인</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>02</span>
+              <div>
+                <h3 data-lid="LID-TE-PROFILE-SCREEN_B_TITLE">Mobile Profile Snapshot</h3>
+                <p data-lid="LID-TE-PROFILE-SCREEN_B_DESC">모바일에서는 핵심 상태와 다음 행동만 먼저 보여주는 구조</p>
+              </div>
+            </div>
+            <div class="mobile-wrap">
+              <div class="screen mobile">
+                <div class="mobile-notch"></div>
+                <div class="mobile-head">
+                  <span>09:44</span>
+                  <span>FlowHR</span>
+                  <span>LTE</span>
+                </div>
+                <div class="mobile-body">
+                  <div class="mobile-card hero-card strong-hero">
+                    <strong data-lid="LID-TE-PROFILE-MOBILE_TOP">내 상태</strong>
+                    <p data-lid="LID-TE-PROFILE-MOBILE_TOP_TEXT">프로필 정상 / 연차 8.5일 / 목표 3개 진행 중</p>
+                  </div>
+                  <div class="mobile-card">
+                    <strong data-lid="LID-TE-PROFILE-MOBILE_GROWTH">성장 일정</strong>
+                    <div class="list dense">
+                      <span data-lid="LID-TE-PROFILE-MOBILE_GROWTH_1">자기평가 마감 03/20</span>
+                      <span data-lid="LID-TE-PROFILE-MOBILE_GROWTH_2">팀장 피드백 예정</span>
+                      <span data-lid="LID-TE-PROFILE-MOBILE_GROWTH_3">다음 1:1 금요일</span>
+                    </div>
+                  </div>
+                  <div class="mobile-card">
+                    <strong data-lid="LID-TE-PROFILE-MOBILE_ACTION">바로가기</strong>
+                    <div class="mini-columns two">
+                      <span data-lid="LID-TE-PROFILE-MOBILE_ACTION_1">휴가</span>
+                      <span data-lid="LID-TE-PROFILE-MOBILE_ACTION_2">평가</span>
+                      <span data-lid="LID-TE-PROFILE-MOBILE_ACTION_3">프로필</span>
+                      <span data-lid="LID-TE-PROFILE-MOBILE_ACTION_4">1:1</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-tabbar">
+                  <span data-lid="LID-TE-PROFILE-TAB_HOME">Home</span>
+                  <span data-lid="LID-TE-PROFILE-TAB_REQUEST">Request</span>
+                  <span class="active" data-lid="LID-TE-PROFILE-TAB_PROFILE">Profile</span>
+                  <span data-lid="LID-TE-PROFILE-TAB_INBOX">Inbox</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

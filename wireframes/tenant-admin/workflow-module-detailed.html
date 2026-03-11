@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Workflow Module Detailed Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">WI-TA-005 / Workflow Module</p>
+          <h1>인박스와 문맥을 결합한<br />Workflow Module</h1>
+          <p class="hero-text">
+            승인자는 문서를 찾는 대신 인박스에서 바로 판단하고, 상세 화면에서 필요한 맥락과
+            처리 액션을 함께 봐야 합니다.
+          </p>
+          <div class="hero-chips">
+            <span>Inbox-first</span>
+            <span>Context-rich</span>
+            <span>Approval operations</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2>핵심 확인 포인트</h2>
+          <ul>
+            <li>인박스에서 무엇을 처리해야 하는지 분명한지</li>
+            <li>상세 화면이 판단에 필요한 문맥을 충분히 주는지</li>
+            <li>결재 병목이 운영 리스크로 드러나는지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>W</span>
+              <div>
+                <h3>Approval Inbox + Detail</h3>
+                <p>대기 문서 리스트와 선택 문서 컨텍스트를 결합한 구조</p>
+              </div>
+            </div>
+            <div class="screen desktop compact">
+              <div class="topbar slim">
+                <span class="brand">Workflow</span>
+                <span class="search wide">Search request, approver, policy, status</span>
+                <span class="pill active">Pending</span>
+                <span class="pill">Escalated</span>
+              </div>
+              <div class="split wide-split">
+                <section class="column list-column">
+                  <div class="stack-card active">
+                    <strong>반차 요청 / 이수민</strong>
+                    <span>오늘 14:00-18:00</span>
+                    <span class="status wait">대기 2단계</span>
+                  </div>
+                  <div class="stack-card">
+                    <strong>초과근무 요청 / 박준</strong>
+                    <span>3시간</span>
+                    <span class="status risk">주 52시간 임박</span>
+                  </div>
+                  <div class="stack-card">
+                    <strong>전자계약 서명</strong>
+                    <span>연봉 변경 계약서</span>
+                    <span class="status">당일 마감</span>
+                  </div>
+                </section>
+                <section class="column detail-column">
+                  <div class="detail-box tall">
+                    <strong>Request Context</strong>
+                    <div class="list dense">
+                      <span>요청 내용 / 사유 / 첨부</span>
+                      <span>잔여 휴가 / 팀 일정 충돌</span>
+                      <span>관련 정책 / 최근 승인 이력</span>
+                      <span>결재 단계 / 병목 여부</span>
+                    </div>
+                  </div>
+                  <div class="detail-actions">
+                    <span>승인</span>
+                    <span>반려</span>
+                    <span>보류</span>
+                    <span>추가 확인</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

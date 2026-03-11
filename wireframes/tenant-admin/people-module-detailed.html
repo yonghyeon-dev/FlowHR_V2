@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 People Module Detailed Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">WI-TA-002 / People Module</p>
+          <h1>사람 기준으로 운영 정보를 묶는<br />People Hub</h1>
+          <p class="hero-text">
+            직원 목록이 아니라 사람을 중심으로 근태, 휴가, 문서, 승인 신호를 연결하는
+            운영 허브입니다.
+          </p>
+          <div class="hero-chips">
+            <span>People-first</span>
+            <span>Signal-connected</span>
+            <span>Tenant Admin / Manager</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2>핵심 확인 포인트</h2>
+          <ul>
+            <li>사람 기준으로 정보가 자연스럽게 연결되는지</li>
+            <li>목록과 상세가 한 흐름으로 이어지는지</li>
+            <li>운영 신호가 충분히 드러나는지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>P</span>
+              <div>
+                <h3>Directory + Profile</h3>
+                <p>검색 가능한 사람 목록과 운영 컨텍스트 프로필</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar slim">
+                <span class="brand">People</span>
+                <span class="search wide">Search employee, team, contract, signal</span>
+                <span class="pill active">재직 중</span>
+                <span class="pill">퇴사 예정</span>
+              </div>
+              <div class="people-layout">
+                <section class="panel people-list">
+                  <div class="list dense">
+                    <span class="active-row">김민지 / Product Design / 재직 중 / 서명 대기</span>
+                    <span>최도윤 / Backend / 재직 중 / 정상</span>
+                    <span>이수현 / HR / 퇴사 예정 / 승인 1건</span>
+                    <span>박유리 / Sales / 계약갱신 필요 / 문서 2건</span>
+                  </div>
+                </section>
+                <section class="panel profile">
+                  <div class="profile-head">
+                    <div class="profile-id">
+                      <span class="avatar large">KM</span>
+                      <div>
+                        <strong>김민지</strong>
+                        <p>Product Design Lead</p>
+                      </div>
+                    </div>
+                    <div class="profile-tags">
+                      <span>재직 중</span>
+                      <span>연차 8.5일</span>
+                      <span>서명 대기</span>
+                    </div>
+                  </div>
+                  <div class="panel-row admin-bottom">
+                    <div class="panel inset">
+                      <strong>Profile</strong>
+                      <div class="list dense">
+                        <span>소속 / Product</span>
+                        <span>입사일 / 2023-02-01</span>
+                        <span>근무제 / 선택근무</span>
+                      </div>
+                    </div>
+                    <div class="panel inset">
+                      <strong>Recent Signals</strong>
+                      <div class="list dense">
+                        <span>최근 30일 지각 0회</span>
+                        <span>승인 대기 1건</span>
+                        <span>계약 문서 서명 1건</span>
+                      </div>
+                    </div>
+                    <div class="panel inset">
+                      <strong>Connected Actions</strong>
+                      <div class="list dense">
+                        <span>인사정보 수정</span>
+                        <span>근태 보기</span>
+                        <span>문서 발송</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

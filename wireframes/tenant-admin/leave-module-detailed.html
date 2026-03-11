@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Leave Module Detailed Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">WI-TA-004 / Leave Module</p>
+          <h1>정책, 캘린더, 요청, 촉진을 묶는<br />Leave Module</h1>
+          <p class="hero-text">
+            휴가 잔여 일수만 보는 기능이 아니라 정책과 운영 상태가 함께 읽히는 관리 모듈입니다.
+          </p>
+          <div class="hero-chips">
+            <span>Policy-connected</span>
+            <span>Calendar-first</span>
+            <span>Admin / Manager / Employee</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2>핵심 확인 포인트</h2>
+          <ul>
+            <li>정책과 요청 흐름이 연결되는지</li>
+            <li>휴가 충돌과 촉진 대상이 충분히 보이는지</li>
+            <li>관리자와 직원 모두 이해 가능한 구조인지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>L</span>
+              <div>
+                <h3>Dashboard + Calendar + Policy</h3>
+                <p>운영 KPI, 일정 캘린더, 정책 요약을 한 흐름으로 배치</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar slim">
+                <span class="brand">Leave</span>
+                <span class="search wide">Search employee, leave type, policy</span>
+                <span class="pill active">연차</span>
+                <span class="pill">경조사</span>
+                <span class="pill">보상휴가</span>
+              </div>
+              <div class="main">
+                <div class="kpi-row five">
+                  <div class="kpi emphasis">
+                    <strong>248일</strong>
+                    <span>전사 잔여 연차</span>
+                  </div>
+                  <div class="kpi">
+                    <strong>14</strong>
+                    <span>승인 대기</span>
+                  </div>
+                  <div class="kpi">
+                    <strong>9</strong>
+                    <span>촉진 대상</span>
+                  </div>
+                  <div class="kpi">
+                    <strong>6</strong>
+                    <span>만료 임박</span>
+                  </div>
+                  <div class="kpi">
+                    <strong>3</strong>
+                    <span>충돌 일정</span>
+                  </div>
+                </div>
+                <div class="panel-row admin-hero">
+                  <section class="panel large">
+                    <div class="panel-head">
+                      <strong>Leave Calendar</strong>
+                      <span>Team / Org toggle</span>
+                    </div>
+                    <div class="calendar-grid">
+                      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                      <span>8</span><span>9</span><span class="filled">10</span><span class="filled">11</span><span>12</span><span>13</span><span>14</span>
+                      <span>15</span><span>16</span><span>17</span><span class="filled">18</span><span>19</span><span>20</span><span>21</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Leave Queue</strong>
+                      <span>승인 / 촉진</span>
+                    </div>
+                    <div class="list dense">
+                      <span>승인 대기 14건</span>
+                      <span>촉진 대상 9명</span>
+                      <span>만료 임박 6명</span>
+                      <span>일정 충돌 3건</span>
+                    </div>
+                  </section>
+                </div>
+                <div class="panel-row admin-bottom">
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Policy Summary</strong>
+                      <span>차감 규칙</span>
+                    </div>
+                    <div class="list dense">
+                      <span>반차는 4시간 단위</span>
+                      <span>촉진 대상 자동 분류</span>
+                      <span>증빙 필요 유형 설정</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Usage by Org</strong>
+                      <span>조직별</span>
+                    </div>
+                    <div class="list dense">
+                      <span>Product 62%</span>
+                      <span>Engineering 48%</span>
+                      <span>Sales 71%</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Quick Actions</strong>
+                      <span>실행</span>
+                    </div>
+                    <div class="list dense">
+                      <span>정책 수정</span>
+                      <span>촉진 안내 발송</span>
+                      <span>휴가 이력 추출</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

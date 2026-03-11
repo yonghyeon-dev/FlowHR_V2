@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Auth Access Control Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-PC-AUTH-EYEBROW": { "ko": "WI-PC-003 / Authentication & Access Control", "en": "WI-PC-003 / Authentication & Access Control" },
+        "LID-PC-AUTH-HERO_TITLE": { "ko": "로그인, 세션, 민감 액션 승격을 함께 다루는<br />Platform Auth & Access Control", "en": "Platform Auth & Access Control<br />for login, session, and step-up security" },
+        "LID-PC-AUTH-HERO_TEXT": { "ko": "인증은 로그인 화면 하나로 끝나지 않는다. 세션 컨텍스트, 재인증, 권한 거부, tenant 전환 안전성을 같은 설계 축으로 다룬다.", "en": "Authentication does not stop at a login screen. Session context, re-authentication, access denial, and safe tenant switching are handled as one design axis." },
+        "LID-PC-AUTH-CHIP_1": { "ko": "Session-aware", "en": "Session-aware" },
+        "LID-PC-AUTH-CHIP_2": { "ko": "Step-up required", "en": "Step-up required" },
+        "LID-PC-AUTH-CHIP_3": { "ko": "Context-safe", "en": "Context-safe" },
+        "LID-PC-AUTH-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-PC-AUTH-NOTE_1": { "ko": "권한 부족과 세션 만료가 다른 상태로 보이는지", "en": "Whether no-permission and session expiry look clearly different" },
+        "LID-PC-AUTH-NOTE_2": { "ko": "민감 액션 전 재인증 흐름이 자연스러운지", "en": "Whether step-up authentication feels natural before sensitive actions" },
+        "LID-PC-AUTH-NOTE_3": { "ko": "tenant 전환 시 컨텍스트가 섞이지 않는지", "en": "Whether tenant switching avoids context leakage" },
+        "LID-PC-AUTH-SCREEN_1_TITLE": { "ko": "Authentication Policy Board", "en": "Authentication Policy Board" },
+        "LID-PC-AUTH-SCREEN_1_DESC": { "ko": "로그인 방식, MFA, 세션 위험을 함께 보는 개요 보드", "en": "An overview board for login methods, MFA, and session risk" },
+        "LID-PC-AUTH-BRAND": { "ko": "Auth Control", "en": "Auth Control" },
+        "LID-PC-AUTH-SEARCH": { "ko": "Search account, session, tenant, policy", "en": "Search account, session, tenant, policy" },
+        "LID-PC-AUTH-KPI_1": { "ko": "MFA 미완료", "en": "MFA gaps" },
+        "LID-PC-AUTH-KPI_2": { "ko": "잠금 계정", "en": "Locked accounts" },
+        "LID-PC-AUTH-KPI_3": { "ko": "세션 이상", "en": "Session anomalies" },
+        "LID-PC-AUTH-KPI_4": { "ko": "재인증 필요", "en": "Step-up required" },
+        "LID-PC-AUTH-QUEUE_TITLE": { "ko": "Access Risk Queue", "en": "Access Risk Queue" },
+        "LID-PC-AUTH-QUEUE_SUB": { "ko": "오늘 검토", "en": "Review today" },
+        "LID-PC-AUTH-QUEUE_1": { "ko": "sec-admin / MFA 미설정 / 정책 위반", "en": "sec-admin / MFA missing / policy violation" },
+        "LID-PC-AUTH-QUEUE_2": { "ko": "ops-lead / step-up 없이 민감 액션 시도", "en": "ops-lead / sensitive action attempted without step-up" },
+        "LID-PC-AUTH-QUEUE_3": { "ko": "tenant 전환 직후 오래된 세션 2건", "en": "2 stale sessions after tenant switch" },
+        "LID-PC-AUTH-TAB_1": { "ko": "MFA", "en": "MFA" },
+        "LID-PC-AUTH-TAB_2": { "ko": "세션", "en": "Sessions" },
+        "LID-PC-AUTH-POLICY_TITLE": { "ko": "MFA Policy", "en": "MFA Policy" },
+        "LID-PC-AUTH-POLICY_SUB": { "ko": "플랫폼 기본값", "en": "Platform default" },
+        "LID-PC-AUTH-POLICY_1": { "ko": "플랫폼 사용자 / 필수", "en": "Platform users / required" },
+        "LID-PC-AUTH-POLICY_2": { "ko": "승격 인증 유효시간 / 15분", "en": "Step-up timeout / 15 min" },
+        "LID-PC-AUTH-POLICY_3": { "ko": "세션 최대 유지 / 8시간", "en": "Session max age / 8 h" },
+        "LID-PC-AUTH-SCREEN_2_TITLE": { "ko": "Step-up Authentication Flow", "en": "Step-up Authentication Flow" },
+        "LID-PC-AUTH-SCREEN_2_DESC": { "ko": "민감 액션 전 재인증과 사유 입력을 묶는 승인 흐름", "en": "A flow that combines re-authentication and justification before sensitive actions" },
+        "LID-PC-AUTH-TARGET_TITLE": { "ko": "대상 액션", "en": "Target Action" },
+        "LID-PC-AUTH-TARGET_TEXT": { "ko": "테넌트 중지 / Nova Team", "en": "Tenant suspend / Nova Team" },
+        "LID-PC-AUTH-TARGET_STATUS": { "ko": "민감", "en": "Sensitive" },
+        "LID-PC-AUTH-IMPACT_TITLE": { "ko": "영향 범위", "en": "Impact Scope" },
+        "LID-PC-AUTH-IMPACT_TEXT": { "ko": "테넌트 1개 / 전체 관리자 / 로그인 차단", "en": "1 tenant / all admins / sign-in blocked" },
+        "LID-PC-AUTH-CHECKS_TITLE": { "ko": "필수 검증", "en": "Required Checks" },
+        "LID-PC-AUTH-CHECKS_TEXT": { "ko": "사유 + MFA + 승인자", "en": "Reason + MFA + approver" },
+        "LID-PC-AUTH-PANEL_TITLE": { "ko": "Sensitive Action Check", "en": "Sensitive Action Check" },
+        "LID-PC-AUTH-PANEL_TEXT": { "ko": "대상 테넌트, 액션 영향 범위, 사유, MFA 재검증, 승인자 연결을 한 패널에 배치한다.", "en": "The panel combines target tenant, impact scope, reason, MFA recheck, and approver linkage." },
+        "LID-PC-AUTH-ACTION_1": { "ko": "사유 입력", "en": "Enter reason" },
+        "LID-PC-AUTH-ACTION_2": { "ko": "MFA 재확인", "en": "Verify MFA" },
+        "LID-PC-AUTH-ACTION_3": { "ko": "승인자 지정", "en": "Assign approver" },
+        "LID-PC-AUTH-ACTION_4": { "ko": "실행 확인", "en": "Confirm action" },
+        "LID-PC-AUTH-SCREEN_3_TITLE": { "ko": "Session Context & Access Denial", "en": "Session Context & Access Denial" },
+        "LID-PC-AUTH-SCREEN_3_DESC": { "ko": "권한 부족, 세션 만료, tenant 전환 안전성을 분리해 보여주는 구조", "en": "A structure that separates no-permission, session expiry, and tenant context safety" },
+        "LID-PC-AUTH-LIST_TITLE": { "ko": "Session States", "en": "Session States" },
+        "LID-PC-AUTH-LIST_SUB": { "ko": "분리 표현", "en": "Distinct states" },
+        "LID-PC-AUTH-LIST_1": { "ko": "권한 부족 / 요청 경로 제시", "en": "No permission / offer request path" },
+        "LID-PC-AUTH-LIST_2": { "ko": "세션 만료 / draft 보호 후 재로그인", "en": "Session expired / protect draft then re-login" },
+        "LID-PC-AUTH-LIST_3": { "ko": "tenant 전환 / 검색·draft 초기화", "en": "Tenant switch / clear search and draft" },
+        "LID-PC-AUTH-CONTEXT_TITLE": { "ko": "Context Badge", "en": "Context Badge" },
+        "LID-PC-AUTH-CONTEXT_SUB": { "ko": "항상 표시", "en": "Always visible" },
+        "LID-PC-AUTH-CONTEXT_1": { "ko": "역할 / Platform Security Admin", "en": "Role / Platform Security Admin" },
+        "LID-PC-AUTH-CONTEXT_2": { "ko": "테넌트 / Nova Team", "en": "Tenant / Nova Team" },
+        "LID-PC-AUTH-CONTEXT_3": { "ko": "범위 / security.review", "en": "Scope / security.review" },
+        "LID-PC-AUTH-SESSION_ACTIONS_TITLE": { "ko": "Session Actions", "en": "Session Actions" },
+        "LID-PC-AUTH-SESSION_ACTIONS_SUB": { "ko": "안전한 종료", "en": "Safe exit" },
+        "LID-PC-AUTH-SESSION_ACTIONS_1": { "ko": "재인증", "en": "Re-authenticate" },
+        "LID-PC-AUTH-SESSION_ACTIONS_2": { "ko": "테넌트 전환", "en": "Switch tenant" },
+        "LID-PC-AUTH-SESSION_ACTIONS_3": { "ko": "오래된 세션 회수", "en": "Revoke stale session" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-PC-AUTH-EYEBROW">WI-PC-003 / Authentication & Access Control</p>
+          <h1 data-lid="LID-PC-AUTH-HERO_TITLE" data-lid-html="true">로그인, 세션, 민감 액션 승격을 함께 다루는<br />Platform Auth &amp; Access Control</h1>
+          <p class="hero-text" data-lid="LID-PC-AUTH-HERO_TEXT">인증은 로그인 화면 하나로 끝나지 않는다. 세션 컨텍스트, 재인증, 권한 거부, tenant 전환 안전성을 같은 설계 축으로 다룬다.</p>
+          <div class="hero-chips">
+            <span data-lid="LID-PC-AUTH-CHIP_1">Session-aware</span>
+            <span data-lid="LID-PC-AUTH-CHIP_2">Step-up required</span>
+            <span data-lid="LID-PC-AUTH-CHIP_3">Context-safe</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2 data-lid="LID-PC-AUTH-NOTE_TITLE">핵심 확인 포인트</h2>
+          <ul>
+            <li data-lid="LID-PC-AUTH-NOTE_1">권한 부족과 세션 만료가 다른 상태로 보이는지</li>
+            <li data-lid="LID-PC-AUTH-NOTE_2">민감 액션 전 재인증 흐름이 자연스러운지</li>
+            <li data-lid="LID-PC-AUTH-NOTE_3">tenant 전환 시 컨텍스트가 섞이지 않는지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>A1</span>
+              <div>
+                <h3 data-lid="LID-PC-AUTH-SCREEN_1_TITLE">Authentication Policy Board</h3>
+                <p data-lid="LID-PC-AUTH-SCREEN_1_DESC">로그인 방식, MFA, 세션 위험을 함께 보는 개요 보드</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar slim">
+                <span class="brand" data-lid="LID-PC-AUTH-BRAND">Auth Control</span>
+                <span class="search wide" data-lid="LID-PC-AUTH-SEARCH">Search account, session, tenant, policy</span>
+                <span class="pill active" data-lid="LID-PC-AUTH-TAB_1">MFA</span>
+                <span class="pill" data-lid="LID-PC-AUTH-TAB_2">Sessions</span>
+              </div>
+              <div class="main">
+                <div class="kpi-row">
+                  <div class="kpi emphasis"><strong>3</strong><span data-lid="LID-PC-AUTH-KPI_1">MFA 미완료</span></div>
+                  <div class="kpi"><strong>2</strong><span data-lid="LID-PC-AUTH-KPI_2">잠금 계정</span></div>
+                  <div class="kpi"><strong>4</strong><span data-lid="LID-PC-AUTH-KPI_3">세션 이상</span></div>
+                  <div class="kpi"><strong>5</strong><span data-lid="LID-PC-AUTH-KPI_4">재인증 필요</span></div>
+                </div>
+                <div class="panel-row">
+                  <section class="panel large">
+                    <div class="panel-head">
+                      <strong data-lid="LID-PC-AUTH-QUEUE_TITLE">Access Risk Queue</strong>
+                      <span data-lid="LID-PC-AUTH-QUEUE_SUB">오늘 검토</span>
+                    </div>
+                    <div class="list dense">
+                      <span class="danger" data-lid="LID-PC-AUTH-QUEUE_1">sec-admin / MFA 미설정 / 정책 위반</span>
+                      <span data-lid="LID-PC-AUTH-QUEUE_2">ops-lead / step-up 없이 민감 액션 시도</span>
+                      <span data-lid="LID-PC-AUTH-QUEUE_3">tenant 전환 직후 오래된 세션 2건</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-PC-AUTH-POLICY_TITLE">MFA Policy</strong>
+                      <span data-lid="LID-PC-AUTH-POLICY_SUB">Platform default</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-PC-AUTH-POLICY_1">Platform users / required</span>
+                      <span data-lid="LID-PC-AUTH-POLICY_2">Step-up timeout / 15 min</span>
+                      <span data-lid="LID-PC-AUTH-POLICY_3">Session max age / 8 h</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>A2</span>
+              <div>
+                <h3 data-lid="LID-PC-AUTH-SCREEN_2_TITLE">Step-up Authentication Flow</h3>
+                <p data-lid="LID-PC-AUTH-SCREEN_2_DESC">민감 액션 전 재인증과 사유 입력을 묶는 승인 흐름</p>
+              </div>
+            </div>
+            <div class="screen desktop compact">
+              <div class="split wide-split">
+                <section class="column">
+                  <div class="stack-card active">
+                    <strong data-lid="LID-PC-AUTH-TARGET_TITLE">Target Action</strong>
+                    <span data-lid="LID-PC-AUTH-TARGET_TEXT">Tenant suspend / Nova Team</span>
+                    <span class="status risk" data-lid="LID-PC-AUTH-TARGET_STATUS">sensitive</span>
+                  </div>
+                  <div class="stack-card">
+                    <strong data-lid="LID-PC-AUTH-IMPACT_TITLE">Impact Scope</strong>
+                    <span data-lid="LID-PC-AUTH-IMPACT_TEXT">1 tenant / all admins / sign-in blocked</span>
+                  </div>
+                  <div class="stack-card">
+                    <strong data-lid="LID-PC-AUTH-CHECKS_TITLE">Required Checks</strong>
+                    <span data-lid="LID-PC-AUTH-CHECKS_TEXT">Reason + MFA + approver</span>
+                  </div>
+                </section>
+                <section class="column">
+                  <div class="detail-box tall">
+                    <strong data-lid="LID-PC-AUTH-PANEL_TITLE">Sensitive Action Check</strong>
+                    <p data-lid="LID-PC-AUTH-PANEL_TEXT">대상 테넌트, 액션 영향 범위, 사유, MFA 재검증, 승인자 연결을 한 패널에 배치한다.</p>
+                  </div>
+                  <div class="detail-actions">
+                    <span data-lid="LID-PC-AUTH-ACTION_1">사유 입력</span>
+                    <span data-lid="LID-PC-AUTH-ACTION_2">MFA 재확인</span>
+                    <span data-lid="LID-PC-AUTH-ACTION_3">승인자 지정</span>
+                    <span data-lid="LID-PC-AUTH-ACTION_4">실행 확인</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>A3</span>
+              <div>
+                <h3 data-lid="LID-PC-AUTH-SCREEN_3_TITLE">Session Context & Access Denial</h3>
+                <p data-lid="LID-PC-AUTH-SCREEN_3_DESC">권한 부족, 세션 만료, tenant 전환 안전성을 분리해 보여주는 구조</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="panel-row admin-bottom">
+                <section class="panel">
+                  <div class="panel-head">
+                    <strong data-lid="LID-PC-AUTH-LIST_TITLE">Session States</strong>
+                    <span data-lid="LID-PC-AUTH-LIST_SUB">분리 표현</span>
+                  </div>
+                  <div class="list dense">
+                    <span data-lid="LID-PC-AUTH-LIST_1">권한 부족 / 요청 경로 제시</span>
+                    <span data-lid="LID-PC-AUTH-LIST_2">세션 만료 / draft 보호 후 재로그인</span>
+                    <span data-lid="LID-PC-AUTH-LIST_3">tenant 전환 / 검색·draft 초기화</span>
+                  </div>
+                </section>
+                <section class="panel">
+                  <div class="panel-head">
+                    <strong data-lid="LID-PC-AUTH-CONTEXT_TITLE">Context Badge</strong>
+                    <span data-lid="LID-PC-AUTH-CONTEXT_SUB">always visible</span>
+                  </div>
+                  <div class="list dense">
+                    <span data-lid="LID-PC-AUTH-CONTEXT_1">Role / Platform Security Admin</span>
+                    <span data-lid="LID-PC-AUTH-CONTEXT_2">Tenant / Nova Team</span>
+                    <span data-lid="LID-PC-AUTH-CONTEXT_3">Scope / security.review</span>
+                  </div>
+                </section>
+                <section class="panel">
+                  <div class="panel-head">
+                    <strong data-lid="LID-PC-AUTH-SESSION_ACTIONS_TITLE">Session Actions</strong>
+                    <span data-lid="LID-PC-AUTH-SESSION_ACTIONS_SUB">safe exit</span>
+                  </div>
+                  <div class="list dense">
+                    <span data-lid="LID-PC-AUTH-SESSION_ACTIONS_1">re-authenticate</span>
+                    <span data-lid="LID-PC-AUTH-SESSION_ACTIONS_2">switch tenant</span>
+                    <span data-lid="LID-PC-AUTH-SESSION_ACTIONS_3">revoke stale session</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

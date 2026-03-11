@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Attendance Check Flow</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">WI-TE-002 / Attendance Check Flow</p>
+          <h1>현재 상태와 예외를 같이 다루는<br />출퇴근 플로우</h1>
+          <p class="hero-text">
+            출퇴근은 단순 버튼 액션이 아니라, 지금 어떤 상태인지와 예외가 발생했는지,
+            정정이 필요한지를 함께 보여줘야 합니다.
+          </p>
+          <div class="hero-chips">
+            <span>Status-led</span>
+            <span>Exception-aware</span>
+            <span>Correction entry</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2>핵심 확인 포인트</h2>
+          <ul>
+            <li>현재 상태가 첫 화면에서 명확한지</li>
+            <li>예외가 생기면 즉시 정정 진입이 가능한지</li>
+            <li>기록 이력이 조회가 아니라 처리 허브로 보이는지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid two-up">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>01</span>
+              <div>
+                <h3>Mobile Check In / Out</h3>
+                <p>상태 히어로와 액션, 예외 경고를 한 화면에 배치</p>
+              </div>
+            </div>
+            <div class="mobile-wrap">
+              <div class="screen mobile">
+                <div class="mobile-notch"></div>
+                <div class="mobile-head">
+                  <span>08:58</span>
+                  <span>출퇴근</span>
+                  <span>5G</span>
+                </div>
+                <div class="mobile-body">
+                  <div class="mobile-card hero-card strong-hero">
+                    <strong>출근 전</strong>
+                    <p>오늘 스케줄 09:00 - 18:00 / HQ 기준</p>
+                    <div class="mini-columns two">
+                      <span>출근</span>
+                      <span>외근 시작</span>
+                    </div>
+                  </div>
+                  <div class="mobile-card">
+                    <strong>근무 상태 액션</strong>
+                    <div class="mini-columns two">
+                      <span>퇴근</span>
+                      <span>휴게 시작</span>
+                      <span>휴게 종료</span>
+                      <span>정정 요청</span>
+                    </div>
+                  </div>
+                  <div class="mobile-card">
+                    <strong>예외 감지</strong>
+                    <div class="list dense">
+                      <span>오늘은 예외 없음</span>
+                      <span>체크아웃 누락 시 알림 발송</span>
+                      <span>위치 불일치 시 확인 요청</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-tabbar">
+                  <span>Home</span>
+                  <span class="active">Schedule</span>
+                  <span>Request</span>
+                  <span>Inbox</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>02</span>
+              <div>
+                <h3>My Attendance History</h3>
+                <p>기록 이력과 예외 상태, 정정 진입을 연결한 구조</p>
+              </div>
+            </div>
+            <div class="screen desktop compact">
+              <div class="topbar slim">
+                <span class="brand">My Attendance</span>
+                <span class="search wide">Search date, status, exception</span>
+                <span class="pill active">이번 주</span>
+                <span class="pill">예외만</span>
+              </div>
+              <div class="main">
+                <div class="panel-row admin-bottom">
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Today</strong>
+                      <span>정상</span>
+                    </div>
+                    <div class="list dense">
+                      <span>출근 09:02</span>
+                      <span>휴게 12:01 - 12:48</span>
+                      <span>예정 퇴근 18:00</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Recent Exceptions</strong>
+                      <span>2건</span>
+                    </div>
+                    <div class="list dense">
+                      <span>03/09 체크아웃 누락 / 정정 필요</span>
+                      <span>03/05 지각 / 사유 제출 완료</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Quick Actions</strong>
+                      <span>실행</span>
+                    </div>
+                    <div class="list dense">
+                      <span>정정 요청 작성</span>
+                      <span>이력 상세 보기</span>
+                      <span>정책 확인</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

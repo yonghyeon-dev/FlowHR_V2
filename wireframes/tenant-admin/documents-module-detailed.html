@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Documents Module Detailed Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">WI-TA-006 / Documents Module</p>
+          <h1>템플릿, 발송, 서명, 보관을 묶는<br />Documents Module</h1>
+          <p class="hero-text">
+            전자문서 운영은 파일 보관이 아니라 서명 대기, 만료 예정, 재발송, 보관 이력까지
+            연결된 흐름으로 다뤄야 합니다.
+          </p>
+          <div class="hero-chips">
+            <span>Template-driven</span>
+            <span>Signature-first</span>
+            <span>Audit-ready</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2>핵심 확인 포인트</h2>
+          <ul>
+            <li>서명 대기와 만료 위험이 먼저 보이는지</li>
+            <li>템플릿 관리와 발송 흐름이 자연스럽게 이어지는지</li>
+            <li>보관함이 단순 저장소가 아니라 운영 뷰로 읽히는지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>D</span>
+              <div>
+                <h3>Dashboard + Template Manager + Vault</h3>
+                <p>운영 큐, 템플릿 상태, 완료 문서 보관을 한 흐름으로 배치</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar slim">
+                <span class="brand">Documents</span>
+                <span class="search wide">Search template, recipient, document, status</span>
+                <span class="pill active">서명 대기</span>
+                <span class="pill">완료 문서</span>
+              </div>
+              <div class="main">
+                <div class="kpi-row five">
+                  <div class="kpi emphasis">
+                    <strong>12</strong>
+                    <span>서명 대기</span>
+                  </div>
+                  <div class="kpi">
+                    <strong>5</strong>
+                    <span>만료 임박</span>
+                  </div>
+                  <div class="kpi">
+                    <strong>3</strong>
+                    <span>재발송 필요</span>
+                  </div>
+                  <div class="kpi">
+                    <strong>18</strong>
+                    <span>오늘 발송</span>
+                  </div>
+                  <div class="kpi">
+                    <strong>4</strong>
+                    <span>템플릿 수정</span>
+                  </div>
+                </div>
+                <div class="panel-row admin-hero">
+                  <section class="panel large">
+                    <div class="panel-head">
+                      <strong>Signature Queue</strong>
+                      <span>오늘 마감 우선</span>
+                    </div>
+                    <div class="queue-list">
+                      <div class="queue-item critical">
+                        <div>
+                          <strong>연봉 변경 계약</strong>
+                          <p>서명 미완료 2건 / 오늘 18:00 마감</p>
+                        </div>
+                        <span>재발송</span>
+                      </div>
+                      <div class="queue-item high">
+                        <div>
+                          <strong>입사 계약서</strong>
+                          <p>신규 입사자 3명 / 발송 후 24h 경과</p>
+                        </div>
+                        <span>상태 확인</span>
+                      </div>
+                      <div class="queue-item medium">
+                        <div>
+                          <strong>정책 동의서</strong>
+                          <p>전체 발송 / 미열람 5명</p>
+                        </div>
+                        <span>알림 발송</span>
+                      </div>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Template Catalog</strong>
+                      <span>버전 상태</span>
+                    </div>
+                    <div class="list dense">
+                      <span>입사 계약서 / v12 / 사용 중</span>
+                      <span>연봉 변경 계약 / v4 / 검토 필요</span>
+                      <span>정책 동의서 / v8 / 승인 완료</span>
+                      <span>퇴사 확인서 / v3 / 초안</span>
+                    </div>
+                  </section>
+                </div>
+                <div class="panel-row admin-bottom">
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Bulk Send</strong>
+                      <span>일괄 발송</span>
+                    </div>
+                    <div class="list dense">
+                      <span>대상 선택</span>
+                      <span>템플릿 매핑</span>
+                      <span>미리보기</span>
+                      <span>발송 예약</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Document Vault</strong>
+                      <span>완료 보관</span>
+                    </div>
+                    <div class="list dense">
+                      <span>완료 문서 검색</span>
+                      <span>버전 이력</span>
+                      <span>다운로드 기록</span>
+                      <span>감사 추적</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Quick Actions</strong>
+                      <span>실행</span>
+                    </div>
+                    <div class="list dense">
+                      <span>템플릿 생성</span>
+                      <span>단건 발송</span>
+                      <span>재발송</span>
+                      <span>문서 추출</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

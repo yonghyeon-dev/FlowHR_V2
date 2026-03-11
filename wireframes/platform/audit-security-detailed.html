@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ko" data-tenant-locale="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Platform Audit Security Detailed Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-PC-SEC-EYEBROW": { "ko": "WI-PC-005 / Audit & Security", "en": "WI-PC-005 / Audit & Security" },
+        "LID-PC-SEC-HERO_TITLE": { "ko": "운영자 감사와 보안 통제를 묶는<br />Platform Audit & Security", "en": "Platform Audit & Security<br />for audit and security control" },
+        "LID-PC-SEC-HERO_TEXT": { "ko": "단순 로그 뷰어가 아니라, 민감 작업 검토, 권한 통제, 정책 변경 추적을 한 화면 언어로 다루는 보안 운영 허브입니다.", "en": "This is not just a log viewer. It is a security operations hub that combines sensitive action review, access control, and policy change tracking in one interface language." },
+        "LID-PC-SEC-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-PC-SEC-NOTE_1": { "ko": "로그보다 검토 대상이 먼저 읽히는지", "en": "Whether review-worthy risks appear before raw logs" },
+        "LID-PC-SEC-NOTE_2": { "ko": "권한, 정책, 이벤트가 한 맥락으로 이어지는지", "en": "Whether access, policy, and events connect in one context" },
+        "LID-PC-SEC-NOTE_3": { "ko": "긴급 권한과 일반 권한이 충분히 구분되는지", "en": "Whether emergency access is clearly distinct from normal access" },
+        "LID-PC-SEC-SCREEN_1_TITLE": { "ko": "Security Control Tower", "en": "Security Control Tower" },
+        "LID-PC-SEC-SCREEN_1_DESC": { "ko": "오늘의 보안 위험, 검토 큐, 정책 상태를 한 번에 읽는 개요 화면", "en": "An overview of today's risks, review queues, and policy status" },
+        "LID-PC-SEC-CHIP_1": { "ko": "리스크 우선", "en": "Risk-first" },
+        "LID-PC-SEC-CHIP_2": { "ko": "추적 가능한 액션", "en": "Traceable actions" },
+        "LID-PC-SEC-CHIP_3": { "ko": "정책 인지형", "en": "Policy-aware" },
+        "LID-PC-SEC-BRAND": { "ko": "Audit & Security", "en": "Audit & Security" },
+        "LID-PC-SEC-SEARCH": { "ko": "Search operator, action, tenant, policy", "en": "Search operator, action, tenant, policy" },
+        "LID-PC-SEC-TAB_1": { "ko": "검토 큐", "en": "Review Queue" },
+        "LID-PC-SEC-TAB_2": { "ko": "정책", "en": "Policies" },
+        "LID-PC-SEC-KPI_1": { "ko": "민감 이벤트", "en": "Sensitive events" },
+        "LID-PC-SEC-KPI_2": { "ko": "긴급 권한", "en": "Emergency access" },
+        "LID-PC-SEC-KPI_3": { "ko": "MFA 미적용", "en": "MFA gaps" },
+        "LID-PC-SEC-KPI_4": { "ko": "검토 적체", "en": "Review backlog" },
+        "LID-PC-SEC-REVIEW_TITLE": { "ko": "Review Queue", "en": "Review Queue" },
+        "LID-PC-SEC-REVIEW_SUB": { "ko": "긴급 → 보통", "en": "Critical -> Medium" },
+        "LID-PC-SEC-REVIEW_1_TITLE": { "ko": "긴급 권한 부여 후 회수 미완료", "en": "Emergency access not revoked after grant" },
+        "LID-PC-SEC-REVIEW_1_TEXT": { "ko": "ops-lead@flowhr / Billing override / 37분 경과", "en": "ops-lead@flowhr / Billing override / 37m elapsed" },
+        "LID-PC-SEC-REVIEW_1_ACTION": { "ko": "회수 검토", "en": "Review revoke" },
+        "LID-PC-SEC-REVIEW_2_TITLE": { "ko": "민감 정책 비활성화 감지", "en": "Sensitive policy deactivated" },
+        "LID-PC-SEC-REVIEW_2_TEXT": { "ko": "MFA optional 전환 / Platform Settings / 승인 필요", "en": "MFA changed to optional / Platform Settings / approval required" },
+        "LID-PC-SEC-REVIEW_2_ACTION": { "ko": "정책 복원", "en": "Restore policy" },
+        "LID-PC-SEC-REVIEW_3_TITLE": { "ko": "이상 로그인 패턴", "en": "Suspicious login pattern" },
+        "LID-PC-SEC-REVIEW_3_TEXT": { "ko": "sec@flowhr / 3개 지역 / 2시간 내 시도", "en": "sec@flowhr / 3 regions / within 2 hours" },
+        "LID-PC-SEC-REVIEW_3_ACTION": { "ko": "세션 확인", "en": "Inspect session" },
+        "LID-PC-SEC-POLICY_WATCH_TITLE": { "ko": "Policy Watch", "en": "Policy Watch" },
+        "LID-PC-SEC-POLICY_WATCH_SUB": { "ko": "준수 상태", "en": "Compliance state" },
+        "LID-PC-SEC-POLICY_WATCH_1": { "ko": "MFA / 강제", "en": "MFA / required" },
+        "LID-PC-SEC-POLICY_WATCH_2": { "ko": "민감 액션 이중 승인 / 활성", "en": "Dual approval for sensitive actions / enabled" },
+        "LID-PC-SEC-POLICY_WATCH_3": { "ko": "로그 보존 / 365일", "en": "Log retention / 365 days" },
+        "LID-PC-SEC-SCREEN_2_TITLE": { "ko": "Operator Audit Log", "en": "Operator Audit Log" },
+        "LID-PC-SEC-SCREEN_2_DESC": { "ko": "이벤트 스트림과 상세 패널을 함께 쓰는 감사 로그 구조", "en": "An audit log structure with event stream and detail panel" },
+        "LID-PC-SEC-FILTER_1": { "ko": "민감 액션", "en": "Sensitive actions" },
+        "LID-PC-SEC-FILTER_2": { "ko": "최근 24시간", "en": "Last 24h" },
+        "LID-PC-SEC-FILTER_3": { "ko": "테넌트 범위", "en": "Tenant scoped" },
+        "LID-PC-SEC-EVENT_TITLE": { "ko": "Event Stream", "en": "Event Stream" },
+        "LID-PC-SEC-EVENT_SUB": { "ko": "최근 활동", "en": "Recent activity" },
+        "LID-PC-SEC-EVENT_1": { "ko": "10:14 / ops-lead / 테넌트 중지 해제 / Nova Team", "en": "10:14 / ops-lead / Tenant unsuspended / Nova Team" },
+        "LID-PC-SEC-EVENT_2": { "ko": "09:42 / sec-admin / MFA 정책 수정 / Global", "en": "09:42 / sec-admin / MFA policy updated / Global" },
+        "LID-PC-SEC-EVENT_3": { "ko": "09:11 / support-01 / 결제 수동 조정 / Orbit Labs", "en": "09:11 / support-01 / Manual billing adjustment / Orbit Labs" },
+        "LID-PC-SEC-DETAIL_TITLE": { "ko": "Event Detail", "en": "Event Detail" },
+        "LID-PC-SEC-DETAIL_TEXT": { "ko": "이벤트 목적, 대상 테넌트, 승인자, 세션, IP, 연관 정책, 후속 액션을 한 패널에 묶는다.", "en": "Combines event intent, target tenant, approver, session, IP, related policy, and follow-up actions in one panel." },
+        "LID-PC-SEC-DETAIL_ACTION_1": { "ko": "승인자 연결", "en": "Link approver" },
+        "LID-PC-SEC-DETAIL_ACTION_2": { "ko": "세션 로그", "en": "Session log" },
+        "LID-PC-SEC-DETAIL_ACTION_3": { "ko": "관련 정책", "en": "Related policy" },
+        "LID-PC-SEC-DETAIL_ACTION_4": { "ko": "테넌트 영향", "en": "Tenant impact" },
+        "LID-PC-SEC-SCREEN_3_TITLE": { "ko": "Access Control & Security Policies", "en": "Access Control & Security Policies" },
+        "LID-PC-SEC-SCREEN_3_DESC": { "ko": "운영자 권한 매트릭스와 보안 정책 조정을 연결한 운영 구조", "en": "An operating model connecting access matrix and security policies" },
+        "LID-PC-SEC-MATRIX_TITLE": { "ko": "Access Matrix", "en": "Access Matrix" },
+        "LID-PC-SEC-MATRIX_SUB": { "ko": "역할별 권한", "en": "Role-based access" },
+        "LID-PC-SEC-MATRIX_1": { "ko": "Operator / Tenant actions / 제한", "en": "Operator / Tenant actions / restricted" },
+        "LID-PC-SEC-MATRIX_2": { "ko": "Billing Admin / Billing override / 승인형", "en": "Billing Admin / Billing override / approval based" },
+        "LID-PC-SEC-MATRIX_3": { "ko": "Security Admin / Policy edit / 이중 승인", "en": "Security Admin / Policy edit / dual approval" },
+        "LID-PC-SEC-JIT_TITLE": { "ko": "JIT Access Queue", "en": "JIT Access Queue" },
+        "LID-PC-SEC-JIT_SUB": { "ko": "임시 권한", "en": "Temporary access" },
+        "LID-PC-SEC-JIT_1": { "ko": "Payroll override / 2건", "en": "Payroll override / 2 items" },
+        "LID-PC-SEC-JIT_2": { "ko": "Tenant restore / 1건", "en": "Tenant restore / 1 item" },
+        "LID-PC-SEC-JIT_3": { "ko": "권한 만료 예정 3건", "en": "3 access grants expiring" },
+        "LID-PC-SEC-POLICIES_TITLE": { "ko": "Security Policies", "en": "Security Policies" },
+        "LID-PC-SEC-POLICIES_SUB": { "ko": "조정 포인트", "en": "Adjustment points" },
+        "LID-PC-SEC-POLICIES_1": { "ko": "MFA 강제", "en": "Enforce MFA" },
+        "LID-PC-SEC-POLICIES_2": { "ko": "IP 허용 목록", "en": "IP allowlist" },
+        "LID-PC-SEC-POLICIES_3": { "ko": "세션 타임아웃", "en": "Session timeout" },
+        "LID-PC-SEC-POLICIES_4": { "ko": "민감 액션 이중 승인", "en": "Dual approval for sensitive actions" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-lid="LID-PC-SEC-EYEBROW">WI-PC-005 / Audit & Security</p>
+          <h1 data-lid="LID-PC-SEC-HERO_TITLE" data-lid-html="true">운영자 감사와 보안 통제를 묶는<br />Platform Audit &amp; Security</h1>
+          <p class="hero-text" data-lid="LID-PC-SEC-HERO_TEXT">단순 로그 뷰어가 아니라, 민감 작업 검토, 권한 통제, 정책 변경 추적을 한 화면 언어로 다루는 보안 운영 허브입니다.</p>
+          <div class="hero-chips">
+            <span data-lid="LID-PC-SEC-CHIP_1">Risk-first</span>
+            <span data-lid="LID-PC-SEC-CHIP_2">Traceable actions</span>
+            <span data-lid="LID-PC-SEC-CHIP_3">Policy-aware</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2 data-lid="LID-PC-SEC-NOTE_TITLE">핵심 확인 포인트</h2>
+          <ul>
+            <li data-lid="LID-PC-SEC-NOTE_1">로그보다 검토 대상이 먼저 읽히는지</li>
+            <li data-lid="LID-PC-SEC-NOTE_2">권한, 정책, 이벤트가 한 맥락으로 이어지는지</li>
+            <li data-lid="LID-PC-SEC-NOTE_3">긴급 권한과 일반 권한이 충분히 구분되는지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>S1</span>
+              <div>
+                <h3 data-lid="LID-PC-SEC-SCREEN_1_TITLE">Security Control Tower</h3>
+                <p data-lid="LID-PC-SEC-SCREEN_1_DESC">오늘의 보안 위험, 검토 큐, 정책 상태를 한 번에 읽는 개요 화면</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar slim">
+                <span class="brand" data-lid="LID-PC-SEC-BRAND">Audit & Security</span>
+                <span class="search wide" data-lid="LID-PC-SEC-SEARCH">Search operator, action, tenant, policy</span>
+                <span class="pill active" data-lid="LID-PC-SEC-TAB_1">Review Queue</span>
+                <span class="pill" data-lid="LID-PC-SEC-TAB_2">Policies</span>
+              </div>
+              <div class="main">
+                <div class="kpi-row">
+                  <div class="kpi emphasis"><strong>9</strong><span data-lid="LID-PC-SEC-KPI_1">민감 이벤트</span></div>
+                  <div class="kpi"><strong>3</strong><span data-lid="LID-PC-SEC-KPI_2">긴급 권한</span></div>
+                  <div class="kpi"><strong>2</strong><span data-lid="LID-PC-SEC-KPI_3">MFA 미적용</span></div>
+                  <div class="kpi"><strong>5</strong><span data-lid="LID-PC-SEC-KPI_4">검토 적체</span></div>
+                </div>
+                <div class="panel-row admin-hero">
+                  <section class="panel large">
+                    <div class="panel-head">
+                      <strong data-lid="LID-PC-SEC-REVIEW_TITLE">Review Queue</strong>
+                      <span data-lid="LID-PC-SEC-REVIEW_SUB">Critical → Medium</span>
+                    </div>
+                    <div class="queue-list">
+                      <div class="queue-item critical">
+                        <div>
+                          <strong data-lid="LID-PC-SEC-REVIEW_1_TITLE">긴급 권한 부여 후 회수 미완료</strong>
+                          <p data-lid="LID-PC-SEC-REVIEW_1_TEXT">ops-lead@flowhr / Billing override / 37m 경과</p>
+                        </div>
+                        <span data-lid="LID-PC-SEC-REVIEW_1_ACTION">회수 검토</span>
+                      </div>
+                      <div class="queue-item high">
+                        <div>
+                          <strong data-lid="LID-PC-SEC-REVIEW_2_TITLE">민감 정책 비활성화 감지</strong>
+                          <p data-lid="LID-PC-SEC-REVIEW_2_TEXT">MFA optional 전환 / Platform Settings / 승인 필요</p>
+                        </div>
+                        <span data-lid="LID-PC-SEC-REVIEW_2_ACTION">정책 복원</span>
+                      </div>
+                      <div class="queue-item medium">
+                        <div>
+                          <strong data-lid="LID-PC-SEC-REVIEW_3_TITLE">이상 로그인 패턴</strong>
+                          <p data-lid="LID-PC-SEC-REVIEW_3_TEXT">sec@flowhr / 3개 지역 / 2시간 내 시도</p>
+                        </div>
+                        <span data-lid="LID-PC-SEC-REVIEW_3_ACTION">세션 확인</span>
+                      </div>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-PC-SEC-POLICY_WATCH_TITLE">Policy Watch</strong>
+                      <span data-lid="LID-PC-SEC-POLICY_WATCH_SUB">준수 상태</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-PC-SEC-POLICY_WATCH_1">MFA / 강제</span>
+                      <span data-lid="LID-PC-SEC-POLICY_WATCH_2">민감 액션 이중 승인 / 활성</span>
+                      <span data-lid="LID-PC-SEC-POLICY_WATCH_3">로그 보존 / 365일</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>S2</span>
+              <div>
+                <h3 data-lid="LID-PC-SEC-SCREEN_2_TITLE">Operator Audit Log</h3>
+                <p data-lid="LID-PC-SEC-SCREEN_2_DESC">이벤트 스트림과 상세 패널을 함께 쓰는 감사 로그 구조</p>
+              </div>
+            </div>
+            <div class="screen desktop compact">
+              <div class="topbar slim">
+                <span class="brand" data-lid="LID-PC-SEC-BRAND">Audit & Security</span>
+                <span class="search wide" data-lid="LID-PC-SEC-SEARCH">Search operator, action, tenant, policy</span>
+                <span class="filter" data-lid="LID-PC-SEC-FILTER_1">Sensitive actions</span>
+                <span class="filter" data-lid="LID-PC-SEC-FILTER_2">Last 24h</span>
+                <span class="filter" data-lid="LID-PC-SEC-FILTER_3">Tenant scoped</span>
+              </div>
+              <div class="split wide-split">
+                <section class="column">
+                  <div class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-PC-SEC-EVENT_TITLE">Event Stream</strong>
+                      <span data-lid="LID-PC-SEC-EVENT_SUB">최근 활동</span>
+                    </div>
+                    <div class="list dense">
+                      <span class="danger" data-lid="LID-PC-SEC-EVENT_1">10:14 / ops-lead / 테넌트 중지 해제 / Nova Team</span>
+                      <span data-lid="LID-PC-SEC-EVENT_2">09:42 / sec-admin / MFA 정책 수정 / Global</span>
+                      <span data-lid="LID-PC-SEC-EVENT_3">09:11 / support-01 / 결제 수동 조정 / Orbit Labs</span>
+                    </div>
+                  </div>
+                </section>
+                <section class="column">
+                  <div class="detail-box tall">
+                    <strong data-lid="LID-PC-SEC-DETAIL_TITLE">Event Detail</strong>
+                    <p data-lid="LID-PC-SEC-DETAIL_TEXT">이벤트 목적, 대상 테넌트, 승인자, 세션, IP, 연관 정책, 후속 액션을 한 패널에 묶는다.</p>
+                  </div>
+                  <div class="detail-actions">
+                    <span data-lid="LID-PC-SEC-DETAIL_ACTION_1">승인자 연결</span>
+                    <span data-lid="LID-PC-SEC-DETAIL_ACTION_2">세션 로그</span>
+                    <span data-lid="LID-PC-SEC-DETAIL_ACTION_3">관련 정책</span>
+                    <span data-lid="LID-PC-SEC-DETAIL_ACTION_4">테넌트 영향</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>S3</span>
+              <div>
+                <h3 data-lid="LID-PC-SEC-SCREEN_3_TITLE">Access Control & Security Policies</h3>
+                <p data-lid="LID-PC-SEC-SCREEN_3_DESC">운영자 권한 매트릭스와 보안 정책 조정을 연결한 운영 구조</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="main">
+                <div class="panel-row admin-bottom">
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-PC-SEC-MATRIX_TITLE">Access Matrix</strong>
+                      <span data-lid="LID-PC-SEC-MATRIX_SUB">역할별 권한</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-PC-SEC-MATRIX_1">Operator / Tenant actions / 제한</span>
+                      <span data-lid="LID-PC-SEC-MATRIX_2">Billing Admin / Billing override / 승인형</span>
+                      <span data-lid="LID-PC-SEC-MATRIX_3">Security Admin / Policy edit / 이중 승인</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-PC-SEC-JIT_TITLE">JIT Access Queue</strong>
+                      <span data-lid="LID-PC-SEC-JIT_SUB">임시 권한</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-PC-SEC-JIT_1">Payroll override / 2건</span>
+                      <span data-lid="LID-PC-SEC-JIT_2">Tenant restore / 1건</span>
+                      <span data-lid="LID-PC-SEC-JIT_3">권한 만료 예정 3건</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong data-lid="LID-PC-SEC-POLICIES_TITLE">Security Policies</strong>
+                      <span data-lid="LID-PC-SEC-POLICIES_SUB">조정 포인트</span>
+                    </div>
+                    <div class="list dense">
+                      <span data-lid="LID-PC-SEC-POLICIES_1">MFA 강제</span>
+                      <span data-lid="LID-PC-SEC-POLICIES_2">IP allowlist</span>
+                      <span data-lid="LID-PC-SEC-POLICIES_3">세션 타임아웃</span>
+                      <span data-lid="LID-PC-SEC-POLICIES_4">민감 액션 이중 승인</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

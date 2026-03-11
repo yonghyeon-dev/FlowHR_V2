@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Attendance Module Detailed Wireframe</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">WI-TA-003 / Attendance Module</p>
+          <h1>실시간 운영 보드와 예외 처리 허브를 합친<br />Attendance Module</h1>
+          <p class="hero-text">
+            출근 기록 조회가 아니라 오늘의 운영 현황, 예외, 마감 준비를 한 모듈 안에서
+            처리하는 구조입니다.
+          </p>
+          <div class="hero-chips">
+            <span>Ops board</span>
+            <span>Exceptions-first</span>
+            <span>Closing-ready</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2>핵심 확인 포인트</h2>
+          <ul>
+            <li>예외가 메인으로 드러나는지</li>
+            <li>스케줄과 실제 기록이 함께 보이는지</li>
+            <li>마감 전 검증 흐름이 자연스러운지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>T</span>
+              <div>
+                <h3>Dashboard + Shift Board + Exceptions</h3>
+                <p>운영 지표, 주간 매트릭스, 예외 큐를 한 모듈 안에 배치</p>
+              </div>
+            </div>
+            <div class="screen desktop">
+              <div class="topbar slim">
+                <span class="brand">Attendance</span>
+                <span class="search wide">Search employee, exception, shift rule</span>
+                <span class="pill active">오늘</span>
+                <span class="pill">이번 주</span>
+              </div>
+              <div class="main">
+                <div class="kpi-row five">
+                  <div class="kpi emphasis">
+                    <strong>91%</strong>
+                    <span>출근율</span>
+                  </div>
+                  <div class="kpi">
+                    <strong>9</strong>
+                    <span>누락 기록</span>
+                  </div>
+                  <div class="kpi">
+                    <strong>8</strong>
+                    <span>지각 / 조퇴</span>
+                  </div>
+                  <div class="kpi">
+                    <strong>6</strong>
+                    <span>초과근무 위험</span>
+                  </div>
+                  <div class="kpi">
+                    <strong>2</strong>
+                    <span>휴게 위반</span>
+                  </div>
+                </div>
+                <div class="panel-row admin-hero">
+                  <section class="panel large">
+                    <div class="panel-head">
+                      <strong>Shift Board</strong>
+                      <span>Week / Exceptions highlighted</span>
+                    </div>
+                    <div class="matrix">
+                      <div class="matrix-head">
+                        <span>Name</span>
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                      </div>
+                      <div class="matrix-row warn">
+                        <span>김하늘</span>
+                        <span>09:03</span>
+                        <span>09:01</span>
+                        <span>Missing</span>
+                        <span>09:12</span>
+                        <span>Leave</span>
+                      </div>
+                      <div class="matrix-row">
+                        <span>박준</span>
+                        <span>08:41</span>
+                        <span>08:44</span>
+                        <span>08:39</span>
+                        <span>Remote</span>
+                        <span>08:48</span>
+                      </div>
+                      <div class="matrix-row danger">
+                        <span>이서윤</span>
+                        <span>Night</span>
+                        <span>Night</span>
+                        <span>Night+</span>
+                        <span>Off</span>
+                        <span>Off</span>
+                      </div>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Exception Queue</strong>
+                      <span>Severity</span>
+                    </div>
+                    <div class="list dense">
+                      <span class="danger">체크아웃 누락 / 4명</span>
+                      <span>지각 / 5명</span>
+                      <span>휴게 미준수 / 2명</span>
+                      <span>연속 야간근무 / 3명</span>
+                    </div>
+                  </section>
+                </div>
+                <div class="panel-row admin-bottom">
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Risk Rules</strong>
+                      <span>자동 감지</span>
+                    </div>
+                    <div class="list dense">
+                      <span>주 52시간 임박</span>
+                      <span>연속 야간근무 누적</span>
+                      <span>계획 대비 충돌</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Quick Actions</strong>
+                      <span>실행</span>
+                    </div>
+                    <div class="list dense">
+                      <span>정정 요청</span>
+                      <span>스케줄 조정</span>
+                      <span>리포트 추출</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Closing Watch</strong>
+                      <span>마감 전 체크</span>
+                    </div>
+                    <div class="list dense">
+                      <span>미확정 기록 5건</span>
+                      <span>미정리 초과근무 2건</span>
+                      <span>정산 연계 필요 1건</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

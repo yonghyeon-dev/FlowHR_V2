@@ -1,0 +1,10 @@
+{
+  "LID-PC-CONSOLE-BRAND": "FlowHR Console",
+  "LID-PC-CONSOLE-KPI_1": "활성 테넌트",
+  "LID-PC-BILL-QUEUE_TITLE": "Billing Risk Queue",
+  "LID-PC-BILL-POLICY_1": "만료일 없는 예외 플래그 금지",
+  "LID-PC-SEC-REVIEW_TITLE": "Review Queue",
+  "LID-PC-SEC-POLICIES_4": "민감 액션 이중 승인",
+  "LID-PC-AUTH-POLICY_TITLE": "MFA Policy",
+  "LID-PC-AUTH-SESSION_ACTIONS_1": "재인증"
+}

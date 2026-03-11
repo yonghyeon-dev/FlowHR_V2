@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowHR_V2 Employee Mobile Layout System</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">WI-DS-004 / Employee Mobile Layout System</p>
+          <h1>직원용 모바일 레이아웃 시스템<br />기준 화면</h1>
+          <p class="hero-text">
+            데스크톱 화면을 줄인 구조가 아니라, 상태 확인과 즉시 행동을 우선하는 모바일
+            공통 패턴을 정의합니다.
+          </p>
+          <div class="hero-chips">
+            <span>Status hero</span>
+            <span>Quick actions</span>
+            <span>Thumb zone</span>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <h2>핵심 확인 포인트</h2>
+          <ul>
+            <li>첫 화면에서 상태와 행동이 같이 보이는지</li>
+            <li>엄지 조작 범위 안에 주요 액션이 모이는지</li>
+            <li>홈, 요청, 인박스, 프로필에 공통 적용 가능한지</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="content">
+        <section class="wireframe-grid two-up">
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>01</span>
+              <div>
+                <h3>Mobile Layout Anatomy</h3>
+                <p>직원용 모바일 화면 전반에 공통 적용되는 뼈대</p>
+              </div>
+            </div>
+            <div class="mobile-wrap">
+              <div class="screen mobile">
+                <div class="mobile-notch"></div>
+                <div class="mobile-head">
+                  <span>09:12</span>
+                  <span>FlowHR</span>
+                  <span>LTE</span>
+                </div>
+                <div class="mobile-body">
+                  <div class="mobile-card hero-card strong-hero">
+                    <strong>1. 상태 히어로</strong>
+                    <p>근무 상태, 잔여 휴가, 서명 대기 같은 핵심 상태를 먼저 노출</p>
+                  </div>
+                  <div class="mobile-card">
+                    <strong>2. 빠른 액션 그리드</strong>
+                    <div class="mini-columns two">
+                      <span>출퇴근</span>
+                      <span>휴가 요청</span>
+                      <span>정정 요청</span>
+                      <span>문서 서명</span>
+                    </div>
+                  </div>
+                  <div class="mobile-card">
+                    <strong>3. 작업 리스트</strong>
+                    <ul>
+                      <li>오늘 할 일</li>
+                      <li>승인 결과</li>
+                      <li>공지 확인</li>
+                    </ul>
+                  </div>
+                  <div class="mobile-card">
+                    <strong>4. 보조 요약 카드</strong>
+                    <div class="list dense">
+                      <span>이번 주 일정</span>
+                      <span>진행 중 요청</span>
+                      <span>최근 문서</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-tabbar">
+                  <span class="active">Home</span>
+                  <span>Request</span>
+                  <span>Schedule</span>
+                  <span>Inbox</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-card">
+            <div class="screen-title">
+              <span>02</span>
+              <div>
+                <h3>Pattern Rules</h3>
+                <p>홈, 요청 허브, 인박스, 프로필에 공통 적용하는 규칙</p>
+              </div>
+            </div>
+            <div class="screen desktop compact">
+              <div class="topbar slim">
+                <span class="brand">Mobile Rules</span>
+                <span class="pill active">Core</span>
+                <span class="pill">Components</span>
+              </div>
+              <div class="main">
+                <div class="panel-row admin-bottom">
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Top Zone</strong>
+                      <span>상태 우선</span>
+                    </div>
+                    <div class="list dense">
+                      <span>상단 1스크린 내 핵심 상태</span>
+                      <span>중요 알림은 배지 처리</span>
+                      <span>검색보다 현재 상태 우선</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Middle Zone</strong>
+                      <span>즉시 행동</span>
+                    </div>
+                    <div class="list dense">
+                      <span>2열 액션 그리드</span>
+                      <span>가장 자주 쓰는 액션 우선</span>
+                      <span>폼 진입은 1탭 이내</span>
+                    </div>
+                  </section>
+                  <section class="panel">
+                    <div class="panel-head">
+                      <strong>Bottom Zone</strong>
+                      <span>탭 네비게이션</span>
+                    </div>
+                    <div class="list dense">
+                      <span>Home / Request / Schedule / Inbox</span>
+                      <span>엄지 영역 고정</span>
+                      <span>현재 위치 강조</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
