@@ -107,6 +107,7 @@ Platform 기반 문서:
 - 서버 상태 / UI 상태 / mutation 상태 분리
 - 공통 데이터 계약 단위
 - 화면별 API 계약 초안
+- 모듈별 API 계약 상세
 - 구현 준비 체크리스트
 - 컴포넌트 인벤토리
 - 화면 준비도 매트릭스
@@ -117,6 +118,7 @@ Platform 기반 문서:
 - [09-frontend-route-component-architecture.md](./09-frontend-route-component-architecture.md)
 - [10-data-contract-state-management.md](./10-data-contract-state-management.md)
 - [11-screen-api-contracts.md](./11-screen-api-contracts.md)
+- [20-module-api-contract-breakdown.md](./20-module-api-contract-breakdown.md)
 - [12-implementation-readiness-checklist.md](./12-implementation-readiness-checklist.md)
 - [13-component-inventory.md](./13-component-inventory.md)
 - [14-screen-readiness-matrix.md](./14-screen-readiness-matrix.md)
@@ -136,7 +138,6 @@ Platform 기반 문서:
 
 이 항목들은 설계를 더 세밀하게 이어가는 다음 단계다.
 
-- 화면별 API 계약을 모듈 단위로 더 세분화
 - 최종 승인용 화면 리뷰 패스
 - 실제 앱 라우트와 상태관리 선택안 확정
 
