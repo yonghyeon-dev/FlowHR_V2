@@ -130,6 +130,47 @@ export type MockStoreState = {
   actionEvents: ActionEvent[];
 };
 
+export type RequestRecord = {
+  id: string;
+  tenantId: string;
+  pack: SupportedPack;
+  category: "leave" | "attendance" | "general" | "work";
+  title: string;
+  status: "submitted" | "approved" | "rejected";
+  createdAt: string;
+};
+
+export type SignatureRecord = {
+  id: string;
+  tenantId: string;
+  pack: SupportedPack;
+  documentType: "contract" | "policy" | "notice";
+  title: string;
+  status: "completed" | "pending";
+  createdAt: string;
+};
+
+export type ApprovalRecord = {
+  id: string;
+  tenantId: string;
+  pack: SupportedPack;
+  requestType: "leave" | "expense" | "attendance" | "shift";
+  title: string;
+  actor: "tenant_admin" | "tenant_manager";
+  status: "approved";
+  createdAt: string;
+};
+
+export type SettingsSnapshot = {
+  id: string;
+  tenantId: string;
+  pack: SupportedPack;
+  scope: "role_template" | "sensitive_scope" | "notification_policy";
+  title: string;
+  actor: "tenant_admin";
+  createdAt: string;
+};
+
 export type PackSetupResponse = {
   recommendedOrder: SupportedPack[];
   packs: PackSetup[];

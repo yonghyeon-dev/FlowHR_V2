@@ -7,7 +7,11 @@ import {
   appendActionEvent,
   getPackSelection,
   getTenantById,
+  listApprovalRecords,
   listActionEvents,
+  listRequestRecords,
+  listSettingsSnapshots,
+  listSignatureRecords,
   listTenants,
   savePackSelection,
 } from "@/lib/server/store";
@@ -215,6 +219,8 @@ export function getAdminPage(
   const featureItems = page.contextSummary?.items ?? [];
   const settingsEvents = getRelevantEvents("settings", pack, tenant.id);
   const approvalEvents = getRelevantEvents("approval", pack, tenant.id);
+  const settingsRecords = listSettingsSnapshots(tenant.id, pack, 3);
+  const approvalRecords = listApprovalRecords(tenant.id, pack, 3);
 
   return wrap(`admin.${tenant.id}.${pack}.${view}`, {
     ...page,
@@ -242,18 +248,32 @@ export function getAdminPage(
                     ),
                   ]
                 : []),
+              ...settingsRecords.map((record) =>
+                tx(
+                  `${record.title} / ${new Date(record.createdAt).toLocaleString("ko-KR")}`,
+                  `${record.title} / ${new Date(record.createdAt).toLocaleString("en-US")}`,
+                ),
+              ),
               ...settingsEvents.map(formatEventLine),
               ...featureItems,
             ],
           }
-        : view === "workflow" && approvalEvents.length
+        : view === "workflow" && (approvalEvents.length || approvalRecords.length)
           ? {
               title: tx("최근 승인 실행 기록", "Recent approval activity"),
               description: tx(
                 "현재 tenant에서 실행한 승인 액션의 최근 기록을 보여줍니다.",
                 "Recent approval actions executed for the current tenant are shown here.",
               ),
-              items: approvalEvents.map(formatEventLine),
+              items: [
+                ...approvalRecords.map((record) =>
+                  tx(
+                    `${record.title} / ${new Date(record.createdAt).toLocaleString("ko-KR")}`,
+                    `${record.title} / ${new Date(record.createdAt).toLocaleString("en-US")}`,
+                  ),
+                ),
+                ...approvalEvents.map(formatEventLine),
+              ],
             }
           : page.contextSummary,
     eyebrow: tx(
@@ -292,11 +312,29 @@ export function getEmployeePage(
         history: EMPLOYEE_PAGES[pack].signatures.detail,
       };
   const recentEvents = getRelevantEvents(view === "requests" ? "request" : "signature", pack, tenantId);
+  const requestRecords = view === "requests" ? listRequestRecords(tenantId, pack, 3) : [];
+  const signatureRecords = view === "signatures" ? listSignatureRecords(tenantId, pack, 3) : [];
   const recentHistory = recentEvents.map(formatEventLine);
 
   return wrap(`employee.${tenantId}.${pack}.${view}`, {
     ...detailView,
-    history: [...recentHistory, ...detailView.history].slice(0, 6),
+    history: [
+      ...(view === "requests"
+        ? requestRecords.map((record) =>
+            tx(
+              `${record.title} / ${new Date(record.createdAt).toLocaleString("ko-KR")}`,
+              `${record.title} / ${new Date(record.createdAt).toLocaleString("en-US")}`,
+            ),
+          )
+        : signatureRecords.map((record) =>
+            tx(
+              `${record.title} / ${new Date(record.createdAt).toLocaleString("ko-KR")}`,
+              `${record.title} / ${new Date(record.createdAt).toLocaleString("en-US")}`,
+            ),
+          )),
+      ...recentHistory,
+      ...detailView.history,
+    ].slice(0, 6),
     eyebrow: tx(
       `WI-TE-00${view === "requests" ? "3" : "4"} / ${pack === "office" ? "Office" : "Retail"} Pack`,
       `WI-TE-00${view === "requests" ? "3" : "4"} / ${pack === "office" ? "Office" : "Retail"} Pack`,

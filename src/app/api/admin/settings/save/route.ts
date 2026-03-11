@@ -6,6 +6,7 @@ import {
   pickLocale,
 } from "@/lib/api/action-responses";
 import { recordActionEvent } from "@/lib/api/mock";
+import { createSettingsSnapshot } from "@/lib/server/store";
 import { canAccessAction, getServerSession } from "@/lib/server/session";
 
 export async function POST(request: Request) {
@@ -21,6 +22,18 @@ export async function POST(request: Request) {
   if (body.scenario === "success") {
     const success = createActionSuccess("settings_save", locale);
     recordActionEvent(session.tenantId, "settings", { ...body, actionType: "settings_save", actor: "tenant_admin" }, success);
+    createSettingsSnapshot({
+      id: success.resourceId,
+      tenantId: session.tenantId,
+      pack: body.pack ?? "office",
+      scope: body.pack === "retail" ? "notification_policy" : "sensitive_scope",
+      title:
+        body.pack === "retail"
+          ? "매장 운영 알림 기준이 저장되었습니다."
+          : "민감 권한 범위 설정이 저장되었습니다.",
+      actor: "tenant_admin",
+      createdAt: new Date().toISOString(),
+    });
     return NextResponse.json(success);
   }
 

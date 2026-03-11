@@ -6,6 +6,7 @@ import {
   pickLocale,
 } from "@/lib/api/action-responses";
 import { recordActionEvent } from "@/lib/api/mock";
+import { createSignatureRecord } from "@/lib/server/store";
 import { canAccessAction, getServerSession } from "@/lib/server/session";
 
 export async function POST(request: Request) {
@@ -21,6 +22,18 @@ export async function POST(request: Request) {
   if (body.scenario === "success") {
     const success = createActionSuccess("signature_submit", locale);
     recordActionEvent(session.tenantId, "signature", { ...body, actionType: "signature_submit", actor: "employee" }, success);
+    createSignatureRecord({
+      id: success.resourceId,
+      tenantId: session.tenantId,
+      pack: body.pack ?? "office",
+      documentType: body.pack === "retail" ? "notice" : "contract",
+      title:
+        body.pack === "retail"
+          ? "현장 운영 공지 서명이 완료되었습니다."
+          : "연봉 변경 계약 서명이 완료되었습니다.",
+      status: "completed",
+      createdAt: new Date().toISOString(),
+    });
     return NextResponse.json(success);
   }
 

@@ -6,6 +6,7 @@ import {
   pickLocale,
 } from "@/lib/api/action-responses";
 import { recordActionEvent } from "@/lib/api/mock";
+import { createRequestRecord } from "@/lib/server/store";
 import { canAccessAction, getServerSession } from "@/lib/server/session";
 
 export async function POST(request: Request) {
@@ -21,6 +22,18 @@ export async function POST(request: Request) {
   if (body.scenario === "success") {
     const success = createActionSuccess("request_submit", locale);
     recordActionEvent(session.tenantId, "request", { ...body, actionType: "request_submit", actor: "employee" }, success);
+    createRequestRecord({
+      id: success.resourceId,
+      tenantId: session.tenantId,
+      pack: body.pack ?? "office",
+      category: body.pack === "retail" ? "attendance" : "leave",
+      title:
+        body.pack === "retail"
+          ? "출퇴근 정정 요청이 제출되었습니다."
+          : "휴가 요청이 제출되었습니다.",
+      status: "submitted",
+      createdAt: new Date().toISOString(),
+    });
     return NextResponse.json(success);
   }
 

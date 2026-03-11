@@ -4,8 +4,12 @@ import { DatabaseSync } from "node:sqlite";
 import type {
   ActionDomain,
   ActionEvent,
+  ApprovalRecord,
   MockStoreState,
   PackSetupResponse,
+  RequestRecord,
+  SettingsSnapshot,
+  SignatureRecord,
   SupportedPack,
   TenantOption,
   TenantRecord,
@@ -80,6 +84,47 @@ function getDb() {
       tenant_id TEXT,
       pack TEXT,
       message TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS request_records (
+      id TEXT PRIMARY KEY,
+      tenant_id TEXT NOT NULL,
+      pack TEXT NOT NULL,
+      category TEXT NOT NULL,
+      title TEXT NOT NULL,
+      status TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS signature_records (
+      id TEXT PRIMARY KEY,
+      tenant_id TEXT NOT NULL,
+      pack TEXT NOT NULL,
+      document_type TEXT NOT NULL,
+      title TEXT NOT NULL,
+      status TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS approval_records (
+      id TEXT PRIMARY KEY,
+      tenant_id TEXT NOT NULL,
+      pack TEXT NOT NULL,
+      request_type TEXT NOT NULL,
+      title TEXT NOT NULL,
+      actor TEXT NOT NULL,
+      status TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS settings_snapshots (
+      id TEXT PRIMARY KEY,
+      tenant_id TEXT NOT NULL,
+      pack TEXT NOT NULL,
+      scope TEXT NOT NULL,
+      title TEXT NOT NULL,
+      actor TEXT NOT NULL,
       created_at TEXT NOT NULL
     );
   `);
@@ -388,4 +433,150 @@ export function listActionEvents(
     .all(domain, pack ?? null, pack ?? null, tenantId ?? null, tenantId ?? null, limit) as ActionEvent[];
 
   return rows;
+}
+
+export function createRequestRecord(record: RequestRecord) {
+  getDb()
+    .prepare(`
+      INSERT OR REPLACE INTO request_records (id, tenant_id, pack, category, title, status, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `)
+    .run(
+      record.id,
+      record.tenantId,
+      record.pack,
+      record.category,
+      record.title,
+      record.status,
+      record.createdAt,
+    );
+}
+
+export function listRequestRecords(tenantId: string, pack: SupportedPack, limit = 5): RequestRecord[] {
+  return getDb()
+    .prepare(`
+      SELECT
+        id,
+        tenant_id as tenantId,
+        pack,
+        category,
+        title,
+        status,
+        created_at as createdAt
+      FROM request_records
+      WHERE tenant_id = ? AND pack = ?
+      ORDER BY created_at DESC
+      LIMIT ?
+    `)
+    .all(tenantId, pack, limit) as RequestRecord[];
+}
+
+export function createSignatureRecord(record: SignatureRecord) {
+  getDb()
+    .prepare(`
+      INSERT OR REPLACE INTO signature_records (id, tenant_id, pack, document_type, title, status, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `)
+    .run(
+      record.id,
+      record.tenantId,
+      record.pack,
+      record.documentType,
+      record.title,
+      record.status,
+      record.createdAt,
+    );
+}
+
+export function listSignatureRecords(tenantId: string, pack: SupportedPack, limit = 5): SignatureRecord[] {
+  return getDb()
+    .prepare(`
+      SELECT
+        id,
+        tenant_id as tenantId,
+        pack,
+        document_type as documentType,
+        title,
+        status,
+        created_at as createdAt
+      FROM signature_records
+      WHERE tenant_id = ? AND pack = ?
+      ORDER BY created_at DESC
+      LIMIT ?
+    `)
+    .all(tenantId, pack, limit) as SignatureRecord[];
+}
+
+export function createApprovalRecord(record: ApprovalRecord) {
+  getDb()
+    .prepare(`
+      INSERT OR REPLACE INTO approval_records (id, tenant_id, pack, request_type, title, actor, status, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `)
+    .run(
+      record.id,
+      record.tenantId,
+      record.pack,
+      record.requestType,
+      record.title,
+      record.actor,
+      record.status,
+      record.createdAt,
+    );
+}
+
+export function listApprovalRecords(tenantId: string, pack: SupportedPack, limit = 5): ApprovalRecord[] {
+  return getDb()
+    .prepare(`
+      SELECT
+        id,
+        tenant_id as tenantId,
+        pack,
+        request_type as requestType,
+        title,
+        actor,
+        status,
+        created_at as createdAt
+      FROM approval_records
+      WHERE tenant_id = ? AND pack = ?
+      ORDER BY created_at DESC
+      LIMIT ?
+    `)
+    .all(tenantId, pack, limit) as ApprovalRecord[];
+}
+
+export function createSettingsSnapshot(record: SettingsSnapshot) {
+  getDb()
+    .prepare(`
+      INSERT OR REPLACE INTO settings_snapshots (id, tenant_id, pack, scope, title, actor, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `)
+    .run(
+      record.id,
+      record.tenantId,
+      record.pack,
+      record.scope,
+      record.title,
+      record.actor,
+      record.createdAt,
+    );
+}
+
+export function listSettingsSnapshots(tenantId: string, pack: SupportedPack, limit = 5): SettingsSnapshot[] {
+  return getDb()
+    .prepare(`
+      SELECT
+        id,
+        tenant_id as tenantId,
+        pack,
+        scope,
+        title,
+        actor,
+        created_at as createdAt
+      FROM settings_snapshots
+      WHERE tenant_id = ? AND pack = ?
+      ORDER BY created_at DESC
+      LIMIT ?
+    `)
+    .all(tenantId, pack, limit) as SettingsSnapshot[];
 }
