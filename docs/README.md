@@ -93,6 +93,7 @@
 46. [일괄 승인 매트릭스](./foundation/37-one-shot-approval-matrix.md)
 47. [Pack 구현 핸드오프](./foundation/38-pack-implementation-handoff.md)
 48. [구현 전 남은 블로커](./foundation/39-remaining-blockers-before-build.md)
+49. [구현 전 종합 보고](./foundation/40-pre-build-handoff-report.md)
 
 ## 운영 원칙
 

@@ -6,9 +6,9 @@
 - title: `Retail Pack Core Review Set`
 - requestedBy: `codex`
 - reviewedAt: `2026-03-12`
-- decision: `hold`
-- reason: `Retail Pack 핵심 화면 묶음은 재구성됐지만 아직 사용자 승인 전이다`
-- followUp: `Retail Pack 전체 흐름 검토 후 approved 또는 changes_requested로 갱신`
+- decision: `approved`
+- reason: `사용자가 Retail Pack 코어 흐름 전체를 승인했다`
+- followUp: `Retail Pack 코어 화면을 구현 착수 대상으로 올린다`
 - packContext: `retail`
 - variant: `retail_core_bundle`
 - reviewBundle: `BUNDLE-RETAIL-CORE`
@@ -21,5 +21,4 @@
   - [employee-home-retail.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-employee/employee-home-retail.html)
   - [request-hub-retail.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-employee/request-hub-retail.html)
   - [signature-inbox-retail.html](/C:/Team-jane/FlowHR_V2/wireframes/tenant-employee/signature-inbox-retail.html)
-  - [29-approval-review-packet.md](/C:/Team-jane/FlowHR_V2/docs/foundation/29-approval-review-packet.md)
-  - [35-pack-review-sequence.md](/C:/Team-jane/FlowHR_V2/docs/foundation/35-pack-review-sequence.md)
+  - [37-one-shot-approval-matrix.md](/C:/Team-jane/FlowHR_V2/docs/foundation/37-one-shot-approval-matrix.md)
