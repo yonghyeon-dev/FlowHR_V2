@@ -20,13 +20,13 @@
 | `Stage 3. IA 계층 설계` | 완료 | [00-stage-gates.md](./00-stage-gates.md) |
 | `Stage 4. 화면 상세 설계` | 진행 중 | [00-stage-gates.md](./00-stage-gates.md) |
 | `Stage 5. 디자인 시스템 상세 설계` | 완료 | [00-stage-gates.md](./00-stage-gates.md) |
-| `Stage 6. 구현 연결 설계` | 진행 중 | [00-stage-gates.md](./00-stage-gates.md) |
+| `Stage 6. 구현 연결 설계` | 완료 | [00-stage-gates.md](./00-stage-gates.md) |
 | `Stage 7. 구현 직전` | 미도달 | [00-stage-gates.md](./00-stage-gates.md) |
 
 ## 요구사항 체크
 
-- 완료: `13`
-- 진행 중: `7`
+- 완료: `15`
+- 진행 중: `9`
 - 미충족: `0`
 - 대체·보류: `1`
 
@@ -117,17 +117,16 @@
 
 ## 지금 안 끝난 것
 
-- 사용자 승인 반영
-- 번들 승인에서 `approved` 승격
-- 화면별 승인 결과 반영
+- Office / Retail Pack 승인
+- 남은 코어 화면 승인 반영
 - `Stage 7` 진입 전 최종 승인 패스
 
 ## 다음 작업 우선순위
 
-1. Pack 단위 사용자 검토 반영
-2. 번들 승인 로그 갱신
-3. 번들 승인 결과에 따라 화면 승인 로그 갱신
-4. 그 다음 구현 연결 문서 재정렬
+1. Office Pack 승인 반영
+2. Retail Pack 승인 반영
+3. 승인 결과에 따라 나머지 코어 화면 로그 갱신
+4. Stage 7 진입 여부 재판정
 
 ## 연결 문서
 

@@ -90,6 +90,9 @@
 43. [Tenant Employee 요청 허브 상세 설계](./tenant-employee/WI-TE-003-request-hub.md)
 44. [Pack 기반 리뷰 순서](./foundation/35-pack-review-sequence.md)
 45. [Pack 승인 체크리스트](./foundation/36-pack-approval-checklists.md)
+46. [일괄 승인 매트릭스](./foundation/37-one-shot-approval-matrix.md)
+47. [Pack 구현 핸드오프](./foundation/38-pack-implementation-handoff.md)
+48. [구현 전 남은 블로커](./foundation/39-remaining-blockers-before-build.md)
 
 ## 운영 원칙
 
