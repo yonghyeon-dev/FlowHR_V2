@@ -1,4 +1,6 @@
-export const SUPPORTED_LANGUAGES = ["ko", "en"];
+import type { LocalizedText } from "./types";
+
+export const SUPPORTED_LANGUAGES = ["ko", "en"] as const;
 
 export const APP_COPY = {
   ko: {
@@ -107,6 +109,6 @@ export const APP_COPY = {
   },
 };
 
-export function tx(ko, en) {
+export function tx(ko: string, en: string): LocalizedText {
   return { ko, en };
 }
