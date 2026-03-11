@@ -5,29 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FlowHR_V2 Settings Role Permission Detailed Wireframe</title>
     <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-SET-EYEBROW": { "ko": "WI-TA-007 / Settings / Role & Permission", "en": "WI-TA-007 / Settings / Role & Permission" },
+        "LID-TA-SET-HERO_TITLE": { "ko": "고객사 운영 기준과 권한 제어를 묶는<br />Settings Control Panel", "en": "A Settings Control Panel<br />for tenant rules and access control" },
+        "LID-TA-SET-HERO_TEXT": { "ko": "설정 화면은 숨겨진 뒷면이 아니라 테넌트 운영 기준을 정의하는 제어판입니다. 특히 권한 관리는 누가 무엇을 볼 수 있는지 즉시 읽혀야 합니다.", "en": "Settings should not feel like a hidden back office. They are the tenant control panel, and role permissions need to show clearly who can access what." },
+        "LID-TA-SET-CHIP_ROLE": { "ko": "Role matrix", "en": "Role matrix" },
+        "LID-TA-SET-CHIP_RISK": { "ko": "Risk-aware", "en": "Risk-aware" },
+        "LID-TA-SET-CHIP_PANEL": { "ko": "Tenant control panel", "en": "Tenant control panel" },
+        "LID-TA-SET-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-TA-SET-NOTE_1": { "ko": "역할과 권한 범위가 한눈에 읽히는지", "en": "Whether roles and permission scope are readable at a glance" },
+        "LID-TA-SET-NOTE_2": { "ko": "민감 권한 변경이 충분히 경고되는지", "en": "Whether sensitive permission changes are warned clearly" },
+        "LID-TA-SET-NOTE_3": { "ko": "회사 설정, 알림, 연동과 자연스럽게 연결되는지", "en": "Whether company settings, notifications, and integrations connect naturally" },
+        "LID-TA-SET-SCREEN_TITLE": { "ko": "Role Matrix + Company Settings", "en": "Role Matrix + Company Settings" },
+        "LID-TA-SET-SCREEN_DESC": { "ko": "역할 템플릿과 세부 권한, 최근 변경 이력을 결합한 구조", "en": "A structure combining role templates, permission details, and recent changes" },
+        "LID-TA-SET-BRAND": { "ko": "Settings", "en": "Settings" },
+        "LID-TA-SET-SEARCH": { "ko": "Search role, permission, integration, audit", "en": "Search role, permission, integration, audit" },
+        "LID-TA-SET-PILL_1": { "ko": "Role & Permission", "en": "Role & Permission" },
+        "LID-TA-SET-PILL_2": { "ko": "Company", "en": "Company" },
+        "LID-TA-SET-PILL_3": { "ko": "Audit Log", "en": "Audit Log" },
+        "LID-TA-SET-LIST_1_TITLE": { "ko": "Tenant Admin", "en": "Tenant Admin" },
+        "LID-TA-SET-LIST_1_TEXT": { "ko": "전사 운영 / 전체 접근", "en": "Org operations / full access" },
+        "LID-TA-SET-LIST_1_STATUS": { "ko": "기본 역할", "en": "Base role" },
+        "LID-TA-SET-LIST_2_TITLE": { "ko": "Tenant Manager", "en": "Tenant Manager" },
+        "LID-TA-SET-LIST_2_TEXT": { "ko": "조직 범위 운영", "en": "Org-scoped operations" },
+        "LID-TA-SET-LIST_2_STATUS": { "ko": "조직 제한", "en": "Scoped" },
+        "LID-TA-SET-LIST_3_TITLE": { "ko": "Payroll Admin", "en": "Payroll Admin" },
+        "LID-TA-SET-LIST_3_TEXT": { "ko": "급여 / 정산 전용", "en": "Payroll / closing only" },
+        "LID-TA-SET-LIST_3_STATUS": { "ko": "민감 정보", "en": "Sensitive" },
+        "LID-TA-SET-LIST_4_TITLE": { "ko": "Custom Role", "en": "Custom Role" },
+        "LID-TA-SET-LIST_4_TEXT": { "ko": "문서 + 승인 조합", "en": "Documents + approvals mix" },
+        "LID-TA-SET-LIST_4_STATUS": { "ko": "복제 역할", "en": "Cloned role" },
+        "LID-TA-SET-MATRIX_TITLE": { "ko": "Permission Matrix", "en": "Permission Matrix" },
+        "LID-TA-SET-MATRIX_1": { "ko": "조직 범위 접근 / 전체", "en": "Org scope access / full" },
+        "LID-TA-SET-MATRIX_2": { "ko": "개인정보 열람 / 허용", "en": "PII access / allowed" },
+        "LID-TA-SET-MATRIX_3": { "ko": "급여 정보 접근 / 제한", "en": "Payroll access / restricted" },
+        "LID-TA-SET-MATRIX_4": { "ko": "문서 발송 / 허용", "en": "Document send / allowed" },
+        "LID-TA-SET-MATRIX_5": { "ko": "정책 수정 / 허용", "en": "Policy edits / allowed" },
+        "LID-TA-SET-MATRIX_6": { "ko": "감사 로그 열람 / 허용", "en": "Audit log access / allowed" },
+        "LID-TA-SET-ACTION_1": { "ko": "역할 복제", "en": "Clone role" },
+        "LID-TA-SET-ACTION_2": { "ko": "권한 수정", "en": "Edit permissions" },
+        "LID-TA-SET-ACTION_3": { "ko": "영향 검토", "en": "Review impact" },
+        "LID-TA-SET-ACTION_4": { "ko": "변경 저장", "en": "Save changes" },
+        "LID-TA-SET-COMPANY_TITLE": { "ko": "Company Settings", "en": "Company Settings" },
+        "LID-TA-SET-COMPANY_SUB": { "ko": "운영 기준", "en": "Rules" },
+        "LID-TA-SET-COMPANY_1": { "ko": "회사 정보", "en": "Company info" },
+        "LID-TA-SET-COMPANY_2": { "ko": "근무제 기본값", "en": "Default work policy" },
+        "LID-TA-SET-COMPANY_3": { "ko": "브랜드 자산", "en": "Brand assets" },
+        "LID-TA-SET-COMPANY_4": { "ko": "기본 공휴일", "en": "Default holidays" },
+        "LID-TA-SET-INTEGRATION_TITLE": { "ko": "Integration & Notifications", "en": "Integration & Notifications" },
+        "LID-TA-SET-INTEGRATION_SUB": { "ko": "연동 / 알림", "en": "Integrations / alerts" },
+        "LID-TA-SET-INTEGRATION_1": { "ko": "Slack / Teams", "en": "Slack / Teams" },
+        "LID-TA-SET-INTEGRATION_2": { "ko": "Google / SSO", "en": "Google / SSO" },
+        "LID-TA-SET-INTEGRATION_3": { "ko": "알림 채널", "en": "Notification channels" },
+        "LID-TA-SET-INTEGRATION_4": { "ko": "리마인더 빈도", "en": "Reminder frequency" },
+        "LID-TA-SET-CHANGE_TITLE": { "ko": "Recent Changes", "en": "Recent Changes" },
+        "LID-TA-SET-CHANGE_SUB": { "ko": "감사 추적", "en": "Audit trail" },
+        "LID-TA-SET-CHANGE_1": { "ko": "Payroll Admin 권한 수정 / 오늘 10:12", "en": "Payroll Admin permission updated / today 10:12" },
+        "LID-TA-SET-CHANGE_2": { "ko": "Notification 정책 변경 / 오늘 09:20", "en": "Notification policy changed / today 09:20" },
+        "LID-TA-SET-CHANGE_3": { "ko": "Custom Role 생성 / 어제 18:40", "en": "Custom role created / yesterday 18:40" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
   </head>
   <body>
     <div class="page-shell">
       <header class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">WI-TA-007 / Settings / Role & Permission</p>
-          <h1>고객사 운영 기준과 권한 제어를 묶는<br />Settings Control Panel</h1>
-          <p class="hero-text">
-            설정 화면은 숨겨진 뒷면이 아니라 테넌트 운영 기준을 정의하는 제어판입니다.
-            특히 권한 관리는 누가 무엇을 볼 수 있는지 즉시 읽혀야 합니다.
-          </p>
+          <p class="eyebrow" data-lid="LID-TA-SET-EYEBROW">WI-TA-007 / Settings / Role & Permission</p>
+          <h1 data-lid="LID-TA-SET-HERO_TITLE" data-lid-html="true">고객사 운영 기준과 권한 제어를 묶는<br />Settings Control Panel</h1>
+          <p class="hero-text" data-lid="LID-TA-SET-HERO_TEXT">설정 화면은 숨겨진 뒷면이 아니라 테넌트 운영 기준을 정의하는 제어판입니다. 특히 권한 관리는 누가 무엇을 볼 수 있는지 즉시 읽혀야 합니다.</p>
           <div class="hero-chips">
-            <span>Role matrix</span>
-            <span>Risk-aware</span>
-            <span>Tenant control panel</span>
+            <span data-lid="LID-TA-SET-CHIP_ROLE">Role matrix</span>
+            <span data-lid="LID-TA-SET-CHIP_RISK">Risk-aware</span>
+            <span data-lid="LID-TA-SET-CHIP_PANEL">Tenant control panel</span>
           </div>
         </div>
         <aside class="hero-note">
-          <h2>핵심 확인 포인트</h2>
+          <h2 data-lid="LID-TA-SET-NOTE_TITLE">핵심 확인 포인트</h2>
           <ul>
-            <li>역할과 권한 범위가 한눈에 읽히는지</li>
-            <li>민감 권한 변경이 충분히 경고되는지</li>
-            <li>회사 설정, 알림, 연동과 자연스럽게 연결되는지</li>
+            <li data-lid="LID-TA-SET-NOTE_1">역할과 권한 범위가 한눈에 읽히는지</li>
+            <li data-lid="LID-TA-SET-NOTE_2">민감 권한 변경이 충분히 경고되는지</li>
+            <li data-lid="LID-TA-SET-NOTE_3">회사 설정, 알림, 연동과 자연스럽게 연결되는지</li>
           </ul>
         </aside>
       </header>
@@ -38,95 +97,95 @@
             <div class="screen-title">
               <span>S</span>
               <div>
-                <h3>Role Matrix + Company Settings</h3>
-                <p>역할 템플릿과 세부 권한, 최근 변경 이력을 결합한 구조</p>
+                <h3 data-lid="LID-TA-SET-SCREEN_TITLE">Role Matrix + Company Settings</h3>
+                <p data-lid="LID-TA-SET-SCREEN_DESC">역할 템플릿과 세부 권한, 최근 변경 이력을 결합한 구조</p>
               </div>
             </div>
             <div class="screen desktop">
               <div class="topbar slim">
-                <span class="brand">Settings</span>
-                <span class="search wide">Search role, permission, integration, audit</span>
-                <span class="pill active">Role & Permission</span>
-                <span class="pill">Company</span>
-                <span class="pill">Audit Log</span>
+                <span class="brand" data-lid="LID-TA-SET-BRAND">Settings</span>
+                <span class="search wide" data-lid="LID-TA-SET-SEARCH">Search role, permission, integration, audit</span>
+                <span class="pill active" data-lid="LID-TA-SET-PILL_1">Role & Permission</span>
+                <span class="pill" data-lid="LID-TA-SET-PILL_2">Company</span>
+                <span class="pill" data-lid="LID-TA-SET-PILL_3">Audit Log</span>
               </div>
               <div class="split wide-split">
                 <section class="column list-column">
                   <div class="stack-card active">
-                    <strong>Tenant Admin</strong>
-                    <span>전사 운영 / 전체 접근</span>
-                    <span class="status">기본 역할</span>
+                    <strong data-lid="LID-TA-SET-LIST_1_TITLE">Tenant Admin</strong>
+                    <span data-lid="LID-TA-SET-LIST_1_TEXT">전사 운영 / 전체 접근</span>
+                    <span class="status" data-lid="LID-TA-SET-LIST_1_STATUS">기본 역할</span>
                   </div>
                   <div class="stack-card">
-                    <strong>Tenant Manager</strong>
-                    <span>조직 범위 운영</span>
-                    <span class="status wait">조직 제한</span>
+                    <strong data-lid="LID-TA-SET-LIST_2_TITLE">Tenant Manager</strong>
+                    <span data-lid="LID-TA-SET-LIST_2_TEXT">조직 범위 운영</span>
+                    <span class="status wait" data-lid="LID-TA-SET-LIST_2_STATUS">조직 제한</span>
                   </div>
                   <div class="stack-card">
-                    <strong>Payroll Admin</strong>
-                    <span>급여 / 정산 전용</span>
-                    <span class="status risk">민감 정보</span>
+                    <strong data-lid="LID-TA-SET-LIST_3_TITLE">Payroll Admin</strong>
+                    <span data-lid="LID-TA-SET-LIST_3_TEXT">급여 / 정산 전용</span>
+                    <span class="status risk" data-lid="LID-TA-SET-LIST_3_STATUS">민감 정보</span>
                   </div>
                   <div class="stack-card">
-                    <strong>Custom Role</strong>
-                    <span>문서 + 승인 조합</span>
-                    <span class="status">복제 역할</span>
+                    <strong data-lid="LID-TA-SET-LIST_4_TITLE">Custom Role</strong>
+                    <span data-lid="LID-TA-SET-LIST_4_TEXT">문서 + 승인 조합</span>
+                    <span class="status" data-lid="LID-TA-SET-LIST_4_STATUS">복제 역할</span>
                   </div>
                 </section>
                 <section class="column detail-column">
                   <div class="detail-box tall">
-                    <strong>Permission Matrix</strong>
+                    <strong data-lid="LID-TA-SET-MATRIX_TITLE">Permission Matrix</strong>
                     <div class="list dense">
-                      <span>조직 범위 접근 / 전체</span>
-                      <span>개인정보 열람 / 허용</span>
-                      <span>급여 정보 접근 / 제한</span>
-                      <span>문서 발송 / 허용</span>
-                      <span>정책 수정 / 허용</span>
-                      <span>감사 로그 열람 / 허용</span>
+                      <span data-lid="LID-TA-SET-MATRIX_1">조직 범위 접근 / 전체</span>
+                      <span data-lid="LID-TA-SET-MATRIX_2">개인정보 열람 / 허용</span>
+                      <span data-lid="LID-TA-SET-MATRIX_3">급여 정보 접근 / 제한</span>
+                      <span data-lid="LID-TA-SET-MATRIX_4">문서 발송 / 허용</span>
+                      <span data-lid="LID-TA-SET-MATRIX_5">정책 수정 / 허용</span>
+                      <span data-lid="LID-TA-SET-MATRIX_6">감사 로그 열람 / 허용</span>
                     </div>
                   </div>
                   <div class="detail-actions">
-                    <span>역할 복제</span>
-                    <span>권한 수정</span>
-                    <span>영향 검토</span>
-                    <span>변경 저장</span>
+                    <span data-lid="LID-TA-SET-ACTION_1">역할 복제</span>
+                    <span data-lid="LID-TA-SET-ACTION_2">권한 수정</span>
+                    <span data-lid="LID-TA-SET-ACTION_3">영향 검토</span>
+                    <span data-lid="LID-TA-SET-ACTION_4">변경 저장</span>
                   </div>
                 </section>
               </div>
               <div class="panel-row admin-bottom">
                 <section class="panel">
                   <div class="panel-head">
-                    <strong>Company Settings</strong>
-                    <span>운영 기준</span>
+                    <strong data-lid="LID-TA-SET-COMPANY_TITLE">Company Settings</strong>
+                    <span data-lid="LID-TA-SET-COMPANY_SUB">운영 기준</span>
                   </div>
                   <div class="list dense">
-                    <span>회사 정보</span>
-                    <span>근무제 기본값</span>
-                    <span>브랜드 자산</span>
-                    <span>기본 공휴일</span>
+                    <span data-lid="LID-TA-SET-COMPANY_1">회사 정보</span>
+                    <span data-lid="LID-TA-SET-COMPANY_2">근무제 기본값</span>
+                    <span data-lid="LID-TA-SET-COMPANY_3">브랜드 자산</span>
+                    <span data-lid="LID-TA-SET-COMPANY_4">기본 공휴일</span>
                   </div>
                 </section>
                 <section class="panel">
                   <div class="panel-head">
-                    <strong>Integration & Notifications</strong>
-                    <span>연동 / 알림</span>
+                    <strong data-lid="LID-TA-SET-INTEGRATION_TITLE">Integration & Notifications</strong>
+                    <span data-lid="LID-TA-SET-INTEGRATION_SUB">연동 / 알림</span>
                   </div>
                   <div class="list dense">
-                    <span>Slack / Teams</span>
-                    <span>Google / SSO</span>
-                    <span>알림 채널</span>
-                    <span>리마인더 빈도</span>
+                    <span data-lid="LID-TA-SET-INTEGRATION_1">Slack / Teams</span>
+                    <span data-lid="LID-TA-SET-INTEGRATION_2">Google / SSO</span>
+                    <span data-lid="LID-TA-SET-INTEGRATION_3">알림 채널</span>
+                    <span data-lid="LID-TA-SET-INTEGRATION_4">리마인더 빈도</span>
                   </div>
                 </section>
                 <section class="panel">
                   <div class="panel-head">
-                    <strong>Recent Changes</strong>
-                    <span>감사 추적</span>
+                    <strong data-lid="LID-TA-SET-CHANGE_TITLE">Recent Changes</strong>
+                    <span data-lid="LID-TA-SET-CHANGE_SUB">감사 추적</span>
                   </div>
                   <div class="list dense">
-                    <span>Payroll Admin 권한 수정 / 오늘 10:12</span>
-                    <span>Notification 정책 변경 / 오늘 09:20</span>
-                    <span>Custom Role 생성 / 어제 18:40</span>
+                    <span data-lid="LID-TA-SET-CHANGE_1">Payroll Admin 권한 수정 / 오늘 10:12</span>
+                    <span data-lid="LID-TA-SET-CHANGE_2">Notification 정책 변경 / 오늘 09:20</span>
+                    <span data-lid="LID-TA-SET-CHANGE_3">Custom Role 생성 / 어제 18:40</span>
                   </div>
                 </section>
               </div>

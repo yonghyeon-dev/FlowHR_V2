@@ -48,4 +48,4 @@
 - 정식 프로덕션 UI 스타일과 동일하지 않다.
 - 새 화면은 권한 레이어에 맞는 폴더에만 추가한다.
 - `LID-*`가 적용된 페이지는 `?lang=ko` 또는 `?lang=en`으로 언어를 강제할 수 있다.
-- 현재 Platform 핵심 화면 4종과 `Admin Home`, `Employee Home`, `Attendance`, `People`, `Attendance Check Flow`, `Request Hub`, `Signature Inbox`는 `LID-*` 기반으로 동작한다.
+- 현재 문서에 등록된 핵심 와이어는 모두 `LID-*` 기반으로 동작한다.

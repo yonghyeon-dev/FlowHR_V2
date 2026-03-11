@@ -5,28 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FlowHR_V2 Leave Module Detailed Wireframe</title>
     <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-LEAVE-EYEBROW": { "ko": "WI-TA-004 / Leave Module", "en": "WI-TA-004 / Leave Module" },
+        "LID-TA-LEAVE-HERO_TITLE": { "ko": "정책, 캘린더, 요청, 촉진을 묶는<br />Leave Module", "en": "A Leave Module<br />that unifies policy, calendar, requests, and prompts" },
+        "LID-TA-LEAVE-HERO_TEXT": { "ko": "휴가 잔여 일수만 보는 기능이 아니라 정책과 운영 상태가 함께 읽히는 관리 모듈입니다.", "en": "This should not be just a leave balance page. It is a management module where policy and operational status are read together." },
+        "LID-TA-LEAVE-CHIP_POLICY": { "ko": "Policy-connected", "en": "Policy-connected" },
+        "LID-TA-LEAVE-CHIP_CAL": { "ko": "Calendar-first", "en": "Calendar-first" },
+        "LID-TA-LEAVE-CHIP_ROLE": { "ko": "Admin / Manager / Employee", "en": "Admin / Manager / Employee" },
+        "LID-TA-LEAVE-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-TA-LEAVE-NOTE_1": { "ko": "정책과 요청 흐름이 연결되는지", "en": "Whether policy and request flows are connected" },
+        "LID-TA-LEAVE-NOTE_2": { "ko": "휴가 충돌과 촉진 대상이 충분히 보이는지", "en": "Whether conflicts and prompt targets are visible enough" },
+        "LID-TA-LEAVE-NOTE_3": { "ko": "관리자와 직원 모두 이해 가능한 구조인지", "en": "Whether the structure works for both admins and employees" },
+        "LID-TA-LEAVE-SCREEN_TITLE": { "ko": "Dashboard + Calendar + Policy", "en": "Dashboard + Calendar + Policy" },
+        "LID-TA-LEAVE-SCREEN_DESC": { "ko": "운영 KPI, 일정 캘린더, 정책 요약을 한 흐름으로 배치", "en": "Place operational KPIs, a leave calendar, and policy summary in one flow" },
+        "LID-TA-LEAVE-BRAND": { "ko": "Leave", "en": "Leave" },
+        "LID-TA-LEAVE-SEARCH": { "ko": "Search employee, leave type, policy", "en": "Search employee, leave type, policy" },
+        "LID-TA-LEAVE-PILL_1": { "ko": "연차", "en": "Annual leave" },
+        "LID-TA-LEAVE-PILL_2": { "ko": "경조사", "en": "Special leave" },
+        "LID-TA-LEAVE-PILL_3": { "ko": "보상휴가", "en": "Comp leave" },
+        "LID-TA-LEAVE-KPI_1": { "ko": "전사 잔여 연차", "en": "Org leave balance" },
+        "LID-TA-LEAVE-KPI_2": { "ko": "승인 대기", "en": "Pending approvals" },
+        "LID-TA-LEAVE-KPI_3": { "ko": "촉진 대상", "en": "Prompt targets" },
+        "LID-TA-LEAVE-KPI_4": { "ko": "만료 임박", "en": "Expiring soon" },
+        "LID-TA-LEAVE-KPI_5": { "ko": "충돌 일정", "en": "Schedule conflicts" },
+        "LID-TA-LEAVE-CALENDAR_TITLE": { "ko": "Leave Calendar", "en": "Leave Calendar" },
+        "LID-TA-LEAVE-CALENDAR_SUB": { "ko": "팀 / 조직 전환", "en": "Team / org toggle" },
+        "LID-TA-LEAVE-QUEUE_TITLE": { "ko": "Leave Queue", "en": "Leave Queue" },
+        "LID-TA-LEAVE-QUEUE_SUB": { "ko": "승인 / 촉진", "en": "Approve / prompt" },
+        "LID-TA-LEAVE-QUEUE_1": { "ko": "승인 대기 14건", "en": "14 approvals pending" },
+        "LID-TA-LEAVE-QUEUE_2": { "ko": "촉진 대상 9명", "en": "9 prompt targets" },
+        "LID-TA-LEAVE-QUEUE_3": { "ko": "만료 임박 6명", "en": "6 expiring soon" },
+        "LID-TA-LEAVE-QUEUE_4": { "ko": "일정 충돌 3건", "en": "3 schedule conflicts" },
+        "LID-TA-LEAVE-POLICY_TITLE": { "ko": "Policy Summary", "en": "Policy Summary" },
+        "LID-TA-LEAVE-POLICY_SUB": { "ko": "차감 규칙", "en": "Deduction rules" },
+        "LID-TA-LEAVE-POLICY_1": { "ko": "반차는 4시간 단위", "en": "Half day is counted in 4-hour units" },
+        "LID-TA-LEAVE-POLICY_2": { "ko": "촉진 대상 자동 분류", "en": "Prompt targets auto-classified" },
+        "LID-TA-LEAVE-POLICY_3": { "ko": "증빙 필요 유형 설정", "en": "Evidence-required types configured" },
+        "LID-TA-LEAVE-USAGE_TITLE": { "ko": "Usage by Org", "en": "Usage by Org" },
+        "LID-TA-LEAVE-USAGE_SUB": { "ko": "조직별", "en": "By org" },
+        "LID-TA-LEAVE-USAGE_1": { "ko": "Product 62%", "en": "Product 62%" },
+        "LID-TA-LEAVE-USAGE_2": { "ko": "Engineering 48%", "en": "Engineering 48%" },
+        "LID-TA-LEAVE-USAGE_3": { "ko": "Sales 71%", "en": "Sales 71%" },
+        "LID-TA-LEAVE-ACTION_TITLE": { "ko": "Quick Actions", "en": "Quick Actions" },
+        "LID-TA-LEAVE-ACTION_SUB": { "ko": "실행", "en": "Actions" },
+        "LID-TA-LEAVE-ACTION_1": { "ko": "정책 수정", "en": "Edit policy" },
+        "LID-TA-LEAVE-ACTION_2": { "ko": "촉진 안내 발송", "en": "Send prompt notice" },
+        "LID-TA-LEAVE-ACTION_3": { "ko": "휴가 이력 추출", "en": "Export leave history" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
   </head>
   <body>
     <div class="page-shell">
       <header class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">WI-TA-004 / Leave Module</p>
-          <h1>정책, 캘린더, 요청, 촉진을 묶는<br />Leave Module</h1>
-          <p class="hero-text">
-            휴가 잔여 일수만 보는 기능이 아니라 정책과 운영 상태가 함께 읽히는 관리 모듈입니다.
-          </p>
+          <p class="eyebrow" data-lid="LID-TA-LEAVE-EYEBROW">WI-TA-004 / Leave Module</p>
+          <h1 data-lid="LID-TA-LEAVE-HERO_TITLE" data-lid-html="true">정책, 캘린더, 요청, 촉진을 묶는<br />Leave Module</h1>
+          <p class="hero-text" data-lid="LID-TA-LEAVE-HERO_TEXT">휴가 잔여 일수만 보는 기능이 아니라 정책과 운영 상태가 함께 읽히는 관리 모듈입니다.</p>
           <div class="hero-chips">
-            <span>Policy-connected</span>
-            <span>Calendar-first</span>
-            <span>Admin / Manager / Employee</span>
+            <span data-lid="LID-TA-LEAVE-CHIP_POLICY">Policy-connected</span>
+            <span data-lid="LID-TA-LEAVE-CHIP_CAL">Calendar-first</span>
+            <span data-lid="LID-TA-LEAVE-CHIP_ROLE">Admin / Manager / Employee</span>
           </div>
         </div>
         <aside class="hero-note">
-          <h2>핵심 확인 포인트</h2>
+          <h2 data-lid="LID-TA-LEAVE-NOTE_TITLE">핵심 확인 포인트</h2>
           <ul>
-            <li>정책과 요청 흐름이 연결되는지</li>
-            <li>휴가 충돌과 촉진 대상이 충분히 보이는지</li>
-            <li>관리자와 직원 모두 이해 가능한 구조인지</li>
+            <li data-lid="LID-TA-LEAVE-NOTE_1">정책과 요청 흐름이 연결되는지</li>
+            <li data-lid="LID-TA-LEAVE-NOTE_2">휴가 충돌과 촉진 대상이 충분히 보이는지</li>
+            <li data-lid="LID-TA-LEAVE-NOTE_3">관리자와 직원 모두 이해 가능한 구조인지</li>
           </ul>
         </aside>
       </header>
@@ -37,46 +85,31 @@
             <div class="screen-title">
               <span>L</span>
               <div>
-                <h3>Dashboard + Calendar + Policy</h3>
-                <p>운영 KPI, 일정 캘린더, 정책 요약을 한 흐름으로 배치</p>
+                <h3 data-lid="LID-TA-LEAVE-SCREEN_TITLE">Dashboard + Calendar + Policy</h3>
+                <p data-lid="LID-TA-LEAVE-SCREEN_DESC">운영 KPI, 일정 캘린더, 정책 요약을 한 흐름으로 배치</p>
               </div>
             </div>
             <div class="screen desktop">
               <div class="topbar slim">
-                <span class="brand">Leave</span>
-                <span class="search wide">Search employee, leave type, policy</span>
-                <span class="pill active">연차</span>
-                <span class="pill">경조사</span>
-                <span class="pill">보상휴가</span>
+                <span class="brand" data-lid="LID-TA-LEAVE-BRAND">Leave</span>
+                <span class="search wide" data-lid="LID-TA-LEAVE-SEARCH">Search employee, leave type, policy</span>
+                <span class="pill active" data-lid="LID-TA-LEAVE-PILL_1">연차</span>
+                <span class="pill" data-lid="LID-TA-LEAVE-PILL_2">경조사</span>
+                <span class="pill" data-lid="LID-TA-LEAVE-PILL_3">보상휴가</span>
               </div>
               <div class="main">
                 <div class="kpi-row five">
-                  <div class="kpi emphasis">
-                    <strong>248일</strong>
-                    <span>전사 잔여 연차</span>
-                  </div>
-                  <div class="kpi">
-                    <strong>14</strong>
-                    <span>승인 대기</span>
-                  </div>
-                  <div class="kpi">
-                    <strong>9</strong>
-                    <span>촉진 대상</span>
-                  </div>
-                  <div class="kpi">
-                    <strong>6</strong>
-                    <span>만료 임박</span>
-                  </div>
-                  <div class="kpi">
-                    <strong>3</strong>
-                    <span>충돌 일정</span>
-                  </div>
+                  <div class="kpi emphasis"><strong>248일</strong><span data-lid="LID-TA-LEAVE-KPI_1">전사 잔여 연차</span></div>
+                  <div class="kpi"><strong>14</strong><span data-lid="LID-TA-LEAVE-KPI_2">승인 대기</span></div>
+                  <div class="kpi"><strong>9</strong><span data-lid="LID-TA-LEAVE-KPI_3">촉진 대상</span></div>
+                  <div class="kpi"><strong>6</strong><span data-lid="LID-TA-LEAVE-KPI_4">만료 임박</span></div>
+                  <div class="kpi"><strong>3</strong><span data-lid="LID-TA-LEAVE-KPI_5">충돌 일정</span></div>
                 </div>
                 <div class="panel-row admin-hero">
                   <section class="panel large">
                     <div class="panel-head">
-                      <strong>Leave Calendar</strong>
-                      <span>Team / Org toggle</span>
+                      <strong data-lid="LID-TA-LEAVE-CALENDAR_TITLE">Leave Calendar</strong>
+                      <span data-lid="LID-TA-LEAVE-CALENDAR_SUB">팀 / 조직 전환</span>
                     </div>
                     <div class="calendar-grid">
                       <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
@@ -86,49 +119,49 @@
                   </section>
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Leave Queue</strong>
-                      <span>승인 / 촉진</span>
+                      <strong data-lid="LID-TA-LEAVE-QUEUE_TITLE">Leave Queue</strong>
+                      <span data-lid="LID-TA-LEAVE-QUEUE_SUB">승인 / 촉진</span>
                     </div>
                     <div class="list dense">
-                      <span>승인 대기 14건</span>
-                      <span>촉진 대상 9명</span>
-                      <span>만료 임박 6명</span>
-                      <span>일정 충돌 3건</span>
+                      <span data-lid="LID-TA-LEAVE-QUEUE_1">승인 대기 14건</span>
+                      <span data-lid="LID-TA-LEAVE-QUEUE_2">촉진 대상 9명</span>
+                      <span data-lid="LID-TA-LEAVE-QUEUE_3">만료 임박 6명</span>
+                      <span data-lid="LID-TA-LEAVE-QUEUE_4">일정 충돌 3건</span>
                     </div>
                   </section>
                 </div>
                 <div class="panel-row admin-bottom">
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Policy Summary</strong>
-                      <span>차감 규칙</span>
+                      <strong data-lid="LID-TA-LEAVE-POLICY_TITLE">Policy Summary</strong>
+                      <span data-lid="LID-TA-LEAVE-POLICY_SUB">차감 규칙</span>
                     </div>
                     <div class="list dense">
-                      <span>반차는 4시간 단위</span>
-                      <span>촉진 대상 자동 분류</span>
-                      <span>증빙 필요 유형 설정</span>
+                      <span data-lid="LID-TA-LEAVE-POLICY_1">반차는 4시간 단위</span>
+                      <span data-lid="LID-TA-LEAVE-POLICY_2">촉진 대상 자동 분류</span>
+                      <span data-lid="LID-TA-LEAVE-POLICY_3">증빙 필요 유형 설정</span>
                     </div>
                   </section>
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Usage by Org</strong>
-                      <span>조직별</span>
+                      <strong data-lid="LID-TA-LEAVE-USAGE_TITLE">Usage by Org</strong>
+                      <span data-lid="LID-TA-LEAVE-USAGE_SUB">조직별</span>
                     </div>
                     <div class="list dense">
-                      <span>Product 62%</span>
-                      <span>Engineering 48%</span>
-                      <span>Sales 71%</span>
+                      <span data-lid="LID-TA-LEAVE-USAGE_1">Product 62%</span>
+                      <span data-lid="LID-TA-LEAVE-USAGE_2">Engineering 48%</span>
+                      <span data-lid="LID-TA-LEAVE-USAGE_3">Sales 71%</span>
                     </div>
                   </section>
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Quick Actions</strong>
-                      <span>실행</span>
+                      <strong data-lid="LID-TA-LEAVE-ACTION_TITLE">Quick Actions</strong>
+                      <span data-lid="LID-TA-LEAVE-ACTION_SUB">실행</span>
                     </div>
                     <div class="list dense">
-                      <span>정책 수정</span>
-                      <span>촉진 안내 발송</span>
-                      <span>휴가 이력 추출</span>
+                      <span data-lid="LID-TA-LEAVE-ACTION_1">정책 수정</span>
+                      <span data-lid="LID-TA-LEAVE-ACTION_2">촉진 안내 발송</span>
+                      <span data-lid="LID-TA-LEAVE-ACTION_3">휴가 이력 추출</span>
                     </div>
                   </section>
                 </div>

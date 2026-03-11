@@ -5,29 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FlowHR_V2 Workflow Module Detailed Wireframe</title>
     <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-WORK-EYEBROW": { "ko": "WI-TA-005 / Workflow Module", "en": "WI-TA-005 / Workflow Module" },
+        "LID-TA-WORK-HERO_TITLE": { "ko": "인박스와 문맥을 결합한<br />Workflow Module", "en": "A Workflow Module<br />that combines inbox and context" },
+        "LID-TA-WORK-HERO_TEXT": { "ko": "승인자는 문서를 찾는 대신 인박스에서 바로 판단하고, 상세 화면에서 필요한 맥락과 처리 액션을 함께 봐야 합니다.", "en": "Approvers should judge directly from the inbox, then use the detail view to review the context and actions they need." },
+        "LID-TA-WORK-CHIP_INBOX": { "ko": "Inbox-first", "en": "Inbox-first" },
+        "LID-TA-WORK-CHIP_CONTEXT": { "ko": "Context-rich", "en": "Context-rich" },
+        "LID-TA-WORK-CHIP_APPROVAL": { "ko": "Approval operations", "en": "Approval operations" },
+        "LID-TA-WORK-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-TA-WORK-NOTE_1": { "ko": "인박스에서 무엇을 처리해야 하는지 분명한지", "en": "Whether the inbox makes next actions obvious" },
+        "LID-TA-WORK-NOTE_2": { "ko": "상세 화면이 판단에 필요한 문맥을 충분히 주는지", "en": "Whether the detail view provides enough decision context" },
+        "LID-TA-WORK-NOTE_3": { "ko": "결재 병목이 운영 리스크로 드러나는지", "en": "Whether approval bottlenecks surface as operational risks" },
+        "LID-TA-WORK-SCREEN_TITLE": { "ko": "Approval Inbox + Detail", "en": "Approval Inbox + Detail" },
+        "LID-TA-WORK-SCREEN_DESC": { "ko": "대기 문서 리스트와 선택 문서 컨텍스트를 결합한 구조", "en": "A structure combining pending items and selected request context" },
+        "LID-TA-WORK-BRAND": { "ko": "Workflow", "en": "Workflow" },
+        "LID-TA-WORK-SEARCH": { "ko": "Search request, approver, policy, status", "en": "Search request, approver, policy, status" },
+        "LID-TA-WORK-PILL_1": { "ko": "Pending", "en": "Pending" },
+        "LID-TA-WORK-PILL_2": { "ko": "Escalated", "en": "Escalated" },
+        "LID-TA-WORK-LIST_1_TITLE": { "ko": "반차 요청 / 이수민", "en": "Half-day request / Sumin Lee" },
+        "LID-TA-WORK-LIST_1_TEXT": { "ko": "오늘 14:00-18:00", "en": "Today 14:00-18:00" },
+        "LID-TA-WORK-LIST_1_STATUS": { "ko": "대기 2단계", "en": "Pending stage 2" },
+        "LID-TA-WORK-LIST_2_TITLE": { "ko": "초과근무 요청 / 박준", "en": "Overtime request / Jun Park" },
+        "LID-TA-WORK-LIST_2_TEXT": { "ko": "3시간", "en": "3 hours" },
+        "LID-TA-WORK-LIST_2_STATUS": { "ko": "주 52시간 임박", "en": "Near 52-hour limit" },
+        "LID-TA-WORK-LIST_3_TITLE": { "ko": "전자계약 서명", "en": "E-contract signature" },
+        "LID-TA-WORK-LIST_3_TEXT": { "ko": "연봉 변경 계약서", "en": "Salary change agreement" },
+        "LID-TA-WORK-LIST_3_STATUS": { "ko": "당일 마감", "en": "Due today" },
+        "LID-TA-WORK-DETAIL_TITLE": { "ko": "Request Context", "en": "Request Context" },
+        "LID-TA-WORK-DETAIL_1": { "ko": "요청 내용 / 사유 / 첨부", "en": "Request details / reason / attachment" },
+        "LID-TA-WORK-DETAIL_2": { "ko": "잔여 휴가 / 팀 일정 충돌", "en": "Leave balance / team conflicts" },
+        "LID-TA-WORK-DETAIL_3": { "ko": "관련 정책 / 최근 승인 이력", "en": "Related policy / recent approval history" },
+        "LID-TA-WORK-DETAIL_4": { "ko": "결재 단계 / 병목 여부", "en": "Approval step / bottleneck state" },
+        "LID-TA-WORK-ACTION_1": { "ko": "승인", "en": "Approve" },
+        "LID-TA-WORK-ACTION_2": { "ko": "반려", "en": "Reject" },
+        "LID-TA-WORK-ACTION_3": { "ko": "보류", "en": "Hold" },
+        "LID-TA-WORK-ACTION_4": { "ko": "추가 확인", "en": "Need more info" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
   </head>
   <body>
     <div class="page-shell">
       <header class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">WI-TA-005 / Workflow Module</p>
-          <h1>인박스와 문맥을 결합한<br />Workflow Module</h1>
-          <p class="hero-text">
-            승인자는 문서를 찾는 대신 인박스에서 바로 판단하고, 상세 화면에서 필요한 맥락과
-            처리 액션을 함께 봐야 합니다.
-          </p>
+          <p class="eyebrow" data-lid="LID-TA-WORK-EYEBROW">WI-TA-005 / Workflow Module</p>
+          <h1 data-lid="LID-TA-WORK-HERO_TITLE" data-lid-html="true">인박스와 문맥을 결합한<br />Workflow Module</h1>
+          <p class="hero-text" data-lid="LID-TA-WORK-HERO_TEXT">승인자는 문서를 찾는 대신 인박스에서 바로 판단하고, 상세 화면에서 필요한 맥락과 처리 액션을 함께 봐야 합니다.</p>
           <div class="hero-chips">
-            <span>Inbox-first</span>
-            <span>Context-rich</span>
-            <span>Approval operations</span>
+            <span data-lid="LID-TA-WORK-CHIP_INBOX">Inbox-first</span>
+            <span data-lid="LID-TA-WORK-CHIP_CONTEXT">Context-rich</span>
+            <span data-lid="LID-TA-WORK-CHIP_APPROVAL">Approval operations</span>
           </div>
         </div>
         <aside class="hero-note">
-          <h2>핵심 확인 포인트</h2>
+          <h2 data-lid="LID-TA-WORK-NOTE_TITLE">핵심 확인 포인트</h2>
           <ul>
-            <li>인박스에서 무엇을 처리해야 하는지 분명한지</li>
-            <li>상세 화면이 판단에 필요한 문맥을 충분히 주는지</li>
-            <li>결재 병목이 운영 리스크로 드러나는지</li>
+            <li data-lid="LID-TA-WORK-NOTE_1">인박스에서 무엇을 처리해야 하는지 분명한지</li>
+            <li data-lid="LID-TA-WORK-NOTE_2">상세 화면이 판단에 필요한 문맥을 충분히 주는지</li>
+            <li data-lid="LID-TA-WORK-NOTE_3">결재 병목이 운영 리스크로 드러나는지</li>
           </ul>
         </aside>
       </header>
@@ -38,50 +74,50 @@
             <div class="screen-title">
               <span>W</span>
               <div>
-                <h3>Approval Inbox + Detail</h3>
-                <p>대기 문서 리스트와 선택 문서 컨텍스트를 결합한 구조</p>
+                <h3 data-lid="LID-TA-WORK-SCREEN_TITLE">Approval Inbox + Detail</h3>
+                <p data-lid="LID-TA-WORK-SCREEN_DESC">대기 문서 리스트와 선택 문서 컨텍스트를 결합한 구조</p>
               </div>
             </div>
             <div class="screen desktop compact">
               <div class="topbar slim">
-                <span class="brand">Workflow</span>
-                <span class="search wide">Search request, approver, policy, status</span>
-                <span class="pill active">Pending</span>
-                <span class="pill">Escalated</span>
+                <span class="brand" data-lid="LID-TA-WORK-BRAND">Workflow</span>
+                <span class="search wide" data-lid="LID-TA-WORK-SEARCH">Search request, approver, policy, status</span>
+                <span class="pill active" data-lid="LID-TA-WORK-PILL_1">Pending</span>
+                <span class="pill" data-lid="LID-TA-WORK-PILL_2">Escalated</span>
               </div>
               <div class="split wide-split">
                 <section class="column list-column">
                   <div class="stack-card active">
-                    <strong>반차 요청 / 이수민</strong>
-                    <span>오늘 14:00-18:00</span>
-                    <span class="status wait">대기 2단계</span>
+                    <strong data-lid="LID-TA-WORK-LIST_1_TITLE">반차 요청 / 이수민</strong>
+                    <span data-lid="LID-TA-WORK-LIST_1_TEXT">오늘 14:00-18:00</span>
+                    <span class="status wait" data-lid="LID-TA-WORK-LIST_1_STATUS">대기 2단계</span>
                   </div>
                   <div class="stack-card">
-                    <strong>초과근무 요청 / 박준</strong>
-                    <span>3시간</span>
-                    <span class="status risk">주 52시간 임박</span>
+                    <strong data-lid="LID-TA-WORK-LIST_2_TITLE">초과근무 요청 / 박준</strong>
+                    <span data-lid="LID-TA-WORK-LIST_2_TEXT">3시간</span>
+                    <span class="status risk" data-lid="LID-TA-WORK-LIST_2_STATUS">주 52시간 임박</span>
                   </div>
                   <div class="stack-card">
-                    <strong>전자계약 서명</strong>
-                    <span>연봉 변경 계약서</span>
-                    <span class="status">당일 마감</span>
+                    <strong data-lid="LID-TA-WORK-LIST_3_TITLE">전자계약 서명</strong>
+                    <span data-lid="LID-TA-WORK-LIST_3_TEXT">연봉 변경 계약서</span>
+                    <span class="status" data-lid="LID-TA-WORK-LIST_3_STATUS">당일 마감</span>
                   </div>
                 </section>
                 <section class="column detail-column">
                   <div class="detail-box tall">
-                    <strong>Request Context</strong>
+                    <strong data-lid="LID-TA-WORK-DETAIL_TITLE">Request Context</strong>
                     <div class="list dense">
-                      <span>요청 내용 / 사유 / 첨부</span>
-                      <span>잔여 휴가 / 팀 일정 충돌</span>
-                      <span>관련 정책 / 최근 승인 이력</span>
-                      <span>결재 단계 / 병목 여부</span>
+                      <span data-lid="LID-TA-WORK-DETAIL_1">요청 내용 / 사유 / 첨부</span>
+                      <span data-lid="LID-TA-WORK-DETAIL_2">잔여 휴가 / 팀 일정 충돌</span>
+                      <span data-lid="LID-TA-WORK-DETAIL_3">관련 정책 / 최근 승인 이력</span>
+                      <span data-lid="LID-TA-WORK-DETAIL_4">결재 단계 / 병목 여부</span>
                     </div>
                   </div>
                   <div class="detail-actions">
-                    <span>승인</span>
-                    <span>반려</span>
-                    <span>보류</span>
-                    <span>추가 확인</span>
+                    <span data-lid="LID-TA-WORK-ACTION_1">승인</span>
+                    <span data-lid="LID-TA-WORK-ACTION_2">반려</span>
+                    <span data-lid="LID-TA-WORK-ACTION_3">보류</span>
+                    <span data-lid="LID-TA-WORK-ACTION_4">추가 확인</span>
                   </div>
                 </section>
               </div>

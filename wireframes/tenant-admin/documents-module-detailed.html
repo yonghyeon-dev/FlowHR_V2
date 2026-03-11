@@ -5,29 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FlowHR_V2 Documents Module Detailed Wireframe</title>
     <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TA-DOC-EYEBROW": { "ko": "WI-TA-006 / Documents Module", "en": "WI-TA-006 / Documents Module" },
+        "LID-TA-DOC-HERO_TITLE": { "ko": "템플릿, 발송, 서명, 보관을 묶는<br />Documents Module", "en": "A Documents Module<br />that unifies templates, delivery, signatures, and storage" },
+        "LID-TA-DOC-HERO_TEXT": { "ko": "전자문서 운영은 파일 보관이 아니라 서명 대기, 만료 예정, 재발송, 보관 이력까지 연결된 흐름으로 다뤄야 합니다.", "en": "Document operations should not be just about storage. They should connect pending signatures, expiry risk, resends, and archive history." },
+        "LID-TA-DOC-CHIP_TEMPLATE": { "ko": "Template-driven", "en": "Template-driven" },
+        "LID-TA-DOC-CHIP_SIGNATURE": { "ko": "Signature-first", "en": "Signature-first" },
+        "LID-TA-DOC-CHIP_AUDIT": { "ko": "Audit-ready", "en": "Audit-ready" },
+        "LID-TA-DOC-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-TA-DOC-NOTE_1": { "ko": "서명 대기와 만료 위험이 먼저 보이는지", "en": "Whether signature backlog and expiry risk show up first" },
+        "LID-TA-DOC-NOTE_2": { "ko": "템플릿 관리와 발송 흐름이 자연스럽게 이어지는지", "en": "Whether template management and send flow connect naturally" },
+        "LID-TA-DOC-NOTE_3": { "ko": "보관함이 단순 저장소가 아니라 운영 뷰로 읽히는지", "en": "Whether the vault reads as an operational view rather than static storage" },
+        "LID-TA-DOC-SCREEN_TITLE": { "ko": "Dashboard + Template Manager + Vault", "en": "Dashboard + Template Manager + Vault" },
+        "LID-TA-DOC-SCREEN_DESC": { "ko": "운영 큐, 템플릿 상태, 완료 문서 보관을 한 흐름으로 배치", "en": "Place the signature queue, template status, and archive flow together" },
+        "LID-TA-DOC-BRAND": { "ko": "Documents", "en": "Documents" },
+        "LID-TA-DOC-SEARCH": { "ko": "Search template, recipient, document, status", "en": "Search template, recipient, document, status" },
+        "LID-TA-DOC-PILL_1": { "ko": "서명 대기", "en": "Pending signature" },
+        "LID-TA-DOC-PILL_2": { "ko": "완료 문서", "en": "Completed docs" },
+        "LID-TA-DOC-KPI_1": { "ko": "서명 대기", "en": "Pending signatures" },
+        "LID-TA-DOC-KPI_2": { "ko": "만료 임박", "en": "Expiring soon" },
+        "LID-TA-DOC-KPI_3": { "ko": "재발송 필요", "en": "Need resend" },
+        "LID-TA-DOC-KPI_4": { "ko": "오늘 발송", "en": "Sent today" },
+        "LID-TA-DOC-KPI_5": { "ko": "템플릿 수정", "en": "Template edits" },
+        "LID-TA-DOC-QUEUE_TITLE": { "ko": "Signature Queue", "en": "Signature Queue" },
+        "LID-TA-DOC-QUEUE_SUB": { "ko": "오늘 마감 우선", "en": "Today first" },
+        "LID-TA-DOC-QUEUE_1_TITLE": { "ko": "연봉 변경 계약", "en": "Salary change agreement" },
+        "LID-TA-DOC-QUEUE_1_TEXT": { "ko": "서명 미완료 2건 / 오늘 18:00 마감", "en": "2 incomplete signatures / due today 18:00" },
+        "LID-TA-DOC-QUEUE_1_ACTION": { "ko": "재발송", "en": "Resend" },
+        "LID-TA-DOC-QUEUE_2_TITLE": { "ko": "입사 계약서", "en": "Employment contract" },
+        "LID-TA-DOC-QUEUE_2_TEXT": { "ko": "신규 입사자 3명 / 발송 후 24h 경과", "en": "3 new hires / 24h after sending" },
+        "LID-TA-DOC-QUEUE_2_ACTION": { "ko": "상태 확인", "en": "Check status" },
+        "LID-TA-DOC-QUEUE_3_TITLE": { "ko": "정책 동의서", "en": "Policy acknowledgement" },
+        "LID-TA-DOC-QUEUE_3_TEXT": { "ko": "전체 발송 / 미열람 5명", "en": "Sent to all / 5 unopened" },
+        "LID-TA-DOC-QUEUE_3_ACTION": { "ko": "알림 발송", "en": "Send reminder" },
+        "LID-TA-DOC-TEMPLATE_TITLE": { "ko": "Template Catalog", "en": "Template Catalog" },
+        "LID-TA-DOC-TEMPLATE_SUB": { "ko": "버전 상태", "en": "Version status" },
+        "LID-TA-DOC-TEMPLATE_1": { "ko": "입사 계약서 / v12 / 사용 중", "en": "Employment contract / v12 / active" },
+        "LID-TA-DOC-TEMPLATE_2": { "ko": "연봉 변경 계약 / v4 / 검토 필요", "en": "Salary change / v4 / needs review" },
+        "LID-TA-DOC-TEMPLATE_3": { "ko": "정책 동의서 / v8 / 승인 완료", "en": "Policy acknowledgement / v8 / approved" },
+        "LID-TA-DOC-TEMPLATE_4": { "ko": "퇴사 확인서 / v3 / 초안", "en": "Offboarding confirmation / v3 / draft" },
+        "LID-TA-DOC-BULK_TITLE": { "ko": "Bulk Send", "en": "Bulk Send" },
+        "LID-TA-DOC-BULK_SUB": { "ko": "일괄 발송", "en": "Batch send" },
+        "LID-TA-DOC-BULK_1": { "ko": "대상 선택", "en": "Select recipients" },
+        "LID-TA-DOC-BULK_2": { "ko": "템플릿 매핑", "en": "Map templates" },
+        "LID-TA-DOC-BULK_3": { "ko": "미리보기", "en": "Preview" },
+        "LID-TA-DOC-BULK_4": { "ko": "발송 예약", "en": "Schedule send" },
+        "LID-TA-DOC-VAULT_TITLE": { "ko": "Document Vault", "en": "Document Vault" },
+        "LID-TA-DOC-VAULT_SUB": { "ko": "완료 보관", "en": "Archive" },
+        "LID-TA-DOC-VAULT_1": { "ko": "완료 문서 검색", "en": "Search completed docs" },
+        "LID-TA-DOC-VAULT_2": { "ko": "버전 이력", "en": "Version history" },
+        "LID-TA-DOC-VAULT_3": { "ko": "다운로드 기록", "en": "Download history" },
+        "LID-TA-DOC-VAULT_4": { "ko": "감사 추적", "en": "Audit trail" },
+        "LID-TA-DOC-ACTION_TITLE": { "ko": "Quick Actions", "en": "Quick Actions" },
+        "LID-TA-DOC-ACTION_SUB": { "ko": "실행", "en": "Actions" },
+        "LID-TA-DOC-ACTION_1": { "ko": "템플릿 생성", "en": "Create template" },
+        "LID-TA-DOC-ACTION_2": { "ko": "단건 발송", "en": "Send one-off" },
+        "LID-TA-DOC-ACTION_3": { "ko": "재발송", "en": "Resend" },
+        "LID-TA-DOC-ACTION_4": { "ko": "문서 추출", "en": "Export documents" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
   </head>
   <body>
     <div class="page-shell">
       <header class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">WI-TA-006 / Documents Module</p>
-          <h1>템플릿, 발송, 서명, 보관을 묶는<br />Documents Module</h1>
-          <p class="hero-text">
-            전자문서 운영은 파일 보관이 아니라 서명 대기, 만료 예정, 재발송, 보관 이력까지
-            연결된 흐름으로 다뤄야 합니다.
-          </p>
+          <p class="eyebrow" data-lid="LID-TA-DOC-EYEBROW">WI-TA-006 / Documents Module</p>
+          <h1 data-lid="LID-TA-DOC-HERO_TITLE" data-lid-html="true">템플릿, 발송, 서명, 보관을 묶는<br />Documents Module</h1>
+          <p class="hero-text" data-lid="LID-TA-DOC-HERO_TEXT">전자문서 운영은 파일 보관이 아니라 서명 대기, 만료 예정, 재발송, 보관 이력까지 연결된 흐름으로 다뤄야 합니다.</p>
           <div class="hero-chips">
-            <span>Template-driven</span>
-            <span>Signature-first</span>
-            <span>Audit-ready</span>
+            <span data-lid="LID-TA-DOC-CHIP_TEMPLATE">Template-driven</span>
+            <span data-lid="LID-TA-DOC-CHIP_SIGNATURE">Signature-first</span>
+            <span data-lid="LID-TA-DOC-CHIP_AUDIT">Audit-ready</span>
           </div>
         </div>
         <aside class="hero-note">
-          <h2>핵심 확인 포인트</h2>
+          <h2 data-lid="LID-TA-DOC-NOTE_TITLE">핵심 확인 포인트</h2>
           <ul>
-            <li>서명 대기와 만료 위험이 먼저 보이는지</li>
-            <li>템플릿 관리와 발송 흐름이 자연스럽게 이어지는지</li>
-            <li>보관함이 단순 저장소가 아니라 운영 뷰로 읽히는지</li>
+            <li data-lid="LID-TA-DOC-NOTE_1">서명 대기와 만료 위험이 먼저 보이는지</li>
+            <li data-lid="LID-TA-DOC-NOTE_2">템플릿 관리와 발송 흐름이 자연스럽게 이어지는지</li>
+            <li data-lid="LID-TA-DOC-NOTE_3">보관함이 단순 저장소가 아니라 운영 뷰로 읽히는지</li>
           </ul>
         </aside>
       </header>
@@ -38,118 +96,103 @@
             <div class="screen-title">
               <span>D</span>
               <div>
-                <h3>Dashboard + Template Manager + Vault</h3>
-                <p>운영 큐, 템플릿 상태, 완료 문서 보관을 한 흐름으로 배치</p>
+                <h3 data-lid="LID-TA-DOC-SCREEN_TITLE">Dashboard + Template Manager + Vault</h3>
+                <p data-lid="LID-TA-DOC-SCREEN_DESC">운영 큐, 템플릿 상태, 완료 문서 보관을 한 흐름으로 배치</p>
               </div>
             </div>
             <div class="screen desktop">
               <div class="topbar slim">
-                <span class="brand">Documents</span>
-                <span class="search wide">Search template, recipient, document, status</span>
-                <span class="pill active">서명 대기</span>
-                <span class="pill">완료 문서</span>
+                <span class="brand" data-lid="LID-TA-DOC-BRAND">Documents</span>
+                <span class="search wide" data-lid="LID-TA-DOC-SEARCH">Search template, recipient, document, status</span>
+                <span class="pill active" data-lid="LID-TA-DOC-PILL_1">서명 대기</span>
+                <span class="pill" data-lid="LID-TA-DOC-PILL_2">완료 문서</span>
               </div>
               <div class="main">
                 <div class="kpi-row five">
-                  <div class="kpi emphasis">
-                    <strong>12</strong>
-                    <span>서명 대기</span>
-                  </div>
-                  <div class="kpi">
-                    <strong>5</strong>
-                    <span>만료 임박</span>
-                  </div>
-                  <div class="kpi">
-                    <strong>3</strong>
-                    <span>재발송 필요</span>
-                  </div>
-                  <div class="kpi">
-                    <strong>18</strong>
-                    <span>오늘 발송</span>
-                  </div>
-                  <div class="kpi">
-                    <strong>4</strong>
-                    <span>템플릿 수정</span>
-                  </div>
+                  <div class="kpi emphasis"><strong>12</strong><span data-lid="LID-TA-DOC-KPI_1">서명 대기</span></div>
+                  <div class="kpi"><strong>5</strong><span data-lid="LID-TA-DOC-KPI_2">만료 임박</span></div>
+                  <div class="kpi"><strong>3</strong><span data-lid="LID-TA-DOC-KPI_3">재발송 필요</span></div>
+                  <div class="kpi"><strong>18</strong><span data-lid="LID-TA-DOC-KPI_4">오늘 발송</span></div>
+                  <div class="kpi"><strong>4</strong><span data-lid="LID-TA-DOC-KPI_5">템플릿 수정</span></div>
                 </div>
                 <div class="panel-row admin-hero">
                   <section class="panel large">
                     <div class="panel-head">
-                      <strong>Signature Queue</strong>
-                      <span>오늘 마감 우선</span>
+                      <strong data-lid="LID-TA-DOC-QUEUE_TITLE">Signature Queue</strong>
+                      <span data-lid="LID-TA-DOC-QUEUE_SUB">오늘 마감 우선</span>
                     </div>
                     <div class="queue-list">
                       <div class="queue-item critical">
                         <div>
-                          <strong>연봉 변경 계약</strong>
-                          <p>서명 미완료 2건 / 오늘 18:00 마감</p>
+                          <strong data-lid="LID-TA-DOC-QUEUE_1_TITLE">연봉 변경 계약</strong>
+                          <p data-lid="LID-TA-DOC-QUEUE_1_TEXT">서명 미완료 2건 / 오늘 18:00 마감</p>
                         </div>
-                        <span>재발송</span>
+                        <span data-lid="LID-TA-DOC-QUEUE_1_ACTION">재발송</span>
                       </div>
                       <div class="queue-item high">
                         <div>
-                          <strong>입사 계약서</strong>
-                          <p>신규 입사자 3명 / 발송 후 24h 경과</p>
+                          <strong data-lid="LID-TA-DOC-QUEUE_2_TITLE">입사 계약서</strong>
+                          <p data-lid="LID-TA-DOC-QUEUE_2_TEXT">신규 입사자 3명 / 발송 후 24h 경과</p>
                         </div>
-                        <span>상태 확인</span>
+                        <span data-lid="LID-TA-DOC-QUEUE_2_ACTION">상태 확인</span>
                       </div>
                       <div class="queue-item medium">
                         <div>
-                          <strong>정책 동의서</strong>
-                          <p>전체 발송 / 미열람 5명</p>
+                          <strong data-lid="LID-TA-DOC-QUEUE_3_TITLE">정책 동의서</strong>
+                          <p data-lid="LID-TA-DOC-QUEUE_3_TEXT">전체 발송 / 미열람 5명</p>
                         </div>
-                        <span>알림 발송</span>
+                        <span data-lid="LID-TA-DOC-QUEUE_3_ACTION">알림 발송</span>
                       </div>
                     </div>
                   </section>
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Template Catalog</strong>
-                      <span>버전 상태</span>
+                      <strong data-lid="LID-TA-DOC-TEMPLATE_TITLE">Template Catalog</strong>
+                      <span data-lid="LID-TA-DOC-TEMPLATE_SUB">버전 상태</span>
                     </div>
                     <div class="list dense">
-                      <span>입사 계약서 / v12 / 사용 중</span>
-                      <span>연봉 변경 계약 / v4 / 검토 필요</span>
-                      <span>정책 동의서 / v8 / 승인 완료</span>
-                      <span>퇴사 확인서 / v3 / 초안</span>
+                      <span data-lid="LID-TA-DOC-TEMPLATE_1">입사 계약서 / v12 / 사용 중</span>
+                      <span data-lid="LID-TA-DOC-TEMPLATE_2">연봉 변경 계약 / v4 / 검토 필요</span>
+                      <span data-lid="LID-TA-DOC-TEMPLATE_3">정책 동의서 / v8 / 승인 완료</span>
+                      <span data-lid="LID-TA-DOC-TEMPLATE_4">퇴사 확인서 / v3 / 초안</span>
                     </div>
                   </section>
                 </div>
                 <div class="panel-row admin-bottom">
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Bulk Send</strong>
-                      <span>일괄 발송</span>
+                      <strong data-lid="LID-TA-DOC-BULK_TITLE">Bulk Send</strong>
+                      <span data-lid="LID-TA-DOC-BULK_SUB">일괄 발송</span>
                     </div>
                     <div class="list dense">
-                      <span>대상 선택</span>
-                      <span>템플릿 매핑</span>
-                      <span>미리보기</span>
-                      <span>발송 예약</span>
+                      <span data-lid="LID-TA-DOC-BULK_1">대상 선택</span>
+                      <span data-lid="LID-TA-DOC-BULK_2">템플릿 매핑</span>
+                      <span data-lid="LID-TA-DOC-BULK_3">미리보기</span>
+                      <span data-lid="LID-TA-DOC-BULK_4">발송 예약</span>
                     </div>
                   </section>
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Document Vault</strong>
-                      <span>완료 보관</span>
+                      <strong data-lid="LID-TA-DOC-VAULT_TITLE">Document Vault</strong>
+                      <span data-lid="LID-TA-DOC-VAULT_SUB">완료 보관</span>
                     </div>
                     <div class="list dense">
-                      <span>완료 문서 검색</span>
-                      <span>버전 이력</span>
-                      <span>다운로드 기록</span>
-                      <span>감사 추적</span>
+                      <span data-lid="LID-TA-DOC-VAULT_1">완료 문서 검색</span>
+                      <span data-lid="LID-TA-DOC-VAULT_2">버전 이력</span>
+                      <span data-lid="LID-TA-DOC-VAULT_3">다운로드 기록</span>
+                      <span data-lid="LID-TA-DOC-VAULT_4">감사 추적</span>
                     </div>
                   </section>
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Quick Actions</strong>
-                      <span>실행</span>
+                      <strong data-lid="LID-TA-DOC-ACTION_TITLE">Quick Actions</strong>
+                      <span data-lid="LID-TA-DOC-ACTION_SUB">실행</span>
                     </div>
                     <div class="list dense">
-                      <span>템플릿 생성</span>
-                      <span>단건 발송</span>
-                      <span>재발송</span>
-                      <span>문서 추출</span>
+                      <span data-lid="LID-TA-DOC-ACTION_1">템플릿 생성</span>
+                      <span data-lid="LID-TA-DOC-ACTION_2">단건 발송</span>
+                      <span data-lid="LID-TA-DOC-ACTION_3">재발송</span>
+                      <span data-lid="LID-TA-DOC-ACTION_4">문서 추출</span>
                     </div>
                   </section>
                 </div>

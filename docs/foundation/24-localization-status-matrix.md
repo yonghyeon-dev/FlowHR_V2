@@ -31,14 +31,14 @@
 | `TA-001` | `wireframes/tenant-admin/admin-home-detailed.html` | `applied` | 홈 핵심 텍스트 적용 완료 |
 | `TA-101`~`TA-105` | `wireframes/tenant-admin/people-module-detailed.html` | `applied` | 목록, 프로필, 연결 액션 문구 전환 완료 |
 | `TA-201`~`TA-205` | `wireframes/tenant-admin/attendance-module-detailed.html` | `applied` | 근태 대시보드, 예외 큐, 마감 영역 적용 완료 |
-| `TA-301`~`TA-304` | `wireframes/tenant-admin/leave-module-detailed.html` | `planned` | 상태, 필터, 요청 라벨 전환 필요 |
-| `TA-401`~`TA-404` | `wireframes/tenant-admin/workflow-module-detailed.html` | `planned` | 인박스/결재 단계 문구 전환 필요 |
-| `TA-501`~`TA-504` | `wireframes/tenant-admin/documents-module-detailed.html` | `planned` | 문서 발송/상태 배지 전환 필요 |
+| `TA-301`~`TA-304` | `wireframes/tenant-admin/leave-module-detailed.html` | `applied` | 정책, 큐, 캘린더 문구 전환 완료 |
+| `TA-401`~`TA-404` | `wireframes/tenant-admin/workflow-module-detailed.html` | `applied` | 인박스, 문맥, 처리 액션 문구 전환 완료 |
+| `TA-501`~`TA-504` | `wireframes/tenant-admin/documents-module-detailed.html` | `applied` | 템플릿, 큐, 보관함 문구 전환 완료 |
 | `TA-601`~`TA-604` | `wireframes/tenant-admin/payroll-module-detailed.html` | `applied` | 정산/마감 화면 적용 완료 |
 | `TA-701`~`TA-704` | `wireframes/tenant-admin/performance-module-detailed.html` | `applied` | `?lang=ko/en` 검증 완료 |
 | `TA-801`~`TA-805` | `wireframes/tenant-admin/recruiting-module-detailed.html` | `applied` | 채용 모듈 적용 완료 |
 | `TA-901`~`TA-904` | `wireframes/tenant-admin/reports-insights-detailed.html` | `applied` | 리포트 핵심 텍스트 적용 완료 |
-| `TA-1001`~`TA-1005` | `wireframes/tenant-admin/settings-role-permission-detailed.html` | `planned` | 권한 라벨/설명 전환 필요 |
+| `TA-1001`~`TA-1005` | `wireframes/tenant-admin/settings-role-permission-detailed.html` | `applied` | 역할 매트릭스, 설정, 감사 이력 문구 전환 완료 |
 
 ## Tenant Employee
 
@@ -52,12 +52,13 @@
 
 ## 우선순위
 
-1. `TA-301`~`TA-504`
-2. `TA-1001`~`TA-1005`
+1. 승인 로그 확대
+2. 사용자 decision 반영
+3. `approved` 승격 패스 정리
 
 ## 완료 기준
 
-- 코어 화면이 모두 `applied`
+- 현재 문서에 등록된 핵심 와이어가 모두 `applied`
 - 상태 라벨, 배지, 필터, empty, error 문구까지 `LID-*` 연결
 - 시드 리소스와 namespace 구조 연결 완료
 
