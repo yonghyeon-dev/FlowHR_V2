@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import { AdminClient } from "@/components/flowhr-client";
-import { ADMIN_PAGES } from "@/lib/content/adminContent";
+import { fetchAdminPage } from "@/lib/api/fetchers";
 import { tx } from "@/lib/content/appCopy";
 import type { DashboardPage } from "@/lib/content/types";
+import type { AdminView, SupportedPack } from "@/lib/api/types";
 
 const VALID_PACKS = ["office", "retail"] as const;
 const VALID_VIEWS = ["home", "attendance", "leave", "workflow", "documents"] as const;
@@ -23,7 +24,10 @@ export default async function Page({
 
   const typedPack = pack as Pack;
   const typedView = view as View;
-  const page = ADMIN_PAGES[typedPack][typedView] as DashboardPage;
+  const page = (await fetchAdminPage(
+    typedPack as SupportedPack,
+    typedView as AdminView,
+  )) as DashboardPage;
 
   return (
     <AdminClient

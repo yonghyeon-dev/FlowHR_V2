@@ -5,6 +5,7 @@
 승인 직후 구현에 바로 들어갈 수 있도록, 각 Pack별 구현 단위를 한 번에 보는 핸드오프 문서다.
 
 현재 기준 구현 스택은 `Next.js App Router + TypeScript`다.
+현재 코어 화면 데이터는 `typed mock API + fetcher` 구조를 통해 주입된다.
 
 ## Office Pack
 
@@ -110,7 +111,9 @@
 2. Office Pack 코어 구현
 3. Retail Pack 코어 구현
 4. Platform 코어 구현
-5. 실제 데이터 연동 및 확장
+5. mock API / fetch 계층 추가
+6. Pack 선택 및 도입 진입점 구현
+7. 실제 데이터 연동 및 확장
 
 ## 연결 문서
 

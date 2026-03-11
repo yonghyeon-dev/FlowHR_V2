@@ -3,9 +3,10 @@ import {
   EmployeeFlowClient,
   EmployeeHomeClient,
 } from "@/components/flowhr-client";
-import { EMPLOYEE_PAGES } from "@/lib/content/employeeContent";
+import { fetchEmployeePage } from "@/lib/api/fetchers";
 import { tx } from "@/lib/content/appCopy";
 import type { EmployeeFlowPage, EmployeeHomePage } from "@/lib/content/types";
+import type { EmployeeView, SupportedPack } from "@/lib/api/types";
 
 const VALID_PACKS = ["office", "retail"] as const;
 const VALID_VIEWS = ["home", "requests", "signatures"] as const;
@@ -26,7 +27,10 @@ export default async function Page({
 
   const typedPack = pack as Pack;
   const typedView = view as View;
-  const pages = EMPLOYEE_PAGES[typedPack];
+  const page = await fetchEmployeePage(
+    typedPack as SupportedPack,
+    typedView as EmployeeView,
+  );
   const navigation = VALID_VIEWS.map((item) => ({
     href: `/employee/${typedPack}/${item}`,
     label: tx(
@@ -42,9 +46,9 @@ export default async function Page({
       <EmployeeHomeClient
         pack={typedPack}
         packTitle={packTitle}
-        subtitle={pages.home.title}
+        subtitle={(page as EmployeeHomePage).title}
         navigation={navigation}
-        page={pages.home as EmployeeHomePage}
+        page={page as EmployeeHomePage}
         eyebrow={tx(`WI-TE-001 / ${typedPack === "office" ? "Office" : "Retail"} Pack`, `WI-TE-001 / ${typedPack === "office" ? "Office" : "Retail"} Pack`)}
         tone={tone}
       />
@@ -55,9 +59,9 @@ export default async function Page({
     return (
       <EmployeeFlowClient
         packTitle={packTitle}
-        subtitle={pages.requests.title}
+        subtitle={(page as EmployeeFlowPage).title}
         navigation={navigation}
-        page={pages.requests as EmployeeFlowPage}
+        page={page as EmployeeFlowPage}
         eyebrow={tx(`WI-TE-003 / ${typedPack === "office" ? "Office" : "Retail"} Pack`, `WI-TE-003 / ${typedPack === "office" ? "Office" : "Retail"} Pack`)}
         tone={tone}
         detailTitle={tx("Request Form", "Request Form")}
@@ -69,15 +73,9 @@ export default async function Page({
   return (
     <EmployeeFlowClient
       packTitle={packTitle}
-      subtitle={pages.signatures.title}
+      subtitle={(page as EmployeeFlowPage).title}
       navigation={navigation}
-      page={{
-        title: pages.signatures.title,
-        description: pages.signatures.description,
-        quickActions: pages.signatures.priority,
-        hints: pages.signatures.alerts,
-        history: pages.signatures.detail,
-      } as EmployeeFlowPage}
+      page={page as EmployeeFlowPage}
       eyebrow={tx(`WI-TE-004 / ${typedPack === "office" ? "Office" : "Retail"} Pack`, `WI-TE-004 / ${typedPack === "office" ? "Office" : "Retail"} Pack`)}
       tone={tone}
       detailTitle={tx("Document Viewer", "Document Viewer")}

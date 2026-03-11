@@ -51,6 +51,14 @@
 - `/admin/retail/*`
 - `/employee/office/*`
 - `/employee/retail/*`
+- `/setup`
+
+다음 mock API 엔드포인트도 구현돼 있다.
+
+- `/api/platform/overview`
+- `/api/admin/[pack]/[view]`
+- `/api/employee/[pack]/[view]`
+- `/api/setup/packs`
 
 ## 현재 합의된 비목표
 
@@ -67,7 +75,7 @@
 
 1. 실제 API 계약을 Next 구조에 맞게 연결
 2. mock 기반 코어 화면을 live data 기반으로 전환
-3. Pack별 onboarding / settings / feature selection 흐름 상세화
+3. Pack별 settings / feature selection 흐름 상세화
 4. 관리자/직원 핵심 액션의 성공/실패 상태를 실제 서버 응답과 연결
 
 ## 현재 결론

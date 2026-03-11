@@ -155,6 +155,10 @@ button {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.setup-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .landing-card {
   border-radius: var(--radius-lg);
   padding: 22px;
@@ -178,6 +182,22 @@ button {
   border-radius: 999px;
   background: #171717;
   color: #fff;
+}
+
+.setup-card {
+  display: grid;
+  gap: 16px;
+}
+
+.setup-feature-list {
+  display: grid;
+  gap: 12px;
+}
+
+.setup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .app-shell {
