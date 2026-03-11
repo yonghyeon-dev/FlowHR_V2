@@ -75,6 +75,8 @@
 28. [구현 스프린트 분해](./foundation/23-implementation-sprint-breakdown.md)
 29. [로컬라이제이션 적용 현황](./foundation/24-localization-status-matrix.md)
 30. [R5 대상 화면 재판정](./foundation/25-r5-readiness-review.md)
+31. [Stage 7 진입 게이트 재검토](./foundation/26-stage7-gate-review.md)
+32. [구현 착수용 기술 선택안](./foundation/27-implementation-technology-decisions.md)
 
 ## 운영 원칙
 
