@@ -58,6 +58,11 @@
 - `R5`: 승인 로그까지 연결되어 실제 구현 착수 판단에 사용 가능
 - `R2` 이하: 설계 보강 필요
 
+주의:
+
+- 승인 로그가 `hold`인 화면은 `R5 candidate`이지 `R5 확정`이 아니다.
+- 실제 `R5` 승격은 `approved` decision 이후에만 가능하다.
+
 ## 연결 문서
 
 - 화면 맵: [04-screen-map.md](./04-screen-map.md)
@@ -65,3 +70,4 @@
 - 구현 준비 체크리스트: [12-implementation-readiness-checklist.md](./12-implementation-readiness-checklist.md)
 - 상태/예외 매핑표: [WI-DS-009-screen-state-exception-matrix.md](../design-system/WI-DS-009-screen-state-exception-matrix.md)
 - 승인 로그 체계: [19-approval-log-framework.md](./19-approval-log-framework.md)
+- R5 재판정: [25-r5-readiness-review.md](./25-r5-readiness-review.md)

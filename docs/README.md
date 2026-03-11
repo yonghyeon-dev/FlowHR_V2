@@ -74,6 +74,7 @@
 27. [최종 승인 패스 기준](./foundation/22-final-approval-pass-criteria.md)
 28. [구현 스프린트 분해](./foundation/23-implementation-sprint-breakdown.md)
 29. [로컬라이제이션 적용 현황](./foundation/24-localization-status-matrix.md)
+30. [R5 대상 화면 재판정](./foundation/25-r5-readiness-review.md)
 
 ## 운영 원칙
 
