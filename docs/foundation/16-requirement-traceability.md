@@ -40,7 +40,7 @@
 | `REQ-013` | 기존 방향을 끊지 말고 계속 진행 | 설계를 중간에 닫지 않고 누적 확장 방식으로 진행 | 진행 중 | [08-design-progress-report.md](/C:/Team-jane/FlowHR_V2/docs/foundation/08-design-progress-report.md) | 과거에 잘못 `설계 종료`로 표현한 이력이 있어, 현재는 게이트로 고정 |
 | `REQ-014` | 구현 전 단계까지 이어서 진행 | 구현 이전에 필요한 설계 산출물을 계속 채우되, 과장 없이 상태 보고 | 진행 중 | [00-stage-gates.md](/C:/Team-jane/FlowHR_V2/docs/foundation/00-stage-gates.md), [15-pre-implementation-report.md](/C:/Team-jane/FlowHR_V2/docs/foundation/15-pre-implementation-report.md) | 현재는 `구현 전`이 아니라 `상세 설계 진행 단계` |
 | `REQ-015` | 대분류, 중분류, 소분류, 상세분류까지 설계 | 권한별 IA를 완전한 계층표로 문서화 | 완료 | [17-ia-hierarchy-breakdown.md](/C:/Team-jane/FlowHR_V2/docs/foundation/17-ia-hierarchy-breakdown.md), [18-role-menu-function-action-matrix.md](/C:/Team-jane/FlowHR_V2/docs/foundation/18-role-menu-function-action-matrix.md) | Stage 3 기준 충족 |
-| `REQ-016` | 와이어 컨펌 후 세부 분해 | 화면 승인 기준과 이후 작업 분해를 명확히 연결 | 진행 중 | [19-approval-log-framework.md](/C:/Team-jane/FlowHR_V2/docs/foundation/19-approval-log-framework.md), [14-screen-readiness-matrix.md](/C:/Team-jane/FlowHR_V2/docs/foundation/14-screen-readiness-matrix.md) | 승인 체계는 정의됐고 실제 화면별 로그 작성이 남음 |
+| `REQ-016` | 와이어 컨펌 후 세부 분해 | 화면 승인 기준과 이후 작업 분해를 명확히 연결 | 진행 중 | [19-approval-log-framework.md](/C:/Team-jane/FlowHR_V2/docs/foundation/19-approval-log-framework.md), [14-screen-readiness-matrix.md](/C:/Team-jane/FlowHR_V2/docs/foundation/14-screen-readiness-matrix.md), [APP-SCREEN-TA-001-001.md](/C:/Team-jane/FlowHR_V2/docs/foundation/approvals/APP-SCREEN-TA-001-001.md) | 코어 화면 초기 로그는 작성됐고, 사용자 결정 반영이 남음 |
 | `REQ-017` | 디자인은 아직 정식 CSS가 아니냐는 질문 후, 기존 방향 유지 | 와이어 스타일과 정식 프로덕션 UI를 분리하고 설계는 계속 진행 | 완료 | [wireframes/README.md](/C:/Team-jane/FlowHR_V2/wireframes/README.md) | 현재 와이어는 승인용 저해상도 산출물로 정의됨 |
 | `REQ-018` | 디자인 설계가 충분히 상세해야 함 | 토큰, 상태, 컴포넌트 규격까지 포함하는 상세 디자인 시스템 필요 | 완료 | [WI-DS-007-design-tokens.md](/C:/Team-jane/FlowHR_V2/docs/design-system/WI-DS-007-design-tokens.md), [WI-DS-008-component-specifications.md](/C:/Team-jane/FlowHR_V2/docs/design-system/WI-DS-008-component-specifications.md), [00-stage-gates.md](/C:/Team-jane/FlowHR_V2/docs/foundation/00-stage-gates.md) | Stage 5 기준 충족 |
 | `REQ-019` | 루프 돌릴 수 있게 번복 없는 기준 필요 | 단계 판정 기준과 요구사항 추적 기준을 고정 문서로 유지 | 완료 | [00-stage-gates.md](/C:/Team-jane/FlowHR_V2/docs/foundation/00-stage-gates.md), [16-requirement-traceability.md](/C:/Team-jane/FlowHR_V2/docs/foundation/16-requirement-traceability.md) | 이후부터는 이 두 문서를 기준점으로 사용 |
@@ -57,7 +57,8 @@
 ### 2. 승인 추적
 
 - 승인 기준과 기록 체계는 [19-approval-log-framework.md](/C:/Team-jane/FlowHR_V2/docs/foundation/19-approval-log-framework.md)로 정의되었다.
-- 아직 실제 화면별 승인 로그 파일은 작성되지 않았다.
+- 코어 화면 3종의 초기 승인 로그는 작성되었다.
+- 실제 `approved` 또는 `changes_requested` 결정은 사용자 검토 후 반영해야 한다.
 
 ### 3. 로컬라이제이션 전체 적용
 
@@ -72,11 +73,11 @@
 
 ## 다음 작업
 
-1. 코어 화면 승인 로그 실제 작성
-2. 최종 승인 패스 기준 정의
-3. 화면 준비도 매트릭스 갱신
-4. 구현 스프린트 분해
-5. 로컬라이제이션 적용 현황 반영
+1. 최종 승인 패스 기준 정의
+2. 구현 스프린트 분해
+3. 로컬라이제이션 적용 현황 반영
+4. 잔여 코어 화면 승인 로그 확대
+5. R5 대상 화면 재판정
 
 ## 연결 문서
 
