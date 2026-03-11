@@ -21,6 +21,7 @@ export async function POST(request: Request) {
   if (body.scenario === "success") {
     const success = createActionSuccess("approval_approve", locale);
     recordActionEvent(
+      session.tenantId,
       "approval",
       {
         ...body,

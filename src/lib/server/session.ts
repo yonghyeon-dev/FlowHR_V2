@@ -1,34 +1,69 @@
 import { cookies } from "next/headers";
-import type { AppSession, SessionRole } from "@/lib/api/types";
+import type {
+  AppSession,
+  PackSetupResponse,
+  SessionRole,
+  TenantOption,
+} from "@/lib/api/types";
+import { listTenantOptions } from "@/lib/server/store";
 
 const SESSION_COOKIE = "flowhr_session";
 
-const DEFAULT_SESSION: AppSession = {
-  role: "tenant_admin",
-  updatedAt: new Date().toISOString(),
+const defaultPackSelection: PackSetupResponse["selection"] = {
+  selectedPack: "office",
+  featureSelections: {
+    office: ["core-hr", "attendance"],
+    retail: ["coverage-core", "shift-response"],
+  },
 };
+
+function defaultTenantId() {
+  return listTenantOptions(defaultPackSelection)[0]?.id ?? "acme-corp";
+}
+
+function createDefaultSession(): AppSession {
+  return {
+    role: "tenant_admin",
+    tenantId: defaultTenantId(),
+    updatedAt: new Date().toISOString(),
+  };
+}
+
+function normalizeSession(raw: Partial<AppSession> | undefined): AppSession {
+  const options = listTenantOptions(defaultPackSelection);
+  const safeTenantId =
+    options.find((item) => item.id === raw?.tenantId)?.id ?? options[0]?.id ?? "acme-corp";
+
+  return {
+    role: raw?.role ?? "tenant_admin",
+    tenantId: safeTenantId,
+    updatedAt: raw?.updatedAt ?? new Date().toISOString(),
+  };
+}
 
 export async function getServerSession(): Promise<AppSession> {
   const cookieStore = await cookies();
   const raw = cookieStore.get(SESSION_COOKIE)?.value;
 
-  if (!raw) return DEFAULT_SESSION;
+  if (!raw) return createDefaultSession();
 
   try {
-    const parsed = JSON.parse(raw) as AppSession;
-    if (!parsed.role) return DEFAULT_SESSION;
-    return parsed;
+    return normalizeSession(JSON.parse(raw) as Partial<AppSession>);
   } catch {
-    return DEFAULT_SESSION;
+    return createDefaultSession();
   }
 }
 
-export async function setServerSession(role: SessionRole): Promise<AppSession> {
+export async function setServerSession(
+  next: Partial<Pick<AppSession, "role" | "tenantId">>,
+): Promise<AppSession> {
   const cookieStore = await cookies();
-  const nextSession: AppSession = {
-    role,
+  const current = await getServerSession();
+  const nextSession = normalizeSession({
+    role: next.role ?? current.role,
+    tenantId: next.tenantId ?? current.tenantId,
     updatedAt: new Date().toISOString(),
-  };
+  });
 
   cookieStore.set(SESSION_COOKIE, JSON.stringify(nextSession), {
     httpOnly: false,
@@ -38,6 +73,10 @@ export async function setServerSession(role: SessionRole): Promise<AppSession> {
   });
 
   return nextSession;
+}
+
+export function listSessionTenants(): TenantOption[] {
+  return listTenantOptions(defaultPackSelection);
 }
 
 export function roleLabel(role: SessionRole): { ko: string; en: string } {

@@ -29,6 +29,14 @@ type ActionPanelConfig = {
   actor?: ActionActor;
 };
 
+type SessionPayload = {
+  data: {
+    session: { role: SessionRole; tenantId: string };
+    activeTenant?: { id: string; pack: SupportedPack };
+    tenants: Array<{ id: string; name: string; pack: SupportedPack; status: string }>;
+  };
+};
+
 function resolveText(language: Language, value: LocalizedText | string | undefined): string {
   if (!value) return "";
   if (typeof value === "string") return value;
@@ -78,7 +86,10 @@ function LocaleSwitch({
 
 function SessionSwitch({ language }: { language: Language }) {
   const router = useRouter();
+  const pathname = usePathname();
   const [role, setRole] = useState<SessionRole>("tenant_admin");
+  const [tenantId, setTenantId] = useState("");
+  const [tenants, setTenants] = useState<Array<{ id: string; name: string; pack: SupportedPack; status: string }>>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -86,14 +97,12 @@ function SessionSwitch({ language }: { language: Language }) {
 
     async function loadSession() {
       const response = await fetch("/api/session");
-      const json = (await response.json()) as {
-        data: {
-          session: { role: SessionRole };
-        };
-      };
+      const json = (await response.json()) as SessionPayload;
 
       if (!active) return;
       setRole(json.data.session.role);
+      setTenantId(json.data.session.tenantId);
+      setTenants(json.data.tenants);
       setLoading(false);
     }
 
@@ -104,36 +113,73 @@ function SessionSwitch({ language }: { language: Language }) {
     };
   }, []);
 
-  async function handleRoleChange(nextRole: SessionRole) {
+  async function handleSessionChange(next: { role?: SessionRole; tenantId?: string }) {
+    const nextRole = next.role ?? role;
+    const nextTenantId = next.tenantId ?? tenantId;
+
     setRole(nextRole);
+    setTenantId(nextTenantId);
     setLoading(true);
 
-    await fetch("/api/session", {
+    const response = await fetch("/api/session", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ role: nextRole }),
+      body: JSON.stringify(next),
     });
 
-    router.refresh();
+    const json = (await response.json()) as SessionPayload;
+    setRole(json.data.session.role);
+    setTenantId(json.data.session.tenantId);
+    setTenants(json.data.tenants);
+
+    const parts = pathname.split("/").filter(Boolean);
+    const activeTenantPack = json.data.activeTenant?.pack;
+
+    if ((parts[0] === "admin" || parts[0] === "employee") && parts[2] && activeTenantPack) {
+      if (parts[1] !== activeTenantPack) {
+        router.push(`/${parts[0]}/${activeTenantPack}/${parts[2]}`);
+      } else {
+        router.refresh();
+      }
+    } else {
+      router.refresh();
+    }
+
     setLoading(false);
   }
 
   return (
-    <label className="session-switch">
-      <span>{resolveText(language, tx("세션 역할", "Session role"))}</span>
-      <select
-        value={role}
-        disabled={loading}
-        onChange={(event) => handleRoleChange(event.target.value as SessionRole)}
-      >
-        <option value="platform_operator">{resolveText(language, tx("플랫폼 운영자", "Platform Operator"))}</option>
-        <option value="tenant_admin">{resolveText(language, tx("고객사 관리자", "Tenant Admin"))}</option>
-        <option value="tenant_manager">{resolveText(language, tx("팀 매니저", "Tenant Manager"))}</option>
-        <option value="tenant_employee">{resolveText(language, tx("직원", "Employee"))}</option>
-      </select>
-    </label>
+    <div className="session-switch-group">
+      <label className="session-switch">
+        <span>{resolveText(language, tx("세션 역할", "Session role"))}</span>
+        <select
+          value={role}
+          disabled={loading}
+          onChange={(event) => handleSessionChange({ role: event.target.value as SessionRole })}
+        >
+          <option value="platform_operator">{resolveText(language, tx("플랫폼 운영자", "Platform Operator"))}</option>
+          <option value="tenant_admin">{resolveText(language, tx("고객사 관리자", "Tenant Admin"))}</option>
+          <option value="tenant_manager">{resolveText(language, tx("팀 매니저", "Tenant Manager"))}</option>
+          <option value="tenant_employee">{resolveText(language, tx("직원", "Employee"))}</option>
+        </select>
+      </label>
+      <label className="session-switch">
+        <span>{resolveText(language, tx("활성 tenant", "Active tenant"))}</span>
+        <select
+          value={tenantId}
+          disabled={loading}
+          onChange={(event) => handleSessionChange({ tenantId: event.target.value })}
+        >
+          {tenants.map((tenant) => (
+            <option key={tenant.id} value={tenant.id}>
+              {`${tenant.name} / ${tenant.pack === "office" ? "Office" : "Retail"}`}
+            </option>
+          ))}
+        </select>
+      </label>
+    </div>
   );
 }
 
@@ -160,6 +206,171 @@ function GlobalHeader({
         <LocaleSwitch language={language} onChange={setLanguage} />
       </div>
     </header>
+  );
+}
+
+function PlatformTenantManager({ language }: { language: Language }) {
+  const router = useRouter();
+  const [tenants, setTenants] = useState<Array<{
+    id: string;
+    name: string;
+    pack: SupportedPack;
+    status: "trial" | "active" | "grace";
+    seatCount: number;
+  }>>([]);
+  const [savingId, setSavingId] = useState<string | null>(null);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadTenants() {
+      const response = await fetch("/api/platform/tenants");
+      const json = (await response.json()) as {
+        data: {
+          tenants: Array<{
+            id: string;
+            name: string;
+            pack: SupportedPack;
+            status: "trial" | "active" | "grace";
+            seatCount: number;
+          }>;
+        };
+      };
+
+      if (!active) return;
+      setTenants(json.data.tenants);
+    }
+
+    void loadTenants();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  function updateLocalTenant(
+    tenantId: string,
+    key: "pack" | "status",
+    value: SupportedPack | "trial" | "active" | "grace",
+  ) {
+    setTenants((current) =>
+      current.map((tenant) =>
+        tenant.id === tenantId
+          ? {
+              ...tenant,
+              [key]: value,
+            }
+          : tenant,
+      ),
+    );
+  }
+
+  async function saveTenant(tenantId: string) {
+    const tenant = tenants.find((item) => item.id === tenantId);
+    if (!tenant) return;
+
+    setSavingId(tenantId);
+    setMessage("");
+
+    const response = await fetch("/api/platform/tenants", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tenantId: tenant.id,
+        pack: tenant.pack,
+        status: tenant.status,
+      }),
+    });
+
+    const json = (await response.json()) as {
+      data?: {
+        tenant: {
+          id: string;
+          name: string;
+          pack: SupportedPack;
+          status: "trial" | "active" | "grace";
+          seatCount: number;
+        };
+        message: string;
+      };
+      error?: {
+        message: string;
+      };
+    };
+
+    if (!response.ok || !json.data) {
+      setMessage(json.error?.message ?? "Failed to update tenant.");
+      setSavingId(null);
+      return;
+    }
+
+    setTenants((current) =>
+      current.map((item) => (item.id === tenantId ? { ...item, ...json.data!.tenant } : item)),
+    );
+    setMessage(json.data.message);
+    setSavingId(null);
+    router.refresh();
+  }
+
+  return (
+    <article className="content-card action-panel">
+      <div className="card-head">
+        <div>
+          <h3>{resolveText(language, tx("Tenant 운영 패널", "Tenant operations panel"))}</h3>
+          <p>{resolveText(language, tx("Platform Operator가 고객사 pack과 상태를 직접 관리합니다.", "Platform operators can directly manage tenant pack and status."))}</p>
+        </div>
+      </div>
+      <div className="tenant-console-grid">
+        {tenants.map((tenant) => (
+          <div key={tenant.id} className="tenant-console-card">
+            <div>
+              <strong>{tenant.name}</strong>
+              <span>{resolveText(language, tx(`좌석 ${tenant.seatCount}`, `${tenant.seatCount} seats`))}</span>
+            </div>
+            <label className="action-select">
+              <span>{resolveText(language, tx("Pack", "Pack"))}</span>
+              <select
+                value={tenant.pack}
+                onChange={(event) => updateLocalTenant(tenant.id, "pack", event.target.value as SupportedPack)}
+              >
+                <option value="office">Office</option>
+                <option value="retail">Retail</option>
+              </select>
+            </label>
+            <label className="action-select">
+              <span>{resolveText(language, tx("상태", "Status"))}</span>
+              <select
+                value={tenant.status}
+                onChange={(event) => updateLocalTenant(tenant.id, "status", event.target.value as "trial" | "active" | "grace")}
+              >
+                <option value="trial">{resolveText(language, tx("체험", "Trial"))}</option>
+                <option value="active">{resolveText(language, tx("활성", "Active"))}</option>
+                <option value="grace">{resolveText(language, tx("유예", "Grace"))}</option>
+              </select>
+            </label>
+            <div className="action-controls">
+              <button
+                className="action-button"
+                type="button"
+                disabled={savingId === tenant.id}
+                onClick={() => saveTenant(tenant.id)}
+              >
+                {savingId === tenant.id
+                  ? resolveText(language, tx("저장 중...", "Saving..."))
+                  : resolveText(language, tx("Tenant 저장", "Save tenant"))}
+              </button>
+              <Link className="inline-link-button" href={`/admin/${tenant.pack}/settings`}>
+                {resolveText(language, tx("설정 보기", "Open settings"))}
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+      {message ? <div className="item-row tone-healthy"><div><strong>{message}</strong></div></div> : null}
+    </article>
   );
 }
 
@@ -388,6 +599,7 @@ export function PlatformClient({
             questions={page.questions}
           />
           <KpiRow language={language} items={page.kpis} />
+          <PlatformTenantManager language={language} />
           <section className="content-grid">
             {page.columns.map((section) => (
               <ContentSection key={resolveText(language, section.title)} language={language} section={section} />

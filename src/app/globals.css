@@ -109,6 +109,12 @@ button {
   min-width: 180px;
 }
 
+.session-switch-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .session-switch span {
   font-size: 0.75rem;
   font-weight: 700;
@@ -298,6 +304,31 @@ button {
 .action-panel {
   display: grid;
   gap: 16px;
+}
+
+.tenant-console-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.tenant-console-card {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.tenant-console-card strong {
+  display: block;
+}
+
+.tenant-console-card span {
+  display: block;
+  margin-top: 6px;
+  color: var(--text-subtle);
 }
 
 .action-controls {

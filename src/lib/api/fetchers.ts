@@ -15,6 +15,7 @@ import type {
   PlatformOverviewResponse,
   SupportedPack,
 } from "@/lib/api/types";
+import { getServerSession } from "@/lib/server/session";
 
 export async function fetchPlatformOverview(): Promise<PlatformOverviewResponse> {
   noStore();
@@ -26,7 +27,8 @@ export async function fetchAdminPage(
   view: AdminView,
 ): Promise<AdminPageResponse> {
   noStore();
-  return getAdminPage(pack, view).data;
+  const session = await getServerSession();
+  return getAdminPage(session.tenantId, pack, view).data;
 }
 
 export async function fetchEmployeePage(
@@ -34,10 +36,12 @@ export async function fetchEmployeePage(
   view: EmployeeView,
 ): Promise<EmployeeHomeResponse | EmployeeFlowResponse> {
   noStore();
-  return getEmployeePage(pack, view).data;
+  const session = await getServerSession();
+  return getEmployeePage(session.tenantId, pack, view).data;
 }
 
 export async function fetchPackSetup(): Promise<PackSetupResponse> {
   noStore();
-  return getPackSetup().data;
+  const session = await getServerSession();
+  return getPackSetup(session.tenantId).data;
 }

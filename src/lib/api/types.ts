@@ -14,9 +14,38 @@ export type SessionRole =
   | "tenant_manager"
   | "tenant_employee";
 
+export type TenantStatus = "trial" | "active" | "grace";
+
 export type AppSession = {
   role: SessionRole;
+  tenantId: string;
   updatedAt: string;
+};
+
+export type TenantRecord = {
+  id: string;
+  name: string;
+  pack: SupportedPack;
+  status: TenantStatus;
+  industry: string;
+  seatCount: number;
+  featureSelections: string[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type TenantOption = Pick<TenantRecord, "id" | "name" | "pack" | "status">;
+
+export type TenantUpdateRequest = {
+  tenantId: string;
+  pack: SupportedPack;
+  status: TenantStatus;
+};
+
+export type TenantUpdateResponse = {
+  result: "success";
+  tenant: TenantRecord;
+  message: string;
 };
 
 export type ApiMeta = {
@@ -90,6 +119,7 @@ export type ActionEvent = {
   domain: ActionDomain;
   actionType: ActionSimulationRequest["actionType"];
   actor: ActionActor;
+  tenantId?: string;
   pack?: SupportedPack;
   message: string;
   createdAt: string;

@@ -20,7 +20,7 @@ export async function POST(request: Request) {
 
   if (body.scenario === "success") {
     const success = createActionSuccess("request_submit", locale);
-    recordActionEvent("request", { ...body, actionType: "request_submit", actor: "employee" }, success);
+    recordActionEvent(session.tenantId, "request", { ...body, actionType: "request_submit", actor: "employee" }, success);
     return NextResponse.json(success);
   }
 

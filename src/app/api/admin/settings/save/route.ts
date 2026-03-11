@@ -20,7 +20,7 @@ export async function POST(request: Request) {
 
   if (body.scenario === "success") {
     const success = createActionSuccess("settings_save", locale);
-    recordActionEvent("settings", { ...body, actionType: "settings_save", actor: "tenant_admin" }, success);
+    recordActionEvent(session.tenantId, "settings", { ...body, actionType: "settings_save", actor: "tenant_admin" }, success);
     return NextResponse.json(success);
   }
 

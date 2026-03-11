@@ -1,28 +1,22 @@
 import { NextResponse } from "next/server";
+import { createActionFailure, pickLocale } from "@/lib/api/action-responses";
 import { getPackSetup, savePackSetup } from "@/lib/api/mock";
 import type { PackSetupSaveRequest } from "@/lib/api/types";
 import { canAccessAction, getServerSession } from "@/lib/server/session";
 
 export async function GET() {
-  return NextResponse.json(getPackSetup());
+  const session = await getServerSession();
+  return NextResponse.json(getPackSetup(session.tenantId));
 }
 
 export async function POST(request: Request) {
   const body = (await request.json()) as PackSetupSaveRequest;
+  const locale = pickLocale(body.locale);
   const session = await getServerSession();
 
   if (!canAccessAction(session.role, "feature_selection_save")) {
-    return NextResponse.json(
-      {
-        error: {
-          code: "ACCESS_DENIED",
-          message: body.locale === "en"
-            ? "You do not have permission to save pack selections."
-            : "팩 선택을 저장할 권한이 없습니다.",
-        },
-      },
-      { status: 403 },
-    );
+    return NextResponse.json(createActionFailure("access_denied", locale), { status: 403 });
   }
-  return NextResponse.json(savePackSetup(body));
+
+  return NextResponse.json(savePackSetup(session.tenantId, body));
 }
