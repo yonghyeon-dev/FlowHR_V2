@@ -2,80 +2,82 @@
 
 ## 목적
 
-화면별로 `와이어`, `WI`, `API 계약`, `i18n`, `구현 우선순위`를 한 번에 확인하기 위한 매트릭스다.
+화면별로 `와이어`, `WI`, `API`, `i18n`, `승인 상태`를 한 번에 확인하기 위한 매트릭스다.
+업종 팩이 필요한 화면은 `기본 화면 ID`와 `Pack 변형`을 함께 기록한다.
 
 ## 준비도 기준
 
-- `R1`: 화면 목적과 권한만 정의됨
-- `R2`: 와이어와 WI 문서가 있음
-- `R3`: API 계약과 상태 기준이 연결됨
-- `R4`: i18n 키 전략과 구현 진입 조건이 연결됨
-- `R5`: 승인 로그와 구현 진입 조건이 연결됨
+- `R1`: 화면 목적과 권한만 정의
+- `R2`: 와이어와 WI 문서 존재
+- `R3`: API 계약과 상태 기준 연결
+- `R4`: i18n 구조와 구현 연결 조건 정리
+- `R5 candidate`: 승인 로그는 있으나 `approved` 전
+- `R5`: 필요한 승인 로그가 `approved`
+
+## Bundle 준비도
+
+| 번들 ID | 화면 범위 | 승인 로그 | 상태 |
+|---|---|---|---|
+| `BUNDLE-OFFICE-CORE` | `TA-001`, `TA-201`, `TA-301`, `TA-401`, `TA-501`, `TE-001/002`, `TE-201`, `TE-401` | `APP-BUNDLE-OFFICE-001` | `R5 candidate` |
+| `BUNDLE-RETAIL-CORE` | `TA-001`, `TA-201`, `TA-301`, `TA-401`, `TA-501`, `TE-001/002`, `TE-201`, `TE-401` | `APP-BUNDLE-RETAIL-001` | `R5 candidate` |
+| `BUNDLE-PLATFORM-RISK-FIRST` | `PC-001` | `APP-BUNDLE-PLATFORM-001` | `R5 candidate` |
 
 ## Platform
 
-| 화면 ID | WI | 와이어 | API | i18n | 승인 로그 | 준비도 |
-|---|---|---|---|---|---|---|
-| `PC-001` | `WI-PC-004` | 있음 | 요약형 | 적용 | `hold` | `R4` |
-| `PC-103` | `WI-PC-001`, `WI-PC-004` | 있음 | 목록/상세 | 적용 | 없음 | `R4` |
-| `PC-201`~`PC-205` | `WI-PC-006` | 있음 | 요약/액션 | 적용 | 없음 | `R4` |
-| `PC-601`~`PC-603` | `WI-PC-005` | 있음 | 목록/상세 | 적용 | 없음 | `R4` |
-| `PC-604` | `WI-PC-003` | 있음 | 요약/액션 | 적용 | 없음 | `R4` |
+| 화면 ID | Pack 변형 | WI | 와이어 | API | i18n | 승인 로그 | 준비도 |
+|---|---|---|---|---|---|---|---|
+| `PC-001` | `risk_first_console` | `WI-PC-004` | 있음 | 요약/상세 | 적용 | `hold` | `R5 candidate` |
+| `PC-103` | `shared` | `WI-PC-001`, `WI-PC-004` | 있음 | 목록/상세 | 적용 | 없음 | `R4` |
+| `PC-201`~`PC-205` | `shared` | `WI-PC-006` | 있음 | 요약/액션 | 적용 | 없음 | `R4` |
+| `PC-601`~`PC-603` | `shared` | `WI-PC-005` | 있음 | 목록/상세 | 적용 | 없음 | `R4` |
+| `PC-604` | `shared` | `WI-PC-003` | 있음 | 요약/액션 | 적용 | 없음 | `R4` |
 
 ## Tenant Admin
 
-| 화면 ID | WI | 와이어 | API | i18n | 승인 로그 | 준비도 |
-|---|---|---|---|---|---|---|
-| `TA-001` | `WI-TA-001` | 있음 | 요약/큐 | 적용 | `hold` | `R4` |
-| `TA-101` | `WI-TA-002` | 있음 | 목록/상세 | 적용 | `hold` | `R4` |
-| `TA-102`~`TA-105` | `WI-TA-002` | 있음 | 목록/상세 | 적용 | 없음 | `R4` |
-| `TA-201` | `WI-TA-003` | 있음 | 요약/예외/액션 | 적용 | `hold` | `R4` |
-| `TA-202`~`TA-205` | `WI-TA-003` | 있음 | 요약/예외/액션 | 적용 | 없음 | `R4` |
-| `TA-301` | `WI-TA-004` | 있음 | 목록/액션 | 적용 | `hold` | `R4` |
-| `TA-302`~`TA-304` | `WI-TA-004` | 있음 | 목록/액션 | 적용 | 없음 | `R4` |
-| `TA-401` | `WI-TA-005` | 있음 | 목록/상세/액션 | 적용 | `hold` | `R4` |
-| `TA-402`~`TA-404` | `WI-TA-005` | 있음 | 목록/상세/액션 | 적용 | 없음 | `R4` |
-| `TA-501` | `WI-TA-006` | 있음 | 목록/액션 | 적용 | `hold` | `R4` |
-| `TA-502`~`TA-504` | `WI-TA-006` | 있음 | 목록/액션 | 적용 | 없음 | `R4` |
-| `TA-601` | `WI-TA-010` | 있음 | 요약/실행 | 적용 | `hold` | `R4` |
-| `TA-602`~`TA-604` | `WI-TA-010` | 있음 | 요약/실행 | 적용 | 없음 | `R4` |
-| `TA-701` | `WI-TA-008` | 있음 | 요약/상세 | 적용 | `hold` | `R4` |
-| `TA-702`~`TA-704` | `WI-TA-008` | 있음 | 요약/상세 | 적용 | 없음 | `R4` |
-| `TA-801`~`TA-805` | `WI-TA-009` | 있음 | 목록/상세 | 적용 | 없음 | `R4` |
-| `TA-901`~`TA-904` | `WI-TA-011` | 있음 | 요약/내보내기 | 적용 | 없음 | `R4` |
-| `TA-1001` | `WI-TA-007` | 있음 | 상세/액션 | 적용 | `hold` | `R4` |
-| `TA-1002`~`TA-1005` | `WI-TA-007` | 있음 | 상세/액션 | 적용 | 없음 | `R4` |
+| 화면 ID | Pack 변형 | WI | 와이어 | API | i18n | 승인 로그 | 준비도 |
+|---|---|---|---|---|---|---|---|
+| `TA-001` | `office_home`, `retail_home` | `WI-TA-001` | 있음 | 요약/큐 | 적용 | `hold` | `R5 candidate` |
+| `TA-101` | `shared` | `WI-TA-002` | 있음 | 목록/상세 | 적용 | `hold` | `R5 candidate` |
+| `TA-102`~`TA-105` | `shared` | `WI-TA-002` | 있음 | 목록/상세 | 적용 | 없음 | `R4` |
+| `TA-201` | `office_attendance`, `retail_attendance` | `WI-TA-003` | 있음 | 요약/예외/액션 | 적용 | `hold` | `R5 candidate` |
+| `TA-202`~`TA-205` | `shared` | `WI-TA-003` | 있음 | 요약/예외/액션 | 적용 | 없음 | `R4` |
+| `TA-301` | `office_leave`, `retail_leave` | `WI-TA-004` | 있음 | 목록/액션 | 적용 | `hold` | `R5 candidate` |
+| `TA-302`~`TA-304` | `shared` | `WI-TA-004` | 있음 | 목록/액션 | 적용 | 없음 | `R4` |
+| `TA-401` | `office_workflow`, `retail_workflow` | `WI-TA-005` | 있음 | 목록/상세/액션 | 적용 | `hold` | `R5 candidate` |
+| `TA-402`~`TA-404` | `shared` | `WI-TA-005` | 있음 | 목록/상세/액션 | 적용 | 없음 | `R4` |
+| `TA-501` | `office_documents`, `retail_documents` | `WI-TA-006` | 있음 | 목록/액션 | 적용 | `hold` | `R5 candidate` |
+| `TA-502`~`TA-504` | `shared` | `WI-TA-006` | 있음 | 목록/액션 | 적용 | 없음 | `R4` |
+| `TA-601` | `shared` | `WI-TA-010` | 있음 | 요약/실행 | 적용 | `hold` | `R5 candidate` |
+| `TA-602`~`TA-604` | `shared` | `WI-TA-010` | 있음 | 요약/실행 | 적용 | 없음 | `R4` |
+| `TA-701` | `shared` | `WI-TA-008` | 있음 | 요약/상세 | 적용 | `hold` | `R5 candidate` |
+| `TA-702`~`TA-704` | `shared` | `WI-TA-008` | 있음 | 요약/상세 | 적용 | 없음 | `R4` |
+| `TA-801`~`TA-805` | `shared` | `WI-TA-009` | 있음 | 목록/상세 | 적용 | 없음 | `R4` |
+| `TA-901`~`TA-904` | `shared` | `WI-TA-011` | 있음 | 요약/탐색 | 적용 | 없음 | `R4` |
+| `TA-1001` | `shared` | `WI-TA-007` | 있음 | 상세/액션 | 적용 | `hold` | `R5 candidate` |
+| `TA-1002`~`TA-1005` | `shared` | `WI-TA-007` | 있음 | 상세/액션 | 적용 | 없음 | `R4` |
 
 ## Tenant Employee
 
-| 화면 ID | WI | 와이어 | API | i18n | 승인 로그 | 준비도 |
-|---|---|---|---|---|---|---|
-| `TE-001` | `WI-TE-001` | 있음 | 요약/액션 | 적용 | `hold` | `R4` |
-| `TE-002` | `WI-TE-001` | 있음 | 요약/액션 | 적용 | `hold` | `R4` |
-| `TE-102` | `WI-TE-002` | 있음 | 액션형 | 적용 | `hold` | `R4` |
-| `TE-201` | `WI-TE-003` | 있음 | 목록/폼 | 적용 | `hold` | `R4` |
-| `TE-202`~`TE-205` | `WI-TE-003` | 있음 | 목록/폼 | 적용 | 없음 | `R4` |
-| `TE-401` | `WI-TE-004` | 있음 | 목록/상세/실행 | 적용 | `hold` | `R4` |
-| `TE-402` | `WI-TE-004` | 있음 | 목록/상세/실행 | 적용 | 없음 | `R4` |
-| `TE-501`~`TE-503` | `WI-TE-005` | 있음 | 요약/상세 | 적용 | 없음 | `R4` |
+| 화면 ID | Pack 변형 | WI | 와이어 | API | i18n | 승인 로그 | 준비도 |
+|---|---|---|---|---|---|---|---|
+| `TE-001` | `office_employee_home`, `retail_employee_home` | `WI-TE-001` | 있음 | 요약/액션 | 적용 | `hold` | `R5 candidate` |
+| `TE-002` | `office_employee_home`, `retail_employee_home` | `WI-TE-001` | 있음 | 요약/액션 | 적용 | `hold` | `R5 candidate` |
+| `TE-102` | `shared` | `WI-TE-002` | 있음 | 액션형 | 적용 | `hold` | `R5 candidate` |
+| `TE-201` | `office_request_hub`, `retail_request_hub` | `WI-TE-003` | 있음 | 목록/요청 | 적용 | `hold` | `R5 candidate` |
+| `TE-202`~`TE-205` | `shared` | `WI-TE-003` | 있음 | 목록/요청 | 적용 | 없음 | `R4` |
+| `TE-401` | `office_signature_inbox`, `retail_signature_inbox` | `WI-TE-004` | 있음 | 목록/상세/실행 | 적용 | `hold` | `R5 candidate` |
+| `TE-402` | `shared` | `WI-TE-004` | 있음 | 목록/상세/실행 | 적용 | 없음 | `R4` |
+| `TE-501`~`TE-503` | `shared` | `WI-TE-005` | 있음 | 요약/상세 | 적용 | 없음 | `R4` |
 
-## 구현 우선순위 해석
+## 해석 규칙
 
-- `R4`: 바로 구현 스프린트로 옮길 수 있는 수준
-- `R3`: 구현 가능하지만 상세 API 확정과 번역 리소스 연결이 추가로 필요
-- `R5`: 승인 로그까지 연결되어 실제 구현 착수 판단에 사용 가능
-- `R2` 이하: 설계 보강 필요
-
-주의:
-
-- 승인 로그가 `hold`인 화면은 `R5 candidate`이지 `R5 확정`이 아니다.
-- 실제 `R5` 승격은 `approved` decision 이후에만 가능하다.
+- `hold` 상태의 코어 화면은 `R5 candidate`다.
+- `approved`로 갱신되기 전에는 `R5`로 올리지 않는다.
+- Pack 변형이 필요한 화면은 변형이 분리되지 않으면 `R4` 이상으로 보지 않는다.
 
 ## 연결 문서
 
-- 화면 맵: [04-screen-map.md](./04-screen-map.md)
-- 화면별 API 계약: [11-screen-api-contracts.md](./11-screen-api-contracts.md)
-- 구현 준비 체크리스트: [12-implementation-readiness-checklist.md](./12-implementation-readiness-checklist.md)
-- 상태/예외 매핑표: [WI-DS-009-screen-state-exception-matrix.md](../design-system/WI-DS-009-screen-state-exception-matrix.md)
-- 승인 로그 체계: [19-approval-log-framework.md](./19-approval-log-framework.md)
-- R5 재판정: [25-r5-readiness-review.md](./25-r5-readiness-review.md)
+- [04-screen-map.md](./04-screen-map.md)
+- [11-screen-api-contracts.md](./11-screen-api-contracts.md)
+- [19-approval-log-framework.md](./19-approval-log-framework.md)
+- [29-approval-review-packet.md](./29-approval-review-packet.md)
