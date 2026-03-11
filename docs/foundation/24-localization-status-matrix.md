@@ -29,7 +29,7 @@
 | 화면 | 경로 | 상태 | 메모 |
 |---|---|---|---|
 | `TA-001` | `wireframes/tenant-admin/admin-home-detailed.html` | `applied` | 홈 핵심 텍스트 적용 완료 |
-| `TA-101`~`TA-105` | `wireframes/tenant-admin/people-module-detailed.html` | `planned` | 목록/상세/상태 문구 전환 필요 |
+| `TA-101`~`TA-105` | `wireframes/tenant-admin/people-module-detailed.html` | `applied` | 목록, 프로필, 연결 액션 문구 전환 완료 |
 | `TA-201`~`TA-205` | `wireframes/tenant-admin/attendance-module-detailed.html` | `applied` | 근태 대시보드, 예외 큐, 마감 영역 적용 완료 |
 | `TA-301`~`TA-304` | `wireframes/tenant-admin/leave-module-detailed.html` | `planned` | 상태, 필터, 요청 라벨 전환 필요 |
 | `TA-401`~`TA-404` | `wireframes/tenant-admin/workflow-module-detailed.html` | `planned` | 인박스/결재 단계 문구 전환 필요 |
@@ -45,16 +45,15 @@
 | 화면 | 경로 | 상태 | 메모 |
 |---|---|---|---|
 | `TE-001`, `TE-002` | `wireframes/tenant-employee/employee-home-detailed.html` | `applied` | 홈 핵심 텍스트 적용 완료 |
-| `TE-102` | `wireframes/tenant-employee/attendance-check-flow.html` | `planned` | 출퇴근 상태/에러 문구 전환 필요 |
+| `TE-102` | `wireframes/tenant-employee/attendance-check-flow.html` | `applied` | 출퇴근 상태, 예외, 액션 문구 전환 완료 |
 | `TE-201`~`TE-205` | `wireframes/tenant-employee/request-hub-detailed.html` | `applied` | 요청 유형, 정책 힌트, 이력 상태 전환 완료 |
 | `TE-401`, `TE-402` | `wireframes/tenant-employee/signature-inbox-detailed.html` | `applied` | 서명 상태, 기한, 아카이브 문구 전환 완료 |
 | `TE-501`~`TE-503` | `wireframes/tenant-employee/profile-performance-detailed.html` | `applied` | `?lang=ko/en` 검증 완료 |
 
 ## 우선순위
 
-1. `TA-101`~`TA-504`
-2. `TE-102`
-3. `TA-1001`~`TA-1005`
+1. `TA-301`~`TA-504`
+2. `TA-1001`~`TA-1005`
 
 ## 완료 기준
 

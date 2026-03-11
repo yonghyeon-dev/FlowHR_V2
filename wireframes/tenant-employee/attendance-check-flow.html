@@ -5,29 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FlowHR_V2 Attendance Check Flow</title>
     <link rel="stylesheet" href="../shared/styles.css" />
+    <script>
+      window.__FLOWHR_I18N__ = {
+        "LID-TE-CHECK-EYEBROW": { "ko": "WI-TE-002 / Attendance Check Flow", "en": "WI-TE-002 / Attendance Check Flow" },
+        "LID-TE-CHECK-HERO_TITLE": { "ko": "현재 상태와 예외를 같이 다루는<br />출퇴근 플로우", "en": "An attendance flow<br />that handles status and exceptions together" },
+        "LID-TE-CHECK-HERO_TEXT": { "ko": "출퇴근은 단순 버튼 액션이 아니라, 지금 어떤 상태인지와 예외가 발생했는지, 정정이 필요한지를 함께 보여줘야 합니다.", "en": "Attendance should not be just a button action. It needs to show the current state, whether an exception occurred, and whether correction is needed." },
+        "LID-TE-CHECK-CHIP_STATUS": { "ko": "Status-led", "en": "Status-led" },
+        "LID-TE-CHECK-CHIP_EXCEPTION": { "ko": "Exception-aware", "en": "Exception-aware" },
+        "LID-TE-CHECK-CHIP_CORRECTION": { "ko": "Correction entry", "en": "Correction entry" },
+        "LID-TE-CHECK-NOTE_TITLE": { "ko": "핵심 확인 포인트", "en": "Key checkpoints" },
+        "LID-TE-CHECK-NOTE_1": { "ko": "현재 상태가 첫 화면에서 명확한지", "en": "Whether the current state is clear on first view" },
+        "LID-TE-CHECK-NOTE_2": { "ko": "예외가 생기면 즉시 정정 진입이 가능한지", "en": "Whether users can start corrections immediately when exceptions occur" },
+        "LID-TE-CHECK-NOTE_3": { "ko": "기록 이력이 조회가 아니라 처리 허브로 보이는지", "en": "Whether history feels like an action hub rather than a passive log" },
+        "LID-TE-CHECK-SCREEN_A_TITLE": { "ko": "Mobile Check In / Out", "en": "Mobile Check In / Out" },
+        "LID-TE-CHECK-SCREEN_A_DESC": { "ko": "상태 히어로와 액션, 예외 경고를 한 화면에 배치", "en": "Place the status hero, actions, and exception warnings on one screen" },
+        "LID-TE-CHECK-MOBILE_TITLE": { "ko": "출퇴근", "en": "Attendance" },
+        "LID-TE-CHECK-STATE_TITLE": { "ko": "출근 전", "en": "Before check-in" },
+        "LID-TE-CHECK-STATE_TEXT": { "ko": "오늘 스케줄 09:00 - 18:00 / HQ 기준", "en": "Today's schedule 09:00 - 18:00 / HQ" },
+        "LID-TE-CHECK-STATE_ACTION_1": { "ko": "출근", "en": "Check in" },
+        "LID-TE-CHECK-STATE_ACTION_2": { "ko": "외근 시작", "en": "Start field work" },
+        "LID-TE-CHECK-ACTION_TITLE": { "ko": "근무 상태 액션", "en": "Work status actions" },
+        "LID-TE-CHECK-ACTION_1": { "ko": "퇴근", "en": "Check out" },
+        "LID-TE-CHECK-ACTION_2": { "ko": "휴게 시작", "en": "Start break" },
+        "LID-TE-CHECK-ACTION_3": { "ko": "휴게 종료", "en": "End break" },
+        "LID-TE-CHECK-ACTION_4": { "ko": "정정 요청", "en": "Request correction" },
+        "LID-TE-CHECK-EX_TITLE": { "ko": "예외 감지", "en": "Exceptions" },
+        "LID-TE-CHECK-EX_1": { "ko": "오늘은 예외 없음", "en": "No exceptions today" },
+        "LID-TE-CHECK-EX_2": { "ko": "체크아웃 누락 시 알림 발송", "en": "Notify on checkout miss" },
+        "LID-TE-CHECK-EX_3": { "ko": "위치 불일치 시 확인 요청", "en": "Ask for confirmation on location mismatch" },
+        "LID-TE-CHECK-TAB_HOME": { "ko": "Home", "en": "Home" },
+        "LID-TE-CHECK-TAB_SCHEDULE": { "ko": "Schedule", "en": "Schedule" },
+        "LID-TE-CHECK-TAB_REQUEST": { "ko": "Request", "en": "Request" },
+        "LID-TE-CHECK-TAB_INBOX": { "ko": "Inbox", "en": "Inbox" },
+        "LID-TE-CHECK-SCREEN_B_TITLE": { "ko": "My Attendance History", "en": "My Attendance History" },
+        "LID-TE-CHECK-SCREEN_B_DESC": { "ko": "기록 이력과 예외 상태, 정정 진입을 연결한 구조", "en": "A structure connecting history, exception states, and correction entry" },
+        "LID-TE-CHECK-BRAND": { "ko": "My Attendance", "en": "My Attendance" },
+        "LID-TE-CHECK-SEARCH": { "ko": "Search date, status, exception", "en": "Search date, status, exception" },
+        "LID-TE-CHECK-PILL_WEEK": { "ko": "이번 주", "en": "This week" },
+        "LID-TE-CHECK-PILL_EX": { "ko": "예외만", "en": "Exceptions only" },
+        "LID-TE-CHECK-TODAY_TITLE": { "ko": "Today", "en": "Today" },
+        "LID-TE-CHECK-TODAY_SUB": { "ko": "정상", "en": "Normal" },
+        "LID-TE-CHECK-TODAY_1": { "ko": "출근 09:02", "en": "Checked in 09:02" },
+        "LID-TE-CHECK-TODAY_2": { "ko": "휴게 12:01 - 12:48", "en": "Break 12:01 - 12:48" },
+        "LID-TE-CHECK-TODAY_3": { "ko": "예정 퇴근 18:00", "en": "Scheduled checkout 18:00" },
+        "LID-TE-CHECK-RECENT_TITLE": { "ko": "Recent Exceptions", "en": "Recent Exceptions" },
+        "LID-TE-CHECK-RECENT_SUB": { "ko": "2건", "en": "2 items" },
+        "LID-TE-CHECK-RECENT_1": { "ko": "03/09 체크아웃 누락 / 정정 필요", "en": "03/09 checkout miss / correction needed" },
+        "LID-TE-CHECK-RECENT_2": { "ko": "03/05 지각 / 사유 제출 완료", "en": "03/05 late / reason submitted" },
+        "LID-TE-CHECK-QUICK_TITLE": { "ko": "Quick Actions", "en": "Quick Actions" },
+        "LID-TE-CHECK-QUICK_SUB": { "ko": "실행", "en": "Actions" },
+        "LID-TE-CHECK-QUICK_1": { "ko": "정정 요청 작성", "en": "Create correction request" },
+        "LID-TE-CHECK-QUICK_2": { "ko": "이력 상세 보기", "en": "Open history details" },
+        "LID-TE-CHECK-QUICK_3": { "ko": "정책 확인", "en": "View policy" }
+      };
+    </script>
+    <script src="../shared/i18n.js"></script>
   </head>
   <body>
     <div class="page-shell">
       <header class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">WI-TE-002 / Attendance Check Flow</p>
-          <h1>현재 상태와 예외를 같이 다루는<br />출퇴근 플로우</h1>
-          <p class="hero-text">
-            출퇴근은 단순 버튼 액션이 아니라, 지금 어떤 상태인지와 예외가 발생했는지,
-            정정이 필요한지를 함께 보여줘야 합니다.
-          </p>
+          <p class="eyebrow" data-lid="LID-TE-CHECK-EYEBROW">WI-TE-002 / Attendance Check Flow</p>
+          <h1 data-lid="LID-TE-CHECK-HERO_TITLE" data-lid-html="true">현재 상태와 예외를 같이 다루는<br />출퇴근 플로우</h1>
+          <p class="hero-text" data-lid="LID-TE-CHECK-HERO_TEXT">출퇴근은 단순 버튼 액션이 아니라, 지금 어떤 상태인지와 예외가 발생했는지, 정정이 필요한지를 함께 보여줘야 합니다.</p>
           <div class="hero-chips">
-            <span>Status-led</span>
-            <span>Exception-aware</span>
-            <span>Correction entry</span>
+            <span data-lid="LID-TE-CHECK-CHIP_STATUS">Status-led</span>
+            <span data-lid="LID-TE-CHECK-CHIP_EXCEPTION">Exception-aware</span>
+            <span data-lid="LID-TE-CHECK-CHIP_CORRECTION">Correction entry</span>
           </div>
         </div>
         <aside class="hero-note">
-          <h2>핵심 확인 포인트</h2>
+          <h2 data-lid="LID-TE-CHECK-NOTE_TITLE">핵심 확인 포인트</h2>
           <ul>
-            <li>현재 상태가 첫 화면에서 명확한지</li>
-            <li>예외가 생기면 즉시 정정 진입이 가능한지</li>
-            <li>기록 이력이 조회가 아니라 처리 허브로 보이는지</li>
+            <li data-lid="LID-TE-CHECK-NOTE_1">현재 상태가 첫 화면에서 명확한지</li>
+            <li data-lid="LID-TE-CHECK-NOTE_2">예외가 생기면 즉시 정정 진입이 가능한지</li>
+            <li data-lid="LID-TE-CHECK-NOTE_3">기록 이력이 조회가 아니라 처리 허브로 보이는지</li>
           </ul>
         </aside>
       </header>
@@ -38,8 +90,8 @@
             <div class="screen-title">
               <span>01</span>
               <div>
-                <h3>Mobile Check In / Out</h3>
-                <p>상태 히어로와 액션, 예외 경고를 한 화면에 배치</p>
+                <h3 data-lid="LID-TE-CHECK-SCREEN_A_TITLE">Mobile Check In / Out</h3>
+                <p data-lid="LID-TE-CHECK-SCREEN_A_DESC">상태 히어로와 액션, 예외 경고를 한 화면에 배치</p>
               </div>
             </div>
             <div class="mobile-wrap">
@@ -47,41 +99,41 @@
                 <div class="mobile-notch"></div>
                 <div class="mobile-head">
                   <span>08:58</span>
-                  <span>출퇴근</span>
+                  <span data-lid="LID-TE-CHECK-MOBILE_TITLE">출퇴근</span>
                   <span>5G</span>
                 </div>
                 <div class="mobile-body">
                   <div class="mobile-card hero-card strong-hero">
-                    <strong>출근 전</strong>
-                    <p>오늘 스케줄 09:00 - 18:00 / HQ 기준</p>
+                    <strong data-lid="LID-TE-CHECK-STATE_TITLE">출근 전</strong>
+                    <p data-lid="LID-TE-CHECK-STATE_TEXT">오늘 스케줄 09:00 - 18:00 / HQ 기준</p>
                     <div class="mini-columns two">
-                      <span>출근</span>
-                      <span>외근 시작</span>
+                      <span data-lid="LID-TE-CHECK-STATE_ACTION_1">출근</span>
+                      <span data-lid="LID-TE-CHECK-STATE_ACTION_2">외근 시작</span>
                     </div>
                   </div>
                   <div class="mobile-card">
-                    <strong>근무 상태 액션</strong>
+                    <strong data-lid="LID-TE-CHECK-ACTION_TITLE">근무 상태 액션</strong>
                     <div class="mini-columns two">
-                      <span>퇴근</span>
-                      <span>휴게 시작</span>
-                      <span>휴게 종료</span>
-                      <span>정정 요청</span>
+                      <span data-lid="LID-TE-CHECK-ACTION_1">퇴근</span>
+                      <span data-lid="LID-TE-CHECK-ACTION_2">휴게 시작</span>
+                      <span data-lid="LID-TE-CHECK-ACTION_3">휴게 종료</span>
+                      <span data-lid="LID-TE-CHECK-ACTION_4">정정 요청</span>
                     </div>
                   </div>
                   <div class="mobile-card">
-                    <strong>예외 감지</strong>
+                    <strong data-lid="LID-TE-CHECK-EX_TITLE">예외 감지</strong>
                     <div class="list dense">
-                      <span>오늘은 예외 없음</span>
-                      <span>체크아웃 누락 시 알림 발송</span>
-                      <span>위치 불일치 시 확인 요청</span>
+                      <span data-lid="LID-TE-CHECK-EX_1">오늘은 예외 없음</span>
+                      <span data-lid="LID-TE-CHECK-EX_2">체크아웃 누락 시 알림 발송</span>
+                      <span data-lid="LID-TE-CHECK-EX_3">위치 불일치 시 확인 요청</span>
                     </div>
                   </div>
                 </div>
                 <div class="mobile-tabbar">
-                  <span>Home</span>
-                  <span class="active">Schedule</span>
-                  <span>Request</span>
-                  <span>Inbox</span>
+                  <span data-lid="LID-TE-CHECK-TAB_HOME">Home</span>
+                  <span class="active" data-lid="LID-TE-CHECK-TAB_SCHEDULE">Schedule</span>
+                  <span data-lid="LID-TE-CHECK-TAB_REQUEST">Request</span>
+                  <span data-lid="LID-TE-CHECK-TAB_INBOX">Inbox</span>
                 </div>
               </div>
             </div>
@@ -91,49 +143,49 @@
             <div class="screen-title">
               <span>02</span>
               <div>
-                <h3>My Attendance History</h3>
-                <p>기록 이력과 예외 상태, 정정 진입을 연결한 구조</p>
+                <h3 data-lid="LID-TE-CHECK-SCREEN_B_TITLE">My Attendance History</h3>
+                <p data-lid="LID-TE-CHECK-SCREEN_B_DESC">기록 이력과 예외 상태, 정정 진입을 연결한 구조</p>
               </div>
             </div>
             <div class="screen desktop compact">
               <div class="topbar slim">
-                <span class="brand">My Attendance</span>
-                <span class="search wide">Search date, status, exception</span>
-                <span class="pill active">이번 주</span>
-                <span class="pill">예외만</span>
+                <span class="brand" data-lid="LID-TE-CHECK-BRAND">My Attendance</span>
+                <span class="search wide" data-lid="LID-TE-CHECK-SEARCH">Search date, status, exception</span>
+                <span class="pill active" data-lid="LID-TE-CHECK-PILL_WEEK">이번 주</span>
+                <span class="pill" data-lid="LID-TE-CHECK-PILL_EX">예외만</span>
               </div>
               <div class="main">
                 <div class="panel-row admin-bottom">
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Today</strong>
-                      <span>정상</span>
+                      <strong data-lid="LID-TE-CHECK-TODAY_TITLE">Today</strong>
+                      <span data-lid="LID-TE-CHECK-TODAY_SUB">정상</span>
                     </div>
                     <div class="list dense">
-                      <span>출근 09:02</span>
-                      <span>휴게 12:01 - 12:48</span>
-                      <span>예정 퇴근 18:00</span>
+                      <span data-lid="LID-TE-CHECK-TODAY_1">출근 09:02</span>
+                      <span data-lid="LID-TE-CHECK-TODAY_2">휴게 12:01 - 12:48</span>
+                      <span data-lid="LID-TE-CHECK-TODAY_3">예정 퇴근 18:00</span>
                     </div>
                   </section>
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Recent Exceptions</strong>
-                      <span>2건</span>
+                      <strong data-lid="LID-TE-CHECK-RECENT_TITLE">Recent Exceptions</strong>
+                      <span data-lid="LID-TE-CHECK-RECENT_SUB">2건</span>
                     </div>
                     <div class="list dense">
-                      <span>03/09 체크아웃 누락 / 정정 필요</span>
-                      <span>03/05 지각 / 사유 제출 완료</span>
+                      <span data-lid="LID-TE-CHECK-RECENT_1">03/09 체크아웃 누락 / 정정 필요</span>
+                      <span data-lid="LID-TE-CHECK-RECENT_2">03/05 지각 / 사유 제출 완료</span>
                     </div>
                   </section>
                   <section class="panel">
                     <div class="panel-head">
-                      <strong>Quick Actions</strong>
-                      <span>실행</span>
+                      <strong data-lid="LID-TE-CHECK-QUICK_TITLE">Quick Actions</strong>
+                      <span data-lid="LID-TE-CHECK-QUICK_SUB">실행</span>
                     </div>
                     <div class="list dense">
-                      <span>정정 요청 작성</span>
-                      <span>이력 상세 보기</span>
-                      <span>정책 확인</span>
+                      <span data-lid="LID-TE-CHECK-QUICK_1">정정 요청 작성</span>
+                      <span data-lid="LID-TE-CHECK-QUICK_2">이력 상세 보기</span>
+                      <span data-lid="LID-TE-CHECK-QUICK_3">정책 확인</span>
                     </div>
                   </section>
                 </div>
