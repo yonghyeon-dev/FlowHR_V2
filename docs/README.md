@@ -69,6 +69,7 @@
 22. [화면별 상태/예외 매핑표](./design-system/WI-DS-009-screen-state-exception-matrix.md)
 23. [승인 로그 체계](./foundation/19-approval-log-framework.md)
 24. [모듈별 API 계약 상세](./foundation/20-module-api-contract-breakdown.md)
+25. [로컬라이제이션 전체 적용 계획](./foundation/21-localization-rollout-plan.md)
 
 ## 운영 원칙
 
