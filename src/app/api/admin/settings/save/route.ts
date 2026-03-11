@@ -6,14 +6,21 @@ import {
   pickLocale,
 } from "@/lib/api/action-responses";
 import { recordActionEvent } from "@/lib/api/mock";
+import { canAccessAction, getServerSession } from "@/lib/server/session";
 
 export async function POST(request: Request) {
   const body = (await request.json()) as ActionSimulationRequest;
   const locale = pickLocale(body.locale);
+  const session = await getServerSession();
+
+  if (!canAccessAction(session.role, "settings_save")) {
+    const failure = createActionFailure("access_denied", locale);
+    return NextResponse.json(failure, { status: 403 });
+  }
 
   if (body.scenario === "success") {
     const success = createActionSuccess("settings_save", locale);
-    recordActionEvent("settings", { ...body, actionType: "settings_save" }, success);
+    recordActionEvent("settings", { ...body, actionType: "settings_save", actor: "tenant_admin" }, success);
     return NextResponse.json(success);
   }
 

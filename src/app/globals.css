@@ -47,6 +47,14 @@ button {
   padding: 20px 28px 0;
 }
 
+.header-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .brand-lockup {
   display: inline-flex;
   align-items: center;
@@ -93,6 +101,28 @@ button {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(18px);
+}
+
+.session-switch {
+  display: grid;
+  gap: 6px;
+  min-width: 180px;
+}
+
+.session-switch span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.session-switch select {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
 }
 
 .locale-switch button {

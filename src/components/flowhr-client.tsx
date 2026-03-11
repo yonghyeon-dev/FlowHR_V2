@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ActionSimulator } from "@/components/action-simulator";
 import { APP_COPY, SUPPORTED_LANGUAGES, tx } from "@/lib/content/appCopy";
-import type { ActionActor, SupportedPack } from "@/lib/api/types";
+import type { ActionActor, SessionRole, SupportedPack } from "@/lib/api/types";
 import type {
   DashboardPage,
   DashboardSection,
@@ -76,6 +76,67 @@ function LocaleSwitch({
   );
 }
 
+function SessionSwitch({ language }: { language: Language }) {
+  const router = useRouter();
+  const [role, setRole] = useState<SessionRole>("tenant_admin");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadSession() {
+      const response = await fetch("/api/session");
+      const json = (await response.json()) as {
+        data: {
+          session: { role: SessionRole };
+        };
+      };
+
+      if (!active) return;
+      setRole(json.data.session.role);
+      setLoading(false);
+    }
+
+    void loadSession();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  async function handleRoleChange(nextRole: SessionRole) {
+    setRole(nextRole);
+    setLoading(true);
+
+    await fetch("/api/session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ role: nextRole }),
+    });
+
+    router.refresh();
+    setLoading(false);
+  }
+
+  return (
+    <label className="session-switch">
+      <span>{resolveText(language, tx("세션 역할", "Session role"))}</span>
+      <select
+        value={role}
+        disabled={loading}
+        onChange={(event) => handleRoleChange(event.target.value as SessionRole)}
+      >
+        <option value="platform_operator">{resolveText(language, tx("플랫폼 운영자", "Platform Operator"))}</option>
+        <option value="tenant_admin">{resolveText(language, tx("고객사 관리자", "Tenant Admin"))}</option>
+        <option value="tenant_manager">{resolveText(language, tx("팀 매니저", "Tenant Manager"))}</option>
+        <option value="tenant_employee">{resolveText(language, tx("직원", "Employee"))}</option>
+      </select>
+    </label>
+  );
+}
+
 function GlobalHeader({
   language,
   setLanguage,
@@ -94,7 +155,10 @@ function GlobalHeader({
           <span>{copy.landingEyebrow}</span>
         </div>
       </Link>
-      <LocaleSwitch language={language} onChange={setLanguage} />
+      <div className="header-controls">
+        <SessionSwitch language={language} />
+        <LocaleSwitch language={language} onChange={setLanguage} />
+      </div>
     </header>
   );
 }

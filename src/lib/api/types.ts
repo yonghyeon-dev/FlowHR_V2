@@ -8,6 +8,16 @@ import type {
 export type SupportedPack = "office" | "retail";
 export type AdminView = "home" | "attendance" | "leave" | "workflow" | "documents" | "settings";
 export type EmployeeView = "home" | "requests" | "signatures";
+export type SessionRole =
+  | "platform_operator"
+  | "tenant_admin"
+  | "tenant_manager"
+  | "tenant_employee";
+
+export type AppSession = {
+  role: SessionRole;
+  updatedAt: string;
+};
 
 export type ApiMeta = {
   scope: string;
