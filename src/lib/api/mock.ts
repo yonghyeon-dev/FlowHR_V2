@@ -1,10 +1,14 @@
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
-import { resolve } from "node:path";
 import { ADMIN_PAGES } from "@/lib/content/adminContent";
 import { tx } from "@/lib/content/appCopy";
 import type { DashboardPage } from "@/lib/content/types";
 import { EMPLOYEE_PAGES } from "@/lib/content/employeeContent";
 import { PLATFORM_PAGE } from "@/lib/content/platformContent";
+import {
+  appendActionEvent,
+  getPackSelection,
+  listActionEvents,
+  savePackSelection,
+} from "@/lib/server/store";
 import type {
   ActionActor,
   ActionDomain,
@@ -16,7 +20,6 @@ import type {
   ApiResponse,
   EmployeeFlowResponse,
   EmployeeHomeResponse,
-  MockStoreState,
   EmployeeView,
   PackSetupSaveRequest,
   PackSetupSaveResponse,
@@ -56,8 +59,6 @@ const packCatalog = {
   },
 } satisfies Record<SupportedPack, { required: string[] }>;
 
-const STORE_PATH = resolve(process.cwd(), ".flowhr-mock-state.json");
-
 const defaultPackSelection: PackSetupResponse["selection"] = {
   selectedPack: "office",
   featureSelections: {
@@ -67,46 +68,8 @@ const defaultPackSelection: PackSetupResponse["selection"] = {
   savedAt: now(),
 };
 
-const defaultStoreState: MockStoreState = {
-  selection: defaultPackSelection,
-  actionEvents: [],
-};
-
-function readStoreState(): MockStoreState {
-  if (!existsSync(STORE_PATH)) {
-    writeFileSync(STORE_PATH, JSON.stringify(defaultStoreState, null, 2), "utf8");
-    return defaultStoreState;
-  }
-
-  try {
-    const raw = readFileSync(STORE_PATH, "utf8");
-    const parsed = JSON.parse(raw) as Partial<MockStoreState> | PackSetupResponse["selection"];
-    if ("selection" in parsed) {
-      return {
-        selection: parsed.selection ?? defaultStoreState.selection,
-        actionEvents: parsed.actionEvents ?? [],
-      };
-    }
-    return {
-      selection: parsed as PackSetupResponse["selection"],
-      actionEvents: [],
-    };
-  } catch {
-    writeFileSync(STORE_PATH, JSON.stringify(defaultStoreState, null, 2), "utf8");
-    return defaultStoreState;
-  }
-}
-
-function writeStoreState(state: MockStoreState) {
-  writeFileSync(STORE_PATH, JSON.stringify(state, null, 2), "utf8");
-}
-
 function getRelevantEvents(domain: ActionDomain, pack?: SupportedPack): ActionEvent[] {
-  const state = readStoreState();
-  return state.actionEvents
-    .filter((item) => item.domain === domain && (!pack || item.pack === pack))
-    .slice(-3)
-    .reverse();
+  return listActionEvents(domain, pack, 3, defaultPackSelection);
 }
 
 function formatEventLine(event: ActionEvent): ReturnType<typeof tx> {
@@ -127,7 +90,6 @@ export function recordActionEvent(
   payload: Pick<ActionSimulationRequest, "actionType" | "locale" | "pack" | "actor">,
   success: ActionSimulationSuccess,
 ) {
-  const state = readStoreState();
   const nextEvent: ActionEvent = {
     id: success.resourceId,
     domain,
@@ -137,11 +99,7 @@ export function recordActionEvent(
     message: success.message,
     createdAt: now(),
   };
-
-  writeStoreState({
-    ...state,
-    actionEvents: [...state.actionEvents, nextEvent].slice(-50),
-  });
+  appendActionEvent(nextEvent, defaultPackSelection);
 }
 
 export function getPlatformOverview(): ApiResponse<PlatformOverviewResponse> {
@@ -153,8 +111,7 @@ export function getAdminPage(
   view: AdminView,
 ): ApiResponse<AdminPageResponse> {
   const page = ADMIN_PAGES[pack][view] as DashboardPage;
-  const storeState = readStoreState();
-  const currentPackSelection = storeState.selection;
+  const currentPackSelection = getPackSelection(defaultPackSelection);
   const enabledFeatures = currentPackSelection.featureSelections[pack] ?? [];
   const featureItems = page.contextSummary?.items ?? [];
   const settingsEvents = getRelevantEvents("settings", pack);
@@ -251,7 +208,7 @@ export function getEmployeePage(
 }
 
 export function getPackSetup(): ApiResponse<PackSetupResponse> {
-  const currentPackSelection = readStoreState().selection;
+  const currentPackSelection = getPackSelection(defaultPackSelection);
   return wrap("setup.packs", {
     recommendedOrder: ["office", "retail"],
     selection: currentPackSelection,
@@ -361,11 +318,7 @@ export function savePackSetup(
     savedAt,
   };
 
-  const state = readStoreState();
-  writeStoreState({
-    ...state,
-    selection: nextSelection,
-  });
+  savePackSelection(nextSelection);
 
   return wrap("setup.packs.save", {
     result: "success",
