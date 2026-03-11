@@ -72,6 +72,8 @@
 25. [로컬라이제이션 전체 적용 계획](./foundation/21-localization-rollout-plan.md)
 26. [코어 화면 승인 로그 예시 폴더](./foundation/approvals/)
 27. [최종 승인 패스 기준](./foundation/22-final-approval-pass-criteria.md)
+28. [구현 스프린트 분해](./foundation/23-implementation-sprint-breakdown.md)
+29. [로컬라이제이션 적용 현황](./foundation/24-localization-status-matrix.md)
 
 ## 운영 원칙
 
