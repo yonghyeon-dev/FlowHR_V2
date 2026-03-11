@@ -20,27 +20,29 @@
 
 ### 1. 프레임워크
 
-- 권장: `React + TypeScript + Vite`
+- 권장: `Next.js App Router + React + TypeScript`
+- 현재 상태: `적용 완료`
 - 사유:
-  - 현재 와이어와 컴포넌트 설계가 SPA형 정보 밀도에 맞춰져 있다
-  - 관리자/플랫폼/직원 레이어를 라우트 그룹으로 나누기 쉽다
-  - 반복적인 카드, 필터, 테이블, 인박스 패턴을 컴포넌트로 재사용하기 좋다
+  - Pack 기반 라우트와 권한 레이어를 파일 시스템 라우트로 안정적으로 분리할 수 있다
+  - Platform / Tenant Admin / Tenant Employee 흐름을 공통 shell과 route segment로 재사용하기 쉽다
+  - 향후 API 연동 시 server component, route handler, dynamic rendering 전략을 같이 가져갈 수 있다
 
 ### 2. 라우팅
 
-- 권장: `react-router`
+- 권장: `Next.js App Router`
+- 현재 상태: `적용 완료`
 - 사유:
-  - 권한 레이어별 shell 구성이 명확하다
-  - Platform / Tenant Admin / Tenant Employee를 route tree로 분리하기 쉽다
+  - `/platform/*`, `/admin/[pack]/[view]`, `/employee/[pack]/[view]` 구조를 직접 코드 구조로 고정할 수 있다
+  - 승인된 Pack 단위 화면을 route param으로 통합 관리하기 쉽다
 
 ### 3. 상태관리 / 서버 상태
 
 - 권장:
-  - UI 상태: `zustand`
-  - 서버 상태: `@tanstack/react-query`
+  - UI 상태: `client-local state + 최소 context`
+  - 서버 상태: `Next fetch + 필요 시 @tanstack/react-query`
 - 사유:
-  - 전역 UI 상태와 서버 캐시 성격이 명확히 다르다
-  - 대시보드형 화면에서 polling, refetch, optimistic refresh를 다루기 쉽다
+  - 현재 코어 베이스라인은 정적 승인 화면 중심이라 과도한 전역 store가 필요 없다
+  - 실제 API 연결 이후 polling, refetch, optimistic refresh가 필요한 모듈부터 서버 상태 라이브러리를 점진 도입하는 편이 맞다
 
 ### 4. 폼
 
@@ -75,11 +77,11 @@
 ### 8. 테스트
 
 - 권장:
-  - 단위/컴포넌트: `Vitest + Testing Library`
+  - 단위/컴포넌트: `Testing Library`
   - E2E: `Playwright`
 - 사유:
-  - 지금 설계 단계에서 이미 Playwright 기반 검증 루프를 사용 중이다
-  - 권한/언어 전환/핵심 업무 플로우를 E2E로 묶기 쉽다
+  - 현재 구현에서도 Playwright 기반 검증 루프를 그대로 사용 중이다
+  - 권한/Pack/언어 전환/핵심 업무 플로우를 E2E로 묶기 쉽다
 
 ## 비권장 선택
 
@@ -91,10 +93,10 @@
 ## 구현 시작 우선순위
 
 1. 공통 shell과 route group
-2. i18n 리소스 로더와 locale resolver
+2. locale resolver와 언어 유지
 3. 디자인 토큰 CSS 변수 파일
-4. 공통 컴포넌트 베이스
-5. 코어 화면 6종 구현
+4. 승인된 코어 Pack 구현
+5. 실제 API 연동과 서버 상태 도입
 
 ## 연결 문서
 
@@ -103,3 +105,4 @@
 - [11-screen-api-contracts.md](./11-screen-api-contracts.md)
 - [13-component-inventory.md](./13-component-inventory.md)
 - [07-localization-resource-architecture.md](./07-localization-resource-architecture.md)
+- [41-goal-convergence-status.md](./41-goal-convergence-status.md)

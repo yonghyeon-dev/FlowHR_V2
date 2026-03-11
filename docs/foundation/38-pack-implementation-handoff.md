@@ -4,18 +4,20 @@
 
 승인 직후 구현에 바로 들어갈 수 있도록, 각 Pack별 구현 단위를 한 번에 보는 핸드오프 문서다.
 
+현재 기준 구현 스택은 `Next.js App Router + TypeScript`다.
+
 ## Office Pack
 
 ### 라우트
 
-- `app/admin/home`
-- `app/admin/attendance`
-- `app/admin/leave`
-- `app/admin/workflow`
-- `app/admin/documents`
-- `app/employee/home`
-- `app/employee/requests`
-- `app/employee/signatures`
+- `/admin/office/home`
+- `/admin/office/attendance`
+- `/admin/office/leave`
+- `/admin/office/workflow`
+- `/admin/office/documents`
+- `/employee/office/home`
+- `/employee/office/requests`
+- `/employee/office/signatures`
 
 ### 주요 컴포넌트
 
@@ -51,20 +53,26 @@
 
 ### 라우트
 
-- `app/admin/home`
-- `app/admin/attendance`
-- `app/admin/leave`
-- `app/admin/workflow`
-- `app/admin/documents`
-- `app/employee/home`
-- `app/employee/requests`
-- `app/employee/signatures`
+- `/admin/retail/home`
+- `/admin/retail/attendance`
+- `/admin/retail/leave`
+- `/admin/retail/workflow`
+- `/admin/retail/documents`
+- `/employee/retail/home`
+- `/employee/retail/requests`
+- `/employee/retail/signatures`
 
 ### 주요 차이
 
 - 관리자 홈은 `결원 / 커버리지 / 브레이크 / 오버타임` 우선
 - 직원 홈은 `오늘 근무 / 체크인 / 시프트 응답` 우선
 - 같은 라우트를 쓰더라도 Pack 설정으로 카드 배치와 우선순위가 바뀌어야 한다
+
+### 현재 구현 상태
+
+- 승인된 코어 라우트 구현 완료
+- 언어 토글과 locale persistence 검증 완료
+- 실제 API 연결 전의 baseline UI 상태 확보
 
 ### API 추가 필드
 
@@ -81,7 +89,7 @@
 
 ### 라우트
 
-- `app/platform/dashboard`
+- `/platform/overview`
 
 ### 주요 컴포넌트
 
@@ -98,11 +106,11 @@
 
 ## 구현 순서
 
-1. Sprint 0 공통 기반
-2. Office Pack
-3. Retail Pack
-4. Shared Tenant Expansion
-5. Platform 확장
+1. 공통 기반 전환
+2. Office Pack 코어 구현
+3. Retail Pack 코어 구현
+4. Platform 코어 구현
+5. 실제 데이터 연동 및 확장
 
 ## 연결 문서
 
@@ -110,3 +118,4 @@
 - [13-component-inventory.md](./13-component-inventory.md)
 - [20-module-api-contract-breakdown.md](./20-module-api-contract-breakdown.md)
 - [23-implementation-sprint-breakdown.md](./23-implementation-sprint-breakdown.md)
+- [41-goal-convergence-status.md](./41-goal-convergence-status.md)

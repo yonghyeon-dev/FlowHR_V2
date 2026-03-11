@@ -94,6 +94,7 @@
 47. [Pack 구현 핸드오프](./foundation/38-pack-implementation-handoff.md)
 48. [구현 전 남은 블로커](./foundation/39-remaining-blockers-before-build.md)
 49. [구현 전 종합 보고](./foundation/40-pre-build-handoff-report.md)
+50. [목표 수렴 상태](./foundation/41-goal-convergence-status.md)
 
 ## 운영 원칙
 
