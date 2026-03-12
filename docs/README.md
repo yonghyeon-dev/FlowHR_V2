@@ -9,6 +9,7 @@
 3. [47-production-execution-order.md](./foundation/47-production-execution-order.md)
 4. [48-wireframe-control-inventory.md](./foundation/48-wireframe-control-inventory.md)
 5. [49-authority-ssot-matrix.md](./foundation/49-authority-ssot-matrix.md)
+6. [50-wi-execution-cards.md](./foundation/50-wi-execution-cards.md)
 
 이후 작업은 사용자가 특정 화면이나 기능을 언급하더라도 위 문서의 우선순위를 먼저 따른다.
 

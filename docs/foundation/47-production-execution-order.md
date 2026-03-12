@@ -113,3 +113,4 @@
 1. `WI-1218` 화면별 제어 항목 분류
 2. `WI-1219` 와이어프레임 전용 동작 제거
 3. `WI-1220` 권한 SSOT 완성
+4. 세부 실행 카드는 [50-wi-execution-cards.md](./50-wi-execution-cards.md)를 따른다.
