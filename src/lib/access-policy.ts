@@ -112,7 +112,7 @@ export function canPerformAction(role: UserRole, action: AppAction) {
 }
 
 export function getDefaultRouteForRole(role: UserRole) {
-  if (role === "platform_operator") return "/platform/overview";
+  if (role === "platform_operator") return "/platform/console";
   if (role === "tenant_admin" || role === "tenant_manager") return "/admin/home";
   return "/employee/home";
 }

@@ -27,21 +27,15 @@
 ## 플랫폼 화면 처리 원칙
 
 현재 `flowhr-ui/platform`에는 `console.html` 하나만 있다.  
-따라서 아래 플랫폼 라우트는 모두 동일한 SSOT 파일을 공유하되, 각자 참조하는 섹션을 분리해서 관리한다.
+따라서 플랫폼 운영 화면은 `console.html` 하나를 SSOT로 고정한다.
 
-- `/platform/overview`
-- `/platform/tenants`
-- `/platform/billing`
-- `/platform/support`
-- `/platform/monitoring`
-- `/platform/security`
-- `/platform/settings`
+- `/platform/console` -> 원본 직접 렌더링
+- `/platform/*` 확장 경로 -> `console`로 리다이렉트
 
-즉 플랫폼 화면은 `flowhr-ui/platform/console.html`을 화면 원본으로 보며, 코드에서는 섹션 단위로 분해 구현한다.
+즉 플랫폼은 코드가 별도 화면으로 재해석하지 않는다.
 
 ## 현재 적용 상태
 
-- `flowhr-ui` 기준 관리자/직원 화면은 전부 코드 매핑이 있다.
-- 플랫폼 화면도 코드 매핑은 있으나, 별도 원본 HTML이 아니라 `console.html` 섹션 기반으로 분해되어 있다.
+- `flowhr-ui` 기준 관리자/직원 화면은 전부 원본 HTML 직접 렌더링 경로가 있다.
+- 플랫폼도 `console.html` 원본 직접 렌더링으로 고정되어 있다.
 - 이후 UI 변경은 반드시 [ui-ssot.ts](C:\Team-jane\FlowHR_V2\src\lib\ui-ssot.ts)와 함께 반영한다.
-

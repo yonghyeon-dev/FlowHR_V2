@@ -1,40 +1,9 @@
 import { notFound, redirect } from "next/navigation";
 
-import { AdminAttendance, AdminHome, AdminSettings, AdminWorkflow } from "@/components/admin-pages";
-import { AdminPeople, AdminLeave } from "@/components/admin-people-leave-pages";
-import { AdminDocuments, AdminPayroll } from "@/components/admin-docs-payroll-pages";
-import { AdminPerformance, AdminRecruiting, AdminReports } from "@/components/admin-talent-pages";
-import { AppShell } from "@/components/app-shell";
+import { WireframeScreen } from "@/components/wireframe-screen";
 import { adminViews, type AdminView } from "@/lib/access-policy";
-import { roleLabel } from "@/lib/session-labels";
-import {
-  canAccessAdminView,
-  canAccessRole,
-  canPerformAction,
-  getAllowedAdminViews,
-  getSession,
-} from "@/lib/server/auth";
-import {
-  getLatestSettings,
-  getTenantFeatureSummary,
-  listApprovals,
-  listDocuments,
-  listRequests,
-} from "@/lib/server/dev-store";
-
-const adminNavMeta: Record<AdminView, { label: string; icon: string }> = {
-  home: { label: "Home", icon: "🏠" },
-  people: { label: "People", icon: "👥" },
-  attendance: { label: "Attendance", icon: "⏰" },
-  leave: { label: "Leave", icon: "🌴" },
-  workflow: { label: "Workflow", icon: "🔄" },
-  documents: { label: "Documents", icon: "📄" },
-  payroll: { label: "Payroll", icon: "💳" },
-  performance: { label: "Performance", icon: "📈" },
-  recruiting: { label: "Recruiting", icon: "🧲" },
-  reports: { label: "Reports", icon: "📊" },
-  settings: { label: "Settings", icon: "⚙️" },
-};
+import { getWireframePage } from "@/lib/wireframes";
+import { canAccessAdminView, canAccessRole, getAllowedAdminViews, getSession } from "@/lib/server/auth";
 
 export default async function Page({
   params,
@@ -61,76 +30,5 @@ export default async function Page({
     redirect(`/admin/${fallbackView}`);
   }
 
-  const requests = listRequests(session.tenantId);
-  const documents = listDocuments(session.tenantId);
-  const approvals = listApprovals(session.tenantId);
-  const settings = getLatestSettings(session.tenantId);
-  const features = getTenantFeatureSummary(session.tenantId).map((item) => item.label);
-
-  const navItems = getAllowedAdminViews(session.role).map((adminView) => ({
-    href: `/admin/${adminView}`,
-    label: adminNavMeta[adminView].label,
-    icon: adminNavMeta[adminView].icon,
-    badge:
-      adminView === "workflow"
-        ? String(requests.filter((item) => item.status === "submitted").length)
-        : undefined,
-  }));
-
-  let content: React.ReactNode;
-  switch (view as AdminView) {
-    case "home":
-      content = (
-        <AdminHome
-          tenant={session.tenant}
-          pendingRequests={requests.filter((item) => item.status === "submitted")}
-          documentCount={documents.length}
-        />
-      );
-      break;
-    case "attendance":
-      content = <AdminAttendance tenant={session.tenant} />;
-      break;
-    case "people":
-      content = <AdminPeople />;
-      break;
-    case "leave":
-      content = <AdminLeave />;
-      break;
-    case "workflow":
-      content = (
-        <AdminWorkflow
-          requests={requests}
-          approvals={approvals}
-          canApprove={canPerformAction(session.role, "admin.workflow.approve")}
-        />
-      );
-      break;
-    case "documents":
-      content = <AdminDocuments />;
-      break;
-    case "payroll":
-      content = <AdminPayroll />;
-      break;
-    case "performance":
-      content = <AdminPerformance />;
-      break;
-    case "recruiting":
-      content = <AdminRecruiting />;
-      break;
-    case "reports":
-      content = <AdminReports />;
-      break;
-    case "settings":
-      content = <AdminSettings settings={settings} features={features} />;
-      break;
-    default:
-      notFound();
-  }
-
-  return (
-    <AppShell roleLabel={roleLabel(session.role)} tenant={session.tenant} navItems={navItems}>
-      {content}
-    </AppShell>
-  );
+  return <WireframeScreen screen={getWireframePage(`admin/${view}.html`, "admin")} />;
 }

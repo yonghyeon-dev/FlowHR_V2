@@ -21,7 +21,7 @@ const demoAccounts: DemoAccount[] = [
     label: "플랫폼 운영자",
     email: "platform@flowhr.dev",
     password: "flowhr123!",
-    target: "/platform/overview",
+    target: "/platform/console",
   },
   {
     label: "오피스 관리자",
@@ -39,7 +39,7 @@ const demoAccounts: DemoAccount[] = [
 
 function defaultTarget(session?: LoginSession) {
   if (!session) return "/admin/home";
-  return getDefaultRouteForRole(session.role);
+  return session.role === "platform_operator" ? "/platform/console" : getDefaultRouteForRole(session.role);
 }
 
 export function LoginClient() {
