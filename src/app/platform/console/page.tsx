@@ -19,7 +19,7 @@ export default async function Page() {
   return (
     <AppShell
       roleLabel={roleLabel(session.role)}
-      navItems={[{ href: "/platform/console", label: "Console", icon: "🛰" }]}
+      navItems={[{ href: "/platform/console", label: "Platform Console", icon: "🛡️" }]}
       allowLogout
     >
       <PlatformConsoleClient tenants={listTenants()} auditLogs={listAuditLogs(10)} />

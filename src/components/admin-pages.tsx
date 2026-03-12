@@ -15,6 +15,7 @@ export function AdminHome({
   documentCount: number;
 }) {
   const isOffice = tenant.pack === "office";
+
   return (
     <>
       <PageHeader
@@ -26,6 +27,7 @@ export function AdminHome({
             : "결원, 브레이크 위험, 시프트 변경을 먼저 처리하는 관리자 허브입니다."
         }
       />
+
       <KpiRow
         items={
           isOffice
@@ -33,7 +35,7 @@ export function AdminHome({
                 { eyebrow: "승인 대기", label: "오늘 확인 필요", value: String(pendingRequests.length), tone: "critical" },
                 { eyebrow: "문서", label: "서명 대기", value: String(documentCount), tone: "warning" },
                 { eyebrow: "근태", label: "예외 케이스", value: "9", tone: "neutral" },
-                { eyebrow: "설정", label: "마지막 저장", value: "1", tone: "success" },
+                { eyebrow: "설정", label: "최근 변경", value: "1", tone: "success" },
               ]
             : [
                 { eyebrow: "결원", label: "대체 필요", value: "4", tone: "critical" },
@@ -43,6 +45,7 @@ export function AdminHome({
               ]
         }
       />
+
       <div className="content-grid cols-2-1" style={{ marginTop: "24px" }}>
         <Card title="오늘 처리 큐">
           <QueueList
@@ -53,6 +56,7 @@ export function AdminHome({
             }))}
           />
         </Card>
+
         <Card title="조직 스냅샷">
           <StatRows
             rows={
@@ -77,6 +81,7 @@ export function AdminHome({
 
 export function AdminAttendance({ tenant }: { tenant: Tenant }) {
   const isOffice = tenant.pack === "office";
+
   return (
     <>
       <PageHeader
@@ -85,9 +90,10 @@ export function AdminAttendance({ tenant }: { tenant: Tenant }) {
         subtitle={
           isOffice
             ? "오피스형 조직의 지각, 누락, 초과근무 위험을 모니터링합니다."
-            : "리테일 매장의 출근 누락, 브레이크 위험, 시프트 결손을 모니터링합니다."
+            : "리테일 매장의 미체크인, 브레이크 위험, 시프트 공백을 모니터링합니다."
         }
       />
+
       <div className="content-grid cols-2">
         <Card title="예외 목록">
           <QueueList
@@ -95,17 +101,18 @@ export function AdminAttendance({ tenant }: { tenant: Tenant }) {
               isOffice
                 ? [
                     { tone: "critical", title: "체크아웃 누락 4건", meta: "개발팀 2건, 영업팀 2건" },
-                    { tone: "warning", title: "초과근무 경고 3건", meta: "주 52시간 임계치 접근" },
-                    { tone: "neutral", title: "재택 근무 기록 보정 2건", meta: "원격 로그와 출근 기록 불일치" },
+                    { tone: "warning", title: "초과근무 경고 3건", meta: "주 52시간 한계치 근접" },
+                    { tone: "neutral", title: "근무 기록 보정 2건", meta: "입장 로그와 출퇴근 기록 불일치" },
                   ]
                 : [
-                    { tone: "critical", title: "오픈 시프트 결원 2건", meta: "강남점, 여의도점" },
-                    { tone: "warning", title: "브레이크 미준수 위험 4건", meta: "점심 피크타임 집중" },
+                    { tone: "critical", title: "오픈 시프트 결원 2건", meta: "강남점, 사의점" },
+                    { tone: "warning", title: "브레이크 미준수 위험 4건", meta: "피크타임 직전" },
                     { tone: "neutral", title: "미체크인 직원 5명", meta: "10분 이상 미체크인" },
                   ]
             }
           />
         </Card>
+
         <Card title="운영 요약">
           <StatRows
             rows={
@@ -170,6 +177,7 @@ export function AdminWorkflow({
         title="결재와 승인"
         subtitle="직원 요청의 현재 상태를 확인하고 승인 또는 반려를 처리합니다."
       />
+
       <Card title="승인 대기 요청" right={<span className="badge warning">{pending.length}건</span>}>
         <DataTable
           columns={["제목", "유형", "상태", "처리"]}
@@ -198,12 +206,13 @@ export function AdminWorkflow({
         />
         {message ? <p style={{ marginTop: "12px", color: "var(--brand-primary)" }}>{message}</p> : null}
       </Card>
+
       <div style={{ marginTop: "24px" }}>
         <Card title="최근 승인 로그">
           <QueueList
             items={approvals.slice(0, 6).map((approval) => ({
               tone: approval.action === "approve" ? "success" : "warning",
-              title: `${approval.action === "approve" ? "승인" : "반려"} 처리`,
+              title: approval.action === "approve" ? "승인 처리" : "반려 처리",
               meta: new Date(approval.createdAt).toLocaleString("ko-KR"),
             }))}
           />
@@ -243,7 +252,7 @@ export function AdminSettings({
     });
 
     const data = (await response.json()) as { ok: boolean; message?: string };
-    setMessage(data.ok ? "설정이 저장되었습니다." : data.message ?? "설정 저장에 실패했습니다.");
+    setMessage(data.ok ? "설정을 저장했습니다." : data.message ?? "설정 저장에 실패했습니다.");
   }
 
   return (
@@ -251,8 +260,9 @@ export function AdminSettings({
       <PageHeader
         breadcrumb={["Admin", "Settings"]}
         title="설정"
-        subtitle="회사 정보, 역할/권한, 기능 팩 구성의 기본값을 관리합니다."
+        subtitle="회사 정보, 역할/권한, 기능팩 기본값을 관리합니다."
       />
+
       <div className="content-grid cols-2">
         <Card title="회사 기본 정보" right={<AppButton onClick={handleSave}>저장</AppButton>}>
           <div className="form-group">
@@ -283,6 +293,7 @@ export function AdminSettings({
           </div>
           {message ? <p style={{ color: "var(--brand-primary)" }}>{message}</p> : null}
         </Card>
+
         <Card title="활성 기능">
           <QueueList
             items={features.map((feature) => ({

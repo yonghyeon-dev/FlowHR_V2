@@ -12,6 +12,7 @@ Thumbs.db
 .flowhr-v2.sqlite
 .next-dev-3001.log
 .next-dev-3001.err.log
+.next-dev.log
 .flowhr-dev-store.json
 .env
 .env.local

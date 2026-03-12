@@ -4,8 +4,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
-import type { Tenant } from "@/lib/domain/types";
 import { AppButton, BrandMark } from "@/components/primitives";
+import type { Tenant } from "@/lib/domain/types";
 
 type NavItem = {
   href: string;
@@ -55,6 +55,7 @@ export function AppShell({
           ) : null}
         </div>
       </header>
+
       <nav className="app-sidebar">
         <div className="nav-section">
           <div className="nav-section-label">Navigation</div>
@@ -67,6 +68,7 @@ export function AppShell({
           ))}
         </div>
       </nav>
+
       <main className="app-main">{children}</main>
     </div>
   );

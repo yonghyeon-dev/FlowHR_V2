@@ -15,6 +15,7 @@ export function EmployeeHome({
   documents: DocumentRecord[];
 }) {
   const isOffice = tenant.pack === "office";
+
   return (
     <>
       <PageHeader
@@ -26,13 +27,19 @@ export function EmployeeHome({
             : "오늘 근무와 체크인, 시프트 변경, 현장 공지를 우선으로 보여줍니다."
         }
       />
+
       <KpiRow
         items={
           isOffice
             ? [
                 { eyebrow: "오늘 상태", label: "근무 중", value: "09:02 - 18:00", tone: "success" },
                 { eyebrow: "요청", label: "진행 중", value: String(requests.length), tone: "warning" },
-                { eyebrow: "문서", label: "서명 필요", value: String(documents.filter((item) => item.status === "pending_signature").length), tone: "critical" },
+                {
+                  eyebrow: "문서",
+                  label: "서명 필요",
+                  value: String(documents.filter((item) => item.status === "pending_signature").length),
+                  tone: "critical",
+                },
               ]
             : [
                 { eyebrow: "오늘 근무", label: "오픈 시프트", value: "10:00 - 19:00", tone: "success" },
@@ -41,6 +48,7 @@ export function EmployeeHome({
               ]
         }
       />
+
       <div className="content-grid cols-2" style={{ marginTop: "24px" }}>
         <Card title="오늘 할 일">
           <QueueList
@@ -52,22 +60,27 @@ export function EmployeeHome({
               },
               {
                 tone: "warning",
-                title: requests[0]?.title ?? "제출된 요청 없음",
+                title: requests[0]?.title ?? "제출한 요청 없음",
                 meta: "현재 요청 상태를 다시 확인하세요.",
               },
               {
                 tone: "neutral",
                 title: isOffice ? "금주 일정 확인" : "오늘 시프트 확인",
-                meta: isOffice ? "회의와 1:1 일정을 확인하세요." : "매장 오픈/마감 시간과 교대 현황을 확인하세요.",
+                meta: isOffice ? "회의와 1:1 일정을 확인하세요." : "매장 오픈/마감 시간과 구역을 확인하세요.",
               },
             ]}
           />
         </Card>
-        <Card title="내 요약">
+
+        <Card title="내 상태 요약">
           <StatRows
             rows={[
               { label: "진행 중 요청", value: `${requests.length}건`, tone: "warning" },
-              { label: "서명 대기 문서", value: `${documents.filter((item) => item.status === "pending_signature").length}건`, tone: "critical" },
+              {
+                label: "서명 대기 문서",
+                value: `${documents.filter((item) => item.status === "pending_signature").length}건`,
+                tone: "critical",
+              },
               { label: "이번 주 지각", value: isOffice ? "0회" : "1회", tone: "neutral" },
             ]}
           />
@@ -104,7 +117,7 @@ export function EmployeeRequests({ requests }: { requests: RequestRecord[] }) {
     }
 
     setItems((prev) => [data.record!, ...prev]);
-    setMessage("요청이 제출되었습니다.");
+    setMessage("요청을 제출했습니다.");
   }
 
   return (
@@ -114,6 +127,7 @@ export function EmployeeRequests({ requests }: { requests: RequestRecord[] }) {
         title="요청 허브"
         subtitle="휴가, 정정, 일반 요청을 직접 제출하고 현재 상태를 확인합니다."
       />
+
       <div className="content-grid cols-2">
         <Card title="새 요청 작성" right={<AppButton onClick={handleSubmit}>제출</AppButton>}>
           <div className="form-group">
@@ -134,11 +148,9 @@ export function EmployeeRequests({ requests }: { requests: RequestRecord[] }) {
           </div>
           {message ? <p style={{ color: "var(--brand-primary)" }}>{message}</p> : null}
         </Card>
+
         <Card title="최근 요청">
-          <DataTable
-            columns={["제목", "유형", "상태"]}
-            rows={items.map((item) => [item.title, item.category, item.status])}
-          />
+          <DataTable columns={["제목", "유형", "상태"]} rows={items.map((item) => [item.title, item.category, item.status])} />
         </Card>
       </div>
     </>
@@ -165,7 +177,7 @@ export function EmployeeDocuments({ documents }: { documents: DocumentRecord[] }
     }
 
     setItems((prev) => prev.map((item) => (item.id === documentId ? data.record! : item)));
-    setMessage("문서 서명이 완료되었습니다.");
+    setMessage("문서 서명을 완료했습니다.");
   }
 
   return (
@@ -175,6 +187,7 @@ export function EmployeeDocuments({ documents }: { documents: DocumentRecord[] }
         title="문서와 서명"
         subtitle="서명 대기 문서를 확인하고 완료 상태를 관리합니다."
       />
+
       <Card title="문서 목록">
         <DataTable
           columns={["문서", "상태", "처리"]}
@@ -214,7 +227,7 @@ export function EmployeeInbox({
       })),
       ...documents.slice(0, 2).map((document) => ({
         tone: (document.status === "pending_signature" ? "critical" : "success") as Tone,
-        title: `${document.title}`,
+        title: document.title,
         meta: `${document.status} · ${new Date(document.updatedAt).toLocaleString("ko-KR")}`,
       })),
     ],
@@ -228,6 +241,7 @@ export function EmployeeInbox({
         title="인박스"
         subtitle="요청 상태 변경, 문서 서명, 운영 공지를 한 화면에서 확인합니다."
       />
+
       <Card title="최신 알림">
         <QueueList items={items} />
       </Card>

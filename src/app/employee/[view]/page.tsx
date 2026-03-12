@@ -2,11 +2,20 @@ import { notFound, redirect } from "next/navigation";
 
 import { AppShell } from "@/components/app-shell";
 import { EmployeeDocuments, EmployeeHome, EmployeeInbox, EmployeeRequests } from "@/components/employee-pages";
+import { RawWireframeMain } from "@/components/raw-wireframe-main";
 import { roleLabel } from "@/lib/session-labels";
-import { WireframeScreen } from "@/components/wireframe-screen";
 import { canAccessRole, getSession } from "@/lib/server/auth";
 import { listDocuments, listRequests } from "@/lib/server/dev-store";
-import { employeeViews, type EmployeeView, getWireframePage } from "@/lib/wireframes";
+import { employeeViews, type EmployeeView, getWireframeMain } from "@/lib/wireframes";
+
+const employeeNavMeta: Record<EmployeeView, { label: string; icon: string }> = {
+  home: { label: "Home", icon: "🏠" },
+  schedule: { label: "Schedule", icon: "🗓️" },
+  requests: { label: "Requests", icon: "📋" },
+  inbox: { label: "Inbox", icon: "📥" },
+  documents: { label: "Documents", icon: "📄" },
+  profile: { label: "Profile", icon: "🙍" },
+};
 
 export default async function Page({
   params,
@@ -30,13 +39,17 @@ export default async function Page({
 
   const requests = listRequests(session.tenantId);
   const documents = listDocuments(session.tenantId);
-  const navItems = [
-    { href: "/employee/home", label: "Home", icon: "🏠" },
-    { href: "/employee/requests", label: "Requests", icon: "📋", badge: String(requests.length) },
-    { href: "/employee/inbox", label: "Inbox", icon: "📥" },
-    { href: "/employee/documents", label: "Documents", icon: "📄", badge: String(documents.filter((item) => item.status === "pending_signature").length) },
-    { href: "/ui", label: "All UI", icon: "🧭" },
-  ];
+  const navItems = employeeViews.map((employeeView) => ({
+    href: `/employee/${employeeView}`,
+    label: employeeNavMeta[employeeView].label,
+    icon: employeeNavMeta[employeeView].icon,
+    badge:
+      employeeView === "requests"
+        ? String(requests.length)
+        : employeeView === "documents"
+          ? String(documents.filter((item) => item.status === "pending_signature").length)
+          : undefined,
+  }));
 
   let content: React.ReactNode;
   switch (view as EmployeeView) {
@@ -53,7 +66,7 @@ export default async function Page({
       content = <EmployeeInbox requests={requests} documents={documents} />;
       break;
     default:
-      content = <WireframeScreen screen={getWireframePage(`employee/${view}.html`, "employee")} />;
+      content = <RawWireframeMain markup={getWireframeMain(`employee/${view}.html`)} />;
       break;
   }
 

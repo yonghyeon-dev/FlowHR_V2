@@ -15,9 +15,10 @@ export function LandingPage() {
           </Link>
         </div>
       </nav>
+
       <section className="landing-hero">
         <div className="hero-inner">
-          <div className="hero-badge">✦ HR 운영의 새로운 기준</div>
+          <div className="hero-badge">HR 운영의 새로운 기준</div>
           <h1 className="hero-title">
             사람 중심으로 <span className="accent">HR 운영</span>을 재설계하다
           </h1>
@@ -27,9 +28,10 @@ export function LandingPage() {
           <Link href="/login" className="hero-cta">
             시작하기
           </Link>
-          <div className="hero-sub">무료 체험 14일 · 카드 등록 없음</div>
+          <div className="hero-sub">무료 체험 14일, 카드 등록 없음</div>
         </div>
       </section>
+
       <section className="landing-features" id="features">
         <h2 className="features-title">핵심 기능</h2>
         <div className="features-grid">
@@ -50,9 +52,10 @@ export function LandingPage() {
           </div>
         </div>
       </section>
+
       <section className="landing-roles" id="roles">
-        <h2 className="roles-title">권한별 경험</h2>
-        <p className="roles-subtitle">플랫폼 운영자, 고객사 관리자, 직원이 각자 필요한 정보만 봅니다.</p>
+        <h2 className="roles-title">역할별 경험</h2>
+        <p className="roles-subtitle">플랫폼 운영자, 고객사 관리자, 직원에게 각자 필요한 정보만 보여줍니다.</p>
         <div className="roles-grid">
           <div className="role-card">
             <div className="role-avatar platform">P</div>
@@ -62,12 +65,12 @@ export function LandingPage() {
           <div className="role-card">
             <div className="role-avatar admin">A</div>
             <h3>Tenant Admin</h3>
-            <p>근태, 결재, 문서, 설정과 같은 핵심 운영 모듈을 처리합니다.</p>
+            <p>근태, 결재, 문서, 설정 같은 핵심 운영 모듈을 처리합니다.</p>
           </div>
           <div className="role-card">
             <div className="role-avatar employee">E</div>
             <h3>Tenant Employee</h3>
-            <p>출근, 요청, 인박스, 서명, 내 일정과 같은 셀프서비스를 사용합니다.</p>
+            <p>출퇴근, 요청, 인박스, 서명, 개인 일정 중심의 셀프서비스를 사용합니다.</p>
           </div>
         </div>
       </section>

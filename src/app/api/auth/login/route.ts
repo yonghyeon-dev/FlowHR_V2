@@ -4,6 +4,7 @@ import { createSession } from "@/lib/server/auth";
 
 export async function POST(request: Request) {
   const body = (await request.json()) as { email?: string; password?: string };
+
   if (!body.email || !body.password) {
     return NextResponse.json({ ok: false, message: "이메일과 비밀번호를 입력하세요." }, { status: 400 });
   }

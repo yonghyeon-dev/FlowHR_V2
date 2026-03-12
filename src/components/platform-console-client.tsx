@@ -43,27 +43,35 @@ export function PlatformConsoleClient({
       <PageHeader
         breadcrumb={["Platform", "Console"]}
         title="플랫폼 콘솔"
-        subtitle="테넌트 운영, 플랜 상태, 지원 이슈, 보안 이벤트를 한 곳에서 운영합니다."
+        subtitle="테넌트 운영, 플랜 상태, 지원 이슈, 보안 이벤트를 한 곳에서 관리합니다."
       />
+
       <KpiRow
         items={[
           { eyebrow: "활성 테넌트", label: "운영 중", value: String(items.filter((item) => item.status === "active").length), tone: "critical" },
           { eyebrow: "체험 테넌트", label: "전환 필요", value: String(items.filter((item) => item.status === "trial").length), tone: "warning" },
           { eyebrow: "감사 이벤트", label: "오늘 로그", value: String(auditLogs.length), tone: "neutral" },
-          { eyebrow: "팩 분포", label: "office / retail", value: `${items.filter((item) => item.pack === "office").length} / ${items.filter((item) => item.pack === "retail").length}`, tone: "success" },
+          {
+            eyebrow: "팩 분포",
+            label: "office / retail",
+            value: `${items.filter((item) => item.pack === "office").length} / ${items.filter((item) => item.pack === "retail").length}`,
+            tone: "success",
+          },
         ]}
       />
+
       <div className="content-grid cols-2-1" style={{ marginTop: "24px" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           <Card title="운영 큐" right={<span className="badge warning">실시간</span>}>
             <QueueList
               items={[
-                { tone: "critical", title: "결제 실패 테넌트 3건", meta: "체험 종료 또는 구독 실패 고객을 우선 확인해야 합니다." },
-                { tone: "warning", title: "고권한 변경 이벤트 2건", meta: "오늘 발생한 역할 변경을 재검토해야 합니다." },
-                { tone: "neutral", title: "리테일 Pack 기능 토글 변경", meta: "Nova Team 매장의 기능 구성이 수정되었습니다." },
+                { tone: "critical", title: "결제 실패 고객사 3건", meta: "체험 종료 또는 구독 실패 고객사를 우선 확인해야 합니다." },
+                { tone: "warning", title: "민감 권한 변경 2건", meta: "오늘 발생한 역할 변경 이력을 검토해야 합니다." },
+                { tone: "neutral", title: "리테일 팩 기능 구성 변경", meta: "Nova Team 매장형 기능 구성이 수정되었습니다." },
               ]}
             />
           </Card>
+
           <Card title="테넌트 운영">
             <DataTable
               columns={["테넌트", "Pack", "상태", "기능", "수정"]}
@@ -103,6 +111,7 @@ export function PlatformConsoleClient({
             />
           </Card>
         </div>
+
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           <Card title="플랫폼 헬스">
             <StatRows
@@ -114,6 +123,7 @@ export function PlatformConsoleClient({
               ]}
             />
           </Card>
+
           <Card title="감사 로그" right={<AppButton tone="ghost">전체 보기</AppButton>}>
             <QueueList
               items={auditLogs.map((log) => ({
