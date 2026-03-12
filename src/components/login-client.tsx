@@ -19,7 +19,7 @@ const demoAccounts: DemoAccount[] = [
     label: "플랫폼 운영자",
     email: "platform@flowhr.dev",
     password: "flowhr123!",
-    target: "/platform/console",
+    target: "/platform/overview",
   },
   {
     label: "오피스 관리자",
@@ -37,7 +37,7 @@ const demoAccounts: DemoAccount[] = [
 
 function defaultTarget(session?: LoginSession) {
   if (!session) return "/admin/home";
-  if (session.role === "platform_operator") return "/platform/console";
+  if (session.role === "platform_operator") return "/platform/overview";
   if (session.role === "tenant_employee") return "/employee/home";
   return "/admin/home";
 }
@@ -74,6 +74,7 @@ export function LoginClient() {
       message?: string;
       session?: LoginSession;
     };
+
     setLoading(false);
 
     if (!data.ok) {
@@ -93,18 +94,18 @@ export function LoginClient() {
           <h2>
             하나의 계정으로
             <br />
-            모든 HR 업무를
+            모든 HR 업무를 시작하세요
           </h2>
           <p>
-            근태, 휴가, 결재, 문서, 급여, 평가까지.
+            근태, 휴가, 결재, 문서, 급여, 성과까지.
             <br />
-            하나의 플랫폼에서 모든 HR 업무를 처리하세요.
+            하나의 플랫폼에서 모든 HR 업무를 처리할 수 있습니다.
           </p>
         </div>
 
         <div className="login-form-panel">
           <h1>로그인</h1>
-          <p className="login-desc">이메일과 비밀번호를 입력하세요</p>
+          <p className="login-desc">이메일과 비밀번호를 입력해 주세요.</p>
 
           <div className="login-form">
             <div className="form-group">
