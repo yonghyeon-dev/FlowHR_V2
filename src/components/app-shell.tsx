@@ -44,7 +44,7 @@ export function AppShell({
     <div className="app-shell">
       <header className="app-header">
         <BrandMark />
-        <div className="header-search">검색 (Ctrl+K)</div>
+        <div className="header-search">검색 또는 빠른 이동 (Ctrl+K)</div>
         <div className="header-actions">
           {tenant ? <span className="badge info">{tenant.name}</span> : null}
           <span className="badge">{roleLabel}</span>
@@ -58,9 +58,13 @@ export function AppShell({
 
       <nav className="app-sidebar">
         <div className="nav-section">
-          <div className="nav-section-label">Navigation</div>
+          <div className="nav-section-label">메뉴</div>
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className={`nav-item${pathname === item.href ? " active" : ""}`}>
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`nav-item${pathname === item.href ? " active" : ""}`}
+            >
               <span className="nav-icon">{item.icon}</span>
               {item.label}
               {item.badge ? <span className="nav-badge">{item.badge}</span> : null}

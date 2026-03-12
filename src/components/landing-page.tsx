@@ -18,17 +18,18 @@ export function LandingPage() {
 
       <section className="landing-hero">
         <div className="hero-inner">
-          <div className="hero-badge">HR 운영의 새로운 기준</div>
+          <div className="hero-badge">HR 운영을 새로 쓰는 기준</div>
           <h1 className="hero-title">
             사람 중심으로 <span className="accent">HR 운영</span>을 재설계하다
           </h1>
           <p className="hero-desc">
-            근태, 휴가, 결재, 문서, 급여, 평가, 채용까지. 하나의 플랫폼에서 모든 HR 업무를 처리하세요.
+            근태, 휴가, 결재, 문서, 급여, 성과, 채용까지.
+            하나의 플랫폼에서 모든 HR 업무를 한 흐름으로 처리할 수 있습니다.
           </p>
           <Link href="/login" className="hero-cta">
             시작하기
           </Link>
-          <div className="hero-sub">무료 체험 14일, 카드 등록 없음</div>
+          <div className="hero-sub">무료 체험 14일 · 카드 등록 없음</div>
         </div>
       </section>
 
@@ -36,26 +37,28 @@ export function LandingPage() {
         <h2 className="features-title">핵심 기능</h2>
         <div className="features-grid">
           <div className="feature-card">
-            <div className="feature-icon teal">📊</div>
+            <div className="feature-icon teal">운영</div>
             <h3>운영 대시보드</h3>
-            <p>오피스형과 리테일형 조직의 운영 위험을 첫 화면에서 바로 확인합니다.</p>
+            <p>오피스형과 리테일형 조직의 운영 리스크를 첫 화면에서 바로 확인합니다.</p>
           </div>
           <div className="feature-card">
-            <div className="feature-icon blue">🔄</div>
+            <div className="feature-icon blue">승인</div>
             <h3>요청과 승인</h3>
             <p>직원 요청, 관리자 승인, 감사 로그까지 하나의 흐름으로 연결합니다.</p>
           </div>
           <div className="feature-card">
-            <div className="feature-icon amber">📄</div>
+            <div className="feature-icon amber">문서</div>
             <h3>문서와 서명</h3>
-            <p>계약서와 필수 서명 문서를 디지털로 관리하고 진행 상태를 추적합니다.</p>
+            <p>계약서와 필수 서명 문서를 템플릿으로 관리하고 진행 상태를 추적합니다.</p>
           </div>
         </div>
       </section>
 
       <section className="landing-roles" id="roles">
         <h2 className="roles-title">역할별 경험</h2>
-        <p className="roles-subtitle">플랫폼 운영자, 고객사 관리자, 직원에게 각자 필요한 정보만 보여줍니다.</p>
+        <p className="roles-subtitle">
+          플랫폼 운영자, 고객사 관리자, 직원에게 각자 필요한 정보와 행동만 노출합니다.
+        </p>
         <div className="roles-grid">
           <div className="role-card">
             <div className="role-avatar platform">P</div>
