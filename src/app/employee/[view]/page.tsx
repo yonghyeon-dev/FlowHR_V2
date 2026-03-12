@@ -2,11 +2,11 @@ import { notFound, redirect } from "next/navigation";
 
 import { AppShell } from "@/components/app-shell";
 import { EmployeeDocuments, EmployeeHome, EmployeeInbox, EmployeeRequests } from "@/components/employee-pages";
-import { RawWireframeMain } from "@/components/raw-wireframe-main";
+import { EmployeeProfile, EmployeeSchedule } from "@/components/employee-extra-pages";
 import { roleLabel } from "@/lib/session-labels";
 import { canAccessRole, getSession } from "@/lib/server/auth";
 import { listDocuments, listRequests } from "@/lib/server/dev-store";
-import { employeeViews, type EmployeeView, getWireframeMain } from "@/lib/wireframes";
+import { employeeViews, type EmployeeView } from "@/lib/wireframes";
 
 const employeeNavMeta: Record<EmployeeView, { label: string; icon: string }> = {
   home: { label: "Home", icon: "🏠" },
@@ -59,15 +59,20 @@ export default async function Page({
     case "requests":
       content = <EmployeeRequests requests={requests} />;
       break;
+    case "schedule":
+      content = <EmployeeSchedule />;
+      break;
     case "documents":
       content = <EmployeeDocuments documents={documents} />;
       break;
     case "inbox":
       content = <EmployeeInbox requests={requests} documents={documents} />;
       break;
-    default:
-      content = <RawWireframeMain markup={getWireframeMain(`employee/${view}.html`)} />;
+    case "profile":
+      content = <EmployeeProfile />;
       break;
+    default:
+      notFound();
   }
 
   return (

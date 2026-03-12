@@ -96,11 +96,6 @@ function readWireframe(file: string) {
   return readFileSync(path.join(wireframeRoot, file), "utf8");
 }
 
-function extractMain(html: string) {
-  const match = html.match(/<main[^>]*class="app-main"[^>]*>([\s\S]*?)<\/main>/i);
-  return match ? match[1].trim() : "";
-}
-
 export function getWireframePage(file: string, scope: WireframeScope): WireframePage {
   const raw = readWireframe(file);
   const body = rewriteLinks(extractBody(raw));
@@ -112,9 +107,4 @@ export function getWireframePage(file: string, scope: WireframeScope): Wireframe
     styles,
     title: scope ? title : title,
   };
-}
-
-export function getWireframeMain(file: string) {
-  const raw = readWireframe(file);
-  return rewriteLinks(extractMain(raw));
 }

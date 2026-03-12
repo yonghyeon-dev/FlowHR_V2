@@ -1,8 +1,10 @@
 import { notFound, redirect } from "next/navigation";
 
 import { AdminAttendance, AdminHome, AdminSettings, AdminWorkflow } from "@/components/admin-pages";
+import { AdminPeople, AdminLeave } from "@/components/admin-people-leave-pages";
+import { AdminDocuments, AdminPayroll } from "@/components/admin-docs-payroll-pages";
+import { AdminPerformance, AdminRecruiting, AdminReports } from "@/components/admin-talent-pages";
 import { AppShell } from "@/components/app-shell";
-import { RawWireframeMain } from "@/components/raw-wireframe-main";
 import { roleLabel } from "@/lib/session-labels";
 import { canAccessRole, getSession } from "@/lib/server/auth";
 import {
@@ -12,7 +14,7 @@ import {
   listDocuments,
   listRequests,
 } from "@/lib/server/dev-store";
-import { adminViews, type AdminView, getWireframeMain } from "@/lib/wireframes";
+import { adminViews, type AdminView } from "@/lib/wireframes";
 
 const adminNavMeta: Record<AdminView, { label: string; icon: string }> = {
   home: { label: "Home", icon: "🏠" },
@@ -78,6 +80,12 @@ export default async function Page({
     case "attendance":
       content = <AdminAttendance tenant={session.tenant} />;
       break;
+    case "people":
+      content = <AdminPeople />;
+      break;
+    case "leave":
+      content = <AdminLeave />;
+      break;
     case "workflow":
       content = (
         <AdminWorkflow
@@ -87,12 +95,26 @@ export default async function Page({
         />
       );
       break;
+    case "documents":
+      content = <AdminDocuments />;
+      break;
+    case "payroll":
+      content = <AdminPayroll />;
+      break;
+    case "performance":
+      content = <AdminPerformance />;
+      break;
+    case "recruiting":
+      content = <AdminRecruiting />;
+      break;
+    case "reports":
+      content = <AdminReports />;
+      break;
     case "settings":
       content = <AdminSettings settings={settings} features={features} />;
       break;
     default:
-      content = <RawWireframeMain markup={getWireframeMain(`admin/${view}.html`)} />;
-      break;
+      notFound();
   }
 
   return (
