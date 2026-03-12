@@ -33,7 +33,31 @@ function extractTitle(html: string) {
   return html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim();
 }
 
-function rewriteHrefValue(href: string) {
+function rewriteScopedViewHref(href: string, scope: WireframeScope) {
+  const [file, hash] = href.split("#");
+  const view = file.replace(/\.html$/i, "");
+  const suffix = hash ? `#${hash}` : "";
+
+  if (scope === "admin" && adminViews.includes(view as AdminView)) {
+    return `/admin/${view}${suffix}`;
+  }
+
+  if (scope === "employee" && employeeViews.includes(view as EmployeeView)) {
+    return `/employee/${view}${suffix}`;
+  }
+
+  if (adminViews.includes(view as AdminView)) {
+    return `/admin/${view}${suffix}`;
+  }
+
+  if (employeeViews.includes(view as EmployeeView)) {
+    return `/employee/${view}${suffix}`;
+  }
+
+  return null;
+}
+
+function rewriteHrefValue(href: string, scope: WireframeScope) {
   if (href === "landing.html") return "/";
   if (href === "login.html") return "/login";
   if (href === "index.html") return "/ui";
@@ -47,24 +71,17 @@ function rewriteHrefValue(href: string) {
     return href.replace(/^employee\/([a-z-]+)\.html$/, "/employee/$1");
   }
   if (href.startsWith("../")) {
-    return rewriteHrefValue(href.slice(3));
+    return rewriteHrefValue(href.slice(3), scope);
   }
   if (/^[a-z-]+\.html(#.*)?$/i.test(href)) {
-    const [file, hash] = href.split("#");
-    const view = file.replace(/\.html$/i, "");
-    if (adminViews.includes(view as AdminView)) {
-      return `/admin/${view}${hash ? `#${hash}` : ""}`;
-    }
-    if (employeeViews.includes(view as EmployeeView)) {
-      return `/employee/${view}${hash ? `#${hash}` : ""}`;
-    }
+    return rewriteScopedViewHref(href, scope) ?? href;
   }
   return href;
 }
 
-function rewriteLinks(markup: string) {
+function rewriteLinks(markup: string, scope: WireframeScope) {
   return markup.replace(/href="([^"]+)"/gi, (_, href: string) => {
-    return `href="${rewriteHrefValue(href)}"`;
+    return `href="${rewriteHrefValue(href, scope)}"`;
   });
 }
 
@@ -74,7 +91,7 @@ function readWireframe(file: string) {
 
 export function getWireframePage(file: string, scope: WireframeScope): WireframePage {
   const raw = readWireframe(file);
-  const body = rewriteLinks(extractBody(raw));
+  const body = rewriteLinks(extractBody(raw), scope);
   const styles = extractStyles(raw);
   const title = extractTitle(raw);
 
