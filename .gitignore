@@ -10,3 +10,5 @@ Thumbs.db
 .flowhr-mock-state.json
 .flowhr-mock-state.json.migrated
 .flowhr-v2.sqlite
+.next-dev-3001.log
+.next-dev-3001.err.log
