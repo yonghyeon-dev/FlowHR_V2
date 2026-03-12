@@ -1,12 +1,28 @@
-import { createClient } from "@supabase/supabase-js";
+"use client";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+import { createBrowserClient } from "@supabase/ssr";
 
-export function createBrowserSupabaseClient() {
-  if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error("Supabase browser client env is missing.");
+function getSupabaseUrl() {
+  const value = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  if (!value) {
+    throw new Error("NEXT_PUBLIC_SUPABASE_URL is missing.");
+  }
+  return value;
+}
+
+function getSupabasePublishableKey() {
+  const value =
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!value) {
+    throw new Error(
+      "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY or NEXT_PUBLIC_SUPABASE_ANON_KEY is missing.",
+    );
   }
 
-  return createClient(supabaseUrl, supabaseAnonKey);
+  return value;
+}
+
+export function createBrowserSupabaseClient() {
+  return createBrowserClient(getSupabaseUrl(), getSupabasePublishableKey());
 }
