@@ -1,0 +1,2197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>FlowHR — Platform Console</title>
+  <link rel="stylesheet" href="../css/design-system.css"/>
+  <style>
+    /* Section-level isolation: each app-shell is a standalone screen */
+    .screen-section .app-shell { min-height: auto; height: 900px; }
+    .screen-section .app-main { max-height: 844px; }
+    /* Drawer overlay within a section */
+    .screen-section .drawer-overlay {
+      position: absolute; inset: 0; z-index: 200;
+      display: flex; justify-content: flex-end;
+      background: var(--surface-overlay);
+    }
+    .screen-section .drawer-panel {
+      width: 420px; background: var(--surface-primary);
+      border-left: 1px solid var(--border-default);
+      overflow-y: auto; padding: var(--sp-5);
+    }
+    .screen-section { position: relative; }
+    /* Inline anchor nav */
+    .screen-nav {
+      position: sticky; top: 0; z-index: 300;
+      display: flex; gap: var(--sp-1); padding: var(--sp-3) var(--sp-4);
+      background: var(--surface-primary); border-bottom: 1px solid var(--border-default);
+      overflow-x: auto;
+    }
+    .screen-nav a {
+      padding: var(--sp-1) var(--sp-3); border-radius: var(--radius-full);
+      font-size: var(--text-sm); font-weight: 500; color: var(--text-secondary);
+      text-decoration: none; white-space: nowrap; border: 1px solid var(--border-default);
+    }
+    .screen-nav a:hover { background: var(--surface-secondary); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- Sticky screen navigation -->
+<nav class="screen-nav">
+  <a href="#overview">Overview</a>
+  <a href="#tenants">Tenants</a>
+  <a href="#billing">Plans &amp; Billing</a>
+  <a href="#support">Support Ops</a>
+  <a href="#monitoring">Monitoring</a>
+  <a href="#audit">Audit &amp; Security</a>
+  <a href="#settings">Settings</a>
+</nav>
+
+
+<!-- ============================================================
+     PC-001  Overview Dashboard
+     ============================================================ -->
+<div class="section-divider" id="overview">
+  <h2>PC-001 Overview Dashboard</h2>
+  <p>플랫폼 운영 현황 종합 대시보드</p>
+</div>
+
+<div class="screen-section">
+  <div class="app-shell">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <span class="brand-dot"></span> FlowHR Platform
+      </div>
+      <div class="header-search">테넌트, 청구서, 티켓 검색…</div>
+      <div class="header-actions">
+        <span class="header-badge">🔔<span class="dot"></span></span>
+        <div class="header-avatar">운</div>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="app-sidebar">
+      <div class="nav-section">
+        <div class="nav-section-label">메인</div>
+        <a class="nav-item active" href="#overview"><span class="nav-icon">📊</span> 개요</a>
+        <a class="nav-item" href="#tenants"><span class="nav-icon">🏢</span> 테넌트 관리</a>
+        <a class="nav-item" href="#billing"><span class="nav-icon">💳</span> 플랜 &amp; 빌링</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">운영</div>
+        <a class="nav-item" href="#support"><span class="nav-icon">🎧</span> 지원 운영 <span class="nav-badge">8</span></a>
+        <a class="nav-item" href="#monitoring"><span class="nav-icon">📡</span> 모니터링</a>
+        <a class="nav-item" href="#audit"><span class="nav-icon">🔒</span> 감사 &amp; 보안</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">시스템</div>
+        <a class="nav-item" href="#settings"><span class="nav-icon">⚙</span> 설정</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      <div class="page-header">
+        <div class="page-breadcrumb"><span>Platform Console</span><span>개요</span></div>
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="page-title">플랫폼 개요</h1>
+            <p class="page-subtitle">2026년 3월 12일 기준 운영 현황</p>
+          </div>
+          <div class="page-actions" style="margin-top:0">
+            <button class="btn btn-secondary btn-sm">리포트 내보내기</button>
+            <button class="btn btn-primary btn-sm">테넌트 추가</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI Row -->
+      <div class="kpi-grid cols-4">
+        <div class="kpi-card emphasis">
+          <div class="kpi-eyebrow">활성 테넌트</div>
+          <div class="kpi-value">247</div>
+          <div class="kpi-label">전월 대비</div>
+          <div class="kpi-delta up">▲ 12 (+5.1%)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-eyebrow">유예 고객</div>
+          <div class="kpi-value">12</div>
+          <div class="kpi-label">결제 유예 상태</div>
+          <div class="kpi-delta up">▲ 3 지난주 대비</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-eyebrow">결제 실패</div>
+          <div class="kpi-value">3</div>
+          <div class="kpi-label">최근 7일간</div>
+          <div class="kpi-delta down">▼ 2 개선</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-eyebrow">미해결 지원</div>
+          <div class="kpi-value">8</div>
+          <div class="kpi-label">SLA 위반 2건</div>
+          <div class="kpi-delta up">▲ 1 증가</div>
+        </div>
+      </div>
+
+      <div class="content-grid cols-2-1">
+        <!-- Left Column -->
+        <div class="flex-col gap-5" style="display:flex;flex-direction:column;gap:var(--sp-5)">
+          <!-- Operations Queue -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">운영 큐</span>
+              <button class="btn btn-ghost btn-sm">전체 보기</button>
+            </div>
+            <div class="card-body">
+              <div class="queue-list">
+                <div class="queue-item">
+                  <div class="q-priority critical"></div>
+                  <div class="q-content">
+                    <div class="q-title">Nova Team — 결제 3회 연속 실패</div>
+                    <div class="q-meta">2시간 전 · 자동 유예 전환 예정</div>
+                  </div>
+                  <div class="q-action"><button class="btn btn-danger btn-sm">즉시 확인</button></div>
+                </div>
+                <div class="queue-item">
+                  <div class="q-priority critical"></div>
+                  <div class="q-content">
+                    <div class="q-title">SSO 인증 오류 — Orbit Labs 연동 실패</div>
+                    <div class="q-meta">45분 전 · SAML 인증서 만료 의심</div>
+                  </div>
+                  <div class="q-action"><button class="btn btn-primary btn-sm">조치</button></div>
+                </div>
+                <div class="queue-item">
+                  <div class="q-priority high"></div>
+                  <div class="q-content">
+                    <div class="q-title">Acme Corp — Enterprise 업그레이드 요청</div>
+                    <div class="q-meta">3시간 전 · 영업팀 연계 필요</div>
+                  </div>
+                  <div class="q-action"><button class="btn btn-secondary btn-sm">검토</button></div>
+                </div>
+                <div class="queue-item">
+                  <div class="q-priority medium"></div>
+                  <div class="q-content">
+                    <div class="q-title">DeepField — 데이터 마이그레이션 지원 요청</div>
+                    <div class="q-meta">오늘 09:20 · 기술 지원팀 배정 대기</div>
+                  </div>
+                  <div class="q-action"><button class="btn btn-secondary btn-sm">배정</button></div>
+                </div>
+                <div class="queue-item">
+                  <div class="q-priority low"></div>
+                  <div class="q-content">
+                    <div class="q-title">Stellar Inc — API 사용량 한도 상향 문의</div>
+                    <div class="q-meta">오늘 10:05 · 일반 문의</div>
+                  </div>
+                  <div class="q-action"><button class="btn btn-ghost btn-sm">응답</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Platform Health Signals -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">플랫폼 상태 신호</span>
+              <span class="badge success">정상</span>
+            </div>
+            <div class="card-body">
+              <div class="bar-chart">
+                <div class="bar-row">
+                  <span class="bar-label">API 성공률</span>
+                  <div class="bar-track"><div class="bar-fill" style="width:99.7%"></div></div>
+                  <span class="bar-value">99.7%</span>
+                </div>
+                <div class="bar-row">
+                  <span class="bar-label">Webhook 전송</span>
+                  <div class="bar-track"><div class="bar-fill" style="width:98.2%"></div></div>
+                  <span class="bar-value">98.2%</span>
+                </div>
+                <div class="bar-row">
+                  <span class="bar-label">SSO 인증</span>
+                  <div class="bar-track"><div class="bar-fill warning" style="width:94.5%"></div></div>
+                  <span class="bar-value">94.5%</span>
+                </div>
+                <div class="bar-row">
+                  <span class="bar-label">데이터 동기화</span>
+                  <div class="bar-track"><div class="bar-fill" style="width:99.1%"></div></div>
+                  <span class="bar-value">99.1%</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">마지막 업데이트: 2026-03-12 11:42 KST</div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="flex-col gap-5" style="display:flex;flex-direction:column;gap:var(--sp-5)">
+          <!-- Recent Tenant Changes -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">최근 테넌트 변경</span>
+            </div>
+            <div class="card-body">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="timeline-time">11:30</div>
+                  <div class="timeline-text"><strong>BlueSky Corp</strong> 신규 가입 (Growth 플랜)</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-time">10:15</div>
+                  <div class="timeline-text"><strong>Acme Corp</strong> 좌석 50 → 75 증설</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-time">09:45</div>
+                  <div class="timeline-text"><strong>MegaTech</strong> 체험판 → Starter 전환</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-time">08:20</div>
+                  <div class="timeline-text"><strong>Nova Team</strong> 결제 실패 (3차)</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-time">어제 18:30</div>
+                  <div class="timeline-text"><strong>Orbit Labs</strong> SSO 설정 변경</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Security Signals -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">보안 신호</span>
+              <span class="badge warning">주의 1</span>
+            </div>
+            <div class="card-body">
+              <div class="stat-row">
+                <span class="stat-label">비정상 로그인 시도</span>
+                <span class="stat-value text-danger">7</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">MFA 미설정 운영자</span>
+                <span class="stat-value text-warning">2</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">만료 예정 인증서</span>
+                <span class="stat-value">1</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">API 키 만료 예정</span>
+                <span class="stat-value">3</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">IP 차단 이벤트 (24h)</span>
+                <span class="stat-value">14</span>
+              </div>
+            </div>
+            <div class="card-footer"><a href="#audit">감사 로그 전체 보기 →</a></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     PC-101~104  Tenant Operations
+     ============================================================ -->
+<div class="section-divider" id="tenants">
+  <h2>PC-101~104 Tenant Operations</h2>
+  <p>테넌트 목록 조회, 상세 보기, 운영 조치</p>
+</div>
+
+<div class="screen-section">
+  <div class="app-shell" style="position:relative">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-brand"><span class="brand-dot"></span> FlowHR Platform</div>
+      <div class="header-search">테넌트, 청구서, 티켓 검색…</div>
+      <div class="header-actions">
+        <span class="header-badge">🔔<span class="dot"></span></span>
+        <div class="header-avatar">운</div>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="app-sidebar">
+      <div class="nav-section">
+        <div class="nav-section-label">메인</div>
+        <a class="nav-item" href="#overview"><span class="nav-icon">📊</span> 개요</a>
+        <a class="nav-item active" href="#tenants"><span class="nav-icon">🏢</span> 테넌트 관리</a>
+        <a class="nav-item" href="#billing"><span class="nav-icon">💳</span> 플랜 &amp; 빌링</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">운영</div>
+        <a class="nav-item" href="#support"><span class="nav-icon">🎧</span> 지원 운영 <span class="nav-badge">8</span></a>
+        <a class="nav-item" href="#monitoring"><span class="nav-icon">📡</span> 모니터링</a>
+        <a class="nav-item" href="#audit"><span class="nav-icon">🔒</span> 감사 &amp; 보안</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">시스템</div>
+        <a class="nav-item" href="#settings"><span class="nav-icon">⚙</span> 설정</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      <div class="page-header">
+        <div class="page-breadcrumb"><span>Platform Console</span><span>테넌트 관리</span></div>
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="page-title">테넌트 관리</h1>
+            <p class="page-subtitle">전체 테넌트 목록 및 운영 현황</p>
+          </div>
+          <div class="page-actions" style="margin-top:0">
+            <button class="btn btn-secondary btn-sm">CSV 내보내기</button>
+            <button class="btn btn-primary btn-sm">테넌트 추가</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <input class="filter-search" type="text" placeholder="회사명, 도메인으로 검색…"/>
+        <span class="filter-chip active">전체 (259)</span>
+        <span class="filter-chip">활성 (247)</span>
+        <span class="filter-chip">유예 (12)</span>
+        <span class="filter-chip">체험판 (18)</span>
+        <span class="filter-chip">중지 (5)</span>
+      </div>
+
+      <div class="content-grid cols-3-1" style="grid-template-columns:1fr 420px">
+        <!-- Tenant Table -->
+        <div class="card">
+          <div class="card-body" style="padding:0">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>회사명</th>
+                  <th>플랜</th>
+                  <th class="cell-number">좌석</th>
+                  <th>상태</th>
+                  <th class="cell-number">MRR</th>
+                  <th>최근 활동</th>
+                  <th class="cell-actions"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="active-row">
+                  <td><strong>Acme Corp</strong><br/><span class="text-sm text-muted">acme.flowhr.io</span></td>
+                  <td><span class="badge info">Enterprise</span></td>
+                  <td class="cell-number">75</td>
+                  <td><span class="badge success">활성</span></td>
+                  <td class="cell-number">₩2,250,000</td>
+                  <td class="text-sm text-muted">2시간 전</td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">상세</button></td>
+                </tr>
+                <tr>
+                  <td><strong>Nova Team</strong><br/><span class="text-sm text-muted">nova.flowhr.io</span></td>
+                  <td><span class="badge info">Growth</span></td>
+                  <td class="cell-number">32</td>
+                  <td><span class="badge danger">결제실패</span></td>
+                  <td class="cell-number">₩640,000</td>
+                  <td class="text-sm text-muted">오늘 08:20</td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">상세</button></td>
+                </tr>
+                <tr>
+                  <td><strong>DeepField</strong><br/><span class="text-sm text-muted">deepfield.flowhr.io</span></td>
+                  <td><span class="badge info">Growth</span></td>
+                  <td class="cell-number">48</td>
+                  <td><span class="badge success">활성</span></td>
+                  <td class="cell-number">₩960,000</td>
+                  <td class="text-sm text-muted">1시간 전</td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">상세</button></td>
+                </tr>
+                <tr>
+                  <td><strong>Orbit Labs</strong><br/><span class="text-sm text-muted">orbit.flowhr.io</span></td>
+                  <td><span class="badge neutral">Starter</span></td>
+                  <td class="cell-number">15</td>
+                  <td><span class="badge warning">유예</span></td>
+                  <td class="cell-number">₩225,000</td>
+                  <td class="text-sm text-muted">어제 18:30</td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">상세</button></td>
+                </tr>
+                <tr>
+                  <td><strong>Stellar Inc</strong><br/><span class="text-sm text-muted">stellar.flowhr.io</span></td>
+                  <td><span class="badge info">Enterprise</span></td>
+                  <td class="cell-number">120</td>
+                  <td><span class="badge success">활성</span></td>
+                  <td class="cell-number">₩3,600,000</td>
+                  <td class="text-sm text-muted">30분 전</td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">상세</button></td>
+                </tr>
+                <tr>
+                  <td><strong>BlueSky Corp</strong><br/><span class="text-sm text-muted">bluesky.flowhr.io</span></td>
+                  <td><span class="badge info">Growth</span></td>
+                  <td class="cell-number">25</td>
+                  <td><span class="badge success">활성</span></td>
+                  <td class="cell-number">₩500,000</td>
+                  <td class="text-sm text-muted">오늘 11:30</td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">상세</button></td>
+                </tr>
+                <tr>
+                  <td><strong>MegaTech</strong><br/><span class="text-sm text-muted">megatech.flowhr.io</span></td>
+                  <td><span class="badge neutral">Starter</span></td>
+                  <td class="cell-number">10</td>
+                  <td><span class="badge success">활성</span></td>
+                  <td class="cell-number">₩150,000</td>
+                  <td class="text-sm text-muted">오늘 09:45</td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">상세</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination">
+            <span class="pagination-info">전체 259건 중 1-20 표시</span>
+            <div class="pagination-controls">
+              <button class="pagination-btn">‹</button>
+              <button class="pagination-btn active">1</button>
+              <button class="pagination-btn">2</button>
+              <button class="pagination-btn">3</button>
+              <button class="pagination-btn">…</button>
+              <button class="pagination-btn">13</button>
+              <button class="pagination-btn">›</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side Drawer Preview: Tenant Detail -->
+        <div class="drawer-preview">
+          <div class="drawer-title">Acme Corp — 테넌트 상세</div>
+
+          <div class="mb-4">
+            <div class="text-sm text-muted mb-2">기본 정보</div>
+            <div class="stat-row">
+              <span class="stat-label">법인명</span>
+              <span class="stat-value">주식회사 애크미</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">도메인</span>
+              <span class="stat-value">acme.flowhr.io</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">가입일</span>
+              <span class="stat-value">2025-06-15</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">담당자</span>
+              <span class="stat-value">김서연 (HR 매니저)</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">연락처</span>
+              <span class="stat-value">kim@acme.co.kr</span>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <div class="text-sm text-muted mb-2">플랜 &amp; 사용량</div>
+            <div class="stat-row">
+              <span class="stat-label">현재 플랜</span>
+              <span class="stat-value"><span class="badge info">Enterprise</span></span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">좌석</span>
+              <span class="stat-value">75 / 100</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">스토리지</span>
+              <span class="stat-value">42 GB / 100 GB</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">API 호출 (월)</span>
+              <span class="stat-value">124,500 / 500,000</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">MRR</span>
+              <span class="stat-value font-semibold">₩2,250,000</span>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <div class="text-sm text-muted mb-2">최근 지원 이력</div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-time">3/10</div>
+                <div class="timeline-text">급여 모듈 CSV 가져오기 오류 해결</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-time">3/5</div>
+                <div class="timeline-text">좌석 50→75 증설 완료</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-time">2/28</div>
+                <div class="timeline-text">SSO 설정 지원 완료</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-2">
+            <button class="btn btn-primary btn-sm">관리자 콘솔 접속</button>
+            <button class="btn btn-secondary btn-sm">플랜 변경</button>
+            <button class="btn btn-danger btn-sm">일시 중지</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     PC-201~205  Plans & Billing
+     ============================================================ -->
+<div class="section-divider" id="billing">
+  <h2>PC-201~205 Plans &amp; Billing</h2>
+  <p>플랜 카탈로그, 청구 계정, 인보이스, 조정, 기능 플래그</p>
+</div>
+
+<div class="screen-section">
+  <div class="app-shell">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-brand"><span class="brand-dot"></span> FlowHR Platform</div>
+      <div class="header-search">테넌트, 청구서, 티켓 검색…</div>
+      <div class="header-actions">
+        <span class="header-badge">🔔<span class="dot"></span></span>
+        <div class="header-avatar">운</div>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="app-sidebar">
+      <div class="nav-section">
+        <div class="nav-section-label">메인</div>
+        <a class="nav-item" href="#overview"><span class="nav-icon">📊</span> 개요</a>
+        <a class="nav-item" href="#tenants"><span class="nav-icon">🏢</span> 테넌트 관리</a>
+        <a class="nav-item active" href="#billing"><span class="nav-icon">💳</span> 플랜 &amp; 빌링</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">운영</div>
+        <a class="nav-item" href="#support"><span class="nav-icon">🎧</span> 지원 운영 <span class="nav-badge">8</span></a>
+        <a class="nav-item" href="#monitoring"><span class="nav-icon">📡</span> 모니터링</a>
+        <a class="nav-item" href="#audit"><span class="nav-icon">🔒</span> 감사 &amp; 보안</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">시스템</div>
+        <a class="nav-item" href="#settings"><span class="nav-icon">⚙</span> 설정</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      <div class="page-header">
+        <div class="page-breadcrumb"><span>Platform Console</span><span>플랜 &amp; 빌링</span></div>
+        <h1 class="page-title">플랜 &amp; 빌링</h1>
+        <p class="page-subtitle">플랜 관리, 청구 계정, 인보이스 및 조정 내역</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <span class="tab-item active">플랜 카탈로그</span>
+        <span class="tab-item">청구 계정</span>
+        <span class="tab-item">인보이스</span>
+        <span class="tab-item">조정 내역</span>
+        <span class="tab-item">기능 플래그</span>
+      </div>
+
+      <!-- KPI Row -->
+      <div class="kpi-grid cols-4">
+        <div class="kpi-card emphasis">
+          <div class="kpi-eyebrow">월간 반복 매출 (MRR)</div>
+          <div class="kpi-value">₩48.7M</div>
+          <div class="kpi-delta up">▲ 8.2% 전월 대비</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-eyebrow">연간 계약 가치 (ACV)</div>
+          <div class="kpi-value">₩584M</div>
+          <div class="kpi-delta neutral">— 안정</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-eyebrow">미수금</div>
+          <div class="kpi-value">₩4.2M</div>
+          <div class="kpi-delta up">▲ 3건 증가</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-eyebrow">이탈률</div>
+          <div class="kpi-value">1.8%</div>
+          <div class="kpi-delta down">▼ 0.3%p 개선</div>
+        </div>
+      </div>
+
+      <!-- Plan Catalog Cards -->
+      <div class="content-grid cols-3 mb-6">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Starter</div>
+              <div class="card-subtitle">소규모 팀을 위한 기본 플랜</div>
+            </div>
+            <span class="badge neutral">62 테넌트</span>
+          </div>
+          <div class="card-body">
+            <div class="stat-row">
+              <span class="stat-label">월 요금</span>
+              <span class="stat-value">₩15,000 / 좌석</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">최대 좌석</span>
+              <span class="stat-value">30</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">스토리지</span>
+              <span class="stat-value">10 GB</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">API 호출</span>
+              <span class="stat-value">50,000 / 월</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">지원</span>
+              <span class="stat-value">이메일</span>
+            </div>
+          </div>
+          <div class="card-footer flex items-center justify-between">
+            <span>MRR 기여: ₩9.3M</span>
+            <button class="btn btn-ghost btn-sm">편집</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Growth</div>
+              <div class="card-subtitle">성장 중인 중규모 조직</div>
+            </div>
+            <span class="badge info">128 테넌트</span>
+          </div>
+          <div class="card-body">
+            <div class="stat-row">
+              <span class="stat-label">월 요금</span>
+              <span class="stat-value">₩20,000 / 좌석</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">최대 좌석</span>
+              <span class="stat-value">100</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">스토리지</span>
+              <span class="stat-value">50 GB</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">API 호출</span>
+              <span class="stat-value">200,000 / 월</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">지원</span>
+              <span class="stat-value">이메일 + 채팅</span>
+            </div>
+          </div>
+          <div class="card-footer flex items-center justify-between">
+            <span>MRR 기여: ₩25.6M</span>
+            <button class="btn btn-ghost btn-sm">편집</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Enterprise</div>
+              <div class="card-subtitle">대규모 조직, 맞춤 설정</div>
+            </div>
+            <span class="badge success">57 테넌트</span>
+          </div>
+          <div class="card-body">
+            <div class="stat-row">
+              <span class="stat-label">월 요금</span>
+              <span class="stat-value">₩30,000 / 좌석</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">최대 좌석</span>
+              <span class="stat-value">무제한</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">스토리지</span>
+              <span class="stat-value">100 GB</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">API 호출</span>
+              <span class="stat-value">500,000 / 월</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">지원</span>
+              <span class="stat-value">전담 매니저</span>
+            </div>
+          </div>
+          <div class="card-footer flex items-center justify-between">
+            <span>MRR 기여: ₩13.8M</span>
+            <button class="btn btn-ghost btn-sm">편집</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Billing Accounts Table -->
+      <div class="card mb-6">
+        <div class="card-header">
+          <span class="card-title">청구 계정</span>
+          <button class="btn btn-secondary btn-sm">필터</button>
+        </div>
+        <div class="card-body" style="padding:0">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>회사명</th>
+                <th>플랜</th>
+                <th>결제 수단</th>
+                <th>다음 청구일</th>
+                <th class="cell-number">월 청구액</th>
+                <th>상태</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Acme Corp</strong></td>
+                <td>Enterprise</td>
+                <td>법인카드 ****-4523</td>
+                <td>2026-04-01</td>
+                <td class="cell-number">₩2,250,000</td>
+                <td><span class="badge success">정상</span></td>
+              </tr>
+              <tr>
+                <td><strong>Nova Team</strong></td>
+                <td>Growth</td>
+                <td>법인카드 ****-7891</td>
+                <td>2026-03-15</td>
+                <td class="cell-number">₩640,000</td>
+                <td><span class="badge danger">실패</span></td>
+              </tr>
+              <tr>
+                <td><strong>Stellar Inc</strong></td>
+                <td>Enterprise</td>
+                <td>계좌이체</td>
+                <td>2026-04-01</td>
+                <td class="cell-number">₩3,600,000</td>
+                <td><span class="badge success">정상</span></td>
+              </tr>
+              <tr>
+                <td><strong>DeepField</strong></td>
+                <td>Growth</td>
+                <td>법인카드 ****-3356</td>
+                <td>2026-04-01</td>
+                <td class="cell-number">₩960,000</td>
+                <td><span class="badge success">정상</span></td>
+              </tr>
+              <tr>
+                <td><strong>Orbit Labs</strong></td>
+                <td>Starter</td>
+                <td>법인카드 ****-9012</td>
+                <td>2026-03-20</td>
+                <td class="cell-number">₩225,000</td>
+                <td><span class="badge warning">유예</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Invoice History -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">최근 인보이스</span>
+          <button class="btn btn-ghost btn-sm">전체 보기</button>
+        </div>
+        <div class="card-body" style="padding:0">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>인보이스 번호</th>
+                <th>테넌트</th>
+                <th>기간</th>
+                <th class="cell-number">금액</th>
+                <th>발행일</th>
+                <th>상태</th>
+                <th class="cell-actions"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-semibold">INV-2026-0312</td>
+                <td>Acme Corp</td>
+                <td>2026년 3월</td>
+                <td class="cell-number">₩2,250,000</td>
+                <td>2026-03-01</td>
+                <td><span class="badge success">결제 완료</span></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">보기</button></td>
+              </tr>
+              <tr>
+                <td class="font-semibold">INV-2026-0311</td>
+                <td>Stellar Inc</td>
+                <td>2026년 3월</td>
+                <td class="cell-number">₩3,600,000</td>
+                <td>2026-03-01</td>
+                <td><span class="badge success">결제 완료</span></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">보기</button></td>
+              </tr>
+              <tr>
+                <td class="font-semibold">INV-2026-0310</td>
+                <td>Nova Team</td>
+                <td>2026년 3월</td>
+                <td class="cell-number">₩640,000</td>
+                <td>2026-03-01</td>
+                <td><span class="badge danger">미결제</span></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">보기</button></td>
+              </tr>
+              <tr>
+                <td class="font-semibold">INV-2026-0309</td>
+                <td>DeepField</td>
+                <td>2026년 3월</td>
+                <td class="cell-number">₩960,000</td>
+                <td>2026-03-01</td>
+                <td><span class="badge success">결제 완료</span></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">보기</button></td>
+              </tr>
+              <tr>
+                <td class="font-semibold">INV-2026-0308</td>
+                <td>Orbit Labs</td>
+                <td>2026년 3월</td>
+                <td class="cell-number">₩225,000</td>
+                <td>2026-03-01</td>
+                <td><span class="badge warning">유예</span></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">보기</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <span class="pagination-info">전체 312건 중 1-20 표시</span>
+          <div class="pagination-controls">
+            <button class="pagination-btn">‹</button>
+            <button class="pagination-btn active">1</button>
+            <button class="pagination-btn">2</button>
+            <button class="pagination-btn">3</button>
+            <button class="pagination-btn">…</button>
+            <button class="pagination-btn">16</button>
+            <button class="pagination-btn">›</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     PC-401~403  Support Ops
+     ============================================================ -->
+<div class="section-divider" id="support">
+  <h2>PC-401~403 Support Ops</h2>
+  <p>지원 인박스, 티켓 상세, 공지 작성</p>
+</div>
+
+<div class="screen-section">
+  <div class="app-shell">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-brand"><span class="brand-dot"></span> FlowHR Platform</div>
+      <div class="header-search">테넌트, 청구서, 티켓 검색…</div>
+      <div class="header-actions">
+        <span class="header-badge">🔔<span class="dot"></span></span>
+        <div class="header-avatar">운</div>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="app-sidebar">
+      <div class="nav-section">
+        <div class="nav-section-label">메인</div>
+        <a class="nav-item" href="#overview"><span class="nav-icon">📊</span> 개요</a>
+        <a class="nav-item" href="#tenants"><span class="nav-icon">🏢</span> 테넌트 관리</a>
+        <a class="nav-item" href="#billing"><span class="nav-icon">💳</span> 플랜 &amp; 빌링</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">운영</div>
+        <a class="nav-item active" href="#support"><span class="nav-icon">🎧</span> 지원 운영 <span class="nav-badge">8</span></a>
+        <a class="nav-item" href="#monitoring"><span class="nav-icon">📡</span> 모니터링</a>
+        <a class="nav-item" href="#audit"><span class="nav-icon">🔒</span> 감사 &amp; 보안</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">시스템</div>
+        <a class="nav-item" href="#settings"><span class="nav-icon">⚙</span> 설정</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      <div class="page-header">
+        <div class="page-breadcrumb"><span>Platform Console</span><span>지원 운영</span></div>
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="page-title">지원 운영</h1>
+            <p class="page-subtitle">고객 문의 처리 및 공지 관리</p>
+          </div>
+          <div class="page-actions" style="margin-top:0">
+            <button class="btn btn-secondary btn-sm">리포트</button>
+            <button class="btn btn-primary btn-sm">공지 작성</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI Row -->
+      <div class="kpi-grid cols-4">
+        <div class="kpi-card">
+          <div class="kpi-eyebrow">미해결 티켓</div>
+          <div class="kpi-value">8</div>
+          <div class="kpi-delta up">▲ 1 전일 대비</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-eyebrow">SLA 위반</div>
+          <div class="kpi-value">2</div>
+          <div class="kpi-label">4시간 초과</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-eyebrow">평균 응답 시간</div>
+          <div class="kpi-value">1.8h</div>
+          <div class="kpi-delta down">▼ 0.4h 개선</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-eyebrow">만족도 (CSAT)</div>
+          <div class="kpi-value">4.6</div>
+          <div class="kpi-label">/ 5.0 (이번 달)</div>
+        </div>
+      </div>
+
+      <div class="content-grid cols-3-1" style="grid-template-columns:1fr 420px">
+        <!-- Support Inbox Queue -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">지원 인박스</span>
+            <div class="flex gap-2">
+              <span class="filter-chip active">전체</span>
+              <span class="filter-chip">긴급</span>
+              <span class="filter-chip">대기중</span>
+              <span class="filter-chip">진행중</span>
+            </div>
+          </div>
+          <div class="card-body" style="padding:0 var(--sp-4) var(--sp-4)">
+            <div class="queue-list">
+              <div class="queue-item">
+                <div class="q-priority critical"></div>
+                <div class="q-content">
+                  <div class="q-title">SSO 로그인 불가 — 전사 접속 불가 상태</div>
+                  <div class="q-meta">Orbit Labs · #T-4021 · 45분 전 · SLA 1시간 남음</div>
+                </div>
+                <div class="q-action"><span class="badge danger">긴급</span></div>
+              </div>
+              <div class="queue-item">
+                <div class="q-priority critical"></div>
+                <div class="q-content">
+                  <div class="q-title">급여 명세서 PDF 생성 오류</div>
+                  <div class="q-meta">Stellar Inc · #T-4020 · 2시간 전 · <span class="text-danger">SLA 위반</span></div>
+                </div>
+                <div class="q-action"><span class="badge danger">긴급</span></div>
+              </div>
+              <div class="queue-item">
+                <div class="q-priority high"></div>
+                <div class="q-content">
+                  <div class="q-title">데이터 마이그레이션 지원 요청</div>
+                  <div class="q-meta">DeepField · #T-4019 · 3시간 전 · 기술팀 배정 필요</div>
+                </div>
+                <div class="q-action"><span class="badge warning">높음</span></div>
+              </div>
+              <div class="queue-item">
+                <div class="q-priority high"></div>
+                <div class="q-content">
+                  <div class="q-title">결재선 설정 방법 문의</div>
+                  <div class="q-meta">BlueSky Corp · #T-4018 · 4시간 전 · <span class="text-danger">SLA 위반</span></div>
+                </div>
+                <div class="q-action"><span class="badge warning">높음</span></div>
+              </div>
+              <div class="queue-item">
+                <div class="q-priority medium"></div>
+                <div class="q-content">
+                  <div class="q-title">API 사용량 한도 상향 문의</div>
+                  <div class="q-meta">Stellar Inc · #T-4017 · 오늘 10:05</div>
+                </div>
+                <div class="q-action"><span class="badge info">보통</span></div>
+              </div>
+              <div class="queue-item">
+                <div class="q-priority medium"></div>
+                <div class="q-content">
+                  <div class="q-title">Webhook 설정 가이드 요청</div>
+                  <div class="q-meta">MegaTech · #T-4016 · 오늘 09:30</div>
+                </div>
+                <div class="q-action"><span class="badge info">보통</span></div>
+              </div>
+              <div class="queue-item">
+                <div class="q-priority low"></div>
+                <div class="q-content">
+                  <div class="q-title">로고 변경 방법 문의</div>
+                  <div class="q-meta">Acme Corp · #T-4015 · 어제 17:40</div>
+                </div>
+                <div class="q-action"><span class="badge neutral">낮음</span></div>
+              </div>
+              <div class="queue-item">
+                <div class="q-priority low"></div>
+                <div class="q-content">
+                  <div class="q-title">연차 정책 템플릿 추가 요청</div>
+                  <div class="q-meta">Nova Team · #T-4014 · 어제 15:20</div>
+                </div>
+                <div class="q-action"><span class="badge neutral">낮음</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Ticket Detail Drawer + Notice Composer -->
+        <div style="display:flex;flex-direction:column;gap:var(--sp-5)">
+          <!-- Ticket Detail Drawer -->
+          <div class="drawer-preview">
+            <div class="drawer-title">티켓 상세 — #T-4021</div>
+            <div class="mb-4">
+              <div class="stat-row">
+                <span class="stat-label">제목</span>
+                <span class="stat-value">SSO 로그인 불가</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">테넌트</span>
+                <span class="stat-value">Orbit Labs</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">요청자</span>
+                <span class="stat-value">박준호 (IT 관리자)</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">우선순위</span>
+                <span class="stat-value"><span class="badge danger">긴급</span></span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">상태</span>
+                <span class="stat-value"><span class="badge warning">대기중</span></span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">SLA 마감</span>
+                <span class="stat-value text-danger">12:30 (1시간 남음)</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">담당자</span>
+                <span class="stat-value">미배정</span>
+              </div>
+            </div>
+            <div class="text-sm text-muted mb-2">설명</div>
+            <p class="text-sm mb-4" style="color:var(--text-secondary);line-height:1.6">
+              오전 10시 이후 전사 직원이 SSO를 통한 FlowHR 접속이 불가한 상태입니다. Azure AD 연동 인증서가 만료된 것으로 추정되며, 긴급 조치를 요청합니다.
+            </p>
+            <div class="flex gap-2">
+              <button class="btn btn-primary btn-sm">담당자 배정</button>
+              <button class="btn btn-secondary btn-sm">답변 작성</button>
+              <button class="btn btn-ghost btn-sm">에스컬레이션</button>
+            </div>
+          </div>
+
+          <!-- Notice Composer -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">공지 작성</span>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label class="form-label">제목</label>
+                <input class="form-input" type="text" placeholder="공지 제목을 입력하세요" value="[점검 안내] 3/15(토) 시스템 정기 점검"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">대상 테넌트</label>
+                <select class="form-select">
+                  <option>전체 테넌트</option>
+                  <option>Enterprise 플랜만</option>
+                  <option>Growth 플랜만</option>
+                  <option>특정 테넌트 선택</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">전송 채널</label>
+                <div class="flex gap-3 mt-4" style="margin-top:var(--sp-2)">
+                  <label class="toggle"><span class="toggle-track on"></span> <span class="text-sm">인앱 알림</span></label>
+                  <label class="toggle"><span class="toggle-track on"></span> <span class="text-sm">이메일</span></label>
+                  <label class="toggle"><span class="toggle-track"></span> <span class="text-sm">SMS</span></label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">내용</label>
+                <textarea class="form-textarea" rows="3">안녕하세요. 3월 15일(토) 02:00~06:00 시스템 정기 점검이 예정되어 있습니다. 해당 시간 동안 서비스 이용이 제한될 수 있습니다.</textarea>
+              </div>
+              <div class="flex gap-2">
+                <button class="btn btn-primary btn-sm">발송</button>
+                <button class="btn btn-secondary btn-sm">미리보기</button>
+                <button class="btn btn-ghost btn-sm">임시 저장</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     PC-501~502  Monitoring
+     ============================================================ -->
+<div class="section-divider" id="monitoring">
+  <h2>PC-501~502 Monitoring</h2>
+  <p>서비스 메트릭, 사용량 분석, 알림 규칙</p>
+</div>
+
+<div class="screen-section">
+  <div class="app-shell">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-brand"><span class="brand-dot"></span> FlowHR Platform</div>
+      <div class="header-search">테넌트, 청구서, 티켓 검색…</div>
+      <div class="header-actions">
+        <span class="header-badge">🔔<span class="dot"></span></span>
+        <div class="header-avatar">운</div>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="app-sidebar">
+      <div class="nav-section">
+        <div class="nav-section-label">메인</div>
+        <a class="nav-item" href="#overview"><span class="nav-icon">📊</span> 개요</a>
+        <a class="nav-item" href="#tenants"><span class="nav-icon">🏢</span> 테넌트 관리</a>
+        <a class="nav-item" href="#billing"><span class="nav-icon">💳</span> 플랜 &amp; 빌링</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">운영</div>
+        <a class="nav-item" href="#support"><span class="nav-icon">🎧</span> 지원 운영 <span class="nav-badge">8</span></a>
+        <a class="nav-item active" href="#monitoring"><span class="nav-icon">📡</span> 모니터링</a>
+        <a class="nav-item" href="#audit"><span class="nav-icon">🔒</span> 감사 &amp; 보안</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">시스템</div>
+        <a class="nav-item" href="#settings"><span class="nav-icon">⚙</span> 설정</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      <div class="page-header">
+        <div class="page-breadcrumb"><span>Platform Console</span><span>모니터링</span></div>
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="page-title">모니터링</h1>
+            <p class="page-subtitle">서비스 상태, 사용량 분석 및 알림 규칙</p>
+          </div>
+          <div class="page-actions" style="margin-top:0">
+            <select class="form-select" style="width:auto;padding:var(--sp-1) var(--sp-3);font-size:var(--text-sm)">
+              <option>최근 24시간</option>
+              <option>최근 7일</option>
+              <option>최근 30일</option>
+            </select>
+            <button class="btn btn-secondary btn-sm">새로고침</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service Metrics -->
+      <div class="content-grid cols-3 mb-6">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">API 응답 시간 (p95)</span>
+            <span class="badge success">정상</span>
+          </div>
+          <div class="card-body">
+            <div class="kpi-value" style="margin-bottom:var(--sp-4)">142ms</div>
+            <div class="bar-chart">
+              <div class="bar-row">
+                <span class="bar-label">인사 관리</span>
+                <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+                <span class="bar-value">120ms</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">근태</span>
+                <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+                <span class="bar-value">142ms</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">급여</span>
+                <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+                <span class="bar-value">168ms</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">결재</span>
+                <div class="bar-track"><div class="bar-fill" style="width:55%"></div></div>
+                <span class="bar-value">108ms</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">문서</span>
+                <div class="bar-track"><div class="bar-fill warning" style="width:95%"></div></div>
+                <span class="bar-value">195ms</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">처리량 (RPM)</span>
+            <span class="badge success">정상</span>
+          </div>
+          <div class="card-body">
+            <div class="kpi-value" style="margin-bottom:var(--sp-4)">12,450</div>
+            <div class="bar-chart">
+              <div class="bar-row">
+                <span class="bar-label">GET</span>
+                <div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>
+                <span class="bar-value">9,340</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">POST</span>
+                <div class="bar-track"><div class="bar-fill" style="width:18%"></div></div>
+                <span class="bar-value">2,240</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">PUT</span>
+                <div class="bar-track"><div class="bar-fill" style="width:6%"></div></div>
+                <span class="bar-value">680</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">DELETE</span>
+                <div class="bar-track"><div class="bar-fill" style="width:2%"></div></div>
+                <span class="bar-value">190</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">오류율</span>
+            <span class="badge warning">주의</span>
+          </div>
+          <div class="card-body">
+            <div class="kpi-value" style="margin-bottom:var(--sp-4)">0.31%</div>
+            <div class="bar-chart">
+              <div class="bar-row">
+                <span class="bar-label">4xx 클라이언트</span>
+                <div class="bar-track"><div class="bar-fill warning" style="width:65%"></div></div>
+                <span class="bar-value">0.20%</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">5xx 서버</span>
+                <div class="bar-track"><div class="bar-fill danger" style="width:35%"></div></div>
+                <span class="bar-value">0.11%</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">타임아웃</span>
+                <div class="bar-track"><div class="bar-fill danger" style="width:10%"></div></div>
+                <span class="bar-value">0.03%</span>
+              </div>
+            </div>
+            <div class="mt-4 text-sm text-muted">목표: 0.1% 이하 · 현재 기준 초과</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Usage Analytics -->
+      <div class="content-grid cols-2 mb-6">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">활성 사용자 추이</span>
+          </div>
+          <div class="card-body">
+            <div class="bar-chart">
+              <div class="bar-row">
+                <span class="bar-label">3/6 (목)</span>
+                <div class="bar-track"><div class="bar-fill" style="width:82%"></div></div>
+                <span class="bar-value">3,280</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">3/7 (금)</span>
+                <div class="bar-track"><div class="bar-fill" style="width:78%"></div></div>
+                <span class="bar-value">3,120</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">3/8 (토)</span>
+                <div class="bar-track"><div class="bar-fill" style="width:18%"></div></div>
+                <span class="bar-value">720</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">3/9 (일)</span>
+                <div class="bar-track"><div class="bar-fill" style="width:12%"></div></div>
+                <span class="bar-value">480</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">3/10 (월)</span>
+                <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+                <span class="bar-value">3,600</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">3/11 (화)</span>
+                <div class="bar-track"><div class="bar-fill" style="width:88%"></div></div>
+                <span class="bar-value">3,520</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">3/12 (수)</span>
+                <div class="bar-track"><div class="bar-fill" style="width:72%"></div></div>
+                <span class="bar-value">2,880</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">기능 채택률</span>
+          </div>
+          <div class="card-body">
+            <div class="bar-chart">
+              <div class="bar-row">
+                <span class="bar-label">인사 관리</span>
+                <div class="bar-track"><div class="bar-fill" style="width:98%"></div></div>
+                <span class="bar-value">98%</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">근태 관리</span>
+                <div class="bar-track"><div class="bar-fill" style="width:94%"></div></div>
+                <span class="bar-value">94%</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">휴가 관리</span>
+                <div class="bar-track"><div class="bar-fill" style="width:91%"></div></div>
+                <span class="bar-value">91%</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">결재</span>
+                <div class="bar-track"><div class="bar-fill" style="width:82%"></div></div>
+                <span class="bar-value">82%</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">급여</span>
+                <div class="bar-track"><div class="bar-fill" style="width:67%"></div></div>
+                <span class="bar-value">67%</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">성과 평가</span>
+                <div class="bar-track"><div class="bar-fill" style="width:43%"></div></div>
+                <span class="bar-value">43%</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">채용 관리</span>
+                <div class="bar-track"><div class="bar-fill" style="width:31%"></div></div>
+                <span class="bar-value">31%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alert Rules -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">알림 규칙</span>
+          <button class="btn btn-primary btn-sm">규칙 추가</button>
+        </div>
+        <div class="card-body" style="padding:0">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>규칙명</th>
+                <th>조건</th>
+                <th>채널</th>
+                <th>마지막 트리거</th>
+                <th>상태</th>
+                <th class="cell-actions"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-semibold">API 오류율 임계치</td>
+                <td class="text-sm">5xx 오류율 > 0.5% (5분 평균)</td>
+                <td><span class="badge info">Slack</span> <span class="badge neutral">이메일</span></td>
+                <td class="text-sm text-muted">2026-03-08 14:22</td>
+                <td><label class="toggle"><span class="toggle-track on"></span></label></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+              </tr>
+              <tr>
+                <td class="font-semibold">응답 시간 지연</td>
+                <td class="text-sm">p95 > 500ms (10분 평균)</td>
+                <td><span class="badge info">Slack</span></td>
+                <td class="text-sm text-muted">2026-03-01 09:15</td>
+                <td><label class="toggle"><span class="toggle-track on"></span></label></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+              </tr>
+              <tr>
+                <td class="font-semibold">결제 실패 알림</td>
+                <td class="text-sm">결제 실패 3회 연속</td>
+                <td><span class="badge info">Slack</span> <span class="badge neutral">이메일</span></td>
+                <td class="text-sm text-muted">2026-03-12 08:20</td>
+                <td><label class="toggle"><span class="toggle-track on"></span></label></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+              </tr>
+              <tr>
+                <td class="font-semibold">디스크 사용량</td>
+                <td class="text-sm">디스크 사용률 > 85%</td>
+                <td><span class="badge neutral">이메일</span></td>
+                <td class="text-sm text-muted">2026-02-20 03:45</td>
+                <td><label class="toggle"><span class="toggle-track on"></span></label></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+              </tr>
+              <tr>
+                <td class="font-semibold">비정상 로그인 감지</td>
+                <td class="text-sm">동일 IP 실패 > 10회 (1시간)</td>
+                <td><span class="badge info">Slack</span> <span class="badge neutral">이메일</span> <span class="badge warning">SMS</span></td>
+                <td class="text-sm text-muted">2026-03-11 22:10</td>
+                <td><label class="toggle"><span class="toggle-track on"></span></label></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+              </tr>
+              <tr>
+                <td class="font-semibold">SSL 인증서 만료 사전 알림</td>
+                <td class="text-sm">만료 30일 전</td>
+                <td><span class="badge neutral">이메일</span></td>
+                <td class="text-sm text-muted">2026-02-12 00:00</td>
+                <td><label class="toggle"><span class="toggle-track"></span></label></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     PC-601~604  Audit & Security
+     ============================================================ -->
+<div class="section-divider" id="audit">
+  <h2>PC-601~604 Audit &amp; Security</h2>
+  <p>운영자 감사 로그, 접근 제어, 보안 정책, 인증 세션</p>
+</div>
+
+<div class="screen-section">
+  <div class="app-shell">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-brand"><span class="brand-dot"></span> FlowHR Platform</div>
+      <div class="header-search">테넌트, 청구서, 티켓 검색…</div>
+      <div class="header-actions">
+        <span class="header-badge">🔔<span class="dot"></span></span>
+        <div class="header-avatar">운</div>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="app-sidebar">
+      <div class="nav-section">
+        <div class="nav-section-label">메인</div>
+        <a class="nav-item" href="#overview"><span class="nav-icon">📊</span> 개요</a>
+        <a class="nav-item" href="#tenants"><span class="nav-icon">🏢</span> 테넌트 관리</a>
+        <a class="nav-item" href="#billing"><span class="nav-icon">💳</span> 플랜 &amp; 빌링</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">운영</div>
+        <a class="nav-item" href="#support"><span class="nav-icon">🎧</span> 지원 운영 <span class="nav-badge">8</span></a>
+        <a class="nav-item" href="#monitoring"><span class="nav-icon">📡</span> 모니터링</a>
+        <a class="nav-item active" href="#audit"><span class="nav-icon">🔒</span> 감사 &amp; 보안</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">시스템</div>
+        <a class="nav-item" href="#settings"><span class="nav-icon">⚙</span> 설정</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      <div class="page-header">
+        <div class="page-breadcrumb"><span>Platform Console</span><span>감사 &amp; 보안</span></div>
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="page-title">감사 &amp; 보안</h1>
+            <p class="page-subtitle">운영자 활동 로그, 접근 제어 및 보안 정책 관리</p>
+          </div>
+          <div class="page-actions" style="margin-top:0">
+            <button class="btn btn-secondary btn-sm">감사 로그 내보내기</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <span class="tab-item active">감사 로그</span>
+        <span class="tab-item">접근 제어</span>
+        <span class="tab-item">보안 정책</span>
+        <span class="tab-item">인증 세션</span>
+      </div>
+
+      <!-- Audit Log Table -->
+      <div class="card mb-6">
+        <div class="card-header">
+          <span class="card-title">운영자 감사 로그</span>
+          <div class="flex gap-2">
+            <input class="filter-search" type="text" placeholder="운영자, 작업으로 검색…" style="width:220px"/>
+            <select class="form-select" style="width:auto;padding:var(--sp-1) var(--sp-3);font-size:var(--text-sm)">
+              <option>전체 작업</option>
+              <option>로그인/로그아웃</option>
+              <option>테넌트 변경</option>
+              <option>설정 변경</option>
+              <option>보안 이벤트</option>
+            </select>
+          </div>
+        </div>
+        <div class="card-body" style="padding:0">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>시각</th>
+                <th>운영자</th>
+                <th>작업</th>
+                <th>대상</th>
+                <th>IP 주소</th>
+                <th>결과</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-sm">11:42:18</td>
+                <td><strong>김운영</strong><br/><span class="text-sm text-muted">Super Admin</span></td>
+                <td><span class="badge info">설정 변경</span></td>
+                <td>알림 규칙 — SSL 인증서 비활성화</td>
+                <td class="text-sm font-semibold" style="font-family:var(--font-mono)">10.0.1.45</td>
+                <td><span class="badge success">성공</span></td>
+              </tr>
+              <tr>
+                <td class="text-sm">11:30:05</td>
+                <td><strong>이관리</strong><br/><span class="text-sm text-muted">Tenant Ops</span></td>
+                <td><span class="badge info">테넌트 생성</span></td>
+                <td>BlueSky Corp — Growth 플랜 신규 등록</td>
+                <td class="text-sm font-semibold" style="font-family:var(--font-mono)">10.0.1.52</td>
+                <td><span class="badge success">성공</span></td>
+              </tr>
+              <tr>
+                <td class="text-sm">10:15:33</td>
+                <td><strong>박지원</strong><br/><span class="text-sm text-muted">Billing Admin</span></td>
+                <td><span class="badge warning">플랜 변경</span></td>
+                <td>Acme Corp — 좌석 50 → 75 증설</td>
+                <td class="text-sm font-semibold" style="font-family:var(--font-mono)">10.0.2.18</td>
+                <td><span class="badge success">성공</span></td>
+              </tr>
+              <tr>
+                <td class="text-sm">09:45:12</td>
+                <td><strong>이관리</strong><br/><span class="text-sm text-muted">Tenant Ops</span></td>
+                <td><span class="badge info">플랜 전환</span></td>
+                <td>MegaTech — 체험판 → Starter</td>
+                <td class="text-sm font-semibold" style="font-family:var(--font-mono)">10.0.1.52</td>
+                <td><span class="badge success">성공</span></td>
+              </tr>
+              <tr>
+                <td class="text-sm">09:20:01</td>
+                <td><strong>최보안</strong><br/><span class="text-sm text-muted">Security Admin</span></td>
+                <td><span class="badge danger">보안 이벤트</span></td>
+                <td>IP 차단 — 203.0.113.42 (brute force 감지)</td>
+                <td class="text-sm font-semibold" style="font-family:var(--font-mono)">10.0.3.10</td>
+                <td><span class="badge success">성공</span></td>
+              </tr>
+              <tr>
+                <td class="text-sm">08:50:44</td>
+                <td><strong>김운영</strong><br/><span class="text-sm text-muted">Super Admin</span></td>
+                <td><span class="badge neutral">로그인</span></td>
+                <td>Platform Console 접속</td>
+                <td class="text-sm font-semibold" style="font-family:var(--font-mono)">10.0.1.45</td>
+                <td><span class="badge success">성공</span></td>
+              </tr>
+              <tr>
+                <td class="text-sm">08:48:22</td>
+                <td><strong>알 수 없음</strong><br/><span class="text-sm text-muted">—</span></td>
+                <td><span class="badge danger">로그인 실패</span></td>
+                <td>잘못된 인증 정보 (5회 시도)</td>
+                <td class="text-sm font-semibold" style="font-family:var(--font-mono)">203.0.113.42</td>
+                <td><span class="badge danger">실패</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <span class="pagination-info">전체 1,847건 중 1-20 표시</span>
+          <div class="pagination-controls">
+            <button class="pagination-btn">‹</button>
+            <button class="pagination-btn active">1</button>
+            <button class="pagination-btn">2</button>
+            <button class="pagination-btn">3</button>
+            <button class="pagination-btn">…</button>
+            <button class="pagination-btn">93</button>
+            <button class="pagination-btn">›</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-grid cols-2 mb-6">
+        <!-- Access Control -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">접근 제어 — 역할 목록</span>
+            <button class="btn btn-primary btn-sm">역할 추가</button>
+          </div>
+          <div class="card-body" style="padding:0">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>역할</th>
+                  <th class="cell-number">인원</th>
+                  <th>권한 수준</th>
+                  <th class="cell-actions"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-semibold">Super Admin</td>
+                  <td class="cell-number">2</td>
+                  <td><span class="badge danger">전체 권한</span></td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">보기</button></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold">Tenant Ops</td>
+                  <td class="cell-number">4</td>
+                  <td><span class="badge warning">테넌트 + 지원</span></td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">보기</button></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold">Billing Admin</td>
+                  <td class="cell-number">2</td>
+                  <td><span class="badge info">빌링 전용</span></td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">보기</button></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold">Security Admin</td>
+                  <td class="cell-number">1</td>
+                  <td><span class="badge danger">보안 + 감사</span></td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">보기</button></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold">Support Agent</td>
+                  <td class="cell-number">6</td>
+                  <td><span class="badge neutral">지원 전용 (읽기)</span></td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">보기</button></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold">Viewer</td>
+                  <td class="cell-number">3</td>
+                  <td><span class="badge neutral">읽기 전용</span></td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">보기</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Security Policies -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">보안 정책</span>
+            <button class="btn btn-secondary btn-sm">편집</button>
+          </div>
+          <div class="card-body">
+            <div class="stat-row">
+              <span class="stat-label">운영자 MFA 필수</span>
+              <label class="toggle"><span class="toggle-track on"></span></label>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">테넌트 관리자 MFA 권장</span>
+              <label class="toggle"><span class="toggle-track on"></span></label>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">세션 타임아웃</span>
+              <span class="stat-value">30분</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">동시 세션 제한</span>
+              <span class="stat-value">2개</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">IP 화이트리스트</span>
+              <label class="toggle"><span class="toggle-track on"></span></label>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">허용 IP 대역</span>
+              <span class="stat-value text-sm" style="font-family:var(--font-mono)">10.0.0.0/8</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">비밀번호 최소 길이</span>
+              <span class="stat-value">12자</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">비밀번호 변경 주기</span>
+              <span class="stat-value">90일</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">로그인 실패 잠금</span>
+              <span class="stat-value">5회 실패 시 15분 잠금</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Auth Session Control -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">활성 인증 세션</span>
+          <button class="btn btn-danger btn-sm">전체 세션 종료</button>
+        </div>
+        <div class="card-body" style="padding:0">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>운영자</th>
+                <th>역할</th>
+                <th>IP 주소</th>
+                <th>접속 시각</th>
+                <th>마지막 활동</th>
+                <th>MFA</th>
+                <th class="cell-actions"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>김운영</strong></td>
+                <td>Super Admin</td>
+                <td class="text-sm" style="font-family:var(--font-mono)">10.0.1.45</td>
+                <td class="text-sm">08:50</td>
+                <td class="text-sm">11:42 (현재)</td>
+                <td><span class="badge success">활성</span></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">종료</button></td>
+              </tr>
+              <tr>
+                <td><strong>이관리</strong></td>
+                <td>Tenant Ops</td>
+                <td class="text-sm" style="font-family:var(--font-mono)">10.0.1.52</td>
+                <td class="text-sm">09:15</td>
+                <td class="text-sm">11:30</td>
+                <td><span class="badge success">활성</span></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">종료</button></td>
+              </tr>
+              <tr>
+                <td><strong>박지원</strong></td>
+                <td>Billing Admin</td>
+                <td class="text-sm" style="font-family:var(--font-mono)">10.0.2.18</td>
+                <td class="text-sm">10:00</td>
+                <td class="text-sm">10:15</td>
+                <td><span class="badge success">활성</span></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">종료</button></td>
+              </tr>
+              <tr>
+                <td><strong>최보안</strong></td>
+                <td>Security Admin</td>
+                <td class="text-sm" style="font-family:var(--font-mono)">10.0.3.10</td>
+                <td class="text-sm">08:30</td>
+                <td class="text-sm">09:20</td>
+                <td><span class="badge success">활성</span></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">종료</button></td>
+              </tr>
+              <tr>
+                <td><strong>정지원</strong></td>
+                <td>Support Agent</td>
+                <td class="text-sm" style="font-family:var(--font-mono)">10.0.4.22</td>
+                <td class="text-sm">09:00</td>
+                <td class="text-sm">11:38</td>
+                <td><span class="badge warning">미설정</span></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">종료</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     PC-701~702  Platform Settings
+     ============================================================ -->
+<div class="section-divider" id="settings">
+  <h2>PC-701~702 Platform Settings</h2>
+  <p>플랫폼 일반 설정, 연동 관리, 기능 플래그</p>
+</div>
+
+<div class="screen-section">
+  <div class="app-shell">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-brand"><span class="brand-dot"></span> FlowHR Platform</div>
+      <div class="header-search">테넌트, 청구서, 티켓 검색…</div>
+      <div class="header-actions">
+        <span class="header-badge">🔔<span class="dot"></span></span>
+        <div class="header-avatar">운</div>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="app-sidebar">
+      <div class="nav-section">
+        <div class="nav-section-label">메인</div>
+        <a class="nav-item" href="#overview"><span class="nav-icon">📊</span> 개요</a>
+        <a class="nav-item" href="#tenants"><span class="nav-icon">🏢</span> 테넌트 관리</a>
+        <a class="nav-item" href="#billing"><span class="nav-icon">💳</span> 플랜 &amp; 빌링</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">운영</div>
+        <a class="nav-item" href="#support"><span class="nav-icon">🎧</span> 지원 운영 <span class="nav-badge">8</span></a>
+        <a class="nav-item" href="#monitoring"><span class="nav-icon">📡</span> 모니터링</a>
+        <a class="nav-item" href="#audit"><span class="nav-icon">🔒</span> 감사 &amp; 보안</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">시스템</div>
+        <a class="nav-item active" href="#settings"><span class="nav-icon">⚙</span> 설정</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      <div class="page-header">
+        <div class="page-breadcrumb"><span>Platform Console</span><span>설정</span></div>
+        <h1 class="page-title">플랫폼 설정</h1>
+        <p class="page-subtitle">일반 설정, 연동 관리 및 기능 플래그</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <span class="tab-item active">일반</span>
+        <span class="tab-item">연동 관리</span>
+        <span class="tab-item">기능 플래그</span>
+      </div>
+
+      <div class="content-grid cols-2-1">
+        <!-- Left: General Settings Form -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">일반 설정</span>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-label">플랫폼 이름</label>
+              <input class="form-input" type="text" value="FlowHR"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">플랫폼 URL</label>
+              <input class="form-input" type="text" value="https://platform.flowhr.io"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">기본 언어</label>
+              <select class="form-select">
+                <option selected>한국어 (ko-KR)</option>
+                <option>English (en-US)</option>
+                <option>日本語 (ja-JP)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">기본 시간대</label>
+              <select class="form-select">
+                <option selected>Asia/Seoul (UTC+9)</option>
+                <option>Asia/Tokyo (UTC+9)</option>
+                <option>America/New_York (UTC-5)</option>
+                <option>Europe/London (UTC+0)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">날짜 형식</label>
+              <select class="form-select">
+                <option selected>YYYY-MM-DD</option>
+                <option>DD/MM/YYYY</option>
+                <option>MM/DD/YYYY</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">지원 이메일</label>
+              <input class="form-input" type="email" value="support@flowhr.io"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">서비스 약관 URL</label>
+              <input class="form-input" type="url" value="https://flowhr.io/terms"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">개인정보 처리방침 URL</label>
+              <input class="form-input" type="url" value="https://flowhr.io/privacy"/>
+            </div>
+            <div class="flex gap-2 mt-4">
+              <button class="btn btn-primary">변경 사항 저장</button>
+              <button class="btn btn-secondary">취소</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Quick Info -->
+        <div style="display:flex;flex-direction:column;gap:var(--sp-5)">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">시스템 정보</span>
+            </div>
+            <div class="card-body">
+              <div class="stat-row">
+                <span class="stat-label">버전</span>
+                <span class="stat-value">v2.4.1</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">배포 일시</span>
+                <span class="stat-value text-sm">2026-03-10 02:00</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">DB 마이그레이션</span>
+                <span class="stat-value">#247</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">업타임</span>
+                <span class="stat-value">99.97%</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">환경</span>
+                <span class="stat-value"><span class="badge success">Production</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">메일 발송 설정</span>
+            </div>
+            <div class="card-body">
+              <div class="stat-row">
+                <span class="stat-label">SMTP 서버</span>
+                <span class="stat-value text-sm" style="font-family:var(--font-mono)">smtp.mailgun.org</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">발신 주소</span>
+                <span class="stat-value text-sm">noreply@flowhr.io</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">상태</span>
+                <span class="stat-value"><span class="badge success">연결됨</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Integration Cards -->
+      <div class="mt-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 style="font-size:var(--text-lg);font-weight:600">연동 관리</h2>
+          <button class="btn btn-primary btn-sm">연동 추가</button>
+        </div>
+        <div class="content-grid cols-3">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">SSO — Azure AD</div>
+                <div class="card-subtitle">SAML 2.0</div>
+              </div>
+              <span class="badge success">연결됨</span>
+            </div>
+            <div class="card-body">
+              <div class="stat-row">
+                <span class="stat-label">Entity ID</span>
+                <span class="stat-value text-sm truncate" style="max-width:180px;font-family:var(--font-mono)">flowhr-platform</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">인증서 만료</span>
+                <span class="stat-value text-sm">2026-09-15</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">마지막 인증</span>
+                <span class="stat-value text-sm">11:42 오늘</span>
+              </div>
+            </div>
+            <div class="card-footer flex items-center justify-between">
+              <span>활성 테넌트 42개 사용</span>
+              <button class="btn btn-ghost btn-sm">설정</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">SSO — Google Workspace</div>
+                <div class="card-subtitle">OIDC</div>
+              </div>
+              <span class="badge success">연결됨</span>
+            </div>
+            <div class="card-body">
+              <div class="stat-row">
+                <span class="stat-label">Client ID</span>
+                <span class="stat-value text-sm truncate" style="max-width:180px;font-family:var(--font-mono)">flowhr-goog-***</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Secret 만료</span>
+                <span class="stat-value text-sm">2026-12-01</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">마지막 인증</span>
+                <span class="stat-value text-sm">10:58 오늘</span>
+              </div>
+            </div>
+            <div class="card-footer flex items-center justify-between">
+              <span>활성 테넌트 85개 사용</span>
+              <button class="btn btn-ghost btn-sm">설정</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Webhook 엔드포인트</div>
+                <div class="card-subtitle">이벤트 전송</div>
+              </div>
+              <span class="badge success">활성</span>
+            </div>
+            <div class="card-body">
+              <div class="stat-row">
+                <span class="stat-label">등록 엔드포인트</span>
+                <span class="stat-value">3개</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">전송 성공률</span>
+                <span class="stat-value">98.2%</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">오늘 전송</span>
+                <span class="stat-value">1,240건</span>
+              </div>
+            </div>
+            <div class="card-footer flex items-center justify-between">
+              <span>마지막 실패: 09:12</span>
+              <button class="btn btn-ghost btn-sm">설정</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- API Keys -->
+      <div class="mt-6">
+        <div class="card mb-6">
+          <div class="card-header">
+            <span class="card-title">API 키 관리</span>
+            <button class="btn btn-primary btn-sm">키 생성</button>
+          </div>
+          <div class="card-body" style="padding:0">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>키 이름</th>
+                  <th>키 프리픽스</th>
+                  <th>권한</th>
+                  <th>생성일</th>
+                  <th>만료일</th>
+                  <th>상태</th>
+                  <th class="cell-actions"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-semibold">Production API</td>
+                  <td style="font-family:var(--font-mono)" class="text-sm">fhr_prod_k8s…</td>
+                  <td><span class="badge info">전체</span></td>
+                  <td class="text-sm">2025-12-01</td>
+                  <td class="text-sm">2026-12-01</td>
+                  <td><span class="badge success">활성</span></td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">관리</button></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold">Webhook Signing</td>
+                  <td style="font-family:var(--font-mono)" class="text-sm">fhr_whk_sig…</td>
+                  <td><span class="badge neutral">Webhook</span></td>
+                  <td class="text-sm">2026-01-15</td>
+                  <td class="text-sm">2027-01-15</td>
+                  <td><span class="badge success">활성</span></td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">관리</button></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold">Analytics Read-only</td>
+                  <td style="font-family:var(--font-mono)" class="text-sm">fhr_ana_ro…</td>
+                  <td><span class="badge neutral">읽기 전용</span></td>
+                  <td class="text-sm">2026-02-10</td>
+                  <td class="text-sm text-warning">2026-04-10</td>
+                  <td><span class="badge warning">만료 임박</span></td>
+                  <td class="cell-actions"><button class="btn btn-ghost btn-sm">관리</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Flags -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">기능 플래그</span>
+          <button class="btn btn-secondary btn-sm">플래그 추가</button>
+        </div>
+        <div class="card-body" style="padding:0">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>플래그</th>
+                <th>설명</th>
+                <th>대상</th>
+                <th>상태</th>
+                <th class="cell-actions"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-semibold" style="font-family:var(--font-mono)">payroll_v2</td>
+                <td>급여 모듈 v2 (신규 계산 엔진)</td>
+                <td><span class="badge info">Enterprise만</span></td>
+                <td><label class="toggle"><span class="toggle-track on"></span></label></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+              </tr>
+              <tr>
+                <td class="font-semibold" style="font-family:var(--font-mono)">ai_assistant</td>
+                <td>AI 기반 HR 어시스턴트 (베타)</td>
+                <td><span class="badge warning">베타 테스터</span></td>
+                <td><label class="toggle"><span class="toggle-track on"></span></label></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+              </tr>
+              <tr>
+                <td class="font-semibold" style="font-family:var(--font-mono)">advanced_analytics</td>
+                <td>고급 분석 대시보드</td>
+                <td><span class="badge info">Growth 이상</span></td>
+                <td><label class="toggle"><span class="toggle-track on"></span></label></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+              </tr>
+              <tr>
+                <td class="font-semibold" style="font-family:var(--font-mono)">mobile_approval</td>
+                <td>모바일 결재 (PWA)</td>
+                <td><span class="badge success">전체</span></td>
+                <td><label class="toggle"><span class="toggle-track on"></span></label></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+              </tr>
+              <tr>
+                <td class="font-semibold" style="font-family:var(--font-mono)">dark_mode</td>
+                <td>다크 모드 UI</td>
+                <td><span class="badge neutral">비활성</span></td>
+                <td><label class="toggle"><span class="toggle-track"></span></label></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+              </tr>
+              <tr>
+                <td class="font-semibold" style="font-family:var(--font-mono)">bulk_import_v2</td>
+                <td>대량 데이터 가져오기 v2</td>
+                <td><span class="badge neutral">비활성</span></td>
+                <td><label class="toggle"><span class="toggle-track"></span></label></td>
+                <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<footer style="text-align:center; padding:40px 0; color:var(--text-tertiary); font-size:var(--text-sm);">
+  FlowHR Platform Console — 7 Screens / Production UI Wireframe
+</footer>
+
+</body>
+</html>

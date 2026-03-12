@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>FlowHR — Production UI Wireframes</title>
+  <link rel="stylesheet" href="css/design-system.css"/>
+</head>
+<body>
+  <div class="index-shell">
+    <header class="index-hero">
+      <h1>Flow<span class="hero-accent">HR</span> UI</h1>
+      <p>HR SaaS 프로덕션 수준 UI 와이어프레임. 3개 권한 레이어, 전체 모듈을 포함합니다.</p>
+      <p style="margin-top: 16px;"><a href="landing.html" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; background:var(--brand-primary); color:white; border-radius:var(--radius-full); font-weight:600; text-decoration:none;">제품 플로우 시작 (Landing → Login → Dashboard)</a></p>
+    </header>
+
+    <!-- Platform Console -->
+    <section class="layer-section">
+      <div class="layer-header">
+        <div class="layer-icon platform">⚙</div>
+        <div>
+          <h2>Platform Console</h2>
+          <p>SaaS 운영 조직 전용 — 테넌트, 과금, 지원, 보안, 감사</p>
+        </div>
+      </div>
+      <div class="screen-links">
+        <a class="screen-link" href="platform/console.html">
+          <div><span class="link-id">PC-001</span><div class="link-title">Overview Dashboard</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="platform/console.html#tenants">
+          <div><span class="link-id">PC-101~104</span><div class="link-title">Tenant Operations</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="platform/console.html#billing">
+          <div><span class="link-id">PC-201~205</span><div class="link-title">Plans &amp; Billing</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="platform/console.html#support">
+          <div><span class="link-id">PC-401~403</span><div class="link-title">Support Ops</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="platform/console.html#monitoring">
+          <div><span class="link-id">PC-501~502</span><div class="link-title">Monitoring</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="platform/console.html#audit">
+          <div><span class="link-id">PC-601~604</span><div class="link-title">Audit &amp; Security</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="platform/console.html#settings">
+          <div><span class="link-id">PC-701~702</span><div class="link-title">Platform Settings</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Tenant Admin -->
+    <section class="layer-section">
+      <div class="layer-header">
+        <div class="layer-icon admin">🏢</div>
+        <div>
+          <h2>Tenant Admin</h2>
+          <p>고객사 관리자 전용 — 인사, 근태, 휴가, 결재, 문서, 급여, 평가, 채용, 리포트, 설정</p>
+        </div>
+      </div>
+      <div class="screen-links">
+        <a class="screen-link" href="admin/home.html">
+          <div><span class="link-id">TA-001~002</span><div class="link-title">Admin Home Dashboard</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="admin/people.html">
+          <div><span class="link-id">TA-101~105</span><div class="link-title">People</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="admin/attendance.html">
+          <div><span class="link-id">TA-201~205</span><div class="link-title">Attendance</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="admin/leave.html">
+          <div><span class="link-id">TA-301~304</span><div class="link-title">Leave</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="admin/workflow.html">
+          <div><span class="link-id">TA-401~404</span><div class="link-title">Workflow &amp; Approval</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="admin/documents.html">
+          <div><span class="link-id">TA-501~504</span><div class="link-title">Documents</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="admin/payroll.html">
+          <div><span class="link-id">TA-601~604</span><div class="link-title">Payroll</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="admin/performance.html">
+          <div><span class="link-id">TA-701~704</span><div class="link-title">Performance</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="admin/recruiting.html">
+          <div><span class="link-id">TA-801~805</span><div class="link-title">Recruiting</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="admin/reports.html">
+          <div><span class="link-id">TA-901~904</span><div class="link-title">Reports &amp; Insights</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="admin/settings.html">
+          <div><span class="link-id">TA-1001~1005</span><div class="link-title">Settings</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Tenant Employee -->
+    <section class="layer-section">
+      <div class="layer-header">
+        <div class="layer-icon employee">👤</div>
+        <div>
+          <h2>Tenant Employee</h2>
+          <p>직원 셀프서비스 — 홈, 일정, 요청, 인박스, 문서, 내 정보</p>
+        </div>
+      </div>
+      <div class="screen-links">
+        <a class="screen-link" href="employee/home.html">
+          <div><span class="link-id">TE-001~002</span><div class="link-title">Employee Home</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="employee/schedule.html">
+          <div><span class="link-id">TE-101~103</span><div class="link-title">Schedule &amp; Attendance</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="employee/requests.html">
+          <div><span class="link-id">TE-201~205</span><div class="link-title">Requests</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="employee/inbox.html">
+          <div><span class="link-id">TE-301~302</span><div class="link-title">Inbox &amp; Notifications</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="employee/documents.html">
+          <div><span class="link-id">TE-401~403</span><div class="link-title">Documents &amp; Signature</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a class="screen-link" href="employee/profile.html">
+          <div><span class="link-id">TE-501~503</span><div class="link-title">My Profile</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <footer style="text-align:center; padding: 40px 0; color: var(--text-tertiary); font-size: var(--text-sm);">
+      FlowHR Production UI Wireframes — 3 Authority Layers / 25+ Modules / All Screens
+    </footer>
+  </div>
+</body>
+</html>

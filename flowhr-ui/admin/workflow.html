@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowHR - Workflow</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand"><span class="brand-dot"></span> FlowHR</div>
+    <div class="header-search">검색 (Ctrl+K)</div>
+    <div class="header-actions">
+      <span class="header-badge">&#x1F514;<span class="dot"></span></span>
+      <span class="header-badge">&#x2753;</span>
+      <div class="header-avatar">관</div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar">
+    <div class="nav-section">
+      <div class="nav-section-label">Main</div>
+      <a href="home.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span> Home</a>
+      <a href="people.html" class="nav-item"><span class="nav-icon">&#x1F465;</span> People</a>
+      <a href="attendance.html" class="nav-item"><span class="nav-icon">&#x23F0;</span> Attendance</a>
+      <a href="leave.html" class="nav-item"><span class="nav-icon">&#x1F334;</span> Leave</a>
+      <a href="workflow.html" class="nav-item active"><span class="nav-icon">&#x1F504;</span> Workflow <span class="nav-badge">4</span></a>
+      <a href="documents.html" class="nav-item"><span class="nav-icon">&#x1F4C4;</span> Documents</a>
+      <a href="payroll.html" class="nav-item"><span class="nav-icon">&#x1F4B0;</span> Payroll</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Talent</div>
+      <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span> Performance</a>
+      <a href="recruiting.html" class="nav-item"><span class="nav-icon">&#x1F4CB;</span> Recruiting</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">System</div>
+      <a href="reports.html" class="nav-item"><span class="nav-icon">&#x1F4C8;</span> Reports</a>
+      <a href="settings.html" class="nav-item"><span class="nav-icon">&#x2699;</span> Settings</a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="app-main">
+
+    <div class="page-header">
+      <div class="page-breadcrumb"><span>Home</span> <span>Workflow</span></div>
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="page-title">결재 관리</h1>
+          <p class="page-subtitle">승인 요청 처리, 워크플로 설계, 결재 이력 관리</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-secondary">&#x1F4CB; 워크플로 목록</button>
+          <button class="btn btn-primary">&#x2795; 새 워크플로</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-401: Approval Inbox -->
+    <div class="kpi-grid cols-4 mb-6">
+      <div class="kpi-card emphasis">
+        <div class="kpi-eyebrow">승인 대기</div>
+        <div class="kpi-value">17</div>
+        <div class="kpi-label">건</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">SLA 초과</div>
+        <div class="kpi-value">3</div>
+        <div class="kpi-label">건 (48h+)</div>
+        <div class="kpi-delta up">&#x25B2; 1건</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">상향 결재</div>
+        <div class="kpi-value">4</div>
+        <div class="kpi-label">건 에스컬레이션</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">이번 주 완료</div>
+        <div class="kpi-value">28</div>
+        <div class="kpi-label">건 처리 완료</div>
+      </div>
+    </div>
+
+    <div class="content-grid cols-2-1 mb-6">
+      <!-- Inbox -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">승인 대기열</div>
+          <div class="flex gap-2">
+            <span class="filter-chip active">전체</span>
+            <span class="filter-chip">긴급</span>
+            <span class="filter-chip">SLA 초과</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="queue-list">
+            <div class="queue-item">
+              <div class="q-priority critical"></div>
+              <div class="q-content">
+                <div class="q-title">초과근무 사전 승인 &mdash; 최도윤</div>
+                <div class="q-meta">Engineering &middot; 주 52h 초과 예정 &middot; SLA 2h 남음</div>
+              </div>
+              <div class="q-action"><button class="btn btn-primary btn-sm">검토</button></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority high"></div>
+              <div class="q-content">
+                <div class="q-title">연차 신청 &mdash; 김태원</div>
+                <div class="q-meta">Engineering &middot; 3/17~18 (2일) &middot; 대기 3일</div>
+              </div>
+              <div class="q-action"><button class="btn btn-secondary btn-sm">검토</button></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority high"></div>
+              <div class="q-content">
+                <div class="q-title">경비 정산 &mdash; 이수현</div>
+                <div class="q-meta">Sales &middot; &#x20A9;1,240,000 &middot; 출장 경비</div>
+              </div>
+              <div class="q-action"><button class="btn btn-secondary btn-sm">검토</button></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority medium"></div>
+              <div class="q-content">
+                <div class="q-title">연봉 변경 통지 &mdash; 박유리</div>
+                <div class="q-meta">HR &middot; 승진에 따른 연봉 조정 &middot; 인사팀장 승인 필요</div>
+              </div>
+              <div class="q-action"><button class="btn btn-secondary btn-sm">검토</button></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority low"></div>
+              <div class="q-content">
+                <div class="q-title">교육 수강 신청 &mdash; 강지민 외 2명</div>
+                <div class="q-meta">Engineering &middot; AWS 자격증 과정 &middot; 비용 승인</div>
+              </div>
+              <div class="q-action"><button class="btn btn-ghost btn-sm">검토</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">처리 현황</div>
+        </div>
+        <div class="card-body">
+          <div class="stat-row"><span class="stat-label">평균 처리 시간</span><span class="stat-value">1.4일</span></div>
+          <div class="stat-row"><span class="stat-label">오늘 처리</span><span class="stat-value">5건</span></div>
+          <div class="stat-row"><span class="stat-label">자동 승인</span><span class="stat-value">12건</span></div>
+          <div class="stat-row"><span class="stat-label">반려율</span><span class="stat-value">8.2%</span></div>
+          <div class="stat-row"><span class="stat-label">가장 느린 유형</span><span class="stat-value"><span class="badge warning">경비 정산</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-402: Approval Detail Drawer -->
+    <div class="section-divider">
+      <h2>TA-402: 승인 상세</h2>
+      <p>요청 정보, 결재선, 액션 버튼</p>
+    </div>
+
+    <div class="drawer-preview mb-6">
+      <div class="drawer-title">승인 상세 &mdash; 초과근무 사전 승인</div>
+      <div class="content-grid cols-2">
+        <div>
+          <div class="stat-row"><span class="stat-label">요청자</span><span class="stat-value">최도윤 (Engineering)</span></div>
+          <div class="stat-row"><span class="stat-label">유형</span><span class="stat-value">초과근무 사전 승인</span></div>
+          <div class="stat-row"><span class="stat-label">사유</span><span class="stat-value">긴급 서버 마이그레이션 작업</span></div>
+          <div class="stat-row"><span class="stat-label">예정 시간</span><span class="stat-value">3/13 22:00 ~ 3/14 02:00 (4h)</span></div>
+          <div class="stat-row"><span class="stat-label">현재 주간 시간</span><span class="stat-value">48h / 52h 상한</span></div>
+          <div class="stat-row"><span class="stat-label">신청일</span><span class="stat-value">2026.03.12 10:30</span></div>
+        </div>
+        <div>
+          <div class="font-semibold mb-4">결재선</div>
+          <div class="steps" style="flex-direction:column; gap:0;">
+            <div class="step done">
+              <span class="step-num">1</span> 본인 신청 (최도윤) <span class="badge success" style="margin-left:auto;">완료</span>
+            </div>
+            <div class="step done">
+              <span class="step-num">2</span> 팀장 승인 (강태호) <span class="badge success" style="margin-left:auto;">승인</span>
+            </div>
+            <div class="step active">
+              <span class="step-num">3</span> HR 검토 (박유리) <span class="badge warning" style="margin-left:auto;">진행 중</span>
+            </div>
+            <div class="step">
+              <span class="step-num">4</span> 최종 승인 (인사팀장)
+            </div>
+          </div>
+          <div class="flex gap-2 mt-4">
+            <button class="btn btn-primary">승인</button>
+            <button class="btn btn-danger">반려</button>
+            <button class="btn btn-secondary">보류</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-403: Workflow Builder -->
+    <div class="section-divider">
+      <h2>TA-403: 워크플로 빌더</h2>
+      <p>결재 프로세스 설계 도구</p>
+    </div>
+
+    <div class="card mb-6">
+      <div class="card-header">
+        <div class="card-title">워크플로: 초과근무 사전 승인</div>
+        <div class="flex gap-2">
+          <button class="btn btn-secondary btn-sm">미리보기</button>
+          <button class="btn btn-primary btn-sm">저장</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="steps">
+          <div class="step done">
+            <span class="step-num">T</span>
+            <div>
+              <div class="font-semibold">트리거</div>
+              <div class="text-sm text-muted">초과근무 신청 시</div>
+            </div>
+          </div>
+          <div class="step done">
+            <span class="step-num">C</span>
+            <div>
+              <div class="font-semibold">조건 분기</div>
+              <div class="text-sm text-muted">주 40h 초과 여부</div>
+            </div>
+          </div>
+          <div class="step active">
+            <span class="step-num">A</span>
+            <div>
+              <div class="font-semibold">1차 승인</div>
+              <div class="text-sm text-muted">직속 팀장</div>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">B</span>
+            <div>
+              <div class="font-semibold">2차 승인</div>
+              <div class="text-sm text-muted">HR 담당자</div>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">N</span>
+            <div>
+              <div class="font-semibold">알림</div>
+              <div class="text-sm text-muted">요청자 + 팀장 이메일</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:var(--sp-4); padding:var(--sp-4); background:var(--surface-secondary); border-radius:var(--radius-md);">
+          <div class="text-sm text-muted mb-2">조건 분기 상세</div>
+          <div class="flex gap-4">
+            <div class="chip">IF 주간 근무 &le; 40h &rarr; 자동 승인</div>
+            <div class="chip">IF 40h &lt; 주간 근무 &le; 48h &rarr; 팀장 승인</div>
+            <div class="chip">IF 48h &lt; 주간 근무 &rarr; 팀장 + HR 승인</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-404: History -->
+    <div class="section-divider">
+      <h2>TA-404: 결재 이력</h2>
+      <p>완료된 결재 내역</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">결재 이력</div>
+        <div class="flex gap-2">
+          <input type="text" class="filter-search" placeholder="검색...">
+          <button class="btn btn-secondary btn-sm">필터</button>
+        </div>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>요청</th>
+              <th>요청자</th>
+              <th>유형</th>
+              <th>신청일</th>
+              <th>완료일</th>
+              <th>결과</th>
+              <th>처리 시간</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold">연차 신청</td>
+              <td>박서준</td>
+              <td>휴가</td>
+              <td>2026.03.07</td>
+              <td>2026.03.08</td>
+              <td><span class="badge success">승인</span></td>
+              <td>1일</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">경비 정산</td>
+              <td>장유미</td>
+              <td>경비</td>
+              <td>2026.03.05</td>
+              <td>2026.03.09</td>
+              <td><span class="badge success">승인</span></td>
+              <td>4일</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">재택 근무</td>
+              <td>윤지혜</td>
+              <td>근태</td>
+              <td>2026.03.04</td>
+              <td>2026.03.04</td>
+              <td><span class="badge success">자동 승인</span></td>
+              <td>0일</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">교육비 신청</td>
+              <td>김민지</td>
+              <td>경비</td>
+              <td>2026.03.01</td>
+              <td>2026.03.06</td>
+              <td><span class="badge danger">반려</span></td>
+              <td>5일</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">초과근무</td>
+              <td>오현석</td>
+              <td>근태</td>
+              <td>2026.02.28</td>
+              <td>2026.03.01</td>
+              <td><span class="badge success">승인</span></td>
+              <td>1일</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <span class="pagination-info">총 287건 중 1 &ndash; 5 표시</span>
+        <div class="pagination-controls">
+          <button class="pagination-btn">&laquo;</button>
+          <button class="pagination-btn active">1</button>
+          <button class="pagination-btn">2</button>
+          <button class="pagination-btn">3</button>
+          <button class="pagination-btn">&raquo;</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

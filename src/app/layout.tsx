@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "FlowHR V2",
-  description: "FlowHR V2 core implementation for approved Office, Retail, and Platform packs.",
+  title: "FlowHR",
+  description:
+    "FlowHR UI rebuilt on Next.js, TypeScript, Supabase, Prisma, and Vercel-ready structure.",
 };
 
 export default function RootLayout({

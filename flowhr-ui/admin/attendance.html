@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowHR - Attendance</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand"><span class="brand-dot"></span> FlowHR</div>
+    <div class="header-search">검색 (Ctrl+K)</div>
+    <div class="header-actions">
+      <span class="header-badge">&#x1F514;<span class="dot"></span></span>
+      <span class="header-badge">&#x2753;</span>
+      <div class="header-avatar">관</div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar">
+    <div class="nav-section">
+      <div class="nav-section-label">Main</div>
+      <a href="home.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span> Home</a>
+      <a href="people.html" class="nav-item"><span class="nav-icon">&#x1F465;</span> People</a>
+      <a href="attendance.html" class="nav-item active"><span class="nav-icon">&#x23F0;</span> Attendance <span class="nav-badge">9</span></a>
+      <a href="leave.html" class="nav-item"><span class="nav-icon">&#x1F334;</span> Leave</a>
+      <a href="workflow.html" class="nav-item"><span class="nav-icon">&#x1F504;</span> Workflow</a>
+      <a href="documents.html" class="nav-item"><span class="nav-icon">&#x1F4C4;</span> Documents</a>
+      <a href="payroll.html" class="nav-item"><span class="nav-icon">&#x1F4B0;</span> Payroll</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Talent</div>
+      <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span> Performance</a>
+      <a href="recruiting.html" class="nav-item"><span class="nav-icon">&#x1F4CB;</span> Recruiting</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">System</div>
+      <a href="reports.html" class="nav-item"><span class="nav-icon">&#x1F4C8;</span> Reports</a>
+      <a href="settings.html" class="nav-item"><span class="nav-icon">&#x2699;</span> Settings</a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="app-main">
+
+    <div class="page-header">
+      <div class="page-breadcrumb"><span>Home</span> <span>Attendance</span></div>
+      <h1 class="page-title">근태 관리</h1>
+      <p class="page-subtitle">실시간 출퇴근 현황과 근태 이상 모니터링</p>
+    </div>
+
+    <!-- TA-201: Tabs -->
+    <div class="tabs">
+      <span class="tab-item active">대시보드</span>
+      <span class="tab-item">근무 편성표</span>
+      <span class="tab-item">근태 기록</span>
+      <span class="tab-item">예외 관리</span>
+      <span class="tab-item">마감</span>
+    </div>
+
+    <!-- TA-201: Dashboard KPIs -->
+    <div class="kpi-grid cols-4 mb-6">
+      <div class="kpi-card emphasis">
+        <div class="kpi-eyebrow">출근 완료</div>
+        <div class="kpi-value">94%</div>
+        <div class="kpi-label">1,127 / 1,198명</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">진행 중</div>
+        <div class="kpi-value">6%</div>
+        <div class="kpi-label">72명 근무 중</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">미출근</div>
+        <div class="kpi-value">0%</div>
+        <div class="kpi-label">전원 출근 완료</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">예외 건수</div>
+        <div class="kpi-value">14</div>
+        <div class="kpi-label">지각 8 &middot; 누락 4 &middot; 기타 2</div>
+        <div class="kpi-delta up">&#x25B2; 3건 전일 대비</div>
+      </div>
+    </div>
+
+    <!-- Department Breakdown -->
+    <div class="content-grid cols-2-1 mb-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">부서별 출근율</div>
+          <span class="text-sm text-muted">오늘 09:30 기준</span>
+        </div>
+        <div class="card-body">
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label">HR</span>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+              <span class="bar-value">100%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Product</span>
+              <div class="bar-track"><div class="bar-fill" style="width:96%"></div></div>
+              <span class="bar-value">96%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Engineering</span>
+              <div class="bar-track"><div class="bar-fill" style="width:93%"></div></div>
+              <span class="bar-value">93%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Sales</span>
+              <div class="bar-track"><div class="bar-fill warning" style="width:88%"></div></div>
+              <span class="bar-value">88%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Operations</span>
+              <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+              <span class="bar-value">95%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">주간 요약</div>
+        </div>
+        <div class="card-body">
+          <div class="stat-row"><span class="stat-label">평균 출근 시각</span><span class="stat-value">08:52</span></div>
+          <div class="stat-row"><span class="stat-label">평균 퇴근 시각</span><span class="stat-value">18:24</span></div>
+          <div class="stat-row"><span class="stat-label">평균 근무 시간</span><span class="stat-value">8.4h</span></div>
+          <div class="stat-row"><span class="stat-label">초과근무 발생</span><span class="stat-value"><span class="badge warning">23건</span></span></div>
+          <div class="stat-row"><span class="stat-label">52h 상한 임박</span><span class="stat-value"><span class="badge danger">6명</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-202: Shift Board -->
+    <div class="section-divider">
+      <h2>TA-202: 근무 편성표</h2>
+      <p>이번 주 팀별 근무 편성 현황</p>
+    </div>
+
+    <div class="card mb-6">
+      <div class="card-header">
+        <div class="card-title">주간 편성표</div>
+        <div class="flex gap-2">
+          <button class="btn btn-ghost btn-sm">&larr; 이전 주</button>
+          <span class="font-semibold">3월 9일 &ndash; 3월 13일</span>
+          <button class="btn btn-ghost btn-sm">다음 주 &rarr;</button>
+        </div>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>팀 / 이름</th>
+              <th>월 (3/9)</th>
+              <th>화 (3/10)</th>
+              <th>수 (3/11)</th>
+              <th>목 (3/12)</th>
+              <th>금 (3/13)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold" colspan="6" style="background:var(--surface-secondary);">Engineering</td>
+            </tr>
+            <tr>
+              <td>최도윤</td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge warning">야간</span></td>
+              <td><span class="badge warning">야간</span></td>
+              <td><span class="badge warning">야간</span></td>
+              <td><span class="badge neutral">OFF</span></td>
+            </tr>
+            <tr>
+              <td>강태호</td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge info">주간</span></td>
+            </tr>
+            <tr>
+              <td>강지민</td>
+              <td><span class="badge success">교육</span></td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge info">주간</span></td>
+            </tr>
+            <tr>
+              <td class="font-semibold" colspan="6" style="background:var(--surface-secondary);">Sales</td>
+            </tr>
+            <tr>
+              <td>이수현</td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge neutral">휴가</span></td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge info">주간</span></td>
+            </tr>
+            <tr>
+              <td>오현석</td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge info">주간</span></td>
+              <td><span class="badge neutral">반차</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TA-203: Records Table -->
+    <div class="section-divider">
+      <h2>TA-203: 근태 기록</h2>
+      <p>개인별 출퇴근 기록 상세</p>
+    </div>
+
+    <div class="card mb-6">
+      <div class="card-header">
+        <div class="card-title">근태 기록</div>
+        <div class="flex gap-2">
+          <input type="text" class="filter-search" placeholder="이름 검색...">
+          <button class="btn btn-secondary btn-sm">필터</button>
+          <button class="btn btn-secondary btn-sm">&#x1F4E5; 내보내기</button>
+        </div>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>이름</th>
+              <th>날짜</th>
+              <th>출근</th>
+              <th>퇴근</th>
+              <th class="cell-number">총 시간</th>
+              <th>상태</th>
+              <th class="cell-actions">액션</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>김민지</td>
+              <td>2026.03.12</td>
+              <td>08:48</td>
+              <td>18:12</td>
+              <td class="cell-number">8h 24m</td>
+              <td><span class="badge success">정상</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">수정</button></td>
+            </tr>
+            <tr>
+              <td>최도윤</td>
+              <td>2026.03.12</td>
+              <td>21:58</td>
+              <td>&mdash;</td>
+              <td class="cell-number">진행 중</td>
+              <td><span class="badge warning">야간 근무</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">수정</button></td>
+            </tr>
+            <tr>
+              <td>이수현</td>
+              <td>2026.03.12</td>
+              <td>09:22</td>
+              <td>18:45</td>
+              <td class="cell-number">8h 23m</td>
+              <td><span class="badge warning">지각</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">수정</button></td>
+            </tr>
+            <tr>
+              <td>박유리</td>
+              <td>2026.03.12</td>
+              <td>08:55</td>
+              <td>18:30</td>
+              <td class="cell-number">8h 35m</td>
+              <td><span class="badge success">정상</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">수정</button></td>
+            </tr>
+            <tr>
+              <td>정현우</td>
+              <td>2026.03.12</td>
+              <td>09:01</td>
+              <td>&mdash;</td>
+              <td class="cell-number">진행 중</td>
+              <td><span class="badge danger">체크아웃 누락</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">수정</button></td>
+            </tr>
+            <tr>
+              <td>오현석</td>
+              <td>2026.03.12</td>
+              <td>08:30</td>
+              <td>19:48</td>
+              <td class="cell-number">10h 18m</td>
+              <td><span class="badge warning">초과근무</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">수정</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <span class="pagination-info">총 1,198건 중 1 &ndash; 6 표시</span>
+        <div class="pagination-controls">
+          <button class="pagination-btn">&laquo;</button>
+          <button class="pagination-btn active">1</button>
+          <button class="pagination-btn">2</button>
+          <button class="pagination-btn">3</button>
+          <button class="pagination-btn">&raquo;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-204: Exceptions View -->
+    <div class="section-divider">
+      <h2>TA-204: 예외 관리</h2>
+      <p>유형별 근태 예외 사항</p>
+    </div>
+
+    <div class="content-grid cols-2 mb-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">지각</div>
+          <span class="badge warning">8건</span>
+        </div>
+        <div class="card-body">
+          <div class="queue-list">
+            <div class="queue-item">
+              <div class="q-priority high"></div>
+              <div class="q-content"><div class="q-title">이수현</div><div class="q-meta">Sales &middot; 09:22 출근 (22분 지각)</div></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority medium"></div>
+              <div class="q-content"><div class="q-title">김태원</div><div class="q-meta">Engineering &middot; 09:15 출근 (15분 지각)</div></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority medium"></div>
+              <div class="q-content"><div class="q-title">장유미 외 5명</div><div class="q-meta">10분 이내 지각 &middot; 자동 경고 발송 완료</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">체크아웃 누락</div>
+          <span class="badge danger">4건</span>
+        </div>
+        <div class="card-body">
+          <div class="queue-list">
+            <div class="queue-item">
+              <div class="q-priority critical"></div>
+              <div class="q-content"><div class="q-title">정현우</div><div class="q-meta">Engineering &middot; 어제 퇴근 미기록</div></div>
+              <div class="q-action"><button class="btn btn-primary btn-sm">보정</button></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority high"></div>
+              <div class="q-content"><div class="q-title">윤지혜 외 2명</div><div class="q-meta">Sales &middot; 어제 퇴근 미기록</div></div>
+              <div class="q-action"><button class="btn btn-secondary btn-sm">일괄 보정</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">초과근무</div>
+          <span class="badge warning">6건</span>
+        </div>
+        <div class="card-body">
+          <div class="queue-list">
+            <div class="queue-item">
+              <div class="q-priority critical"></div>
+              <div class="q-content"><div class="q-title">최도윤</div><div class="q-meta">Engineering &middot; 주 48h / 상한 52h</div></div>
+              <div class="q-action"><span class="badge danger">임박</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority high"></div>
+              <div class="q-content"><div class="q-title">오현석 외 4명</div><div class="q-meta">주 40h 초과 &middot; 모니터링 중</div></div>
+              <div class="q-action"><span class="badge warning">주의</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">휴게 시간 위반</div>
+          <span class="badge danger">2건</span>
+        </div>
+        <div class="card-body">
+          <div class="queue-list">
+            <div class="queue-item">
+              <div class="q-priority critical"></div>
+              <div class="q-content"><div class="q-title">최도윤</div><div class="q-meta">6시간 연속 근무 &middot; 휴게 미사용</div></div>
+              <div class="q-action"><button class="btn btn-danger btn-sm">알림</button></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority critical"></div>
+              <div class="q-content"><div class="q-title">김태원</div><div class="q-meta">6시간 연속 근무 &middot; 휴게 미사용</div></div>
+              <div class="q-action"><button class="btn btn-danger btn-sm">알림</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-205: Closing Section -->
+    <div class="section-divider">
+      <h2>TA-205: 근태 마감</h2>
+      <p>월간 근태 마감 체크리스트</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">2026년 3월 근태 마감</div>
+        <span class="badge info">진행 중</span>
+      </div>
+      <div class="card-body">
+        <div class="queue-list">
+          <div class="queue-item">
+            <div class="q-priority low"></div>
+            <div class="q-content">
+              <div class="q-title">체크아웃 누락 보정 완료</div>
+              <div class="q-meta">전월 누락 건 모두 보정됨</div>
+            </div>
+            <div class="q-action"><span class="badge success">완료</span></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority low"></div>
+            <div class="q-content">
+              <div class="q-title">초과근무 수당 계산 검증</div>
+              <div class="q-meta">급여팀 검토 대기 중</div>
+            </div>
+            <div class="q-action"><span class="badge warning">대기</span></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority medium"></div>
+            <div class="q-content">
+              <div class="q-title">부서장 승인</div>
+              <div class="q-meta">4개 부서 중 2개 승인 완료</div>
+            </div>
+            <div class="q-action"><span class="badge info">2/4</span></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority high"></div>
+            <div class="q-content">
+              <div class="q-title">최종 마감 확정</div>
+              <div class="q-meta">마감일: 2026.03.25</div>
+            </div>
+            <div class="q-action"><span class="badge neutral">미시작</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

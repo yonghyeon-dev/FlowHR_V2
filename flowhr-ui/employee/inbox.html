@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>FlowHR — 인박스</title>
+  <link rel="stylesheet" href="../css/design-system.css"/>
+</head>
+<body>
+
+<!-- ============================================================
+     TE-301~302: Inbox & Notifications
+     ============================================================ -->
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand">
+      <span class="brand-dot"></span>FlowHR
+    </div>
+    <div class="header-search">검색 (Ctrl+K)</div>
+    <div class="header-actions">
+      <span class="header-badge">🔔<span class="dot"></span></span>
+      <div class="header-avatar">민</div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar">
+    <div class="nav-section">
+      <a class="nav-item" href="home.html">
+        <span class="nav-icon">🏠</span> 홈
+      </a>
+      <a class="nav-item" href="schedule.html">
+        <span class="nav-icon">📅</span> 일정
+      </a>
+      <a class="nav-item" href="requests.html">
+        <span class="nav-icon">📋</span> 요청
+        <span class="nav-badge">2</span>
+      </a>
+      <a class="nav-item active" href="inbox.html">
+        <span class="nav-icon">📥</span> 인박스
+        <span class="nav-badge">3</span>
+      </a>
+      <a class="nav-item" href="documents.html">
+        <span class="nav-icon">📄</span> 문서
+        <span class="nav-badge">1</span>
+      </a>
+      <a class="nav-item" href="profile.html">
+        <span class="nav-icon">👤</span> 내 정보
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="app-main">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="page-breadcrumb">
+        <span>홈</span>
+        <span>인박스</span>
+      </div>
+      <div class="flex justify-between items-center">
+        <div>
+          <div class="page-title">인박스</div>
+          <div class="page-subtitle">알림과 공지사항을 확인하세요</div>
+        </div>
+        <div class="flex gap-2">
+          <button class="btn btn-secondary btn-sm">모두 읽음</button>
+          <button class="btn btn-ghost btn-sm">설정</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TE-301: Tabs + Notification List -->
+    <div class="content-grid cols-1-2">
+
+      <!-- Notification List -->
+      <div>
+        <div class="tabs">
+          <div class="tab-item active">전체 <span class="badge danger" style="margin-left: 4px;">8</span></div>
+          <div class="tab-item">알림</div>
+          <div class="tab-item">승인 알림</div>
+          <div class="tab-item">공지사항</div>
+        </div>
+
+        <div class="flex-col gap-2">
+
+          <!-- Unread: 연차 승인 완료 -->
+          <div class="queue-item" style="background: var(--brand-soft); border-color: var(--brand-primary); cursor: pointer;">
+            <div class="q-priority high"></div>
+            <div style="font-size: 20px; flex-shrink: 0;">✅</div>
+            <div class="q-content">
+              <div class="q-title font-semibold">연차 승인 완료</div>
+              <div class="q-meta">4/7~4/8 연차 신청이 승인되었습니다. 즐거운 휴가 되세요!</div>
+            </div>
+            <div class="flex-col items-center gap-1" style="flex-shrink: 0;">
+              <span class="text-sm text-muted">방금</span>
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--brand-primary);"></span>
+            </div>
+          </div>
+
+          <!-- Unread: 급여 명세서 -->
+          <div class="queue-item" style="background: var(--brand-soft); border-color: var(--brand-primary); cursor: pointer;">
+            <div class="q-priority medium"></div>
+            <div style="font-size: 20px; flex-shrink: 0;">💰</div>
+            <div class="q-content">
+              <div class="q-title font-semibold">급여 명세서 발행</div>
+              <div class="q-meta">2026년 3월 급여 명세서가 발행되었습니다. 확인해 주세요.</div>
+            </div>
+            <div class="flex-col items-center gap-1" style="flex-shrink: 0;">
+              <span class="text-sm text-muted">1시간 전</span>
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--brand-primary);"></span>
+            </div>
+          </div>
+
+          <!-- Unread: 전자계약 서명 -->
+          <div class="queue-item" style="background: var(--brand-soft); border-color: var(--brand-primary); cursor: pointer;">
+            <div class="q-priority critical"></div>
+            <div style="font-size: 20px; flex-shrink: 0;">✍️</div>
+            <div class="q-content">
+              <div class="q-title font-semibold">전자계약 서명 요청</div>
+              <div class="q-meta">근로계약서 갱신 서명이 필요합니다. 오늘까지 서명해 주세요.</div>
+            </div>
+            <div class="flex-col items-center gap-1" style="flex-shrink: 0;">
+              <span class="text-sm text-muted">3시간 전</span>
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--brand-primary);"></span>
+            </div>
+          </div>
+
+          <!-- Read: 팀 공지 -->
+          <div class="queue-item" style="cursor: pointer;">
+            <div class="q-priority medium"></div>
+            <div style="font-size: 20px; flex-shrink: 0;">📢</div>
+            <div class="q-content">
+              <div class="q-title">팀 공지: 3월 워크샵 안내</div>
+              <div class="q-meta">3/28(금) 팀 워크샵이 진행됩니다. 장소와 일정을 확인해 주세요.</div>
+            </div>
+            <div style="flex-shrink: 0;">
+              <span class="text-sm text-muted">어제</span>
+            </div>
+          </div>
+
+          <!-- Read: 출근 정정 반려 -->
+          <div class="queue-item" style="cursor: pointer;">
+            <div class="q-priority high"></div>
+            <div style="font-size: 20px; flex-shrink: 0;">❌</div>
+            <div class="q-content">
+              <div class="q-title">출근 정정 반려</div>
+              <div class="q-meta">3/7 출근 정정 요청이 반려되었습니다. 사유를 확인해 주세요.</div>
+            </div>
+            <div style="flex-shrink: 0;">
+              <span class="text-sm text-muted">3/10</span>
+            </div>
+          </div>
+
+          <!-- Read: 평가 일정 안내 -->
+          <div class="queue-item" style="cursor: pointer;">
+            <div class="q-priority low"></div>
+            <div style="font-size: 20px; flex-shrink: 0;">📊</div>
+            <div class="q-content">
+              <div class="q-title">평가 일정 안내</div>
+              <div class="q-meta">2026년 상반기 평가가 4월 1일에 시작됩니다. 목표를 점검해 주세요.</div>
+            </div>
+            <div style="flex-shrink: 0;">
+              <span class="text-sm text-muted">3/8</span>
+            </div>
+          </div>
+
+          <!-- Read: 비밀번호 변경 권고 -->
+          <div class="queue-item" style="cursor: pointer;">
+            <div class="q-priority low"></div>
+            <div style="font-size: 20px; flex-shrink: 0;">🔒</div>
+            <div class="q-content">
+              <div class="q-title">비밀번호 변경 권고</div>
+              <div class="q-meta">보안 정책에 따라 90일 주기 비밀번호 변경이 필요합니다.</div>
+            </div>
+            <div style="flex-shrink: 0;">
+              <span class="text-sm text-muted">3/5</span>
+            </div>
+          </div>
+
+          <!-- Read: 신규 문서 수신 -->
+          <div class="queue-item" style="cursor: pointer;">
+            <div class="q-priority low"></div>
+            <div style="font-size: 20px; flex-shrink: 0;">📄</div>
+            <div class="q-content">
+              <div class="q-title">신규 문서 수신</div>
+              <div class="q-meta">NDA 갱신 문서가 도착했습니다. 검토 후 서명해 주세요.</div>
+            </div>
+            <div style="flex-shrink: 0;">
+              <span class="text-sm text-muted">3/3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TE-302: Notification Detail Drawer -->
+      <div class="drawer-preview">
+        <div class="drawer-title flex items-center gap-3">
+          <span style="font-size: 24px;">✅</span>
+          연차 승인 완료
+        </div>
+
+        <div class="mb-4">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="badge success">승인</span>
+            <span class="text-sm text-muted">2026-03-12 13:25</span>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="stat-row">
+              <span class="stat-label">요청 유형</span>
+              <span class="stat-value">연차</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">기간</span>
+              <span class="stat-value">2026-04-07 ~ 04-08 (2일)</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">사유</span>
+              <span class="stat-value">개인 사유 (가족 행사)</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">결재자</span>
+              <span class="stat-value">
+                <span class="flex items-center gap-2">
+                  <span class="avatar sm">박</span>박서준
+                </span>
+              </span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">승인 시각</span>
+              <span class="stat-value">2026-03-12 13:25</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Approval Timeline -->
+        <div class="mb-4">
+          <div class="font-semibold mb-2">결재 이력</div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-time">3/12 13:25</div>
+              <div class="timeline-text">박서준 팀리더 승인 완료</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">3/12 09:30</div>
+              <div class="timeline-text">김민지 연차 신청 제출</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <button class="btn btn-secondary" style="flex: 1;">일정에 추가</button>
+          <button class="btn btn-ghost" style="flex: 1;">닫기</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

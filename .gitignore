@@ -12,3 +12,8 @@ Thumbs.db
 .flowhr-v2.sqlite
 .next-dev-3001.log
 .next-dev-3001.err.log
+.env
+.env.local
+.env.production
+.vercel
+prisma/dev.db

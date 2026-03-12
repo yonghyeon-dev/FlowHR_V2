@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowHR - Documents</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand"><span class="brand-dot"></span> FlowHR</div>
+    <div class="header-search">검색 (Ctrl+K)</div>
+    <div class="header-actions">
+      <span class="header-badge">&#x1F514;<span class="dot"></span></span>
+      <span class="header-badge">&#x2753;</span>
+      <div class="header-avatar">관</div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar">
+    <div class="nav-section">
+      <div class="nav-section-label">Main</div>
+      <a href="home.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span> Home</a>
+      <a href="people.html" class="nav-item"><span class="nav-icon">&#x1F465;</span> People</a>
+      <a href="attendance.html" class="nav-item"><span class="nav-icon">&#x23F0;</span> Attendance</a>
+      <a href="leave.html" class="nav-item"><span class="nav-icon">&#x1F334;</span> Leave</a>
+      <a href="workflow.html" class="nav-item"><span class="nav-icon">&#x1F504;</span> Workflow</a>
+      <a href="documents.html" class="nav-item active"><span class="nav-icon">&#x1F4C4;</span> Documents <span class="nav-badge">12</span></a>
+      <a href="payroll.html" class="nav-item"><span class="nav-icon">&#x1F4B0;</span> Payroll</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Talent</div>
+      <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span> Performance</a>
+      <a href="recruiting.html" class="nav-item"><span class="nav-icon">&#x1F4CB;</span> Recruiting</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">System</div>
+      <a href="reports.html" class="nav-item"><span class="nav-icon">&#x1F4C8;</span> Reports</a>
+      <a href="settings.html" class="nav-item"><span class="nav-icon">&#x2699;</span> Settings</a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="app-main">
+
+    <div class="page-header">
+      <div class="page-breadcrumb"><span>Home</span> <span>Documents</span></div>
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="page-title">문서 관리</h1>
+          <p class="page-subtitle">계약서 발송, 템플릿 관리, 문서 보관함</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-secondary">&#x1F4CB; 템플릿 관리</button>
+          <button class="btn btn-primary">&#x2795; 문서 발송</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-501: Dashboard -->
+    <div class="kpi-grid cols-4 mb-6">
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">발송 완료</div>
+        <div class="kpi-value">156</div>
+        <div class="kpi-label">건 (이번 달)</div>
+      </div>
+      <div class="kpi-card emphasis">
+        <div class="kpi-eyebrow">서명 완료</div>
+        <div class="kpi-value">132</div>
+        <div class="kpi-label">건 (84.6%)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">서명 대기</div>
+        <div class="kpi-value">12</div>
+        <div class="kpi-label">건 미완료</div>
+        <div class="kpi-delta up">&#x25B2; 5건 전주 대비</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">만료 예정</div>
+        <div class="kpi-value">5</div>
+        <div class="kpi-label">건 (7일 이내)</div>
+        <div class="kpi-delta up">&#x25B2; 2건</div>
+      </div>
+    </div>
+
+    <!-- TA-502: Template Manager -->
+    <div class="section-divider">
+      <h2>TA-502: 문서 템플릿</h2>
+      <p>자주 사용하는 문서 템플릿 관리</p>
+    </div>
+
+    <div class="content-grid cols-4 mb-6" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="card">
+        <div class="card-body" style="text-align:center; padding:var(--sp-6);">
+          <div style="font-size:32px; margin-bottom:var(--sp-3);">&#x1F4DD;</div>
+          <div class="font-semibold mb-2">근로계약서</div>
+          <div class="text-sm text-muted mb-4">정규직/계약직 표준 근로계약서</div>
+          <div class="flex gap-2" style="justify-content:center;">
+            <span class="badge success">활성</span>
+            <span class="text-sm text-muted">v3.2</span>
+          </div>
+        </div>
+        <div class="card-footer flex justify-between items-center">
+          <span class="text-sm text-muted">사용 128건</span>
+          <button class="btn btn-ghost btn-sm">편집</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body" style="text-align:center; padding:var(--sp-6);">
+          <div style="font-size:32px; margin-bottom:var(--sp-3);">&#x1F4B0;</div>
+          <div class="font-semibold mb-2">연봉 변경 통지서</div>
+          <div class="text-sm text-muted mb-4">승진/조정에 따른 연봉 변경 통지</div>
+          <div class="flex gap-2" style="justify-content:center;">
+            <span class="badge success">활성</span>
+            <span class="text-sm text-muted">v2.1</span>
+          </div>
+        </div>
+        <div class="card-footer flex justify-between items-center">
+          <span class="text-sm text-muted">사용 45건</span>
+          <button class="btn btn-ghost btn-sm">편집</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body" style="text-align:center; padding:var(--sp-6);">
+          <div style="font-size:32px; margin-bottom:var(--sp-3);">&#x1F512;</div>
+          <div class="font-semibold mb-2">NDA (비밀유지계약)</div>
+          <div class="text-sm text-muted mb-4">입사 시 필수 서명 비밀유지계약</div>
+          <div class="flex gap-2" style="justify-content:center;">
+            <span class="badge success">활성</span>
+            <span class="text-sm text-muted">v1.4</span>
+          </div>
+        </div>
+        <div class="card-footer flex justify-between items-center">
+          <span class="text-sm text-muted">사용 312건</span>
+          <button class="btn btn-ghost btn-sm">편집</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body" style="text-align:center; padding:var(--sp-6);">
+          <div style="font-size:32px; margin-bottom:var(--sp-3);">&#x1F4E4;</div>
+          <div class="font-semibold mb-2">퇴사 확인서</div>
+          <div class="text-sm text-muted mb-4">퇴사 시 발급 확인서</div>
+          <div class="flex gap-2" style="justify-content:center;">
+            <span class="badge success">활성</span>
+            <span class="text-sm text-muted">v1.1</span>
+          </div>
+        </div>
+        <div class="card-footer flex justify-between items-center">
+          <span class="text-sm text-muted">사용 67건</span>
+          <button class="btn btn-ghost btn-sm">편집</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-503: Document Send Form -->
+    <div class="section-divider">
+      <h2>TA-503: 문서 발송</h2>
+      <p>수신자 선택, 템플릿, 마감일 설정</p>
+    </div>
+
+    <div class="card mb-6">
+      <div class="card-header">
+        <div class="card-title">새 문서 발송</div>
+      </div>
+      <div class="card-body">
+        <div class="content-grid cols-2">
+          <div>
+            <div class="form-group">
+              <label class="form-label">수신자</label>
+              <input type="text" class="form-input" placeholder="이름 또는 부서 검색..." value="강지민, 오현석">
+            </div>
+            <div class="form-group">
+              <label class="form-label">문서 템플릿</label>
+              <select class="form-select">
+                <option>근로계약서 (v3.2)</option>
+                <option>연봉 변경 통지서 (v2.1)</option>
+                <option>NDA (v1.4)</option>
+                <option>퇴사 확인서 (v1.1)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">서명 마감일</label>
+              <input type="text" class="form-input" value="2026-03-19">
+            </div>
+            <div class="form-group">
+              <label class="form-label">메모 (선택)</label>
+              <textarea class="form-textarea" placeholder="수신자에게 전달할 메모를 입력하세요..."></textarea>
+            </div>
+          </div>
+          <div>
+            <div class="font-semibold mb-2">발송 미리보기</div>
+            <div style="padding:var(--sp-4); background:var(--surface-secondary); border-radius:var(--radius-md); min-height:200px;">
+              <div class="text-sm text-muted mb-2">근로계약서 (v3.2)</div>
+              <div style="border:1px dashed var(--border-strong); border-radius:var(--radius-sm); padding:var(--sp-8); text-align:center;">
+                <span class="text-muted">문서 미리보기 영역</span>
+              </div>
+            </div>
+            <div class="flex gap-2 mt-4">
+              <div class="toggle">
+                <div class="toggle-track on"></div>
+                <span class="text-sm">서명 알림 이메일 발송</span>
+              </div>
+            </div>
+            <div class="flex gap-2 mt-4">
+              <div class="toggle">
+                <div class="toggle-track"></div>
+                <span class="text-sm">마감일 자동 리마인더</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-2 mt-4" style="justify-content:flex-end;">
+          <button class="btn btn-secondary">임시 저장</button>
+          <button class="btn btn-primary">발송하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-504: Vault -->
+    <div class="section-divider">
+      <h2>TA-504: 문서 보관함</h2>
+      <p>서명 완료된 문서 아카이브</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">문서 보관함</div>
+        <div class="flex gap-2">
+          <input type="text" class="filter-search" placeholder="문서명, 수신자 검색...">
+          <span class="filter-chip active">전체</span>
+          <span class="filter-chip">계약서</span>
+          <span class="filter-chip">통지서</span>
+          <span class="filter-chip">NDA</span>
+        </div>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>문서명</th>
+              <th>수신자</th>
+              <th>유형</th>
+              <th>발송일</th>
+              <th>서명일</th>
+              <th>상태</th>
+              <th class="cell-actions">액션</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold">근로계약서</td>
+              <td>강지민</td>
+              <td>계약서</td>
+              <td>2026.03.10</td>
+              <td>2026.03.11</td>
+              <td><span class="badge success">서명 완료</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">다운로드</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">NDA</td>
+              <td>강지민</td>
+              <td>NDA</td>
+              <td>2026.03.10</td>
+              <td>2026.03.11</td>
+              <td><span class="badge success">서명 완료</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">다운로드</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">연봉 변경 통지서</td>
+              <td>박유리</td>
+              <td>통지서</td>
+              <td>2026.03.08</td>
+              <td>&mdash;</td>
+              <td><span class="badge warning">서명 대기</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">알림</button>
+                <button class="btn btn-ghost btn-sm">다운로드</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">퇴사 확인서</td>
+              <td>정현우</td>
+              <td>확인서</td>
+              <td>2026.03.08</td>
+              <td>&mdash;</td>
+              <td><span class="badge warning">서명 대기</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">알림</button>
+                <button class="btn btn-ghost btn-sm">다운로드</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">근로계약서</td>
+              <td>오현석</td>
+              <td>계약서</td>
+              <td>2026.03.01</td>
+              <td>2026.03.02</td>
+              <td><span class="badge success">서명 완료</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">다운로드</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">근로계약서</td>
+              <td>최수정</td>
+              <td>계약서</td>
+              <td>2026.02.15</td>
+              <td>&mdash;</td>
+              <td><span class="badge danger">만료</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">재발송</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <span class="pagination-info">총 552건 중 1 &ndash; 6 표시</span>
+        <div class="pagination-controls">
+          <button class="pagination-btn">&laquo;</button>
+          <button class="pagination-btn active">1</button>
+          <button class="pagination-btn">2</button>
+          <button class="pagination-btn">3</button>
+          <button class="pagination-btn">&raquo;</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

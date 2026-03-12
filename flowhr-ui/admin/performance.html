@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowHR - Performance</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand"><span class="brand-dot"></span> FlowHR</div>
+    <div class="header-search">검색 (Ctrl+K)</div>
+    <div class="header-actions">
+      <span class="header-badge">&#x1F514;<span class="dot"></span></span>
+      <span class="header-badge">&#x2753;</span>
+      <div class="header-avatar">관</div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar">
+    <div class="nav-section">
+      <div class="nav-section-label">Main</div>
+      <a href="home.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span> Home</a>
+      <a href="people.html" class="nav-item"><span class="nav-icon">&#x1F465;</span> People</a>
+      <a href="attendance.html" class="nav-item"><span class="nav-icon">&#x23F0;</span> Attendance</a>
+      <a href="leave.html" class="nav-item"><span class="nav-icon">&#x1F334;</span> Leave</a>
+      <a href="workflow.html" class="nav-item"><span class="nav-icon">&#x1F504;</span> Workflow</a>
+      <a href="documents.html" class="nav-item"><span class="nav-icon">&#x1F4C4;</span> Documents</a>
+      <a href="payroll.html" class="nav-item"><span class="nav-icon">&#x1F4B0;</span> Payroll</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Talent</div>
+      <a href="performance.html" class="nav-item active"><span class="nav-icon">&#x1F4CA;</span> Performance</a>
+      <a href="recruiting.html" class="nav-item"><span class="nav-icon">&#x1F4CB;</span> Recruiting</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">System</div>
+      <a href="reports.html" class="nav-item"><span class="nav-icon">&#x1F4C8;</span> Reports</a>
+      <a href="settings.html" class="nav-item"><span class="nav-icon">&#x2699;</span> Settings</a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="app-main">
+
+    <div class="page-header">
+      <div class="page-breadcrumb"><span>Home</span> <span>Performance</span></div>
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="page-title">성과 관리</h1>
+          <p class="page-subtitle">목표 관리, 평가 주기, 1:1 미팅 관리</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-secondary">&#x1F4CB; 평가 리포트</button>
+          <button class="btn btn-primary">&#x2795; 평가 주기 생성</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-701: Goal Dashboard KPIs -->
+    <div class="kpi-grid cols-4 mb-6">
+      <div class="kpi-card emphasis">
+        <div class="kpi-eyebrow">목표 설정 완료</div>
+        <div class="kpi-value">82%</div>
+        <div class="kpi-label">983 / 1,198명</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">평가 중</div>
+        <div class="kpi-value">45</div>
+        <div class="kpi-label">건 진행 중</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">1:1 예정</div>
+        <div class="kpi-value">12</div>
+        <div class="kpi-label">건 이번 주</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">미설정</div>
+        <div class="kpi-value">215</div>
+        <div class="kpi-label">명 목표 미입력</div>
+        <div class="kpi-delta up">&#x25B2; 마감 7일 전</div>
+      </div>
+    </div>
+
+    <div class="content-grid cols-2-1 mb-6">
+      <!-- Goal completion by dept -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">부서별 목표 설정률</div>
+        </div>
+        <div class="card-body">
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label">HR</span>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+              <span class="bar-value">100%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Product</span>
+              <div class="bar-track"><div class="bar-fill" style="width:89%"></div></div>
+              <span class="bar-value">89%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Engineering</span>
+              <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+              <span class="bar-value">85%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Sales</span>
+              <div class="bar-track"><div class="bar-fill warning" style="width:72%"></div></div>
+              <span class="bar-value">72%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Operations</span>
+              <div class="bar-track"><div class="bar-fill warning" style="width:68%"></div></div>
+              <span class="bar-value">68%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active cycle -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">현재 평가 주기</div>
+        </div>
+        <div class="card-body">
+          <div class="stat-row"><span class="stat-label">주기명</span><span class="stat-value">2026 H1 성과 평가</span></div>
+          <div class="stat-row"><span class="stat-label">기간</span><span class="stat-value">1/1 ~ 6/30</span></div>
+          <div class="stat-row"><span class="stat-label">중간 점검</span><span class="stat-value">3/31 마감</span></div>
+          <div class="stat-row"><span class="stat-label">상태</span><span class="stat-value"><span class="badge info">중간 점검 진행 중</span></span></div>
+          <div class="stat-row"><span class="stat-label">완료율</span><span class="stat-value">37%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-702: Evaluation Setup -->
+    <div class="section-divider">
+      <h2>TA-702: 평가 설정</h2>
+      <p>평가 주기 및 평가 기준 설정</p>
+    </div>
+
+    <div class="card mb-6">
+      <div class="card-header">
+        <div class="card-title">평가 주기 설정</div>
+        <button class="btn btn-secondary btn-sm">미리보기</button>
+      </div>
+      <div class="card-body">
+        <div class="content-grid cols-2">
+          <div>
+            <div class="form-group">
+              <label class="form-label">평가 주기명</label>
+              <input type="text" class="form-input" value="2026 H1 성과 평가">
+            </div>
+            <div class="form-group">
+              <label class="form-label">평가 기간</label>
+              <div class="flex gap-2">
+                <input type="text" class="form-input" value="2026-01-01" style="flex:1;">
+                <span class="flex items-center text-muted">~</span>
+                <input type="text" class="form-input" value="2026-06-30" style="flex:1;">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">평가 유형</label>
+              <select class="form-select">
+                <option>다면 평가 (360도)</option>
+                <option>상향 평가</option>
+                <option>자기 평가 + 상사 평가</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <div class="font-semibold mb-4">평가 기준 가중치</div>
+            <div class="bar-chart">
+              <div class="bar-row">
+                <span class="bar-label">업무 성과</span>
+                <div class="bar-track"><div class="bar-fill" style="width:40%"></div></div>
+                <span class="bar-value">40%</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">역량</span>
+                <div class="bar-track"><div class="bar-fill" style="width:30%"></div></div>
+                <span class="bar-value">30%</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">협업</span>
+                <div class="bar-track"><div class="bar-fill" style="width:20%"></div></div>
+                <span class="bar-value">20%</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">리더십</span>
+                <div class="bar-track"><div class="bar-fill" style="width:10%"></div></div>
+                <span class="bar-value">10%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-703: Evaluation Cycle Progress -->
+    <div class="section-divider">
+      <h2>TA-703: 평가 진행 현황</h2>
+      <p>평가 주기별 구성원 완료 상태</p>
+    </div>
+
+    <div class="card mb-6">
+      <div class="card-header">
+        <div class="card-title">2026 H1 중간 점검 진행 현황</div>
+        <div class="flex gap-2 items-center">
+          <div class="bar-track" style="width:120px;"><div class="bar-fill" style="width:37%"></div></div>
+          <span class="text-sm font-semibold">37% 완료</span>
+        </div>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>이름</th>
+              <th>부서</th>
+              <th>자기 평가</th>
+              <th>동료 평가</th>
+              <th>상사 평가</th>
+              <th>전체 상태</th>
+              <th class="cell-actions">액션</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>김민지</td>
+              <td>Product</td>
+              <td><span class="badge success">완료</span></td>
+              <td><span class="badge success">완료</span></td>
+              <td><span class="badge warning">진행 중</span></td>
+              <td><span class="badge info">2/3</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">상세</button></td>
+            </tr>
+            <tr>
+              <td>최도윤</td>
+              <td>Engineering</td>
+              <td><span class="badge success">완료</span></td>
+              <td><span class="badge warning">진행 중</span></td>
+              <td><span class="badge neutral">미시작</span></td>
+              <td><span class="badge info">1/3</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">상세</button></td>
+            </tr>
+            <tr>
+              <td>이수현</td>
+              <td>Sales</td>
+              <td><span class="badge success">완료</span></td>
+              <td><span class="badge success">완료</span></td>
+              <td><span class="badge success">완료</span></td>
+              <td><span class="badge success">완료</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">상세</button></td>
+            </tr>
+            <tr>
+              <td>박유리</td>
+              <td>HR</td>
+              <td><span class="badge warning">진행 중</span></td>
+              <td><span class="badge neutral">미시작</span></td>
+              <td><span class="badge neutral">미시작</span></td>
+              <td><span class="badge warning">0/3</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">상세</button></td>
+            </tr>
+            <tr>
+              <td>오현석</td>
+              <td>Sales</td>
+              <td><span class="badge neutral">미시작</span></td>
+              <td><span class="badge neutral">미시작</span></td>
+              <td><span class="badge neutral">미시작</span></td>
+              <td><span class="badge neutral">미시작</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">리마인더</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <span class="pagination-info">총 1,198명 중 1 &ndash; 5 표시</span>
+        <div class="pagination-controls">
+          <button class="pagination-btn">&laquo;</button>
+          <button class="pagination-btn active">1</button>
+          <button class="pagination-btn">2</button>
+          <button class="pagination-btn">3</button>
+          <button class="pagination-btn">&raquo;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-704: 1:1 Hub -->
+    <div class="section-divider">
+      <h2>TA-704: 1:1 미팅 허브</h2>
+      <p>예정된 1:1 미팅 및 의제 관리</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">이번 주 1:1 예정</div>
+        <button class="btn btn-primary btn-sm">&#x2795; 1:1 예약</button>
+      </div>
+      <div class="card-body">
+        <div class="queue-list">
+          <div class="queue-item">
+            <div class="q-priority medium"></div>
+            <div class="q-content">
+              <div class="q-title">강태호 &harr; 최도윤</div>
+              <div class="q-meta">3/12 (목) 14:00 &middot; 30분 &middot; 의제: 야간 근무 해소 방안, 목표 진행률 점검</div>
+            </div>
+            <div class="q-action"><button class="btn btn-secondary btn-sm">의제 보기</button></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority medium"></div>
+            <div class="q-content">
+              <div class="q-title">박유리 &harr; 한서윤</div>
+              <div class="q-meta">3/12 (목) 15:30 &middot; 30분 &middot; 의제: 복직 준비, 업무 인수인계 계획</div>
+            </div>
+            <div class="q-action"><button class="btn btn-secondary btn-sm">의제 보기</button></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority low"></div>
+            <div class="q-content">
+              <div class="q-title">김상훈 &harr; 강태호</div>
+              <div class="q-meta">3/13 (금) 10:00 &middot; 45분 &middot; 의제: Q1 Engineering 팀 성과 리뷰</div>
+            </div>
+            <div class="q-action"><button class="btn btn-secondary btn-sm">의제 보기</button></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority low"></div>
+            <div class="q-content">
+              <div class="q-title">이수현 팀장 &harr; 오현석</div>
+              <div class="q-meta">3/13 (금) 11:00 &middot; 30분 &middot; 의제: 영업 목표 중간 점검, 교육 계획</div>
+            </div>
+            <div class="q-action"><button class="btn btn-secondary btn-sm">의제 보기</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="text-sm text-muted">이번 달 완료된 1:1: 34건 &middot; 미참석: 2건</span>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

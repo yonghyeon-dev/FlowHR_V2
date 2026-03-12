@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowHR - Leave</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand"><span class="brand-dot"></span> FlowHR</div>
+    <div class="header-search">검색 (Ctrl+K)</div>
+    <div class="header-actions">
+      <span class="header-badge">&#x1F514;<span class="dot"></span></span>
+      <span class="header-badge">&#x2753;</span>
+      <div class="header-avatar">관</div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar">
+    <div class="nav-section">
+      <div class="nav-section-label">Main</div>
+      <a href="home.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span> Home</a>
+      <a href="people.html" class="nav-item"><span class="nav-icon">&#x1F465;</span> People</a>
+      <a href="attendance.html" class="nav-item"><span class="nav-icon">&#x23F0;</span> Attendance</a>
+      <a href="leave.html" class="nav-item active"><span class="nav-icon">&#x1F334;</span> Leave <span class="nav-badge">7</span></a>
+      <a href="workflow.html" class="nav-item"><span class="nav-icon">&#x1F504;</span> Workflow</a>
+      <a href="documents.html" class="nav-item"><span class="nav-icon">&#x1F4C4;</span> Documents</a>
+      <a href="payroll.html" class="nav-item"><span class="nav-icon">&#x1F4B0;</span> Payroll</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Talent</div>
+      <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span> Performance</a>
+      <a href="recruiting.html" class="nav-item"><span class="nav-icon">&#x1F4CB;</span> Recruiting</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">System</div>
+      <a href="reports.html" class="nav-item"><span class="nav-icon">&#x1F4C8;</span> Reports</a>
+      <a href="settings.html" class="nav-item"><span class="nav-icon">&#x2699;</span> Settings</a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="app-main">
+
+    <div class="page-header">
+      <div class="page-breadcrumb"><span>Home</span> <span>Leave</span></div>
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="page-title">휴가 관리</h1>
+          <p class="page-subtitle">휴가 현황, 정책, 요청 관리</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-secondary">&#x1F4E5; 내보내기</button>
+          <button class="btn btn-primary">&#x2795; 휴가 부여</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-301: Dashboard KPIs -->
+    <div class="kpi-grid cols-4">
+      <div class="kpi-card emphasis">
+        <div class="kpi-eyebrow">오늘 휴가</div>
+        <div class="kpi-value">18</div>
+        <div class="kpi-label">명 부재 중</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">대기 중 요청</div>
+        <div class="kpi-value">7</div>
+        <div class="kpi-label">건 승인 대기</div>
+        <div class="kpi-delta up">&#x25B2; 2건 전일 대비</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">잔여 연차 평균</div>
+        <div class="kpi-value">8.2</div>
+        <div class="kpi-label">일 (전사 평균)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">이번 달 사용</div>
+        <div class="kpi-value">142</div>
+        <div class="kpi-label">일 총 사용</div>
+        <div class="kpi-delta neutral">&#x2014; 전월 동기 대비 유사</div>
+      </div>
+    </div>
+
+    <!-- TA-302: Calendar + Today Absences -->
+    <div class="content-grid cols-2-1 mb-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">휴가 캘린더</div>
+          <div class="flex gap-2">
+            <button class="btn btn-ghost btn-sm">&larr;</button>
+            <span class="font-semibold">2026년 3월</span>
+            <button class="btn btn-ghost btn-sm">&rarr;</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="calendar-mini">
+            <div class="cal-head">일</div>
+            <div class="cal-head">월</div>
+            <div class="cal-head">화</div>
+            <div class="cal-head">수</div>
+            <div class="cal-head">목</div>
+            <div class="cal-head">금</div>
+            <div class="cal-head">토</div>
+            <div class="cal-day off">1</div>
+            <div class="cal-day event">2</div>
+            <div class="cal-day event">3</div>
+            <div class="cal-day">4</div>
+            <div class="cal-day event">5</div>
+            <div class="cal-day event">6</div>
+            <div class="cal-day off">7</div>
+            <div class="cal-day off">8</div>
+            <div class="cal-day event">9</div>
+            <div class="cal-day event">10</div>
+            <div class="cal-day event">11</div>
+            <div class="cal-day today">12</div>
+            <div class="cal-day event">13</div>
+            <div class="cal-day off">14</div>
+            <div class="cal-day off">15</div>
+            <div class="cal-day event">16</div>
+            <div class="cal-day">17</div>
+            <div class="cal-day event">18</div>
+            <div class="cal-day">19</div>
+            <div class="cal-day event">20</div>
+            <div class="cal-day off">21</div>
+            <div class="cal-day off">22</div>
+            <div class="cal-day">23</div>
+            <div class="cal-day event">24</div>
+            <div class="cal-day">25</div>
+            <div class="cal-day event">26</div>
+            <div class="cal-day">27</div>
+            <div class="cal-day off">28</div>
+            <div class="cal-day off">29</div>
+            <div class="cal-day">30</div>
+            <div class="cal-day">31</div>
+          </div>
+          <div style="margin-top:var(--sp-4);">
+            <div class="flex gap-3 text-sm">
+              <span class="flex items-center gap-1"><span style="width:12px;height:12px;border-radius:3px;background:var(--brand-soft);display:inline-block;"></span> 휴가</span>
+              <span class="flex items-center gap-1"><span style="width:12px;height:12px;border-radius:3px;background:var(--brand-primary);display:inline-block;"></span> 오늘</span>
+              <span class="flex items-center gap-1"><span style="width:12px;height:12px;border-radius:3px;background:var(--status-neutral-bg);display:inline-block;"></span> 주말/공휴일</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">오늘 부재자</div>
+          <span class="badge info">18명</span>
+        </div>
+        <div class="card-body">
+          <div class="queue-list">
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">이수현</div><div class="q-meta">Sales &middot; 연차</div></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">윤지혜</div><div class="q-meta">Engineering &middot; 반차 (오후)</div></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">장유미</div><div class="q-meta">Product &middot; 병가</div></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">기타 15명</div><div class="q-meta">전사 부서별 분포</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-303: Policy Management -->
+    <div class="section-divider">
+      <h2>TA-303: 휴가 정책</h2>
+      <p>휴가 유형별 부여 규칙 관리</p>
+    </div>
+
+    <div class="card mb-6">
+      <div class="card-header">
+        <div class="card-title">휴가 정책</div>
+        <button class="btn btn-primary btn-sm">&#x2795; 정책 추가</button>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>휴가 유형</th>
+              <th>부여 기준</th>
+              <th>연간 부여일</th>
+              <th>이월</th>
+              <th>유급/무급</th>
+              <th>상태</th>
+              <th class="cell-actions">액션</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold">연차 휴가</td>
+              <td>근속 연수별 차등</td>
+              <td class="cell-number">15일 (1년 미만 월 1일)</td>
+              <td>최대 10일</td>
+              <td><span class="badge success">유급</span></td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">반차</td>
+              <td>연차에서 차감 (0.5일)</td>
+              <td class="cell-number">&mdash;</td>
+              <td>&mdash;</td>
+              <td><span class="badge success">유급</span></td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">병가</td>
+              <td>진단서 제출 시</td>
+              <td class="cell-number">연 60일</td>
+              <td>이월 불가</td>
+              <td><span class="badge info">유급 (60일까지)</span></td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">경조사 휴가</td>
+              <td>사유별 차등</td>
+              <td class="cell-number">사유별 (1~7일)</td>
+              <td>이월 불가</td>
+              <td><span class="badge success">유급</span></td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">대체 휴가</td>
+              <td>휴일 근무 시 자동 부여</td>
+              <td class="cell-number">실적 기반</td>
+              <td>3개월 이내 사용</td>
+              <td><span class="badge success">유급</span></td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TA-304: Leave Requests Queue -->
+    <div class="section-divider">
+      <h2>TA-304: 휴가 요청</h2>
+      <p>승인 대기 및 처리된 휴가 요청 목록</p>
+    </div>
+
+    <div class="filter-bar">
+      <span class="filter-chip active">전체</span>
+      <span class="filter-chip">승인 대기</span>
+      <span class="filter-chip">승인 완료</span>
+      <span class="filter-chip">반려</span>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <div class="queue-list">
+          <div class="queue-item">
+            <div class="q-priority high"></div>
+            <div class="q-content">
+              <div class="q-title">김태원 &mdash; 연차 (3/17 ~ 3/18, 2일)</div>
+              <div class="q-meta">Engineering &middot; 개인 사유 &middot; 3일 전 신청</div>
+            </div>
+            <div class="q-action">
+              <span class="badge warning">승인 대기</span>
+              <button class="btn btn-primary btn-sm" style="margin-left:8px;">승인</button>
+              <button class="btn btn-ghost btn-sm">반려</button>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority high"></div>
+            <div class="q-content">
+              <div class="q-title">장유미 &mdash; 병가 (3/12, 1일)</div>
+              <div class="q-meta">Product &middot; 진단서 첨부 &middot; 당일 신청</div>
+            </div>
+            <div class="q-action">
+              <span class="badge warning">승인 대기</span>
+              <button class="btn btn-primary btn-sm" style="margin-left:8px;">승인</button>
+              <button class="btn btn-ghost btn-sm">반려</button>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority medium"></div>
+            <div class="q-content">
+              <div class="q-title">오현석 &mdash; 반차 (3/13 오후)</div>
+              <div class="q-meta">Sales &middot; 개인 사유 &middot; 1일 전 신청</div>
+            </div>
+            <div class="q-action">
+              <span class="badge warning">승인 대기</span>
+              <button class="btn btn-primary btn-sm" style="margin-left:8px;">승인</button>
+              <button class="btn btn-ghost btn-sm">반려</button>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority low"></div>
+            <div class="q-content">
+              <div class="q-title">박서준 &mdash; 연차 (3/20 ~ 3/21, 2일)</div>
+              <div class="q-meta">HR &middot; 가족 행사 &middot; 5일 전 신청</div>
+            </div>
+            <div class="q-action">
+              <span class="badge success">승인 완료</span>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority low"></div>
+            <div class="q-content">
+              <div class="q-title">윤지혜 &mdash; 경조사 (3/8 ~ 3/10, 3일)</div>
+              <div class="q-meta">Engineering &middot; 결혼 &middot; 7일 전 신청</div>
+            </div>
+            <div class="q-action">
+              <span class="badge success">승인 완료</span>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority low"></div>
+            <div class="q-content">
+              <div class="q-title">이민호 &mdash; 대체 휴가 (3/5, 1일)</div>
+              <div class="q-meta">Operations &middot; 3/1 휴일 근무 대체 &middot; 자동 승인</div>
+            </div>
+            <div class="q-action">
+              <span class="badge success">승인 완료</span>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority low"></div>
+            <div class="q-content">
+              <div class="q-title">최수정 &mdash; 연차 (2/28, 1일)</div>
+              <div class="q-meta">Sales &middot; 사유 미기재 &middot; 당일 신청</div>
+            </div>
+            <div class="q-action">
+              <span class="badge danger">반려</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

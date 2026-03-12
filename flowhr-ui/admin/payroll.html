@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowHR - Payroll</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand"><span class="brand-dot"></span> FlowHR</div>
+    <div class="header-search">검색 (Ctrl+K)</div>
+    <div class="header-actions">
+      <span class="header-badge">&#x1F514;<span class="dot"></span></span>
+      <span class="header-badge">&#x2753;</span>
+      <div class="header-avatar">관</div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar">
+    <div class="nav-section">
+      <div class="nav-section-label">Main</div>
+      <a href="home.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span> Home</a>
+      <a href="people.html" class="nav-item"><span class="nav-icon">&#x1F465;</span> People</a>
+      <a href="attendance.html" class="nav-item"><span class="nav-icon">&#x23F0;</span> Attendance</a>
+      <a href="leave.html" class="nav-item"><span class="nav-icon">&#x1F334;</span> Leave</a>
+      <a href="workflow.html" class="nav-item"><span class="nav-icon">&#x1F504;</span> Workflow</a>
+      <a href="documents.html" class="nav-item"><span class="nav-icon">&#x1F4C4;</span> Documents</a>
+      <a href="payroll.html" class="nav-item active"><span class="nav-icon">&#x1F4B0;</span> Payroll <span class="nav-badge">3</span></a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Talent</div>
+      <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span> Performance</a>
+      <a href="recruiting.html" class="nav-item"><span class="nav-icon">&#x1F4CB;</span> Recruiting</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">System</div>
+      <a href="reports.html" class="nav-item"><span class="nav-icon">&#x1F4C8;</span> Reports</a>
+      <a href="settings.html" class="nav-item"><span class="nav-icon">&#x2699;</span> Settings</a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="app-main">
+
+    <div class="page-header">
+      <div class="page-breadcrumb"><span>Home</span> <span>Payroll</span></div>
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="page-title">급여 관리</h1>
+          <p class="page-subtitle">급여 규칙, 마감 프로세스, 명세서 관리</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-secondary">&#x1F4E5; 급여 데이터 내보내기</button>
+          <button class="btn btn-primary">&#x25B6; 마감 시작</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-601: Dashboard KPIs -->
+    <div class="kpi-grid cols-4 mb-6">
+      <div class="kpi-card emphasis">
+        <div class="kpi-eyebrow">이번 달 총 급여</div>
+        <div class="kpi-value" style="font-size:var(--text-3xl);">&#x20A9;847.2M</div>
+        <div class="kpi-label">총 급여액</div>
+        <div class="kpi-delta up">&#x25B2; 2.3% 전월 대비</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">급여 대상자</div>
+        <div class="kpi-value">1,240</div>
+        <div class="kpi-label">명</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">미확인 변동</div>
+        <div class="kpi-value">3</div>
+        <div class="kpi-label">건 확인 필요</div>
+        <div class="kpi-delta up">&#x25B2; 1건</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">마감 상태</div>
+        <div class="kpi-value">2/5</div>
+        <div class="kpi-label">단계 완료</div>
+      </div>
+    </div>
+
+    <!-- TA-602: Payroll Rules -->
+    <div class="section-divider">
+      <h2>TA-602: 급여 규칙</h2>
+      <p>급여 계산에 적용되는 규칙 관리</p>
+    </div>
+
+    <div class="card mb-6">
+      <div class="card-header">
+        <div class="card-title">급여 규칙</div>
+        <button class="btn btn-primary btn-sm">&#x2795; 규칙 추가</button>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>규칙명</th>
+              <th>유형</th>
+              <th>계산 방식</th>
+              <th>상태</th>
+              <th class="cell-actions">액션</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold">기본급</td>
+              <td><span class="badge info">고정</span></td>
+              <td>연봉 / 12</td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">초과근무 수당</td>
+              <td><span class="badge warning">변동</span></td>
+              <td>통상시급 &times; 1.5 &times; 초과시간</td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">야간근무 수당</td>
+              <td><span class="badge warning">변동</span></td>
+              <td>통상시급 &times; 0.5 &times; 야간시간 (22:00~06:00)</td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">국민연금</td>
+              <td><span class="badge neutral">공제</span></td>
+              <td>기준소득월액 &times; 4.5%</td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">건강보험</td>
+              <td><span class="badge neutral">공제</span></td>
+              <td>보수월액 &times; 3.545%</td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">소득세</td>
+              <td><span class="badge neutral">공제</span></td>
+              <td>간이세액표 기준 원천징수</td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">편집</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TA-603: Closing Flow -->
+    <div class="section-divider">
+      <h2>TA-603: 급여 마감</h2>
+      <p>월별 급여 마감 프로세스</p>
+    </div>
+
+    <div class="card mb-6">
+      <div class="card-header">
+        <div class="card-title">2026년 3월 급여 마감</div>
+        <span class="badge info">진행 중 (2/5단계)</span>
+      </div>
+      <div class="card-body">
+        <div class="steps mb-6">
+          <div class="step done">
+            <span class="step-num">1</span>
+            <div>
+              <div class="font-semibold">데이터 수집</div>
+              <div class="text-sm text-muted">근태/변동 데이터</div>
+            </div>
+          </div>
+          <div class="step done">
+            <span class="step-num">2</span>
+            <div>
+              <div class="font-semibold">변동 확인</div>
+              <div class="text-sm text-muted">승진/조정/입퇴사</div>
+            </div>
+          </div>
+          <div class="step active">
+            <span class="step-num">3</span>
+            <div>
+              <div class="font-semibold">계산</div>
+              <div class="text-sm text-muted">급여 산출</div>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">4</span>
+            <div>
+              <div class="font-semibold">검토</div>
+              <div class="text-sm text-muted">부서장/CFO</div>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">5</span>
+            <div>
+              <div class="font-semibold">확정</div>
+              <div class="text-sm text-muted">이체/명세서 발행</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checklist -->
+        <div class="queue-list">
+          <div class="queue-item">
+            <div class="q-priority low"></div>
+            <div class="q-content">
+              <div class="q-title">근태 데이터 연동 완료</div>
+              <div class="q-meta">1,198명 출퇴근 기록 수집 완료</div>
+            </div>
+            <div class="q-action"><span class="badge success">완료</span></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority low"></div>
+            <div class="q-content">
+              <div class="q-title">인사 변동 반영</div>
+              <div class="q-meta">승진 1명, 연봉 조정 3명, 신규 입사 3명</div>
+            </div>
+            <div class="q-action"><span class="badge success">완료</span></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority high"></div>
+            <div class="q-content">
+              <div class="q-title">미확인 변동 사항 처리</div>
+              <div class="q-meta">수동 보정 3건 (체크아웃 누락 보정, 초과근무 재확인)</div>
+            </div>
+            <div class="q-action"><span class="badge warning">처리 중</span></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority medium"></div>
+            <div class="q-content">
+              <div class="q-title">급여 계산 실행</div>
+              <div class="q-meta">전체 1,240명 급여 산출</div>
+            </div>
+            <div class="q-action"><span class="badge neutral">대기</span></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority medium"></div>
+            <div class="q-content">
+              <div class="q-title">부서장 검토 및 서명</div>
+              <div class="q-meta">4개 부서 부서장 확인 필요</div>
+            </div>
+            <div class="q-action"><span class="badge neutral">대기</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-604: Payslip Center -->
+    <div class="section-divider">
+      <h2>TA-604: 명세서 센터</h2>
+      <p>급여 명세서 발행 및 관리</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">급여 명세서</div>
+        <div class="flex gap-2">
+          <select class="form-select" style="width:auto;padding:var(--sp-1) var(--sp-3);font-size:var(--text-sm);">
+            <option>2026년 3월</option>
+            <option>2026년 2월</option>
+            <option>2026년 1월</option>
+          </select>
+          <button class="btn btn-secondary btn-sm">일괄 발송</button>
+          <button class="btn btn-secondary btn-sm">&#x1F4E5; 내보내기</button>
+        </div>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>이름</th>
+              <th>부서</th>
+              <th class="cell-number">기본급</th>
+              <th class="cell-number">수당</th>
+              <th class="cell-number">공제</th>
+              <th class="cell-number">실수령액</th>
+              <th>상태</th>
+              <th class="cell-actions">액션</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>김민지</td>
+              <td>Product</td>
+              <td class="cell-number">&#x20A9;4,166,667</td>
+              <td class="cell-number">&#x20A9;320,000</td>
+              <td class="cell-number">&#x20A9;845,200</td>
+              <td class="cell-number font-semibold">&#x20A9;3,641,467</td>
+              <td><span class="badge success">발송 완료</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">재발송</button>
+                <button class="btn btn-ghost btn-sm">다운로드</button>
+              </td>
+            </tr>
+            <tr>
+              <td>최도윤</td>
+              <td>Engineering</td>
+              <td class="cell-number">&#x20A9;4,583,333</td>
+              <td class="cell-number">&#x20A9;680,000</td>
+              <td class="cell-number">&#x20A9;1,012,400</td>
+              <td class="cell-number font-semibold">&#x20A9;4,250,933</td>
+              <td><span class="badge success">발송 완료</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">재발송</button>
+                <button class="btn btn-ghost btn-sm">다운로드</button>
+              </td>
+            </tr>
+            <tr>
+              <td>이수현</td>
+              <td>Sales</td>
+              <td class="cell-number">&#x20A9;3,750,000</td>
+              <td class="cell-number">&#x20A9;150,000</td>
+              <td class="cell-number">&#x20A9;734,800</td>
+              <td class="cell-number font-semibold">&#x20A9;3,165,200</td>
+              <td><span class="badge warning">재발행 요청</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-primary btn-sm">재발행</button>
+                <button class="btn btn-ghost btn-sm">다운로드</button>
+              </td>
+            </tr>
+            <tr>
+              <td>박유리</td>
+              <td>HR</td>
+              <td class="cell-number">&#x20A9;4,000,000</td>
+              <td class="cell-number">&#x20A9;200,000</td>
+              <td class="cell-number">&#x20A9;789,600</td>
+              <td class="cell-number font-semibold">&#x20A9;3,410,400</td>
+              <td><span class="badge success">발송 완료</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">재발송</button>
+                <button class="btn btn-ghost btn-sm">다운로드</button>
+              </td>
+            </tr>
+            <tr>
+              <td>정현우</td>
+              <td>Engineering</td>
+              <td class="cell-number">&#x20A9;5,000,000</td>
+              <td class="cell-number">&#x20A9;250,000</td>
+              <td class="cell-number">&#x20A9;1,047,500</td>
+              <td class="cell-number font-semibold">&#x20A9;4,202,500</td>
+              <td><span class="badge info">퇴직정산 포함</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">재발송</button>
+                <button class="btn btn-ghost btn-sm">다운로드</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <span class="pagination-info">총 1,240건 중 1 &ndash; 5 표시</span>
+        <div class="pagination-controls">
+          <button class="pagination-btn">&laquo;</button>
+          <button class="pagination-btn active">1</button>
+          <button class="pagination-btn">2</button>
+          <button class="pagination-btn">3</button>
+          <button class="pagination-btn">&raquo;</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>FlowHR — Employee Home</title>
+  <link rel="stylesheet" href="../css/design-system.css"/>
+</head>
+<body>
+
+<!-- ============================================================
+     TE-001: Employee Home — Desktop Version
+     ============================================================ -->
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand">
+      <span class="brand-dot"></span>FlowHR
+    </div>
+    <div class="header-search">검색 (Ctrl+K)</div>
+    <div class="header-actions">
+      <span class="header-badge">🔔<span class="dot"></span></span>
+      <div class="header-avatar">민</div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar">
+    <div class="nav-section">
+      <a class="nav-item active" href="home.html">
+        <span class="nav-icon">🏠</span> 홈
+      </a>
+      <a class="nav-item" href="schedule.html">
+        <span class="nav-icon">📅</span> 일정
+      </a>
+      <a class="nav-item" href="requests.html">
+        <span class="nav-icon">📋</span> 요청
+        <span class="nav-badge">2</span>
+      </a>
+      <a class="nav-item" href="inbox.html">
+        <span class="nav-icon">📥</span> 인박스
+        <span class="nav-badge">3</span>
+      </a>
+      <a class="nav-item" href="documents.html">
+        <span class="nav-icon">📄</span> 문서
+        <span class="nav-badge">1</span>
+      </a>
+      <a class="nav-item" href="profile.html">
+        <span class="nav-icon">👤</span> 내 정보
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="app-main">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="page-title">안녕하세요, 김민지님 👋</div>
+      <div class="page-subtitle">2026년 3월 12일 목요일 — 오늘도 좋은 하루 보내세요</div>
+    </div>
+
+    <!-- Today Status Hero Card -->
+    <div class="content-grid cols-2-1 mb-6">
+      <div class="card">
+        <div class="card-body" style="padding: var(--sp-6);">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="badge success">근무 중</span>
+                <span class="text-sm text-muted">09:02 출근 완료</span>
+              </div>
+              <div style="font-size: var(--text-3xl); font-weight: 700; color: var(--text-primary);">
+                09:02 — 18:00
+              </div>
+              <div class="text-sm text-muted mt-4">예정 퇴근 18:00 · 잔여 근무 시간 4시간 23분</div>
+            </div>
+            <div style="width: 80px; height: 80px; border-radius: 50%; border: 4px solid var(--brand-primary); display: flex; align-items: center; justify-content: center; flex-direction: column;">
+              <span style="font-size: var(--text-xl); font-weight: 700; color: var(--brand-primary);">4:37</span>
+              <span style="font-size: var(--text-xs); color: var(--text-tertiary);">근무</span>
+            </div>
+          </div>
+          <!-- Quick Actions -->
+          <div class="flex gap-3 mt-4" style="border-top: 1px solid var(--border-subtle); padding-top: var(--sp-4);">
+            <button class="btn btn-primary">퇴근</button>
+            <button class="btn btn-secondary">외근</button>
+            <button class="btn btn-secondary">휴가 요청</button>
+            <button class="btn btn-ghost">정정 요청</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- This Week Mini Calendar -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">이번 주</span>
+          <span class="text-sm text-muted">3월 2주차</span>
+        </div>
+        <div class="card-body">
+          <div class="calendar-mini">
+            <div class="cal-head">월</div>
+            <div class="cal-head">화</div>
+            <div class="cal-head">수</div>
+            <div class="cal-head">목</div>
+            <div class="cal-head">금</div>
+            <div class="cal-head">토</div>
+            <div class="cal-head">일</div>
+
+            <div class="cal-day">9</div>
+            <div class="cal-day event">10</div>
+            <div class="cal-day">11</div>
+            <div class="cal-day today">12</div>
+            <div class="cal-day event">13</div>
+            <div class="cal-day off">14</div>
+            <div class="cal-day off">15</div>
+          </div>
+          <div class="flex-col gap-2 mt-4">
+            <div class="flex items-center gap-2">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--brand-primary);"></span>
+              <span class="text-sm">10일 — 팀 미팅 10:00</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--status-info-solid);"></span>
+              <span class="text-sm">13일 — 1:1 미팅 14:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- My Tasks + My Summary -->
+    <div class="content-grid cols-2 mb-6">
+
+      <!-- My Tasks -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">오늘 할 일</span>
+          <span class="badge warning">3건</span>
+        </div>
+        <div class="card-body" style="padding: 0;">
+          <div class="queue-list" style="padding: var(--sp-3);">
+            <div class="queue-item">
+              <div class="q-priority critical"></div>
+              <div class="q-content">
+                <div class="q-title">전자계약 서명</div>
+                <div class="q-meta">근로계약서 갱신 · 마감 오늘</div>
+              </div>
+              <div class="q-action">
+                <button class="btn btn-primary btn-sm">서명하기</button>
+              </div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority high"></div>
+              <div class="q-content">
+                <div class="q-title">휴가 초안 확인</div>
+                <div class="q-meta">4월 연차 계획 초안 작성</div>
+              </div>
+              <div class="q-action">
+                <button class="btn btn-secondary btn-sm">작성</button>
+              </div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority medium"></div>
+              <div class="q-content">
+                <div class="q-title">팀 공지 확인</div>
+                <div class="q-meta">3월 워크샵 안내 공지</div>
+              </div>
+              <div class="q-action">
+                <button class="btn btn-ghost btn-sm">확인</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- My Summary -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">나의 요약</span>
+        </div>
+        <div class="card-body">
+          <div class="kpi-grid cols-2" style="margin-bottom: 0;">
+            <div class="kpi-card emphasis">
+              <div class="kpi-eyebrow">연차 잔여</div>
+              <div class="kpi-value">8.5</div>
+              <div class="kpi-label">일</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-eyebrow">진행 중 요청</div>
+              <div class="kpi-value">2</div>
+              <div class="kpi-label">건</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-eyebrow">이번 달 지각</div>
+              <div class="kpi-value">0</div>
+              <div class="kpi-label">회</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-eyebrow">최근 문서</div>
+              <div class="kpi-value">3</div>
+              <div class="kpi-label">건</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+
+<!-- ============================================================
+     TE-002: Employee Home — Mobile Version
+     ============================================================ -->
+<div class="section-divider" style="max-width: 420px; margin: 60px auto 40px;">
+  <h2>TE-002 Mobile — Employee Home</h2>
+  <p>모바일 직원 홈 화면</p>
+</div>
+
+<div class="mobile-frame">
+  <!-- Status Bar -->
+  <div class="mobile-status-bar">
+    <div class="mobile-notch"></div>
+  </div>
+
+  <!-- Mobile Content -->
+  <div class="mobile-content">
+
+    <!-- Greeting -->
+    <div class="mb-4">
+      <div style="font-size: var(--text-lg); font-weight: 700;">안녕하세요, 민지님</div>
+      <div class="text-sm text-muted">2026년 3월 12일 목요일</div>
+    </div>
+
+    <!-- Hero Status Card -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="flex items-center justify-between mb-2">
+          <span class="badge success">근무 중</span>
+          <span class="text-sm text-muted">퇴근 예정 18:00</span>
+        </div>
+        <div style="font-size: var(--text-2xl); font-weight: 700;">09:02 출근</div>
+        <div class="text-sm text-muted mt-4">잔여 근무 시간 4시간 23분</div>
+
+        <!-- Quick Actions Row -->
+        <div class="flex gap-2 mt-4" style="border-top: 1px solid var(--border-subtle); padding-top: var(--sp-3);">
+          <button class="btn btn-primary btn-sm" style="flex: 1;">퇴근</button>
+          <button class="btn btn-secondary btn-sm" style="flex: 1;">외근</button>
+          <button class="btn btn-secondary btn-sm" style="flex: 1;">휴가</button>
+          <button class="btn btn-ghost btn-sm" style="flex: 1;">정정</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Today Tasks -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <span class="card-title">오늘 할 일</span>
+        <span class="badge warning">3</span>
+      </div>
+      <div class="card-body" style="padding: 0;">
+        <div class="queue-list" style="padding: var(--sp-3);">
+          <div class="queue-item">
+            <div class="q-priority critical"></div>
+            <div class="q-content">
+              <div class="q-title">전자계약 서명</div>
+              <div class="q-meta">근로계약서 갱신 · 마감 오늘</div>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority high"></div>
+            <div class="q-content">
+              <div class="q-title">휴가 초안 확인</div>
+              <div class="q-meta">4월 연차 계획</div>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="q-priority medium"></div>
+            <div class="q-content">
+              <div class="q-title">팀 공지 확인</div>
+              <div class="q-meta">3월 워크샵 안내</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Weekly Summary -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <span class="card-title">이번 주 요약</span>
+      </div>
+      <div class="card-body">
+        <div class="stat-row">
+          <span class="stat-label">연차 잔여</span>
+          <span class="stat-value text-brand">8.5일</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">진행 중 요청</span>
+          <span class="stat-value">2건</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">이번 달 지각</span>
+          <span class="stat-value">0회</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">최근 문서</span>
+          <span class="stat-value">3건</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Tab Bar -->
+  <div class="mobile-tabbar">
+    <div class="mobile-tab active">
+      <span class="tab-icon">🏠</span>
+      홈
+    </div>
+    <div class="mobile-tab">
+      <span class="tab-icon">📋</span>
+      요청
+    </div>
+    <div class="mobile-tab">
+      <span class="tab-icon">📅</span>
+      일정
+    </div>
+    <div class="mobile-tab">
+      <span class="tab-icon">📥</span>
+      인박스
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

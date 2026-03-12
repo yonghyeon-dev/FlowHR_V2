@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowHR - Tenant Admin Home</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand">
+      <span class="brand-dot"></span> FlowHR
+    </div>
+    <div class="header-search">검색 (Ctrl+K)</div>
+    <div class="header-actions">
+      <span class="header-badge">&#x1F514;<span class="dot"></span></span>
+      <span class="header-badge">&#x2753;</span>
+      <div class="header-avatar">관</div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar">
+    <div class="nav-section">
+      <div class="nav-section-label">Main</div>
+      <a href="home.html" class="nav-item active"><span class="nav-icon">&#x1F3E0;</span> Home <span class="nav-badge">17</span></a>
+      <a href="people.html" class="nav-item"><span class="nav-icon">&#x1F465;</span> People</a>
+      <a href="attendance.html" class="nav-item"><span class="nav-icon">&#x23F0;</span> Attendance</a>
+      <a href="leave.html" class="nav-item"><span class="nav-icon">&#x1F334;</span> Leave</a>
+      <a href="workflow.html" class="nav-item"><span class="nav-icon">&#x1F504;</span> Workflow <span class="nav-badge">4</span></a>
+      <a href="documents.html" class="nav-item"><span class="nav-icon">&#x1F4C4;</span> Documents</a>
+      <a href="payroll.html" class="nav-item"><span class="nav-icon">&#x1F4B0;</span> Payroll</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Talent</div>
+      <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span> Performance</a>
+      <a href="recruiting.html" class="nav-item"><span class="nav-icon">&#x1F4CB;</span> Recruiting</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">System</div>
+      <a href="reports.html" class="nav-item"><span class="nav-icon">&#x1F4C8;</span> Reports</a>
+      <a href="settings.html" class="nav-item"><span class="nav-icon">&#x2699;</span> Settings</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="app-main">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="page-breadcrumb"><span>Home</span></div>
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="page-title">안녕하세요, 관리자님</h1>
+          <p class="page-subtitle">2026년 3월 12일 목요일 &middot; (주)플로우커머스 HR 현황 요약</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-secondary">&#x1F4E5; 내보내기</button>
+          <button class="btn btn-primary">&#x2795; 빠른 등록</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-001: KPI Row (5 cols) -->
+    <div class="kpi-grid cols-5">
+      <div class="kpi-card emphasis">
+        <div class="kpi-eyebrow">승인 필요</div>
+        <div class="kpi-value">17</div>
+        <div class="kpi-label">오늘 승인 필요</div>
+        <div class="kpi-delta up">&#x25B2; 3건 전일 대비</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">근태 이상</div>
+        <div class="kpi-value">9</div>
+        <div class="kpi-label">체크아웃 누락</div>
+        <div class="kpi-delta up">&#x25B2; 2건 전일 대비</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">근로 시간</div>
+        <div class="kpi-value">6</div>
+        <div class="kpi-label">초과근무 임박</div>
+        <div class="kpi-delta neutral">&#x2014; 동일</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">문서</div>
+        <div class="kpi-value">12</div>
+        <div class="kpi-label">서명 대기</div>
+        <div class="kpi-delta up">&#x25B2; 5건 전일 대비</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">마감</div>
+        <div class="kpi-value">3</div>
+        <div class="kpi-label">마감 병목</div>
+        <div class="kpi-delta down">&#x25BC; 1건 전일 대비</div>
+      </div>
+    </div>
+
+    <!-- TA-001: Today Queue + Org Snapshot -->
+    <div class="content-grid cols-2-1 mb-6">
+
+      <!-- Today Queue -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">오늘의 대기열</div>
+          <button class="btn btn-ghost btn-sm">전체 보기 &rarr;</button>
+        </div>
+        <div class="card-body">
+          <div class="queue-list">
+            <div class="queue-item">
+              <div class="q-priority critical"></div>
+              <div class="q-content">
+                <div class="q-title">초과근무 상한 도달 &mdash; 정현우 외 2명</div>
+                <div class="q-meta">주 52시간 초과 임박 &middot; 즉시 조치 필요</div>
+              </div>
+              <div class="q-action"><button class="btn btn-primary btn-sm">조치</button></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority high"></div>
+              <div class="q-content">
+                <div class="q-title">체크아웃 누락 9건</div>
+                <div class="q-meta">영업팀 4건, 개발팀 3건, HR팀 2건</div>
+              </div>
+              <div class="q-action"><button class="btn btn-secondary btn-sm">확인</button></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority medium"></div>
+              <div class="q-content">
+                <div class="q-title">휴가 요청 미처리 적체 7건</div>
+                <div class="q-meta">3일 이상 대기 중인 요청 포함 &middot; SLA 경과</div>
+              </div>
+              <div class="q-action"><button class="btn btn-secondary btn-sm">처리</button></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority medium"></div>
+              <div class="q-content">
+                <div class="q-title">미서명 계약서 12건</div>
+                <div class="q-meta">입사 예정자 8건, 연봉 변경 4건 &middot; 마감 3일 전</div>
+              </div>
+              <div class="q-action"><button class="btn btn-secondary btn-sm">알림 발송</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Org Snapshot -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">조직 스냅샷</div>
+          <span class="text-sm text-muted">부서별 현황</span>
+        </div>
+        <div class="card-body">
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label">Product</span>
+              <div class="bar-track"><div class="bar-fill" style="width:96%"></div></div>
+              <span class="bar-value">96%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Engineering</span>
+              <div class="bar-track"><div class="bar-fill" style="width:91%"></div></div>
+              <span class="bar-value">91%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Sales</span>
+              <div class="bar-track"><div class="bar-fill warning" style="width:84%"></div></div>
+              <span class="bar-value">84%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">HR</span>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+              <span class="bar-value">100%</span>
+            </div>
+          </div>
+          <div style="margin-top:var(--sp-4)">
+            <div class="stat-row">
+              <span class="stat-label">위험 신호</span>
+              <span class="stat-value"><span class="badge danger">Sales 3건</span></span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">주의 관찰</span>
+              <span class="stat-value"><span class="badge warning">Engineering 2건</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-002: Approval Funnel + Exception Monitor -->
+    <div class="content-grid cols-2 mb-6">
+
+      <!-- Approval Funnel -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">승인 퍼널</div>
+          <span class="badge info">이번 주</span>
+        </div>
+        <div class="card-body">
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label">초안</span>
+              <div class="bar-track"><div class="bar-fill" style="width:20%"></div></div>
+              <span class="bar-value">12</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">승인 대기</span>
+              <div class="bar-track"><div class="bar-fill warning" style="width:28%"></div></div>
+              <span class="bar-value">17</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">상향 결재</span>
+              <div class="bar-track"><div class="bar-fill danger" style="width:7%"></div></div>
+              <span class="bar-value">4</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">완료</span>
+              <div class="bar-track"><div class="bar-fill" style="width:46%"></div></div>
+              <span class="bar-value">28</span>
+            </div>
+          </div>
+          <div class="card-footer" style="margin: var(--sp-4) calc(-1 * var(--sp-5)) calc(-1 * var(--sp-5)); padding: var(--sp-3) var(--sp-5);">
+            <span class="text-sm text-muted">평균 처리 시간: 1.4일 &middot; SLA 초과: 3건</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exception Monitor -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">예외 모니터</div>
+          <button class="btn btn-ghost btn-sm">상세 &rarr;</button>
+        </div>
+        <div class="card-body">
+          <div class="queue-list">
+            <div class="queue-item">
+              <div class="q-priority high"></div>
+              <div class="q-content">
+                <div class="q-title">지각</div>
+                <div class="q-meta">영업팀 3건, 개발팀 2건, 기획팀 2건, 디자인팀 1건</div>
+              </div>
+              <div class="q-action"><span class="badge warning">8건</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority critical"></div>
+              <div class="q-content">
+                <div class="q-title">휴게 시간 위반</div>
+                <div class="q-meta">연속 6시간 초과 근무 &middot; 근로기준법 위반 가능</div>
+              </div>
+              <div class="q-action"><span class="badge danger">2건</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority critical"></div>
+              <div class="q-content">
+                <div class="q-title">연속 야간근무</div>
+                <div class="q-meta">3일 이상 연속 야간 근무 &middot; 강제 휴무 권고</div>
+              </div>
+              <div class="q-action"><span class="badge danger">3건</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-priority medium"></div>
+              <div class="q-content">
+                <div class="q-title">기록 충돌</div>
+                <div class="q-meta">출퇴근 기록과 시스템 기록 불일치</div>
+              </div>
+              <div class="q-action"><span class="badge info">1건</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-002: Documents & Payroll Watch -->
+    <div class="content-grid cols-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">문서 현황</div>
+          <button class="btn btn-ghost btn-sm">문서함 &rarr;</button>
+        </div>
+        <div class="card-body">
+          <div class="stat-row">
+            <span class="stat-label">서명 미완료</span>
+            <span class="stat-value">12건 <span class="badge warning">긴급 3건</span></span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">만료 예정 계약</span>
+            <span class="stat-value">5건 <span class="badge danger">7일 이내</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">급여 현황</div>
+          <button class="btn btn-ghost btn-sm">급여 관리 &rarr;</button>
+        </div>
+        <div class="card-body">
+          <div class="stat-row">
+            <span class="stat-label">마감 전 확인</span>
+            <span class="stat-value">3건 <span class="badge warning">변동 사항</span></span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">명세서 재발행</span>
+            <span class="stat-value">2건 <span class="badge info">요청 접수</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

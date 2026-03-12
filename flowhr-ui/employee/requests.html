@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>FlowHR — 요청</title>
+  <link rel="stylesheet" href="../css/design-system.css"/>
+</head>
+<body>
+
+<!-- ============================================================
+     TE-201~205: Requests
+     ============================================================ -->
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand">
+      <span class="brand-dot"></span>FlowHR
+    </div>
+    <div class="header-search">검색 (Ctrl+K)</div>
+    <div class="header-actions">
+      <span class="header-badge">🔔<span class="dot"></span></span>
+      <div class="header-avatar">민</div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar">
+    <div class="nav-section">
+      <a class="nav-item" href="home.html">
+        <span class="nav-icon">🏠</span> 홈
+      </a>
+      <a class="nav-item" href="schedule.html">
+        <span class="nav-icon">📅</span> 일정
+      </a>
+      <a class="nav-item active" href="requests.html">
+        <span class="nav-icon">📋</span> 요청
+        <span class="nav-badge">2</span>
+      </a>
+      <a class="nav-item" href="inbox.html">
+        <span class="nav-icon">📥</span> 인박스
+        <span class="nav-badge">3</span>
+      </a>
+      <a class="nav-item" href="documents.html">
+        <span class="nav-icon">📄</span> 문서
+        <span class="nav-badge">1</span>
+      </a>
+      <a class="nav-item" href="profile.html">
+        <span class="nav-icon">👤</span> 내 정보
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="app-main">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="page-breadcrumb">
+        <span>홈</span>
+        <span>요청</span>
+      </div>
+      <div class="page-title">요청</div>
+      <div class="page-subtitle">휴가, 근태 정정, 경비 등 다양한 요청을 신청하세요</div>
+    </div>
+
+    <!-- TE-201: New Request Hub -->
+    <div class="section-divider" style="margin-top: 0;">
+      <h2>새 요청</h2>
+      <p>신청할 요청 유형을 선택하세요</p>
+    </div>
+
+    <div class="content-grid cols-3 mb-6" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+      <!-- Request Type Cards -->
+      <div class="card" style="cursor: pointer; transition: all var(--duration-fast) var(--ease-out);">
+        <div class="card-body" style="text-align: center; padding: var(--sp-6) var(--sp-4);">
+          <div style="font-size: 32px; margin-bottom: var(--sp-3);">🌴</div>
+          <div class="font-semibold mb-2">연차 신청</div>
+          <div class="text-sm text-muted">연차 휴가를 신청합니다</div>
+        </div>
+      </div>
+      <div class="card" style="cursor: pointer;">
+        <div class="card-body" style="text-align: center; padding: var(--sp-6) var(--sp-4);">
+          <div style="font-size: 32px; margin-bottom: var(--sp-3);">🌤</div>
+          <div class="font-semibold mb-2">반차 신청</div>
+          <div class="text-sm text-muted">오전 또는 오후 반차 신청</div>
+        </div>
+      </div>
+      <div class="card" style="cursor: pointer;">
+        <div class="card-body" style="text-align: center; padding: var(--sp-6) var(--sp-4);">
+          <div style="font-size: 32px; margin-bottom: var(--sp-3);">🏥</div>
+          <div class="font-semibold mb-2">병가 신청</div>
+          <div class="text-sm text-muted">진단서 첨부 병가 신청</div>
+        </div>
+      </div>
+      <div class="card" style="cursor: pointer;">
+        <div class="card-body" style="text-align: center; padding: var(--sp-6) var(--sp-4);">
+          <div style="font-size: 32px; margin-bottom: var(--sp-3);">🕐</div>
+          <div class="font-semibold mb-2">출근 정정</div>
+          <div class="text-sm text-muted">출근 시간 정정 요청</div>
+        </div>
+      </div>
+      <div class="card" style="cursor: pointer;">
+        <div class="card-body" style="text-align: center; padding: var(--sp-6) var(--sp-4);">
+          <div style="font-size: 32px; margin-bottom: var(--sp-3);">🕕</div>
+          <div class="font-semibold mb-2">퇴근 정정</div>
+          <div class="text-sm text-muted">퇴근 시간 정정 요청</div>
+        </div>
+      </div>
+      <div class="card" style="cursor: pointer;">
+        <div class="card-body" style="text-align: center; padding: var(--sp-6) var(--sp-4);">
+          <div style="font-size: 32px; margin-bottom: var(--sp-3);">💳</div>
+          <div class="font-semibold mb-2">경비 청구</div>
+          <div class="text-sm text-muted">업무 관련 경비 청구</div>
+        </div>
+      </div>
+      <div class="card" style="cursor: pointer;">
+        <div class="card-body" style="text-align: center; padding: var(--sp-6) var(--sp-4);">
+          <div style="font-size: 32px; margin-bottom: var(--sp-3);">📝</div>
+          <div class="font-semibold mb-2">일반 품의</div>
+          <div class="text-sm text-muted">기타 결재 품의 신청</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TE-202: Leave Request Form -->
+    <div class="section-divider">
+      <h2>휴가 신청서</h2>
+      <p>연차 / 반차 / 병가 신청 양식</p>
+    </div>
+
+    <div class="card mb-6">
+      <div class="card-header">
+        <span class="card-title">연차 신청</span>
+        <span class="badge info">작성 중</span>
+      </div>
+      <div class="card-body">
+        <!-- Steps -->
+        <div class="steps mb-6">
+          <div class="step done">
+            <span class="step-num">1</span> 유형 선택
+          </div>
+          <div class="step active">
+            <span class="step-num">2</span> 상세 정보
+          </div>
+          <div class="step">
+            <span class="step-num">3</span> 검토 · 제출
+          </div>
+        </div>
+
+        <div class="content-grid cols-2">
+          <div>
+            <div class="form-group">
+              <label class="form-label">휴가 유형</label>
+              <select class="form-select">
+                <option selected>연차</option>
+                <option>반차 (오전)</option>
+                <option>반차 (오후)</option>
+                <option>병가</option>
+                <option>경조사</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">시작일</label>
+              <input type="date" class="form-input" value="2026-04-07"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">종료일</label>
+              <input type="date" class="form-input" value="2026-04-08"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">사용 일수</label>
+              <input type="text" class="form-input" value="2일" readonly style="background: var(--surface-secondary);"/>
+              <span class="form-hint">잔여 연차: 8.5일</span>
+            </div>
+          </div>
+          <div>
+            <div class="form-group">
+              <label class="form-label">사유</label>
+              <textarea class="form-textarea" rows="4" placeholder="휴가 사유를 입력해 주세요">개인 사유 (가족 행사)</textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">결재자</label>
+              <div class="flex items-center gap-3" style="padding: var(--sp-3); background: var(--surface-secondary); border-radius: var(--radius-sm);">
+                <div class="avatar sm">박</div>
+                <div>
+                  <div class="font-semibold text-sm">박서준</div>
+                  <div class="text-sm text-muted">Product 팀 리더</div>
+                </div>
+              </div>
+              <span class="form-hint">직속 상관이 자동 지정됩니다</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">비상 연락</label>
+              <input type="text" class="form-input" placeholder="휴가 중 연락 가능한 번호"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 mt-4" style="border-top: 1px solid var(--border-subtle); padding-top: var(--sp-4);">
+          <button class="btn btn-primary">신청하기</button>
+          <button class="btn btn-secondary">임시 저장</button>
+          <button class="btn btn-ghost">취소</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TE-203: Attendance Correction Form -->
+    <div class="section-divider">
+      <h2>출퇴근 정정 요청</h2>
+      <p>출퇴근 시간 오류 시 정정 요청</p>
+    </div>
+
+    <div class="card mb-6">
+      <div class="card-header">
+        <span class="card-title">출근 정정</span>
+      </div>
+      <div class="card-body">
+        <div class="content-grid cols-2">
+          <div>
+            <div class="form-group">
+              <label class="form-label">정정 대상일</label>
+              <input type="date" class="form-input" value="2026-03-07"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">정정 유형</label>
+              <select class="form-select">
+                <option selected>출근 시간 정정</option>
+                <option>퇴근 시간 정정</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">기존 시간</label>
+              <input type="text" class="form-input" value="09:12" readonly style="background: var(--surface-secondary);"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">정정 시간</label>
+              <input type="time" class="form-input" value="08:55"/>
+            </div>
+          </div>
+          <div>
+            <div class="form-group">
+              <label class="form-label">정정 사유</label>
+              <textarea class="form-textarea" rows="4" placeholder="정정 사유를 상세히 입력해 주세요">사무실 도착 후 카드 인식 오류로 출근 시간이 늦게 기록되었습니다.</textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">증빙 첨부</label>
+              <div style="border: 2px dashed var(--border-strong); border-radius: var(--radius-md); padding: var(--sp-6); text-align: center; background: var(--surface-secondary);">
+                <div style="font-size: 24px; margin-bottom: var(--sp-2);">📎</div>
+                <div class="text-sm text-muted">파일을 드래그하거나 클릭하여 업로드</div>
+                <div class="text-sm text-muted mt-4">PNG, JPG, PDF (최대 10MB)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 mt-4" style="border-top: 1px solid var(--border-subtle); padding-top: var(--sp-4);">
+          <button class="btn btn-primary">정정 요청</button>
+          <button class="btn btn-ghost">취소</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TE-204~205: My Request History -->
+    <div class="section-divider">
+      <h2>나의 요청 이력</h2>
+      <p>제출한 요청의 진행 상태를 확인하세요</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">요청 이력</span>
+        <div class="flex gap-2">
+          <span class="filter-chip active">전체</span>
+          <span class="filter-chip">진행 중</span>
+          <span class="filter-chip">완료</span>
+          <span class="filter-chip">반려</span>
+        </div>
+      </div>
+      <div class="card-body" style="padding: 0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>유형</th>
+              <th>신청 내용</th>
+              <th>신청일</th>
+              <th>결재자</th>
+              <th>상태</th>
+              <th class="cell-actions">관리</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge info">연차</span></td>
+              <td>4/7~4/8 연차 (2일)</td>
+              <td>2026-03-12</td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="avatar sm">박</div>
+                  <span class="text-sm">박서준</span>
+                </div>
+              </td>
+              <td><span class="badge warning">대기 중</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">취소</button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="badge neutral">출근 정정</span></td>
+              <td>3/7 출근 시간 09:12→08:55</td>
+              <td>2026-03-10</td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="avatar sm">박</div>
+                  <span class="text-sm">박서준</span>
+                </div>
+              </td>
+              <td><span class="badge danger">반려</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">재신청</button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="badge info">반차</span></td>
+              <td>3/6 오후 반차</td>
+              <td>2026-03-04</td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="avatar sm">박</div>
+                  <span class="text-sm">박서준</span>
+                </div>
+              </td>
+              <td><span class="badge success">승인</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">상세</button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="badge info">연차</span></td>
+              <td>3/4 연차 (1일)</td>
+              <td>2026-02-28</td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="avatar sm">박</div>
+                  <span class="text-sm">박서준</span>
+                </div>
+              </td>
+              <td><span class="badge success">승인</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">상세</button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="badge neutral">경비</span></td>
+              <td>2월 교통비 청구 ₩45,000</td>
+              <td>2026-02-25</td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="avatar sm">박</div>
+                  <span class="text-sm">박서준</span>
+                </div>
+              </td>
+              <td><span class="badge success">승인</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">상세</button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="badge info">연차</span></td>
+              <td>2/14 연차 (1일)</td>
+              <td>2026-02-10</td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="avatar sm">박</div>
+                  <span class="text-sm">박서준</span>
+                </div>
+              </td>
+              <td><span class="badge success">승인</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">상세</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <span class="pagination-info">총 12건 중 1-6</span>
+        <div class="pagination-controls">
+          <button class="pagination-btn">←</button>
+          <button class="pagination-btn active">1</button>
+          <button class="pagination-btn">2</button>
+          <button class="pagination-btn">→</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

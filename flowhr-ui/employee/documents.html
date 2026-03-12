@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>FlowHR — 문서 · 서명</title>
+  <link rel="stylesheet" href="../css/design-system.css"/>
+</head>
+<body>
+
+<!-- ============================================================
+     TE-401~403: Documents & Signature
+     ============================================================ -->
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand">
+      <span class="brand-dot"></span>FlowHR
+    </div>
+    <div class="header-search">검색 (Ctrl+K)</div>
+    <div class="header-actions">
+      <span class="header-badge">🔔<span class="dot"></span></span>
+      <div class="header-avatar">민</div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar">
+    <div class="nav-section">
+      <a class="nav-item" href="home.html">
+        <span class="nav-icon">🏠</span> 홈
+      </a>
+      <a class="nav-item" href="schedule.html">
+        <span class="nav-icon">📅</span> 일정
+      </a>
+      <a class="nav-item" href="requests.html">
+        <span class="nav-icon">📋</span> 요청
+        <span class="nav-badge">2</span>
+      </a>
+      <a class="nav-item" href="inbox.html">
+        <span class="nav-icon">📥</span> 인박스
+        <span class="nav-badge">3</span>
+      </a>
+      <a class="nav-item active" href="documents.html">
+        <span class="nav-icon">📄</span> 문서
+        <span class="nav-badge">1</span>
+      </a>
+      <a class="nav-item" href="profile.html">
+        <span class="nav-icon">👤</span> 내 정보
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="app-main">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="page-breadcrumb">
+        <span>홈</span>
+        <span>문서 · 서명</span>
+      </div>
+      <div class="page-title">문서 · 서명</div>
+      <div class="page-subtitle">서명 대기 문서와 보관 문서를 관리하세요</div>
+    </div>
+
+    <!-- TE-401: Signature Inbox -->
+    <div class="section-divider" style="margin-top: 0;">
+      <h2>서명 대기함</h2>
+      <p>서명이 필요한 문서 목록</p>
+    </div>
+
+    <div class="flex-col gap-3 mb-6">
+      <!-- Item 1: Critical -->
+      <div class="queue-item">
+        <div class="q-priority critical"></div>
+        <div style="font-size: 24px; flex-shrink: 0;">📝</div>
+        <div class="q-content">
+          <div class="q-title font-semibold">근로계약서 (2026년 갱신)</div>
+          <div class="q-meta">
+            <span>발신: 인사팀 · 마감: 오늘 (3/12)</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="badge danger">긴급</span>
+          <button class="btn btn-primary btn-sm">서명하기</button>
+        </div>
+      </div>
+
+      <!-- Item 2: High -->
+      <div class="queue-item">
+        <div class="q-priority high"></div>
+        <div style="font-size: 24px; flex-shrink: 0;">📄</div>
+        <div class="q-content">
+          <div class="q-title font-semibold">연봉 변경 통지서</div>
+          <div class="q-meta">
+            <span>발신: 인사팀 · 마감: 3/15 (금)</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="badge warning">높음</span>
+          <button class="btn btn-secondary btn-sm">서명하기</button>
+        </div>
+      </div>
+
+      <!-- Item 3: Medium -->
+      <div class="queue-item">
+        <div class="q-priority medium"></div>
+        <div style="font-size: 24px; flex-shrink: 0;">🔒</div>
+        <div class="q-content">
+          <div class="q-title font-semibold">NDA 갱신</div>
+          <div class="q-meta">
+            <span>발신: 법무팀 · 마감: 3/20 (목)</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="badge info">보통</span>
+          <button class="btn btn-secondary btn-sm">서명하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TE-402: Document Viewer Mockup -->
+    <div class="section-divider">
+      <h2>문서 뷰어</h2>
+      <p>문서 미리보기 및 전자서명</p>
+    </div>
+
+    <div class="card mb-6">
+      <div class="card-header">
+        <div>
+          <span class="card-title">근로계약서 (2026년 갱신)</span>
+          <div class="card-subtitle">인사팀 발송 · 2026-03-10 생성 · PDF 2페이지</div>
+        </div>
+        <div class="flex gap-2">
+          <button class="btn btn-ghost btn-sm">다운로드</button>
+          <button class="btn btn-ghost btn-sm">인쇄</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <!-- Document Preview Area -->
+        <div style="background: var(--surface-secondary); border: 1px solid var(--border-default); border-radius: var(--radius-md); min-height: 360px; display: flex; align-items: center; justify-content: center; flex-direction: column; margin-bottom: var(--sp-5);">
+          <div style="width: 80%; max-width: 520px; background: white; border: 1px solid var(--border-default); border-radius: var(--radius-sm); padding: var(--sp-8); box-shadow: var(--shadow-md);">
+            <div style="text-align: center; margin-bottom: var(--sp-6);">
+              <div style="font-size: var(--text-xl); font-weight: 700;">근 로 계 약 서</div>
+              <div class="text-sm text-muted mt-4">2026년 갱신</div>
+            </div>
+            <div class="text-sm" style="line-height: 2; color: var(--text-secondary);">
+              <p>제1조 (계약기간) 2026년 4월 1일 ~ 2027년 3월 31일</p>
+              <p>제2조 (근무장소) 서울특별시 강남구 테헤란로 123</p>
+              <p>제3조 (업무내용) Product Design Lead</p>
+              <p>제4조 (근로시간) 09:00 ~ 18:00 (휴게 12:00~13:00)</p>
+              <p style="color: var(--text-tertiary);">... (이하 내용 생략) ...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Signature Pad Area -->
+        <div style="border: 2px dashed var(--brand-primary); border-radius: var(--radius-md); padding: var(--sp-6); text-align: center; background: var(--brand-soft);">
+          <div style="font-size: 24px; margin-bottom: var(--sp-2);">✍️</div>
+          <div class="font-semibold text-brand mb-2">서명 영역</div>
+          <div class="text-sm text-muted">터치 또는 마우스로 서명해 주세요</div>
+          <div style="height: 80px; background: white; border: 1px solid var(--border-default); border-radius: var(--radius-sm); margin-top: var(--sp-4); display: flex; align-items: center; justify-content: center;">
+            <span class="text-sm text-muted">여기에 서명</span>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex gap-3 mt-4" style="border-top: 1px solid var(--border-subtle); padding-top: var(--sp-4);">
+          <button class="btn btn-primary btn-lg">서명 완료</button>
+          <button class="btn btn-danger btn-lg">거부</button>
+          <button class="btn btn-ghost">뒤로</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TE-403: My Document Archive -->
+    <div class="section-divider">
+      <h2>문서 보관함</h2>
+      <p>수신 및 서명 완료된 문서 목록</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">보관 문서</span>
+        <div class="flex gap-2">
+          <span class="filter-chip active">전체</span>
+          <span class="filter-chip">계약서</span>
+          <span class="filter-chip">증명서</span>
+          <span class="filter-chip">통지서</span>
+        </div>
+      </div>
+      <div class="card-body" style="padding: 0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>문서명</th>
+              <th>유형</th>
+              <th>발신</th>
+              <th>수신일</th>
+              <th>서명 상태</th>
+              <th class="cell-actions">다운로드</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold">근로계약서 (2025년)</td>
+              <td><span class="badge info">계약서</span></td>
+              <td>인사팀</td>
+              <td>2025-03-15</td>
+              <td><span class="badge success">서명 완료</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">📥 PDF</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">연봉 변경 통지서 (2025)</td>
+              <td><span class="badge neutral">통지서</span></td>
+              <td>인사팀</td>
+              <td>2025-03-10</td>
+              <td><span class="badge success">서명 완료</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">📥 PDF</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">NDA (기밀유지서약서)</td>
+              <td><span class="badge warning">서약서</span></td>
+              <td>법무팀</td>
+              <td>2025-01-05</td>
+              <td><span class="badge success">서명 완료</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">📥 PDF</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">재직증명서</td>
+              <td><span class="badge info">증명서</span></td>
+              <td>인사팀</td>
+              <td>2025-11-20</td>
+              <td><span class="badge neutral">서명 불필요</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">📥 PDF</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">급여 명세서 (2026-02)</td>
+              <td><span class="badge neutral">명세서</span></td>
+              <td>급여팀</td>
+              <td>2026-02-25</td>
+              <td><span class="badge neutral">서명 불필요</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">📥 PDF</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">급여 명세서 (2026-03)</td>
+              <td><span class="badge neutral">명세서</span></td>
+              <td>급여팀</td>
+              <td>2026-03-12</td>
+              <td><span class="badge neutral">서명 불필요</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">📥 PDF</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">개인정보 동의서 (갱신)</td>
+              <td><span class="badge warning">서약서</span></td>
+              <td>보안팀</td>
+              <td>2025-06-01</td>
+              <td><span class="badge success">서명 완료</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">📥 PDF</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <span class="pagination-info">총 7건</span>
+        <div class="pagination-controls">
+          <button class="pagination-btn active">1</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowHR - Recruiting</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand"><span class="brand-dot"></span> FlowHR</div>
+    <div class="header-search">검색 (Ctrl+K)</div>
+    <div class="header-actions">
+      <span class="header-badge">&#x1F514;<span class="dot"></span></span>
+      <span class="header-badge">&#x2753;</span>
+      <div class="header-avatar">관</div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar">
+    <div class="nav-section">
+      <div class="nav-section-label">Main</div>
+      <a href="home.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span> Home</a>
+      <a href="people.html" class="nav-item"><span class="nav-icon">&#x1F465;</span> People</a>
+      <a href="attendance.html" class="nav-item"><span class="nav-icon">&#x23F0;</span> Attendance</a>
+      <a href="leave.html" class="nav-item"><span class="nav-icon">&#x1F334;</span> Leave</a>
+      <a href="workflow.html" class="nav-item"><span class="nav-icon">&#x1F504;</span> Workflow</a>
+      <a href="documents.html" class="nav-item"><span class="nav-icon">&#x1F4C4;</span> Documents</a>
+      <a href="payroll.html" class="nav-item"><span class="nav-icon">&#x1F4B0;</span> Payroll</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Talent</div>
+      <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span> Performance</a>
+      <a href="recruiting.html" class="nav-item active"><span class="nav-icon">&#x1F4CB;</span> Recruiting</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">System</div>
+      <a href="reports.html" class="nav-item"><span class="nav-icon">&#x1F4C8;</span> Reports</a>
+      <a href="settings.html" class="nav-item"><span class="nav-icon">&#x2699;</span> Settings</a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="app-main">
+
+    <div class="page-header">
+      <div class="page-breadcrumb"><span>Home</span> <span>Recruiting</span></div>
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="page-title">채용 관리</h1>
+          <p class="page-subtitle">채용 공고, 지원자 파이프라인, 온보딩/오프보딩 관리</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-secondary">&#x1F4CA; 채용 리포트</button>
+          <button class="btn btn-primary">&#x2795; 채용 공고 등록</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-801: Hiring Dashboard KPIs -->
+    <div class="kpi-grid cols-4 mb-6">
+      <div class="kpi-card emphasis">
+        <div class="kpi-eyebrow">진행 중 채용</div>
+        <div class="kpi-value">8</div>
+        <div class="kpi-label">건 활성 공고</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">서류 접수</div>
+        <div class="kpi-value">47</div>
+        <div class="kpi-label">명 지원자</div>
+        <div class="kpi-delta up">&#x25B2; 12명 전주 대비</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">면접 예정</div>
+        <div class="kpi-value">12</div>
+        <div class="kpi-label">명 이번 주</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">평균 채용 기간</div>
+        <div class="kpi-value">28</div>
+        <div class="kpi-label">일 (공고~입사)</div>
+        <div class="kpi-delta down">&#x25BC; 3일 전분기 대비</div>
+      </div>
+    </div>
+
+    <!-- TA-802: Job Posting Table -->
+    <div class="card mb-6">
+      <div class="card-header">
+        <div class="card-title">채용 공고</div>
+        <div class="flex gap-2">
+          <span class="filter-chip active">전체</span>
+          <span class="filter-chip">모집 중</span>
+          <span class="filter-chip">마감</span>
+          <span class="filter-chip">임시저장</span>
+        </div>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>포지션</th>
+              <th>부서</th>
+              <th>상태</th>
+              <th class="cell-number">지원자</th>
+              <th>마감일</th>
+              <th class="cell-actions">액션</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold">시니어 백엔드 엔지니어</td>
+              <td>Engineering</td>
+              <td><span class="badge success">모집 중</span></td>
+              <td class="cell-number">14</td>
+              <td>2026.03.31</td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">관리</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">프로덕트 디자이너</td>
+              <td>Product</td>
+              <td><span class="badge success">모집 중</span></td>
+              <td class="cell-number">8</td>
+              <td>2026.03.25</td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">관리</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">영업 매니저</td>
+              <td>Sales</td>
+              <td><span class="badge success">모집 중</span></td>
+              <td class="cell-number">11</td>
+              <td>2026.04.05</td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">관리</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">데이터 분석가</td>
+              <td>Product</td>
+              <td><span class="badge success">모집 중</span></td>
+              <td class="cell-number">6</td>
+              <td>2026.04.10</td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">관리</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">DevOps 엔지니어</td>
+              <td>Engineering</td>
+              <td><span class="badge success">모집 중</span></td>
+              <td class="cell-number">5</td>
+              <td>2026.04.15</td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">관리</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">인사 담당자</td>
+              <td>HR</td>
+              <td><span class="badge warning">마감 임박</span></td>
+              <td class="cell-number">3</td>
+              <td>2026.03.14</td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">관리</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">프론트엔드 엔지니어</td>
+              <td>Engineering</td>
+              <td><span class="badge neutral">마감</span></td>
+              <td class="cell-number">22</td>
+              <td>2026.03.01</td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">결과</button></td>
+            </tr>
+            <tr>
+              <td class="font-semibold">CS 매니저</td>
+              <td>Sales</td>
+              <td><span class="badge neutral">마감</span></td>
+              <td class="cell-number">9</td>
+              <td>2026.02.28</td>
+              <td class="cell-actions"><button class="btn btn-ghost btn-sm">결과</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TA-803: Candidate Pipeline -->
+    <div class="section-divider">
+      <h2>TA-803: 지원자 파이프라인</h2>
+      <p>시니어 백엔드 엔지니어 채용 진행 현황</p>
+    </div>
+
+    <div class="content-grid mb-6" style="grid-template-columns: repeat(4, 1fr);">
+      <!-- Pipeline Column: 서류 접수 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">서류 접수</div>
+          <span class="badge info">6명</span>
+        </div>
+        <div class="card-body">
+          <div class="queue-list">
+            <div class="queue-item" style="flex-direction:column;align-items:flex-start;gap:var(--sp-2);">
+              <div class="flex items-center gap-2"><div class="avatar sm">박</div><span class="font-semibold">박지훈</span></div>
+              <div class="text-sm text-muted">경력 5년 &middot; 카카오 출신 &middot; 3/11 접수</div>
+            </div>
+            <div class="queue-item" style="flex-direction:column;align-items:flex-start;gap:var(--sp-2);">
+              <div class="flex items-center gap-2"><div class="avatar sm">송</div><span class="font-semibold">송하늘</span></div>
+              <div class="text-sm text-muted">경력 3년 &middot; 네이버 출신 &middot; 3/10 접수</div>
+            </div>
+            <div class="queue-item" style="flex-direction:column;align-items:flex-start;gap:var(--sp-2);">
+              <div class="flex items-center gap-2"><div class="avatar sm">+4</div><span class="text-muted">외 4명</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pipeline Column: 1차 면접 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">1차 면접</div>
+          <span class="badge info">4명</span>
+        </div>
+        <div class="card-body">
+          <div class="queue-list">
+            <div class="queue-item" style="flex-direction:column;align-items:flex-start;gap:var(--sp-2);">
+              <div class="flex items-center gap-2"><div class="avatar sm">김</div><span class="font-semibold">김은서</span></div>
+              <div class="text-sm text-muted">경력 7년 &middot; 3/14 면접 예정</div>
+            </div>
+            <div class="queue-item" style="flex-direction:column;align-items:flex-start;gap:var(--sp-2);">
+              <div class="flex items-center gap-2"><div class="avatar sm">이</div><span class="font-semibold">이동현</span></div>
+              <div class="text-sm text-muted">경력 4년 &middot; 3/13 면접 예정</div>
+            </div>
+            <div class="queue-item" style="flex-direction:column;align-items:flex-start;gap:var(--sp-2);">
+              <div class="flex items-center gap-2"><div class="avatar sm">+2</div><span class="text-muted">외 2명</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pipeline Column: 2차 면접 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">2차 면접</div>
+          <span class="badge info">2명</span>
+        </div>
+        <div class="card-body">
+          <div class="queue-list">
+            <div class="queue-item" style="flex-direction:column;align-items:flex-start;gap:var(--sp-2);">
+              <div class="flex items-center gap-2"><div class="avatar sm">장</div><span class="font-semibold">장민수</span></div>
+              <div class="text-sm text-muted">경력 6년 &middot; CTO 면접 대기</div>
+            </div>
+            <div class="queue-item" style="flex-direction:column;align-items:flex-start;gap:var(--sp-2);">
+              <div class="flex items-center gap-2"><div class="avatar sm">한</div><span class="font-semibold">한지원</span></div>
+              <div class="text-sm text-muted">경력 8년 &middot; 3/15 면접 확정</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pipeline Column: 최종 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">최종</div>
+          <span class="badge success">2명</span>
+        </div>
+        <div class="card-body">
+          <div class="queue-list">
+            <div class="queue-item" style="flex-direction:column;align-items:flex-start;gap:var(--sp-2);">
+              <div class="flex items-center gap-2"><div class="avatar sm">유</div><span class="font-semibold">유재환</span></div>
+              <div class="text-sm text-muted">경력 9년 &middot; 처우 협의 중</div>
+              <span class="badge success">오퍼 발송</span>
+            </div>
+            <div class="queue-item" style="flex-direction:column;align-items:flex-start;gap:var(--sp-2);">
+              <div class="flex items-center gap-2"><div class="avatar sm">정</div><span class="font-semibold">정다은</span></div>
+              <div class="text-sm text-muted">경력 5년 &middot; 레퍼런스 체크 완료</div>
+              <span class="badge info">검토 중</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-804: Onboarding Center -->
+    <div class="section-divider">
+      <h2>TA-804: 온보딩 센터</h2>
+      <p>신규 입사자 온보딩 체크리스트</p>
+    </div>
+
+    <div class="content-grid cols-2 mb-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">강지민 &mdash; 온보딩</div>
+          <span class="badge info">진행 중 (4/7)</span>
+        </div>
+        <div class="card-body">
+          <div class="text-sm text-muted mb-4">Engineering &middot; 백엔드 엔지니어 &middot; 입사일 2026.03.09</div>
+          <div class="queue-list">
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">근로계약서 서명</div></div>
+              <div class="q-action"><span class="badge success">완료</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">NDA 서명</div></div>
+              <div class="q-action"><span class="badge success">완료</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">IT 장비 수령</div></div>
+              <div class="q-action"><span class="badge success">완료</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">계정 생성 (이메일, Slack, GitHub)</div></div>
+              <div class="q-action"><span class="badge success">완료</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">팀 소개 미팅</div></div>
+              <div class="q-action"><span class="badge warning">예정 3/13</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">보안 교육</div></div>
+              <div class="q-action"><span class="badge neutral">미시작</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">1개월 점검 (멘토 미팅)</div></div>
+              <div class="q-action"><span class="badge neutral">4/09 예정</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">오현석 &mdash; 온보딩</div>
+          <span class="badge success">완료 (7/7)</span>
+        </div>
+        <div class="card-body">
+          <div class="text-sm text-muted mb-4">Sales &middot; 영업 담당 &middot; 입사일 2026.03.01</div>
+          <div class="queue-list">
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">근로계약서 서명</div></div>
+              <div class="q-action"><span class="badge success">완료</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">NDA 서명</div></div>
+              <div class="q-action"><span class="badge success">완료</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">IT 장비 수령</div></div>
+              <div class="q-action"><span class="badge success">완료</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">계정 생성</div></div>
+              <div class="q-action"><span class="badge success">완료</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">팀 소개 미팅</div></div>
+              <div class="q-action"><span class="badge success">완료</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">보안 교육</div></div>
+              <div class="q-action"><span class="badge success">완료</span></div>
+            </div>
+            <div class="queue-item">
+              <div class="q-content"><div class="q-title">1개월 점검 (멘토 미팅)</div></div>
+              <div class="q-action"><span class="badge success">완료</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-805: Offboarding Center -->
+    <div class="section-divider">
+      <h2>TA-805: 오프보딩 센터</h2>
+      <p>퇴사 예정자 체크리스트</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">정현우 &mdash; 오프보딩</div>
+        <span class="badge warning">진행 중 (2/6)</span>
+      </div>
+      <div class="card-body">
+        <div class="text-sm text-muted mb-4">Engineering &middot; 프론트엔드 리드 &middot; 퇴사일 2026.03.31</div>
+        <div class="queue-list">
+          <div class="queue-item">
+            <div class="q-content"><div class="q-title">퇴사 의사 확인 및 면담</div></div>
+            <div class="q-action"><span class="badge success">완료</span></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-content"><div class="q-title">업무 인수인계 계획 수립</div></div>
+            <div class="q-action"><span class="badge success">완료</span></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-content"><div class="q-title">업무 인수인계 실행</div><div class="q-meta">인수자: 김태원 &middot; 기한: 3/25</div></div>
+            <div class="q-action"><span class="badge warning">진행 중</span></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-content"><div class="q-title">IT 장비 반납</div><div class="q-meta">노트북, 모니터, 보안카드</div></div>
+            <div class="q-action"><span class="badge neutral">3/31 예정</span></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-content"><div class="q-title">계정 비활성화</div><div class="q-meta">이메일, Slack, GitHub, AWS 콘솔</div></div>
+            <div class="q-action"><span class="badge neutral">퇴사일 자동</span></div>
+          </div>
+          <div class="queue-item">
+            <div class="q-content"><div class="q-title">퇴사 확인서 발급 및 퇴직금 정산</div></div>
+            <div class="q-action"><span class="badge neutral">퇴사 후 14일</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

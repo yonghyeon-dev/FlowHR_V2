@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowHR - Reports</title>
+  <link rel="stylesheet" href="../css/design-system.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand"><span class="brand-dot"></span> FlowHR</div>
+    <div class="header-search">검색 (Ctrl+K)</div>
+    <div class="header-actions">
+      <span class="header-badge">&#x1F514;<span class="dot"></span></span>
+      <span class="header-badge">&#x2753;</span>
+      <div class="header-avatar">관</div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar">
+    <div class="nav-section">
+      <div class="nav-section-label">Main</div>
+      <a href="home.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span> Home</a>
+      <a href="people.html" class="nav-item"><span class="nav-icon">&#x1F465;</span> People</a>
+      <a href="attendance.html" class="nav-item"><span class="nav-icon">&#x23F0;</span> Attendance</a>
+      <a href="leave.html" class="nav-item"><span class="nav-icon">&#x1F334;</span> Leave</a>
+      <a href="workflow.html" class="nav-item"><span class="nav-icon">&#x1F504;</span> Workflow</a>
+      <a href="documents.html" class="nav-item"><span class="nav-icon">&#x1F4C4;</span> Documents</a>
+      <a href="payroll.html" class="nav-item"><span class="nav-icon">&#x1F4B0;</span> Payroll</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Talent</div>
+      <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span> Performance</a>
+      <a href="recruiting.html" class="nav-item"><span class="nav-icon">&#x1F4CB;</span> Recruiting</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">System</div>
+      <a href="reports.html" class="nav-item active"><span class="nav-icon">&#x1F4C8;</span> Reports</a>
+      <a href="settings.html" class="nav-item"><span class="nav-icon">&#x2699;</span> Settings</a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="app-main">
+
+    <div class="page-header">
+      <div class="page-breadcrumb"><span>Home</span> <span>Reports</span></div>
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="page-title">리포트 센터</h1>
+          <p class="page-subtitle">인사 데이터 인사이트, 분석 리포트, 정기 보고서 관리</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-secondary">&#x1F4C5; 예약 보고서</button>
+          <button class="btn btn-primary">&#x2795; 커스텀 리포트</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-901: Report Center Grid -->
+    <div class="content-grid cols-3 mb-6">
+      <div class="card">
+        <div class="card-body" style="text-align:center; padding:var(--sp-6);">
+          <div style="font-size:32px; margin-bottom:var(--sp-3);">&#x1F465;</div>
+          <div class="font-semibold mb-2">인원 현황 리포트</div>
+          <div class="text-sm text-muted mb-4">부서별/직급별 인원 구성 분석</div>
+          <button class="btn btn-secondary btn-sm">리포트 보기</button>
+        </div>
+        <div class="card-footer text-sm text-muted">최근 생성: 2026.03.01</div>
+      </div>
+      <div class="card">
+        <div class="card-body" style="text-align:center; padding:var(--sp-6);">
+          <div style="font-size:32px; margin-bottom:var(--sp-3);">&#x23F0;</div>
+          <div class="font-semibold mb-2">근태 리포트</div>
+          <div class="text-sm text-muted mb-4">출퇴근, 초과근무, 예외 현황 분석</div>
+          <button class="btn btn-secondary btn-sm">리포트 보기</button>
+        </div>
+        <div class="card-footer text-sm text-muted">최근 생성: 2026.03.10</div>
+      </div>
+      <div class="card">
+        <div class="card-body" style="text-align:center; padding:var(--sp-6);">
+          <div style="font-size:32px; margin-bottom:var(--sp-3);">&#x1F334;</div>
+          <div class="font-semibold mb-2">휴가 사용 리포트</div>
+          <div class="text-sm text-muted mb-4">유형별 휴가 사용률 및 잔여 현황</div>
+          <button class="btn btn-secondary btn-sm">리포트 보기</button>
+        </div>
+        <div class="card-footer text-sm text-muted">최근 생성: 2026.03.05</div>
+      </div>
+      <div class="card">
+        <div class="card-body" style="text-align:center; padding:var(--sp-6);">
+          <div style="font-size:32px; margin-bottom:var(--sp-3);">&#x1F504;</div>
+          <div class="font-semibold mb-2">이직률 리포트</div>
+          <div class="text-sm text-muted mb-4">분기별 이직률 및 퇴사 사유 분석</div>
+          <button class="btn btn-secondary btn-sm">리포트 보기</button>
+        </div>
+        <div class="card-footer text-sm text-muted">최근 생성: 2026.03.01</div>
+      </div>
+      <div class="card">
+        <div class="card-body" style="text-align:center; padding:var(--sp-6);">
+          <div style="font-size:32px; margin-bottom:var(--sp-3);">&#x1F4B0;</div>
+          <div class="font-semibold mb-2">급여 요약 리포트</div>
+          <div class="text-sm text-muted mb-4">월별 급여 총액, 수당, 공제 요약</div>
+          <button class="btn btn-secondary btn-sm">리포트 보기</button>
+        </div>
+        <div class="card-footer text-sm text-muted">최근 생성: 2026.03.01</div>
+      </div>
+      <div class="card">
+        <div class="card-body" style="text-align:center; padding:var(--sp-6);">
+          <div style="font-size:32px; margin-bottom:var(--sp-3);">&#x1F4CB;</div>
+          <div class="font-semibold mb-2">채용 현황 리포트</div>
+          <div class="text-sm text-muted mb-4">채용 파이프라인 및 채용 효율 분석</div>
+          <button class="btn btn-secondary btn-sm">리포트 보기</button>
+        </div>
+        <div class="card-footer text-sm text-muted">최근 생성: 2026.03.08</div>
+      </div>
+    </div>
+
+    <!-- TA-902: People Insights -->
+    <div class="section-divider">
+      <h2>TA-902: 인사 인사이트</h2>
+      <p>인원 구성 및 근속 분포</p>
+    </div>
+
+    <div class="content-grid cols-2 mb-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">부서별 인원 분포</div>
+        </div>
+        <div class="card-body">
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label">Engineering</span>
+              <div class="bar-track"><div class="bar-fill" style="width:56%"></div></div>
+              <span class="bar-value">452명</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Sales</span>
+              <div class="bar-track"><div class="bar-fill" style="width:31%"></div></div>
+              <span class="bar-value">248명</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Product</span>
+              <div class="bar-track"><div class="bar-fill" style="width:22%"></div></div>
+              <span class="bar-value">178명</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Operations</span>
+              <div class="bar-track"><div class="bar-fill" style="width:18%"></div></div>
+              <span class="bar-value">142명</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">HR</span>
+              <div class="bar-track"><div class="bar-fill" style="width:10%"></div></div>
+              <span class="bar-value">82명</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Finance</span>
+              <div class="bar-track"><div class="bar-fill" style="width:8%"></div></div>
+              <span class="bar-value">68명</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">기타</span>
+              <div class="bar-track"><div class="bar-fill" style="width:9%"></div></div>
+              <span class="bar-value">70명</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">근속 연수 분포</div>
+        </div>
+        <div class="card-body">
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label">1년 미만</span>
+              <div class="bar-track"><div class="bar-fill" style="width:28%"></div></div>
+              <span class="bar-value">224명</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">1~2년</span>
+              <div class="bar-track"><div class="bar-fill" style="width:32%"></div></div>
+              <span class="bar-value">258명</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">2~3년</span>
+              <div class="bar-track"><div class="bar-fill" style="width:22%"></div></div>
+              <span class="bar-value">178명</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">3~5년</span>
+              <div class="bar-track"><div class="bar-fill" style="width:25%"></div></div>
+              <span class="bar-value">198명</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">5~10년</span>
+              <div class="bar-track"><div class="bar-fill" style="width:18%"></div></div>
+              <span class="bar-value">142명</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">10년 이상</span>
+              <div class="bar-track"><div class="bar-fill" style="width:12%"></div></div>
+              <span class="bar-value">98명</span>
+            </div>
+          </div>
+          <div style="margin-top:var(--sp-4);">
+            <div class="stat-row"><span class="stat-label">평균 근속</span><span class="stat-value">3.2년</span></div>
+            <div class="stat-row"><span class="stat-label">최장 근속</span><span class="stat-value">14년 (김상훈)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-903: Attendance Insights -->
+    <div class="section-divider">
+      <h2>TA-903: 근태 인사이트</h2>
+      <p>출퇴근 트렌드 및 예외 요약</p>
+    </div>
+
+    <div class="content-grid cols-2-1 mb-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">주간 출근율 추이</div>
+          <span class="text-sm text-muted">최근 8주</span>
+        </div>
+        <div class="card-body">
+          <!-- Line chart mockup using bar-chart -->
+          <div style="display:flex; align-items:flex-end; gap:var(--sp-3); height:160px; padding-bottom:var(--sp-3); border-bottom:1px solid var(--border-default);">
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:var(--sp-1);">
+              <div style="height:88%; width:100%; max-width:32px; background:var(--brand-soft); border-radius:var(--radius-sm) var(--radius-sm) 0 0;"></div>
+              <span class="text-sm text-muted">W5</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:var(--sp-1);">
+              <div style="height:92%; width:100%; max-width:32px; background:var(--brand-soft); border-radius:var(--radius-sm) var(--radius-sm) 0 0;"></div>
+              <span class="text-sm text-muted">W6</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:var(--sp-1);">
+              <div style="height:86%; width:100%; max-width:32px; background:var(--status-warning-bg); border-radius:var(--radius-sm) var(--radius-sm) 0 0;"></div>
+              <span class="text-sm text-muted">W7</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:var(--sp-1);">
+              <div style="height:95%; width:100%; max-width:32px; background:var(--brand-soft); border-radius:var(--radius-sm) var(--radius-sm) 0 0;"></div>
+              <span class="text-sm text-muted">W8</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:var(--sp-1);">
+              <div style="height:90%; width:100%; max-width:32px; background:var(--brand-soft); border-radius:var(--radius-sm) var(--radius-sm) 0 0;"></div>
+              <span class="text-sm text-muted">W9</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:var(--sp-1);">
+              <div style="height:93%; width:100%; max-width:32px; background:var(--brand-soft); border-radius:var(--radius-sm) var(--radius-sm) 0 0;"></div>
+              <span class="text-sm text-muted">W10</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:var(--sp-1);">
+              <div style="height:91%; width:100%; max-width:32px; background:var(--brand-soft); border-radius:var(--radius-sm) var(--radius-sm) 0 0;"></div>
+              <span class="text-sm text-muted">W11</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:var(--sp-1);">
+              <div style="height:94%; width:100%; max-width:32px; background:var(--brand-primary); border-radius:var(--radius-sm) var(--radius-sm) 0 0;"></div>
+              <span class="text-sm text-muted font-semibold">W12</span>
+            </div>
+          </div>
+          <div class="flex justify-between mt-4">
+            <span class="text-sm text-muted">평균 출근율: 91.4%</span>
+            <span class="text-sm text-muted">최저: W7 (86%) &middot; 최고: W8 (95%)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">예외 요약</div>
+          <span class="text-sm text-muted">이번 달</span>
+        </div>
+        <div class="card-body">
+          <div class="stat-row"><span class="stat-label">지각</span><span class="stat-value"><span class="badge warning">42건</span></span></div>
+          <div class="stat-row"><span class="stat-label">체크아웃 누락</span><span class="stat-value"><span class="badge danger">18건</span></span></div>
+          <div class="stat-row"><span class="stat-label">초과근무</span><span class="stat-value"><span class="badge warning">67건</span></span></div>
+          <div class="stat-row"><span class="stat-label">휴게 위반</span><span class="stat-value"><span class="badge danger">8건</span></span></div>
+          <div class="stat-row"><span class="stat-label">연속 야간</span><span class="stat-value"><span class="badge danger">5건</span></span></div>
+          <div class="stat-row"><span class="stat-label">기록 충돌</span><span class="stat-value"><span class="badge info">3건</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-904: Export & Scheduled Reports -->
+    <div class="section-divider">
+      <h2>TA-904: 예약 보고서 및 내보내기</h2>
+      <p>정기 보고서 스케줄 관리</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">예약 보고서</div>
+        <button class="btn btn-primary btn-sm">&#x2795; 예약 추가</button>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>보고서명</th>
+              <th>스케줄</th>
+              <th>형식</th>
+              <th>수신자</th>
+              <th>마지막 발송</th>
+              <th>상태</th>
+              <th class="cell-actions">액션</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold">주간 근태 리포트</td>
+              <td>매주 월요일 09:00</td>
+              <td>Excel</td>
+              <td>인사팀 전체</td>
+              <td>2026.03.09</td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">편집</button>
+                <button class="btn btn-ghost btn-sm">비활성화</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">월간 인원 현황</td>
+              <td>매월 1일 09:00</td>
+              <td>PDF</td>
+              <td>경영진</td>
+              <td>2026.03.01</td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">편집</button>
+                <button class="btn btn-ghost btn-sm">비활성화</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">급여 요약 보고서</td>
+              <td>매월 25일 18:00</td>
+              <td>Excel</td>
+              <td>CFO, 인사팀장</td>
+              <td>2026.02.25</td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">편집</button>
+                <button class="btn btn-ghost btn-sm">비활성화</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">분기 이직률 분석</td>
+              <td>분기 말 +5일</td>
+              <td>PDF + Excel</td>
+              <td>경영진, 부서장</td>
+              <td>2026.01.05</td>
+              <td><span class="badge success">활성</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">편집</button>
+                <button class="btn btn-ghost btn-sm">비활성화</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold">채용 파이프라인 리포트</td>
+              <td>격주 금요일 17:00</td>
+              <td>PDF</td>
+              <td>채용팀, 부서장</td>
+              <td>2026.03.07</td>
+              <td><span class="badge neutral">비활성</span></td>
+              <td class="cell-actions">
+                <button class="btn btn-ghost btn-sm">편집</button>
+                <button class="btn btn-ghost btn-sm">활성화</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>
