@@ -1,6 +1,5 @@
-import { WireframeScreen } from "@/components/wireframe-screen";
-import { getWireframePage } from "@/lib/wireframes";
+import { LandingPage } from "@/components/landing-page";
 
 export default function Page() {
-  return <WireframeScreen screen={getWireframePage("landing.html", "landing")} />;
+  return <LandingPage />;
 }

@@ -45,6 +45,8 @@ model Tenant {
   requests    Request[]
   documents   Document[]
   approvals   Approval[]
+  attendance  AttendanceRecord[]
+  balances    LeaveBalance[]
 }
 
 model User {
@@ -58,6 +60,8 @@ model User {
   requests    Request[]     @relation("RequestAuthor")
   approvals   Approval[]    @relation("ApprovalActor")
   documents   Document[]    @relation("DocumentOwner")
+  attendance  AttendanceRecord[]
+  balances    LeaveBalance[]
 }
 
 model Membership {
@@ -109,4 +113,31 @@ model Document {
   updatedAt   DateTime       @updatedAt
   tenant      Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   owner       User           @relation("DocumentOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+}
+
+model AttendanceRecord {
+  id         String   @id @default(cuid())
+  tenantId    String
+  userId      String
+  workDate    DateTime
+  checkInAt   DateTime?
+  checkOutAt  DateTime?
+  status      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model LeaveBalance {
+  id           String   @id @default(cuid())
+  tenantId      String
+  userId        String
+  leaveType     String
+  totalDays     Float
+  usedDays      Float
+  remainingDays Float
+  updatedAt     DateTime @updatedAt
+  tenant        Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
