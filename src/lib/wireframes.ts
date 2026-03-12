@@ -1,31 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
-export const adminViews = [
-  "home",
-  "people",
-  "attendance",
-  "leave",
-  "workflow",
-  "documents",
-  "payroll",
-  "performance",
-  "recruiting",
-  "reports",
-  "settings",
-] as const;
-
-export const employeeViews = [
-  "home",
-  "schedule",
-  "requests",
-  "inbox",
-  "documents",
-  "profile",
-] as const;
-
-export type AdminView = (typeof adminViews)[number];
-export type EmployeeView = (typeof employeeViews)[number];
+import { adminViews, employeeViews, type AdminView, type EmployeeView } from "@/lib/access-policy";
 export type WireframeScope =
   | "index"
   | "landing"

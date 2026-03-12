@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { canAccessRole, requireSession } from "@/lib/server/auth";
+import { canAccessRole, canPerformAction, requireSession } from "@/lib/server/auth";
 import { approveRequest, listApprovals, listRequests } from "@/lib/server/dev-store";
 
 export async function GET() {
@@ -9,7 +9,7 @@ export async function GET() {
     return NextResponse.json({ ok: false, message: "로그인이 필요합니다." }, { status: 401 });
   }
   if (!canAccessRole(session.role, "admin")) {
-    return NextResponse.json({ ok: false, message: "관리자 영역 접근 권한이 없습니다." }, { status: 403 });
+    return NextResponse.json({ ok: false, message: "관리 영역 접근 권한이 없습니다." }, { status: 403 });
   }
 
   return NextResponse.json({
@@ -24,8 +24,8 @@ export async function POST(request: Request) {
   if (!session) {
     return NextResponse.json({ ok: false, message: "로그인이 필요합니다." }, { status: 401 });
   }
-  if (!canAccessRole(session.role, "admin")) {
-    return NextResponse.json({ ok: false, message: "관리자 영역 접근 권한이 없습니다." }, { status: 403 });
+  if (!canPerformAction(session.role, "admin.workflow.approve")) {
+    return NextResponse.json({ ok: false, message: "결재 처리 권한이 없습니다." }, { status: 403 });
   }
 
   const body = (await request.json()) as {

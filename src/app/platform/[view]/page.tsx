@@ -11,20 +11,9 @@ import {
   PlatformTenants,
 } from "@/components/platform-pages";
 import { roleLabel } from "@/lib/session-labels";
-import { canAccessRole, getSession } from "@/lib/server/auth";
+import { canAccessPlatformView, canAccessRole, getAllowedPlatformViews, getSession } from "@/lib/server/auth";
 import { listAuditLogs, listTenants } from "@/lib/server/dev-store";
-
-const platformViews = [
-  "overview",
-  "tenants",
-  "billing",
-  "support",
-  "monitoring",
-  "security",
-  "settings",
-] as const;
-
-type PlatformView = (typeof platformViews)[number];
+import { platformViews, type PlatformView } from "@/lib/access-policy";
 
 const navMeta: Record<PlatformView, { label: string; icon: string }> = {
   overview: { label: "개요", icon: "OV" },
@@ -54,9 +43,14 @@ export default async function Page({
     redirect("/login");
   }
 
+  if (!canAccessPlatformView(session.role, view as PlatformView)) {
+    const fallbackView = getAllowedPlatformViews(session.role)[0] ?? "overview";
+    redirect(`/platform/${fallbackView}`);
+  }
+
   const tenants = listTenants();
   const auditLogs = listAuditLogs(10);
-  const navItems = platformViews.map((platformView) => ({
+  const navItems = getAllowedPlatformViews(session.role).map((platformView) => ({
     href: `/platform/${platformView}`,
     label: navMeta[platformView].label,
     icon: navMeta[platformView].icon,

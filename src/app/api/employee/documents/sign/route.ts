@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { canAccessRole, requireSession } from "@/lib/server/auth";
+import { canAccessRole, canPerformAction, requireSession } from "@/lib/server/auth";
 import { listDocuments, signDocument } from "@/lib/server/dev-store";
 
 export async function GET() {
@@ -23,8 +23,8 @@ export async function POST(request: Request) {
   if (!session) {
     return NextResponse.json({ ok: false, message: "로그인이 필요합니다." }, { status: 401 });
   }
-  if (!canAccessRole(session.role, "employee")) {
-    return NextResponse.json({ ok: false, message: "직원 영역 접근 권한이 없습니다." }, { status: 403 });
+  if (!canPerformAction(session.role, "employee.documents.sign")) {
+    return NextResponse.json({ ok: false, message: "문서 서명 권한이 없습니다." }, { status: 403 });
   }
 
   const body = (await request.json()) as {

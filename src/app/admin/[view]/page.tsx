@@ -5,8 +5,15 @@ import { AdminPeople, AdminLeave } from "@/components/admin-people-leave-pages";
 import { AdminDocuments, AdminPayroll } from "@/components/admin-docs-payroll-pages";
 import { AdminPerformance, AdminRecruiting, AdminReports } from "@/components/admin-talent-pages";
 import { AppShell } from "@/components/app-shell";
+import { adminViews, type AdminView } from "@/lib/access-policy";
 import { roleLabel } from "@/lib/session-labels";
-import { canAccessRole, getSession } from "@/lib/server/auth";
+import {
+  canAccessAdminView,
+  canAccessRole,
+  canPerformAction,
+  getAllowedAdminViews,
+  getSession,
+} from "@/lib/server/auth";
 import {
   getLatestSettings,
   getTenantFeatureSummary,
@@ -14,7 +21,6 @@ import {
   listDocuments,
   listRequests,
 } from "@/lib/server/dev-store";
-import { adminViews, type AdminView } from "@/lib/wireframes";
 
 const adminNavMeta: Record<AdminView, { label: string; icon: string }> = {
   home: { label: "Home", icon: "🏠" },
@@ -50,13 +56,18 @@ export default async function Page({
     redirect("/login");
   }
 
+  if (!canAccessAdminView(session.role, view as AdminView)) {
+    const fallbackView = getAllowedAdminViews(session.role)[0] ?? "home";
+    redirect(`/admin/${fallbackView}`);
+  }
+
   const requests = listRequests(session.tenantId);
   const documents = listDocuments(session.tenantId);
   const approvals = listApprovals(session.tenantId);
   const settings = getLatestSettings(session.tenantId);
   const features = getTenantFeatureSummary(session.tenantId).map((item) => item.label);
 
-  const navItems = adminViews.map((adminView) => ({
+  const navItems = getAllowedAdminViews(session.role).map((adminView) => ({
     href: `/admin/${adminView}`,
     label: adminNavMeta[adminView].label,
     icon: adminNavMeta[adminView].icon,
@@ -91,7 +102,7 @@ export default async function Page({
         <AdminWorkflow
           requests={requests}
           approvals={approvals}
-          canApprove={session.role !== "tenant_employee"}
+          canApprove={canPerformAction(session.role, "admin.workflow.approve")}
         />
       );
       break;

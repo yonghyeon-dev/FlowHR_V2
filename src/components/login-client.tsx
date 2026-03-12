@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
+import { getDefaultRouteForRole } from "@/lib/access-policy";
+
 type DemoAccount = {
   label: string;
   email: string;
@@ -37,9 +39,7 @@ const demoAccounts: DemoAccount[] = [
 
 function defaultTarget(session?: LoginSession) {
   if (!session) return "/admin/home";
-  if (session.role === "platform_operator") return "/platform/overview";
-  if (session.role === "tenant_employee") return "/employee/home";
-  return "/admin/home";
+  return getDefaultRouteForRole(session.role);
 }
 
 export function LoginClient() {

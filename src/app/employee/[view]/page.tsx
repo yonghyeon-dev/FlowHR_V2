@@ -3,10 +3,10 @@ import { notFound, redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
 import { EmployeeDocuments, EmployeeHome, EmployeeInbox, EmployeeRequests } from "@/components/employee-pages";
 import { EmployeeProfile, EmployeeSchedule } from "@/components/employee-extra-pages";
+import { employeeViews, type EmployeeView } from "@/lib/access-policy";
 import { roleLabel } from "@/lib/session-labels";
-import { canAccessRole, getSession } from "@/lib/server/auth";
+import { canAccessEmployeeView, canAccessRole, getAllowedEmployeeViews, getSession } from "@/lib/server/auth";
 import { listDocuments, listRequests } from "@/lib/server/dev-store";
-import { employeeViews, type EmployeeView } from "@/lib/wireframes";
 
 const employeeNavMeta: Record<EmployeeView, { label: string; icon: string }> = {
   home: { label: "Home", icon: "🏠" },
@@ -37,9 +37,14 @@ export default async function Page({
     redirect("/login");
   }
 
+  if (!canAccessEmployeeView(session.role, view as EmployeeView)) {
+    const fallbackView = getAllowedEmployeeViews(session.role)[0] ?? "home";
+    redirect(`/employee/${fallbackView}`);
+  }
+
   const requests = listRequests(session.tenantId);
   const documents = listDocuments(session.tenantId);
-  const navItems = employeeViews.map((employeeView) => ({
+  const navItems = getAllowedEmployeeViews(session.role).map((employeeView) => ({
     href: `/employee/${employeeView}`,
     label: employeeNavMeta[employeeView].label,
     icon: employeeNavMeta[employeeView].icon,

@@ -1,5 +1,16 @@
 import { cookies } from "next/headers";
 
+import {
+  canAccessAdminView,
+  canAccessArea,
+  canAccessEmployeeView,
+  canAccessPlatformView,
+  canPerformAction,
+  getAllowedAdminViews,
+  getAllowedEmployeeViews,
+  getAllowedPlatformViews,
+  getDefaultRouteForRole,
+} from "@/lib/access-policy";
 import type { SessionPayload, UserRole } from "@/lib/domain/types";
 import {
   authenticateUser,
@@ -68,7 +79,16 @@ export async function destroySession() {
 }
 
 export function canAccessRole(role: UserRole, area: "platform" | "admin" | "employee") {
-  if (area === "platform") return role === "platform_operator";
-  if (area === "admin") return role === "tenant_admin" || role === "tenant_manager";
-  return role === "tenant_employee";
+  return canAccessArea(role, area);
 }
+
+export {
+  canAccessAdminView,
+  canAccessEmployeeView,
+  canAccessPlatformView,
+  canPerformAction,
+  getAllowedAdminViews,
+  getAllowedEmployeeViews,
+  getAllowedPlatformViews,
+  getDefaultRouteForRole,
+};

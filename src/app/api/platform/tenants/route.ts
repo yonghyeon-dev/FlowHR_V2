@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { canAccessRole, requireSession } from "@/lib/server/auth";
+import { canAccessRole, canPerformAction, requireSession } from "@/lib/server/auth";
 import { listAuditLogs, listTenants, updateTenantConfig } from "@/lib/server/dev-store";
 
 export async function GET() {
@@ -9,7 +9,7 @@ export async function GET() {
     return NextResponse.json({ ok: false, message: "로그인이 필요합니다." }, { status: 401 });
   }
   if (!canAccessRole(session.role, "platform")) {
-    return NextResponse.json({ ok: false, message: "플랫폼 운영자만 접근할 수 있습니다." }, { status: 403 });
+    return NextResponse.json({ ok: false, message: "플랫폼 운영 영역 접근 권한이 없습니다." }, { status: 403 });
   }
 
   return NextResponse.json({
@@ -24,8 +24,8 @@ export async function PATCH(request: Request) {
   if (!session) {
     return NextResponse.json({ ok: false, message: "로그인이 필요합니다." }, { status: 401 });
   }
-  if (!canAccessRole(session.role, "platform")) {
-    return NextResponse.json({ ok: false, message: "플랫폼 운영자만 수정할 수 있습니다." }, { status: 403 });
+  if (!canPerformAction(session.role, "platform.tenants.manage")) {
+    return NextResponse.json({ ok: false, message: "테넌트 운영 권한이 없습니다." }, { status: 403 });
   }
 
   const body = (await request.json()) as {
