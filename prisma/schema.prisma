@@ -20,6 +20,12 @@ enum TenantPack {
   RETAIL
 }
 
+enum TenantStatus {
+  ACTIVE
+  TRIAL
+  GRACE
+}
+
 enum RequestStatus {
   DRAFT
   SUBMITTED
@@ -34,34 +40,58 @@ enum DocumentStatus {
   ARCHIVED
 }
 
+enum ApprovalAction {
+  APPROVE
+  REJECT
+}
+
+enum AuditEventType {
+  LOGIN
+  TENANT_UPDATE
+  REQUEST_SUBMIT
+  APPROVAL_APPROVE
+  APPROVAL_REJECT
+  DOCUMENT_SIGN
+  SETTINGS_UPDATE
+}
+
 model Tenant {
-  id          String        @id @default(cuid())
-  slug        String        @unique
-  name        String
-  pack        TenantPack
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  memberships Membership[]
-  requests    Request[]
-  documents   Document[]
-  approvals   Approval[]
-  attendance  AttendanceRecord[]
-  balances    LeaveBalance[]
+  id              String             @id @default(cuid())
+  slug            String             @unique
+  name            String
+  pack            TenantPack
+  status          TenantStatus       @default(TRIAL)
+  enabledFeatures String[]
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+  memberships     Membership[]
+  requests        Request[]
+  documents       Document[]
+  approvals       Approval[]
+  attendance      AttendanceRecord[]
+  balances        LeaveBalance[]
+  settings        SettingsSnapshot[]
+  auditLogs       AuditLog[]
+
+  @@index([pack, status])
 }
 
 model User {
-  id          String        @id @default(cuid())
-  email       String        @unique
+  id          String             @id @default(cuid())
+  email       String             @unique
+  authUserId  String?            @unique
   fullName    String
   role        UserRole
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
   memberships Membership[]
-  requests    Request[]     @relation("RequestAuthor")
-  approvals   Approval[]    @relation("ApprovalActor")
-  documents   Document[]    @relation("DocumentOwner")
+  requests    Request[]          @relation("RequestAuthor")
+  approvals   Approval[]         @relation("ApprovalActor")
+  documents   Document[]         @relation("DocumentOwner")
   attendance  AttendanceRecord[]
   balances    LeaveBalance[]
+  settings    SettingsSnapshot[] @relation("SettingsUpdatedBy")
+  auditLogs   AuditLog[]         @relation("AuditActor")
 }
 
 model Membership {
@@ -74,6 +104,7 @@ model Membership {
   tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
 
   @@unique([userId, tenantId])
+  @@index([tenantId])
 }
 
 model Request {
@@ -82,6 +113,7 @@ model Request {
   authorId     String
   title        String
   category     String
+  reason       String
   status       RequestStatus @default(DRAFT)
   submittedAt  DateTime?
   createdAt    DateTime      @default(now())
@@ -89,18 +121,24 @@ model Request {
   tenant       Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   author       User          @relation("RequestAuthor", fields: [authorId], references: [id], onDelete: Cascade)
   approvals    Approval[]
+
+  @@index([tenantId, status])
+  @@index([authorId])
 }
 
 model Approval {
-  id          String   @id @default(cuid())
+  id          String         @id @default(cuid())
   tenantId    String
   requestId   String?
   actorId     String
-  action      String
-  createdAt   DateTime @default(now())
-  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  request     Request? @relation(fields: [requestId], references: [id], onDelete: SetNull)
-  actor       User     @relation("ApprovalActor", fields: [actorId], references: [id], onDelete: Cascade)
+  action      ApprovalAction
+  createdAt   DateTime       @default(now())
+  tenant      Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  request     Request?       @relation(fields: [requestId], references: [id], onDelete: SetNull)
+  actor       User           @relation("ApprovalActor", fields: [actorId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, createdAt])
+  @@index([requestId])
 }
 
 model Document {
@@ -109,28 +147,35 @@ model Document {
   ownerId     String
   title       String
   status      DocumentStatus @default(DRAFT)
+  signedAt    DateTime?
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
   tenant      Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   owner       User           @relation("DocumentOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, status])
+  @@index([ownerId])
 }
 
 model AttendanceRecord {
   id         String   @id @default(cuid())
-  tenantId    String
-  userId      String
-  workDate    DateTime
-  checkInAt   DateTime?
-  checkOutAt  DateTime?
-  status      String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenantId   String
+  userId     String
+  workDate   DateTime
+  checkInAt  DateTime?
+  checkOutAt DateTime?
+  status     String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, userId, workDate])
+  @@index([tenantId, workDate])
 }
 
 model LeaveBalance {
-  id           String   @id @default(cuid())
+  id            String   @id @default(cuid())
   tenantId      String
   userId        String
   leaveType     String
@@ -140,4 +185,38 @@ model LeaveBalance {
   updatedAt     DateTime @updatedAt
   tenant        Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, userId, leaveType])
+  @@index([tenantId])
+}
+
+model SettingsSnapshot {
+  id             String   @id @default(cuid())
+  tenantId       String
+  companyName    String
+  businessNumber String
+  timezone       String
+  workStart      String
+  workEnd        String
+  updatedById    String
+  updatedAt      DateTime @default(now())
+  tenant         Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  updatedBy      User     @relation("SettingsUpdatedBy", fields: [updatedById], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, updatedAt])
+}
+
+model AuditLog {
+  id         String         @id @default(cuid())
+  tenantId   String?
+  actorId    String
+  actorRole  UserRole
+  eventType  AuditEventType
+  message    String
+  createdAt  DateTime       @default(now())
+  tenant     Tenant?        @relation(fields: [tenantId], references: [id], onDelete: SetNull)
+  actor      User           @relation("AuditActor", fields: [actorId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, createdAt])
+  @@index([eventType, createdAt])
 }
