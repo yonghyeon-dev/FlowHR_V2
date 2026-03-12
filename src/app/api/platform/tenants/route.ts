@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { canAccessRole, canPerformAction, requireSession } from "@/lib/server/auth";
+import { canAccessField, canAccessRole, canPerformAction, requireSession } from "@/lib/server/auth";
 import { listAuditLogs, listTenants, updateTenantConfig } from "@/lib/server/dev-store";
 
 export async function GET() {
@@ -37,6 +37,16 @@ export async function PATCH(request: Request) {
 
   if (!body.tenantId) {
     return NextResponse.json({ ok: false, message: "tenantId가 필요합니다." }, { status: 400 });
+  }
+
+  const requestedFields = [
+    body.pack ? "tenant.pack" : null,
+    body.status ? "tenant.status" : null,
+    body.enabledFeatures ? "tenant.enabledFeatures" : null,
+  ].filter(Boolean) as Array<"tenant.pack" | "tenant.status" | "tenant.enabledFeatures">;
+
+  if (requestedFields.some((field) => !canAccessField(session.role, field))) {
+    return NextResponse.json({ ok: false, message: "테넌트 필드 수정 권한이 없습니다." }, { status: 403 });
   }
 
   const tenant = updateTenantConfig(

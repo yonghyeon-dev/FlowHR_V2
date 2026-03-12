@@ -9,7 +9,7 @@ export async function GET() {
     return NextResponse.json({ ok: false, message: "로그인이 필요합니다." }, { status: 401 });
   }
   if (!canAccessRole(session.role, "admin")) {
-    return NextResponse.json({ ok: false, message: "관리 영역 접근 권한이 없습니다." }, { status: 403 });
+    return NextResponse.json({ ok: false, message: "관리자 영역 접근 권한이 없습니다." }, { status: 403 });
   }
 
   return NextResponse.json({

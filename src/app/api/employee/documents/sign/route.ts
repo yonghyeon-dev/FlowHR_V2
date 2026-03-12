@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { canAccessRole, canPerformAction, requireSession } from "@/lib/server/auth";
+import { canAccessField, canAccessRole, canPerformAction, requireSession } from "@/lib/server/auth";
 import { listDocuments, signDocument } from "@/lib/server/dev-store";
 
 export async function GET() {
@@ -33,6 +33,10 @@ export async function POST(request: Request) {
 
   if (!body.documentId) {
     return NextResponse.json({ ok: false, message: "documentId가 필요합니다." }, { status: 400 });
+  }
+
+  if (!canAccessField(session.role, "document.signature")) {
+    return NextResponse.json({ ok: false, message: "문서 서명 필드 권한이 없습니다." }, { status: 403 });
   }
 
   const record = signDocument(body.documentId, session.user);

@@ -4,6 +4,7 @@ import {
   canAccessAdminView,
   canAccessArea,
   canAccessEmployeeView,
+  canAccessField,
   canAccessPlatformView,
   canPerformAction,
   getAllowedAdminViews,
@@ -85,6 +86,7 @@ export function canAccessRole(role: UserRole, area: "platform" | "admin" | "empl
 export {
   canAccessAdminView,
   canAccessEmployeeView,
+  canAccessField,
   canAccessPlatformView,
   canPerformAction,
   getAllowedAdminViews,

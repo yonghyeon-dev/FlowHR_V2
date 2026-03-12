@@ -23,20 +23,14 @@ export const employeeViews = [
   "profile",
 ] as const;
 
-export const platformViews = [
-  "overview",
-  "tenants",
-  "billing",
-  "support",
-  "monitoring",
-  "security",
-  "settings",
-] as const;
+// Platform 화면 SSOT는 flowhr-ui의 console.html 하나다.
+export const platformViews = ["console"] as const;
 
 export type AdminView = (typeof adminViews)[number];
 export type EmployeeView = (typeof employeeViews)[number];
 export type PlatformView = (typeof platformViews)[number];
 export type AppArea = "platform" | "admin" | "employee";
+
 export type AppAction =
   | "platform.tenants.manage"
   | "admin.workflow.approve"
@@ -44,87 +38,124 @@ export type AppAction =
   | "employee.requests.submit"
   | "employee.documents.sign";
 
-const areaAccess: Record<AppArea, UserRole[]> = {
-  platform: ["platform_operator"],
-  admin: ["tenant_admin", "tenant_manager"],
-  employee: ["tenant_employee"],
+export type FieldKey =
+  | "tenant.pack"
+  | "tenant.status"
+  | "tenant.enabledFeatures"
+  | "settings.companyName"
+  | "settings.businessNumber"
+  | "settings.timezone"
+  | "settings.workStart"
+  | "settings.workEnd"
+  | "request.category"
+  | "request.title"
+  | "request.reason"
+  | "document.signature";
+
+type RolePolicy = {
+  defaultRoute: string;
+  areas: AppArea[];
+  adminViews: AdminView[];
+  employeeViews: EmployeeView[];
+  platformViews: PlatformView[];
+  actions: AppAction[];
+  fields: FieldKey[];
 };
 
-const adminViewAccess: Record<AdminView, UserRole[]> = {
-  home: ["tenant_admin", "tenant_manager"],
-  people: ["tenant_admin", "tenant_manager"],
-  attendance: ["tenant_admin", "tenant_manager"],
-  leave: ["tenant_admin", "tenant_manager"],
-  workflow: ["tenant_admin", "tenant_manager"],
-  documents: ["tenant_admin", "tenant_manager"],
-  payroll: ["tenant_admin"],
-  performance: ["tenant_admin", "tenant_manager"],
-  recruiting: ["tenant_admin"],
-  reports: ["tenant_admin", "tenant_manager"],
-  settings: ["tenant_admin"],
+export const rolePolicies: Record<UserRole, RolePolicy> = {
+  platform_operator: {
+    defaultRoute: "/platform/console",
+    areas: ["platform"],
+    adminViews: [],
+    employeeViews: [],
+    platformViews: ["console"],
+    actions: ["platform.tenants.manage"],
+    fields: ["tenant.pack", "tenant.status", "tenant.enabledFeatures"],
+  },
+  tenant_admin: {
+    defaultRoute: "/admin/home",
+    areas: ["admin"],
+    adminViews: [...adminViews],
+    employeeViews: [],
+    platformViews: [],
+    actions: ["admin.workflow.approve", "admin.settings.update"],
+    fields: [
+      "settings.companyName",
+      "settings.businessNumber",
+      "settings.timezone",
+      "settings.workStart",
+      "settings.workEnd",
+    ],
+  },
+  tenant_manager: {
+    defaultRoute: "/admin/home",
+    areas: ["admin"],
+    adminViews: [
+      "home",
+      "people",
+      "attendance",
+      "leave",
+      "workflow",
+      "documents",
+      "performance",
+      "reports",
+    ],
+    employeeViews: [],
+    platformViews: [],
+    actions: ["admin.workflow.approve"],
+    fields: [],
+  },
+  tenant_employee: {
+    defaultRoute: "/employee/home",
+    areas: ["employee"],
+    adminViews: [],
+    employeeViews: [...employeeViews],
+    platformViews: [],
+    actions: ["employee.requests.submit", "employee.documents.sign"],
+    fields: ["request.category", "request.title", "request.reason", "document.signature"],
+  },
 };
 
-const employeeViewAccess: Record<EmployeeView, UserRole[]> = {
-  home: ["tenant_employee"],
-  schedule: ["tenant_employee"],
-  requests: ["tenant_employee"],
-  inbox: ["tenant_employee"],
-  documents: ["tenant_employee"],
-  profile: ["tenant_employee"],
-};
-
-const platformViewAccess: Record<PlatformView, UserRole[]> = {
-  overview: ["platform_operator"],
-  tenants: ["platform_operator"],
-  billing: ["platform_operator"],
-  support: ["platform_operator"],
-  monitoring: ["platform_operator"],
-  security: ["platform_operator"],
-  settings: ["platform_operator"],
-};
-
-const actionAccess: Record<AppAction, UserRole[]> = {
-  "platform.tenants.manage": ["platform_operator"],
-  "admin.workflow.approve": ["tenant_admin", "tenant_manager"],
-  "admin.settings.update": ["tenant_admin"],
-  "employee.requests.submit": ["tenant_employee"],
-  "employee.documents.sign": ["tenant_employee"],
-};
+export function getPolicy(role: UserRole) {
+  return rolePolicies[role];
+}
 
 export function canAccessArea(role: UserRole, area: AppArea) {
-  return areaAccess[area].includes(role);
+  return getPolicy(role).areas.includes(area);
 }
 
 export function canAccessAdminView(role: UserRole, view: AdminView) {
-  return adminViewAccess[view].includes(role);
+  return getPolicy(role).adminViews.includes(view);
 }
 
 export function canAccessEmployeeView(role: UserRole, view: EmployeeView) {
-  return employeeViewAccess[view].includes(role);
+  return getPolicy(role).employeeViews.includes(view);
 }
 
 export function canAccessPlatformView(role: UserRole, view: PlatformView) {
-  return platformViewAccess[view].includes(role);
+  return getPolicy(role).platformViews.includes(view);
 }
 
 export function canPerformAction(role: UserRole, action: AppAction) {
-  return actionAccess[action].includes(role);
+  return getPolicy(role).actions.includes(action);
+}
+
+export function canAccessField(role: UserRole, field: FieldKey) {
+  return getPolicy(role).fields.includes(field);
 }
 
 export function getDefaultRouteForRole(role: UserRole) {
-  if (role === "platform_operator") return "/platform/console";
-  if (role === "tenant_admin" || role === "tenant_manager") return "/admin/home";
-  return "/employee/home";
+  return getPolicy(role).defaultRoute;
 }
 
 export function getAllowedAdminViews(role: UserRole) {
-  return adminViews.filter((view) => canAccessAdminView(role, view));
+  return getPolicy(role).adminViews;
 }
 
 export function getAllowedEmployeeViews(role: UserRole) {
-  return employeeViews.filter((view) => canAccessEmployeeView(role, view));
+  return getPolicy(role).employeeViews;
 }
 
 export function getAllowedPlatformViews(role: UserRole) {
-  return platformViews.filter((view) => canAccessPlatformView(role, view));
+  return getPolicy(role).platformViews;
 }

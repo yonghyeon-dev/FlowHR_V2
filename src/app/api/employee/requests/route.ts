@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { canAccessRole, canPerformAction, requireSession } from "@/lib/server/auth";
+import { canAccessField, canAccessRole, canPerformAction, requireSession } from "@/lib/server/auth";
 import { createRequest, listRequests } from "@/lib/server/dev-store";
 
 export async function GET() {
@@ -35,6 +35,11 @@ export async function POST(request: Request) {
 
   if (!body.category || !body.title || !body.reason) {
     return NextResponse.json({ ok: false, message: "요청 정보가 누락되었습니다." }, { status: 400 });
+  }
+
+  const requiredFields = ["request.category", "request.title", "request.reason"] as const;
+  if (requiredFields.some((field) => !canAccessField(session.role, field))) {
+    return NextResponse.json({ ok: false, message: "요청 필드 작성 권한이 없습니다." }, { status: 403 });
   }
 
   const record = createRequest(session.tenantId, session.user, {

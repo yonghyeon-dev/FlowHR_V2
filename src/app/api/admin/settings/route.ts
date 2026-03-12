@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { canPerformAction, requireSession } from "@/lib/server/auth";
+import { canAccessField, canPerformAction, requireSession } from "@/lib/server/auth";
 import { getLatestSettings, saveSettings } from "@/lib/server/dev-store";
 
 export async function GET() {
@@ -37,6 +37,18 @@ export async function POST(request: Request) {
 
   if (!body.companyName || !body.businessNumber || !body.timezone || !body.workStart || !body.workEnd) {
     return NextResponse.json({ ok: false, message: "필수 설정값이 누락되었습니다." }, { status: 400 });
+  }
+
+  const requiredFields = [
+    "settings.companyName",
+    "settings.businessNumber",
+    "settings.timezone",
+    "settings.workStart",
+    "settings.workEnd",
+  ] as const;
+
+  if (requiredFields.some((field) => !canAccessField(session.role, field))) {
+    return NextResponse.json({ ok: false, message: "설정 필드 수정 권한이 없습니다." }, { status: 403 });
   }
 
   const settings = saveSettings(
