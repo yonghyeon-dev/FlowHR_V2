@@ -18,18 +18,18 @@ export function LandingPage() {
 
       <section className="landing-hero">
         <div className="hero-inner">
-          <div className="hero-badge">HR 운영을 새로 쓰는 기준</div>
+          <div className="hero-badge">HR 운영을 하나로 묶는 기준</div>
           <h1 className="hero-title">
-            사람 중심으로 <span className="accent">HR 운영</span>을 재설계하다
+            분절된 도구 대신 <span className="accent">HR 운영</span>을 체계화하세요
           </h1>
           <p className="hero-desc">
             근태, 휴가, 결재, 문서, 급여, 성과, 채용까지.
-            하나의 플랫폼에서 모든 HR 업무를 한 흐름으로 처리할 수 있습니다.
+            하나의 플랫폼에서 모든 HR 업무를 흐름으로 처리할 수 있습니다.
           </p>
           <Link href="/login" className="hero-cta">
             시작하기
           </Link>
-          <div className="hero-sub">무료 체험 14일 · 카드 등록 없음</div>
+          <div className="hero-sub">무료 체험 14일, 카드 등록 없음</div>
         </div>
       </section>
 
@@ -43,7 +43,7 @@ export function LandingPage() {
           </div>
           <div className="feature-card">
             <div className="feature-icon blue">승인</div>
-            <h3>요청과 승인</h3>
+            <h3>요청과 결재</h3>
             <p>직원 요청, 관리자 승인, 감사 로그까지 하나의 흐름으로 연결합니다.</p>
           </div>
           <div className="feature-card">

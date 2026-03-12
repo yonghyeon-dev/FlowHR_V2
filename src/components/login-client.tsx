@@ -24,13 +24,13 @@ const demoAccounts: DemoAccount[] = [
     target: "/platform/console",
   },
   {
-    label: "오피스 관리자",
+    label: "테넌트 관리자",
     email: "admin@acme.flowhr.dev",
     password: "flowhr123!",
     target: "/admin/home",
   },
   {
-    label: "오피스 직원",
+    label: "테넌트 직원",
     email: "employee@acme.flowhr.dev",
     password: "flowhr123!",
     target: "/employee/home",
